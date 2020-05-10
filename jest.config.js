@@ -4,4 +4,5 @@ module.exports = {
   testRegex: ['.spec.js$', '.test.js$'],
   coverageDirectory: './coverage',
   testEnvironment: 'node',
+  verbose: true,
 };

@@ -1,4 +1,7 @@
-import app from '../src/index';
+/**
+ * @jest-environment jsdom
+ */
+import app from '../src/frontend/index';
 
 describe('app module', () => {
   test('it exists', async () => {
