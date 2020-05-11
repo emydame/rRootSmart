@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 // import { ReactRouter as Router } from 'react-router';
 
 class Nav extends React.Component {
