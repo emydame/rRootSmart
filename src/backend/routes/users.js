@@ -1,6 +1,7 @@
+/* eslint-disable new-cap */
 /* eslint-disable no-unused-vars */
 /* eslint-disable quotes */
-/* eslint-disable no-unused-vars */
+/* eslint new-cap: "error" */
 const express = require("express");
 
 const router = express.Router();
