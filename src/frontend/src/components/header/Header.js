@@ -31,7 +31,9 @@ class Header extends React.Component {
 
   async progName() {
     const header = document.querySelector("[data-app-name]");
-    if (!header) return;
+    if (!header) {
+      return;
+    }
     const programName = await app();
     header.textContent = programName;
   }
