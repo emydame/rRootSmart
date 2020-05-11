@@ -9,7 +9,6 @@
   "directories": {
     "test": "__tests__"
   },
-  "workspaces": ["./src/*"],
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -47,5 +46,6 @@
     "jest": "^25.4.0",
     "parcel-bundler": "^1.12.4"
   },
-  "browserslist": ["last 1 Chrome versions"]
+  "browserslist": ["last 1 Chrome versions"],
+  "workspaces": ["./src/*"]
 }
