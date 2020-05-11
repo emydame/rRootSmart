@@ -5,7 +5,7 @@ export const adminMiddleware = (store) => (next) => (action) => {
     return next(action);
   }
   // do something with admin
-  console.log(action);
+  console.log(action.payload);
   const data = {};
   if (typeof action.payload === 'string') {
     const value = action.payload;

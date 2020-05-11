@@ -17,10 +17,19 @@ class Header extends React.Component {
 
   logout(event) {
     event.preventDefault();
-    this.props.logout(!this.state)
-
+    const item = event.target;
+    const { status } = this.state;
+    if (status === 'true') {
+      this.setState({ status: 'false' });
+      this.props.logout(false);
+      item.textContent = 'Logout'
+    } else {
+      this.setState({ status: 'true' });
+      this.props.logout(true);
+      item.textContent = 'Login';
+    }
   }
-  
+
   async progName() {
     const header = document.querySelector('[data-app-name]');
     if (!header) return;
@@ -31,7 +40,7 @@ class Header extends React.Component {
   componentDidMount() {
     this.progName();
     const status = this.props.admin.login;
-    status === true ? this.setState({status: 'true'}) : this.setState({status: 'false'});
+    status === true ? this.setState({ status: 'true' }) : this.setState({ status: 'false' });
   }
 
   render() {
@@ -42,7 +51,12 @@ class Header extends React.Component {
           <div className="col-md-4">
             <h2 data-app-name></h2>
             <h3>Welcome {this.props.admin.name}</h3>
-            <h3>Is Login: {this.state.status} <button type="button" onClick={this.logout}>Logout</button></h3>
+            <h3>
+              Is Login: {this.state.status}{' '}
+              <button type="button" onClick={this.logout}>
+                Logout
+              </button>
+            </h3>
           </div>
           <div className="col-md-4">{/** user info **/}</div>
         </div>
@@ -67,8 +81,8 @@ const mapDispatchToProps = (dispatch) => {
     {
       logout: (eve) => adminAction(eve)
     },
-    dispatch  
+    dispatch
   );
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
