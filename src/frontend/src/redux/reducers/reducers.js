@@ -20,11 +20,11 @@ export const projectsReducer = (state = states.regulators, action) => {
 export const adminReducer = (state = states.regulators, action) => {
   switch (action.type) {
     case Types.admin: {
-      return {
+      return ({
         ...state,
         name: action.payload.name,
         login: action.payload.login
-      };
+      });
     }
     default: {
       return state;
