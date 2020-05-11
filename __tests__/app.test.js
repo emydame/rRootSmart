@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const app = require('../src/frontend/src/index');
+const app = require('../src/frontend/src/app');
 
 describe('app module', () => {
   test('it exists', async () => {
