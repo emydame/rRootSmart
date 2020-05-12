@@ -1,6 +1,10 @@
 /* eslint-disable new-cap */
 /* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
+<<<<<<< HEAD
+=======
+/* eslint-disable no-unused-vars */
+>>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac
 /* eslint new-cap: "error" */
 const express = require("express");
 

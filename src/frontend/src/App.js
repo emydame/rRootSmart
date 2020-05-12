@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -19,3 +20,8 @@ function App() {
 }
 
 export default App;
+=======
+const app = async () => "INDUSTRY, INNOVATION AND INFRASTRUCTURE SDG ";
+
+export default app;
+>>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac

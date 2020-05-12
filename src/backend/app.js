@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 /* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
+=======
+/* eslint-disable no-unused-vars */
+/* eslint-disable quotes */
+>>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -11,6 +16,13 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
+<<<<<<< HEAD
+=======
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
+
+>>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,6 +45,10 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
+<<<<<<< HEAD
+=======
+  res.render("error");
+>>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac
 });
 
 module.exports = app;
