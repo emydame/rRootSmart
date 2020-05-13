@@ -1,31 +1,14 @@
 #!/usr/bin/env node
-<<<<<<< HEAD
 /* eslint-disable quotes */
-=======
->>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
-<<<<<<< HEAD
 
-=======
-/* eslint-disable quotes */
->>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac
-/**
- * Module dependencies.
- */
-
-<<<<<<< HEAD
 const debug = require("debug")("backend:server");
 const http = require("http");
 const app = require("../app");
-=======
-const http = require("http");
-const debug = require("debug")("backend:server");
-const app = require("../app");
 
->>>>>>> 550b4a9cdf5880110e445975b11b74b5efba63ac
 
 /**
  * Get port from environment and store in Express.

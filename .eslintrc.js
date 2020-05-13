@@ -17,6 +17,7 @@ module.exports = {
   rules: {
     'comma-dangle': ['error', 'never'],
     'no-param-reassign': ['error', { props: false }],
-    'import/no-dynamic-require': "off"
+    'import/no-dynamic-require': "off",
+    "linebreak-style": 0
   }
 };
