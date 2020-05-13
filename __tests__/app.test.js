@@ -1,9 +1,10 @@
 /* eslint-disable quotes */
+/* eslint-disable import/no-unresolved */
 /**
  * @jest-environment jsdom
  */
 
-const app = require("../src/frontend/src/index");
+const app = require("../src/frontend/src/app");
 
 describe("app module", () => {
   test("it exists", async () => {

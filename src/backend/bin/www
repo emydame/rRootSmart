@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-/* eslint-disable quotes */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
-
+/* eslint-disable quotes */
 /**
  * Module dependencies.
  */
@@ -12,6 +11,7 @@
 const debug = require("debug")("backend:server");
 const http = require("http");
 const app = require("../app");
+
 
 /**
  * Get port from environment and store in Express.

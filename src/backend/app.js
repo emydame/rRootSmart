@@ -1,5 +1,5 @@
-/* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
+/* eslint-disable quotes */
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -10,6 +10,10 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
 const app = express();
+
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -33,6 +37,7 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
+  res.render("error");
 });
 
 module.exports = app;
