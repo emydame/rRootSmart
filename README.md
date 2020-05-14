@@ -1,4 +1,4 @@
-## eaZSME is a web application built to provide a platform for SME businesses to access funds for their business in a simple and transparent manner
+## eaZSME is a web application built to provide a platform for SME businesses to access funds for their business in a simple and transparent manner 
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3144341ba4ce422497b8d67d12d9b9b8)](https://app.codacy.com/gh/BuildForSDG/Team-028?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/Team-028&utm_campaign=Badge_Grade_Settings)
 
@@ -21,7 +21,7 @@ This project seeks to proffer solution to the SDG Goal 9 on Industry, Innovation
 
 Imagine through direct investment from your communities government or international cooperation. Build a platform that would help manage, track and ensure the effective implementation of an SME financing project for your community
 
-## This solution presents a platform through which Small & Medium Scale businesses can have access government or individual contributed funds. Also, funds disbursement and implementation can be monitored and accounted for by the various users categories.
+## This solution presents a platform through which Small & Medium Scale businesses can have access government or individual contributed funds. Also, funds disbursement and implementation can be monitored and accounted for by the various users categories
 
 ## Usage
  How would someone use what you have built, include URLs to the deployed app, service e.t.c when you have it setup
@@ -38,11 +38,13 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 
 This starter template used to setup the development environment uses [Parcel](https://parceljs.org/getting_started.html) as the bundler. It is much simpler than WebPack and the others
 
-#### Hints
+## Hints
 
 - Run `yarn install` to get started.
 
+
 - Install additional dependencies: `yarn add <dependency-name> [-D]`
+
 
 - Run tests: `yarn test`
 
