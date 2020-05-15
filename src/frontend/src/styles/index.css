@@ -33,7 +33,7 @@ a {
 
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
-  color: #fff !important;
+  color: #fff;
   background-color: #337ab7;
 }
 
