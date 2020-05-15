@@ -3,16 +3,17 @@ const Previlege = db.userPrevilege;
 
 // Post a User
 exports.create = (req, res) => {
-  if (!req.body)
+  if (!req.body) {
     return res.status(400).send({
-      message: "Previleges not assigened",
+      message: "Previleges not assigened"
     });
+  }
 
   const previlege = new Previlege({
     userId: req.body.useruserIdCatId,
     previlegeName: req.body.previlegeName,
     description: req.body.description,
-    createdBy: req.body.createdBy,
+    createdBy: req.body.createdBy
   });
   previlege
     .save()
@@ -21,7 +22,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Previleges not assigned",
+        message: err.message || "Previleges not assigned"
       });
     });
 };

@@ -1,19 +1,21 @@
 const db = require("../config/db.config");
 const UserCategory = db.userCategory;
 
-// Post a User
+// Post a User category
 exports.create = (req, res) => {
-  if (!req.body)
+  if (!req.body) {
     return res.status(400).send({
-      message: "User details cannot be empty",
+      message: "User details cannot be empty"
     });
-  // create new user instance
+  }
+
+  // create new user category instance
   const userCategory = new UserCategory({
     userCatId: req.body.userCatId,
     userId: req.body.userId,
     categoryName: req.body.categoryName,
     description: req.body.description,
-    createdBy: req.body.createdBy,
+    createdBy: req.body.createdBy
   });
   userCategory
     .save()
@@ -22,9 +24,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message ||
-          "Something wrong while creating the user category profile.",
+        message: err.message || "Something wrong while creating the user category profile."
       });
     });
 };

@@ -3,12 +3,11 @@ const Organization = db.userOrganization;
 
 // Post a User
 exports.create = (req, res) => {
-  if (!req.body){
+  if (!req.body) {
     return res.status(400).send({
-      message: "User organization details cannot be empty",
+      message: "User organization details cannot be empty"
     });
   }
-    
 
   // create new instance of user organization
   const userOrganization = new Organization({
@@ -20,7 +19,7 @@ exports.create = (req, res) => {
     email: req.body.email,
     BVN: req.body.BVN,
     address: req.body.address,
-    dateIncorporated: req.body.dateIncorporated,
+    dateIncorporated: req.body.dateIncorporated
   });
   userOrganization
     .save()
@@ -29,7 +28,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Unable to save organization details.",
+        message: err.message || "Unable to save organization details."
       });
     });
 };
