@@ -17,6 +17,13 @@ img{
   height: 5em;
   margin-left: 50px;
 }
+
+a {
+  color: #3D6CB9;
+  text-decoration: none;
+  font-weight: 700;
+}
+
 .nav>li>a {
   position: relative;
   display: block;
@@ -24,11 +31,6 @@ img{
   padding: 10px 6px !important;
 }
 
-a {
-  color: #3D6CB9;
-  text-decoration: none;
-  font-weight: 700;
-}
 pills>li.active>a:focus, .nav-pills>li.active>a:hover {
   color: #fff !important;
   background-color: #337ab7;
@@ -45,11 +47,9 @@ pills>li.active>a:focus, .nav-pills>li.active>a:hover {
   margin-right: auto;
   margin-left: auto;
 }
-/*** Header styles ends here ********/
+/*** Header styles ends here ***/
 
-
-
-/*** Footer starts here ********/
+/*** Footer starts here ***/
 .footer {
   background-color: #508ceeee;
   height: 60px;
@@ -58,14 +58,17 @@ pills>li.active>a:focus, .nav-pills>li.active>a:hover {
   margin-top: 34%;
   color: #fff !important;
 }
+
 ul.foo-nav {
   display: inline;
 }
+
 li {
   display: inline;
   color: #f9f9f9;
   margin-right: 40px;
 }
+
 li.social {
   float: right;
 }
