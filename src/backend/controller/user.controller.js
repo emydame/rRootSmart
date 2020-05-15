@@ -45,10 +45,12 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   User.findOne({ userId: req.body.userId })
     .then((user) => {
-      if (!user)
+      if (!user) {
         return res.status(404).send({
           message: "User Profile not found"
         });
+      }
+
       // if user found, send user details
       res.status(200).send(user);
     })
