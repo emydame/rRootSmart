@@ -13,31 +13,32 @@ code {
   Monaco, Consolas, "Courier New", monospace;
 }
 
-img{
+img {
   height: 5em;
   margin-left: 50px;
 }
 
 a {
-  color: #3D6CB9;
+  color: #3d6cb9;
   text-decoration: none;
   font-weight: 700;
 }
 
-.nav>li>a {
+.nav > li > a {
   position: relative;
   display: block;
   margin-top: -55px;
   padding: 10px 6px !important;
 }
 
-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+.nav-pills > li.active > a:focus, 
+.nav-pills > li.active > a:hover {
   color: #fff !important;
   background-color: #337ab7;
 }
 
-.header  {
-  background-color: #FF9900;
+.header {
+  background-color: #F90;
   height:70px;
 }
 
@@ -47,14 +48,15 @@ pills>li.active>a:focus, .nav-pills>li.active>a:hover {
   margin-right: auto;
   margin-left: auto;
 }
+
 /*** Header styles ends here ***/
 
 /*** Footer starts here ***/
+
 .footer {
   background-color: #508ceeee;
   height: 60px;
   padding: 15px;
-  /* margin: auto; */
   margin-top: 34%;
   color: #fff !important;
 }
