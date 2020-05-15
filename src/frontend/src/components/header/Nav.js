@@ -7,20 +7,17 @@ class Nav extends React.Component {
     return (
       <ul className="nav nav-pills nav-justified">
         <Router>
-          <li className="active">
-            <Link to="/home">Home</Link>
+          <li className="navLink active ">
+            <Link to="/register">Register</Link>
           </li>
-          <li>
-            <Link to="/about-us">About Us</Link>
+          <li className="navLink">
+            <Link to="/login">Login</Link>
           </li>
-          <li>
+          <li className="navLink">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>
-            <Link to="/testimonies">Testimonies</Link>
-          </li>
-          <li>
-            <Link to="/awards">Awards</Link>
+          <li className="navLink">
+            <Link to="/about">About Us</Link>
           </li>
         </Router>
       </ul>
