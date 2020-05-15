@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import app from "../../App";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 import { adminAction } from "../../redux/actionCreators";
 
 class Header extends React.Component {
@@ -48,7 +49,7 @@ class Header extends React.Component {
     return (
       <header className="header container-fluid">
         <div className="row row-no-gutter">
-          <div className="col-md-6 image"><img src={"./logo.png"} /></div>
+          <div className="col-md-6" id="img"><Link to="/home"><img src={"./logo.png"} /></Link></div>
           {/* <h2 data-app-name></h2> */}
         </div>
         <div className="row ">

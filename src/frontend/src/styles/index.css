@@ -38,3 +38,35 @@ pills>li.active>a:focus, .nav-pills>li.active>a:hover {
   background-color: #FF9900;
   height:70px;
 }
+
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+/*** Header styles ends here ********/
+
+
+
+/*** Footer starts here ********/
+.footer {
+  background-color: #508ceeee;
+  height: 60px;
+  padding: 15px;
+  /* margin: auto; */
+  margin-top: 34%;
+  color: #fff !important;
+}
+ul.foo-nav {
+  display: inline;
+}
+li {
+  display: inline;
+  color: #f9f9f9;
+  margin-right: 40px;
+}
+li.social {
+  float: right;
+}
+
