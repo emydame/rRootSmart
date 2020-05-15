@@ -28,18 +28,18 @@ a {
   position: relative;
   display: block;
   margin-top: -55px;
-  padding: 10px 6px !important;
+  padding: 10px 6px;
 }
 
-.nav-pills > li.active > a:focus, 
+.nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
   color: #fff !important;
   background-color: #337ab7;
 }
 
 .header {
-  background-color: #F90;
-  height:70px;
+  background-color: #f90;
+  height: 70px;
 }
 
 .container-fluid {
@@ -58,7 +58,7 @@ a {
   height: 60px;
   padding: 15px;
   margin-top: 34%;
-  color: #fff !important;
+  color: #fff;
 }
 
 ul.foo-nav {
