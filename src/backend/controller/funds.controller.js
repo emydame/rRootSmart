@@ -3,17 +3,19 @@ const Fund = db.fund;
 
 // Post a User
 exports.create = (req, res) => {
-  if (!req.body)
+  if (!req.body) {
     return res.status(400).send({
-      message: "Fund cannot be empty",
+      message: "Fund cannot be empty"
     });
+  }
+
   // create new user instance
   const fund = new Fund({
     fundId: req.body.fundId,
     organizationId: req.body.organizationId,
     fundCatId: req.body.fundCatId,
     fundName: req.body.fundName,
-    dateInitiated: req.body.dateInitiated,
+    dateInitiated: req.body.dateInitiated
   });
   fund
     .save()
@@ -22,7 +24,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something went wrong.",
+        message: err.message || "Something went wrong."
       });
     });
 };

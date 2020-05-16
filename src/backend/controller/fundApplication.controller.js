@@ -4,10 +4,12 @@ const FundApplication = db.fundApplication;
 // Post a application
 exports.create = (req, res) => {
   let date = new Date();
-  if (!req.body)
+  if (!req.body) {
     return res.status(400).send({
-      message: "Fields cannot be empty",
+      message: "Fields cannot be empty"
     });
+  }
+
   // create new user instance
   const fundApplication = new FundApplication({
     applicationId: req.body.applicationId,
@@ -15,7 +17,7 @@ exports.create = (req, res) => {
     fundId: req.body.fundId,
     fundCatId: req.body.fundCatId,
     status: req.body.status,
-    applicationDate: date,
+    applicationDate: date
   });
   fundApplication
     .save()
@@ -24,7 +26,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something went wrong.",
+        message: err.message || "Something went wrong."
       });
     });
 };

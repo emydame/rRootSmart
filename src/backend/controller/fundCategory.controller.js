@@ -3,16 +3,18 @@ const FundCategory = db.fundCategory;
 
 // Post a User
 exports.create = (req, res) => {
-  if (!req.body)
+  if (!req.body) {
     return res.status(400).send({
-      message: "Fields cannot be empty",
+      message: "Fields cannot be empty"
     });
+  }
+
   // create fund category instance
   const fundCategory = new FundCategory({
     fundCatId: req.body.fundCatId,
     categoryName: req.body.categoryName,
     description: req.body.description,
-    createdBy: req.body.createdBy,
+    createdBy: req.body.createdBy
   });
   fundCategory
     .save()
@@ -21,7 +23,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something went wrong.",
+        message: err.message || "Something went wrong."
       });
     });
 };
