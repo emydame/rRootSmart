@@ -17,7 +17,7 @@ code {
    monospace;
 }
 
-img {
+.col-md-6 img {
   height: 5em;
   margin-left: 50px;
 }
@@ -33,6 +33,7 @@ a {
   display: block;
   margin-top: -55px;
   padding: 10px 6px;
+  margin-right: -15px;
 }
 
 .nav-pills > li.active > a:focus,
@@ -54,6 +55,18 @@ a {
 }
 
 /*** Header styles ends here ***/
+
+/* Carousel style starts here */
+.carousel-item {
+  width: 97%;
+  padding-left: 5%;
+  margin-top: 50px;
+}
+
+.carousel-item img {
+  width: 70%;
+  height: 55vh;
+}
 
 /*** Footer starts here ***/
 
