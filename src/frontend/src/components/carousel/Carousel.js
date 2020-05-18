@@ -3,7 +3,11 @@ import React from "react";
 class Carousel extends React.Component {
   render() {
     return (
-      <div>
+      <div> 
+
+          <h3>Recent Updates</h3>
+          <caption>Built with your needs in mind, Access your financial leverage everywhere.</caption>
+
       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -42,7 +46,7 @@ class Carousel extends React.Component {
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-</div>
+        </div>
       </div>
     );
   }
