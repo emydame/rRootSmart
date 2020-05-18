@@ -39,7 +39,7 @@ const states = [
   "Zamfara"
 ];
 
-const mapStateToLga = (state) => {
+function mapStateToLga(state) {
   let values = [];
   for (let index = 0; index < states.length; index++) {
     switch (state) {
@@ -990,6 +990,6 @@ const mapStateToLga = (state) => {
 
   // Removes duplicated from the statesay values
   return values.filter((a, b) => values.indexOf(a) === b);
-};
+}
 
 export default mapStateToLga;
