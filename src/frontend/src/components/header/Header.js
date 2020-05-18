@@ -6,29 +6,6 @@ import { bindActionCreators } from "redux";
 import { adminAction } from "../../redux/actionCreators";
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      status: ""
-    };
-    this.logout = this.logout.bind(this);
-  }
-
-  logout(event) {
-    event.preventDefault();
-    const item = event.target;
-    const { status } = this.state;
-    if (status === "true") {
-      this.setState({ status: "false" });
-      this.props.logout(false);
-      item.textContent = "Logout";
-    } else {
-      this.setState({ status: "true" });
-      this.props.logout(true);
-      item.textContent = "Login";
-    }
-  }
-
   async progName() {
     const header = document.querySelector("[data-app-name]");
     if (!header) {
@@ -46,26 +23,21 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="header">
-        <div className="row row-no-gutter">
-          <div className="col-md-4">{/*** Logo **/}</div>
-          <div className="col-md-4">
+      <header className="header container-fluid">
+        <div className="row no-gutters">
+          <div className="col-md-1"></div>
+          {/*** Logo **/}
+
+          <div className="col-md-4 app-name">
             <h2 data-app-name></h2>
-            <h3>Welcome {this.props.admin.name}</h3>
-            <h3>
-              Is Login: {this.state.status}{" "}
-              <button type="button" onClick={this.logout}>
-                Logout
-              </button>
-            </h3>
           </div>
-          <div className="col-md-4">{/** user info **/}</div>
-        </div>
-        <div className="row">
-          <div className="col-md-6"></div>
-          <div className="col-md-6">
+          {/*** app name**/}
+
+          <div className="col-md-5 nav">
             <Nav />
           </div>
+          {/** nav bar**/}
+          <div className="col-md-2"></div>
         </div>
       </header>
     );

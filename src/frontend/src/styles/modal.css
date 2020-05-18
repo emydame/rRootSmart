@@ -1,0 +1,34 @@
+.modal-header button {
+  border: none;
+  outline: none !important;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 5%;
+}
+
+.modal-body,
+.modal-header,
+.modal-footer {
+  background-color: #97928a;
+}
+
+.modal-footer {
+}
+
+.form-text {
+  display: none;
+}
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+input:valid {
+  border: 2px solid black;
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen);
+}
