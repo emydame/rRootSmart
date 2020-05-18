@@ -67,7 +67,34 @@ a {
   width: 70%;
   height: 55vh;
 }
+/* content style starts here */
+.content{
+  width: 92%;  
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2%;
+  
+}
 
+.content-box{
+  padding-left: 5%;
+ 
+}
+.classSpacing{
+  margin:10px; padding:10px;
+}
+#bluecol{
+  color: #fff;
+  background-color: #337ab7;
+  padding-top: 20px;
+}
+#yellowcol{
+  color: #fff;
+  background-color: #D4AF37;
+  padding-top: 20px;
+}
+/* content style ends here */
 /*** Footer starts here ***/
 
 .footer {
