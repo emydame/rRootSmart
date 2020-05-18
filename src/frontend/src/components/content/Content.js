@@ -1,33 +1,63 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 class Content extends React.Component {
   render() {
     return (
-      <>
-    
-      <div class="content">      
-              <div class="row">         
-          <div id="bluecol" class="col-md-4">
-            <div class="classSpacing">
-          People search for this Lorem ipsum dummy copy text using all kinds of names, such as Lorem ipsum, lorem ipsum dolor sit amet, Lorem, dummy text, loren ipsum (yes, spelled wrong), Lorem ipsum sample textipsum loremlorem ipsum sample, Latin copy text, Lorem ipsum text, Latin dummy text, template text, sample text, dummy copy text, Latin sample text, HTML dummy text, Lorem ipsum dummy text, filler text or copy filling text, and many other names.
-          </div>
-          </div>
-        <div id="yellowcol" class="col-md-4">        
-        Some Content.. 
-     
-          </div>
-        <div id="bluecol" class="col-md-4 ">
-          <div class="col-md-12">
-        Some Content.. 
-     </div>
-        
-        </div>
-          
-       
-      </div>
-      </div>
       
-      </>
+      <div className="mainContent">
+
+          {/*  ------- ----   Testimonial display Section  ----------*/}
+
+        <h3>Our Accomplishments</h3>
+        
+          <div class="row content">
+            <div class="col">
+              view lists of approved Projects for funding
+              <br></br>
+              <br></br>
+              see eligibility criteria to <Link id="link" to="#">apply</Link>
+            </div>
+              <div class="col displayCon">
+              $140,000 funds available for SMEs from The World bank 
+              <br></br>
+              <br></br>
+              see eligibility criteria to <Link id="md-link" to="#">apply</Link>
+            </div>
+            <div class="col">
+              The Federal Government of Nigeria Through the Central Bank
+              has funded twenty three (23) SMEs for the last four months from 
+              this platform. 
+              <br></br>
+              <br></br>
+              <br></br>
+              <Link id="link" to="#">View list</Link> of benefiting SMEs here 
+            </div>
+          </div>
+          <br></br>
+          <hr></hr>
+          
+          <br></br>
+            {/*  ------- ----   -Sponsors Display section************ */}
+          <div className="sponsors">
+              <img 
+                src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732622/Group_157_rzbgqx.png"
+                alt="facebook-logo"
+            />
+              <img 
+                src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732608/Andella_gmanxz.png"
+                alt="andela-logo"
+            />
+              <img 
+                src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732623/FirstBank_Logo_coyuui.jpg"
+                alt="firstbank-logo"
+            />
+              <img 
+                src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732624/paypal-logo-vector-download-400x400_yy1m3o.jpg"
+                alt="paypal-logo"
+            />
+          </div>
+
+      </div>
     );
   }
 }
