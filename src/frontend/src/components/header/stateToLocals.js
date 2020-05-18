@@ -1,47 +1,49 @@
+/* eslint-disable no-fallthrough */
 const states = [
-    "Abia",
-    "Abuja",
-    "Adamawa",
-    "Akwa Ibom",
-    "Anambra",
-    "Bauchi",
-    "Bayelsa",
-    "Benue",
-    "Borno",
-    "Cross River",
-    "Delta",
-    "Ebonyi",
-    "Enugu",
-    "Edo",
-    "Ekiti",
-    "Gombe",
-    "Imo",
-    "Jigawa",
-    "Kaduna",
-    "Kano",
-    "Katsina",
-    "Kebbi",
-    "Kogi",
-    "Kwara",
-    "Lagos",
-    "Nasarawa",
-    "Niger",
-    "Ogun",
-    "Ondo",
-    "Osun",
-    "Oyo",
-    "Plateau",
-    "Rivers",
-    "Sokoto",
-    "Taraba",
-    "Yobe",
-    "Zamfara"
-  ];
-  
-  const mapStateToLga = (state) => {
-    let values = [];
-    states.map((item, index, arr) => {
-      if (state === arr[0]) {
+  "Abia",
+  "Abuja",
+  "Adamawa",
+  "Akwa Ibom",
+  "Anambra",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Enugu",
+  "Edo",
+  "Ekiti",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara"
+];
+
+const mapStateToLga = (state) => {
+  let values = [];
+  states.map((item, index, arr) => {
+    switch (state) {
+      case arr[0]: {
         values.push(
           "Aba North",
           "Aba South",
@@ -57,9 +59,13 @@ const states = [
           "Usiala Ngwa South",
           "Umu Nneochi"
         );
-      } else if (state === arr[1]) {
+        break;
+      }
+      case arr[1]: {
         values.push("Abaji", "Abuja Municipal Area Council", "Bwari", "Gwagwalada", "Kuje", "Kwali");
-      } else if (state === arr[2]) {
+        break;
+      }
+      case arr[2]: {
         values.push(
           "Demsa",
           "Fufore",
@@ -83,7 +89,9 @@ const states = [
           "Yola North",
           "Yola South Local"
         );
-      } else if (state === arr[3]) {
+        break;
+      }
+      case arr[3]: {
         values.push(
           "Abak",
           "Eket",
@@ -117,7 +125,9 @@ const states = [
           "Urue offong/oruko",
           "Uyo"
         );
-      } else if (state === arr[4]) {
+        break;
+      }
+      case arr[4]: {
         values.push(
           "Aguata",
           "Anambra East",
@@ -141,7 +151,9 @@ const states = [
           "Orumba South",
           "Oyi"
         );
-      } else if (state === arr[5]) {
+        break;
+      }
+      case arr[5]: {
         values.push(
           "Alkaleri",
           "Bauchi",
@@ -164,9 +176,13 @@ const states = [
           "Warji",
           "Zaki"
         );
-      } else if (state === arr[6]) {
+        break;
+      }
+      case arr[6]: {
         values.push("Brass", "Ekeremor", "Kolokuma/Opokuma", "Nembe", "Ogbia", "Sagbama", "Southern Ijaw", "Yenagoa");
-      } else if (state === arr[7]) {
+        break;
+      }
+      case arr[7]: {
         values.push(
           "Ado",
           "Agatu",
@@ -192,7 +208,9 @@ const states = [
           "Ushongo",
           "Vandeikya"
         );
-      } else if (state === arr[8]) {
+        break;
+      }
+      case arr[8]: {
         values.push(
           "Abadam",
           "Askira/Uba",
@@ -222,7 +240,9 @@ const states = [
           "Nganzai",
           "Shani"
         );
-      } else if (state === arr[9]) {
+        break;
+      }
+      case arr[9]: {
         values.push(
           "Abi",
           "Akamkpa",
@@ -243,7 +263,9 @@ const states = [
           "Yakuur",
           "Yala"
         );
-      } else if (state === arr[10]) {
+        break;
+      }
+      case arr[10]: {
         values.push(
           "Aniocha North",
           "Aniocha South",
@@ -271,7 +293,9 @@ const states = [
           "Warri South",
           "Warri South West"
         );
-      } else if (state === arr[11]) {
+        break;
+      }
+      case arr[11]: {
         values.push(
           "Abakaliki",
           "Afikpo North",
@@ -287,7 +311,9 @@ const states = [
           "Ohaukwu",
           "Onicha"
         );
-      } else if (state === arr[12]) {
+        break;
+      }
+      case arr[12]: {
         values.push(
           "Aninri",
           "Awgu",
@@ -307,7 +333,9 @@ const states = [
           "Udi",
           "Uzo Uwani"
         );
-      } else if (state === arr[13]) {
+        break;
+      }
+      case arr[13]: {
         values.push(
           "Akoko-Edo",
           "Egor",
@@ -328,7 +356,9 @@ const states = [
           "Owan West",
           "Uhunmwonde"
         );
-      } else if (state === arr[14]) {
+        break;
+      }
+      case arr[14]: {
         values.push(
           "Ado Ekiti",
           "Efon",
@@ -347,7 +377,9 @@ const states = [
           "Moba",
           "Oye"
         );
-      } else if (state === arr[15]) {
+        break;
+      }
+      case arr[15]: {
         values.push(
           "Akko",
           "Balanga",
@@ -361,7 +393,9 @@ const states = [
           "Shongom",
           "Yamaltu/Deba"
         );
-      } else if (state === arr[16]) {
+        break;
+      }
+      case arr[16]: {
         values.push(
           "Aboh Mbaise",
           "Ahiazu Mbaise",
@@ -391,7 +425,9 @@ const states = [
           "Owerri West",
           "Unuimo"
         );
-      } else if (state === arr[17]) {
+        break;
+      }
+      case arr[17]: {
         values.push(
           "Auyo",
           "Babura",
@@ -421,7 +457,9 @@ const states = [
           "Taura",
           "Yankwashi"
         );
-      } else if (state === arr[18]) {
+        break;
+      }
+      case arr[18]: {
         values.push(
           "Birnin Gwari",
           "Chikun",
@@ -447,7 +485,9 @@ const states = [
           "Zangon Kataf",
           "Zaria"
         );
-      } else if (state === arr[19]) {
+        break;
+      }
+      case arr[19]: {
         values.push(
           "Ajingi",
           "Albasu",
@@ -494,7 +534,9 @@ const states = [
           "Warawa",
           "Wudil"
         );
-      } else if (state === arr[20]) {
+        break;
+      }
+      case arr[20]: {
         values.push(
           "Bakori",
           "Batagarawa",
@@ -531,7 +573,9 @@ const states = [
           "Sandamu",
           "Zango"
         );
-      } else if (state === arr[21]) {
+        break;
+      }
+      case arr[21]: {
         values.push(
           "Aleiro",
           "Arewa Dandi",
@@ -555,7 +599,9 @@ const states = [
           "Yauri",
           "Zuru"
         );
-      } else if (state === arr[22]) {
+        break;
+      }
+      case arr[22]: {
         values.push(
           "Adavi",
           "Ajaokuta",
@@ -579,7 +625,9 @@ const states = [
           "Yagba East",
           "Yagba West"
         );
-      } else if (state === arr[23]) {
+        break;
+      }
+      case arr[23]: {
         values.push(
           "Asa",
           "Baruten",
@@ -598,7 +646,9 @@ const states = [
           "Oyun",
           "Pategi"
         );
-      } else if (state === arr[24]) {
+        break;
+      }
+      case arr[24]: {
         values.push(
           "Agege",
           "Ajeromi-Ifelodun",
@@ -621,7 +671,9 @@ const states = [
           "Shomolu",
           "Surulere"
         );
-      } else if (state === arr[25]) {
+        break;
+      }
+      case arr[25]: {
         values.push(
           "Akwanga",
           "Awe",
@@ -637,7 +689,9 @@ const states = [
           "Toto",
           "Wamba"
         );
-      } else if (state === arr[26]) {
+        break;
+      }
+      case arr[26]: {
         values.push(
           "Agaie",
           "Agwara",
@@ -665,7 +719,9 @@ const states = [
           "Tafa",
           "Wushishi"
         );
-      } else if (state === arr[27]) {
+        break;
+      }
+      case arr[27]: {
         values.push(
           "Abeokuta North",
           "Abeokuta South",
@@ -688,7 +744,9 @@ const states = [
           "Remo North",
           "Shagamu"
         );
-      } else if (state === arr[28]) {
+        break;
+      }
+      case arr[28]: {
         values.push(
           "Akoko North-East",
           "Akoko North-West",
@@ -709,7 +767,9 @@ const states = [
           "Ose",
           "Owo"
         );
-      } else if (state === arr[29]) {
+        break;
+      }
+      case arr[29]: {
         values.push(
           "Aiyedaade",
           "Aiyedire",
@@ -742,7 +802,9 @@ const states = [
           "Orolu",
           "Osogbo"
         );
-      } else if (state === arr[30]) {
+        break;
+      }
+      case arr[30]: {
         values.push(
           "Afijio",
           "Akinyele",
@@ -778,7 +840,9 @@ const states = [
           "Saki West",
           "Surulere"
         );
-      } else if (state === arr[31]) {
+        break;
+      }
+      case arr[31]: {
         values.push(
           "Barkin Ladi",
           "Bassa",
@@ -798,7 +862,9 @@ const states = [
           "Shendam",
           "Wase"
         );
-      } else if (state === arr[32]) {
+        break;
+      }
+      case arr[32]: {
         values.push(
           "Abua/Odual",
           "Ahoada East",
@@ -824,7 +890,9 @@ const states = [
           "Port Harcourt",
           "Tai"
         );
-      } else if (state === arr[33]) {
+        break;
+      }
+      case arr[33]: {
         values.push(
           "Binji",
           "Bodinga",
@@ -850,7 +918,9 @@ const states = [
           "Wurno",
           "Yabo"
         );
-      } else if (state === arr[34]) {
+        break;
+      }
+      case arr[34]: {
         values.push(
           "Ardo Kola",
           "Bali",
@@ -869,7 +939,9 @@ const states = [
           "Yorro",
           "Zing"
         );
-      } else if (state === arr[35]) {
+        break;
+      }
+      case arr[35]: {
         values.push(
           "Bade",
           "Bursari",
@@ -889,7 +961,9 @@ const states = [
           "Yunusari",
           "Yusufari"
         );
-      } else if (state === arr[36]) {
+        break;
+      }
+      case arr[36]: {
         values.push(
           "Anka",
           "Bakura",
@@ -906,10 +980,16 @@ const states = [
           "Talata Mafara",
           "Zurmi"
         );
+        break;
       }
-    });
-    // Removes duplicated from the array values
-    return values.filter((a, b) => values.indexOf(a) === b);
-  };
-  
-  export default mapStateToLga;
+      default: {
+        values.push();
+        break;
+      }
+    }
+  });
+  // Removes duplicated from the array values
+  return values.filter((a, b) => values.indexOf(a) === b);
+};
+
+export default mapStateToLga;

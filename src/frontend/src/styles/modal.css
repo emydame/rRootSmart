@@ -1,6 +1,6 @@
 .modal-header button {
   border: none;
-  outline: none !important;
+  outline: none;
 }
 
 .modal {
@@ -14,8 +14,6 @@
   background-color: #97928a;
 }
 
-.modal-footer {
-}
 
 .form-text {
   display: none;

@@ -9,7 +9,7 @@ import Content from "./content/Content";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import store from "../redux/configurations/store";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const history = createBrowserHistory();
 const stores = store();

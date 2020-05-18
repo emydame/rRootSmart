@@ -93,7 +93,7 @@ const towns = {
   }
 };
 
-function getTown(obj) {
+/*****function getTown(obj) {
   const res = {};
   function recurse(obj, current) {
       for (const key in obj) {
@@ -110,14 +110,8 @@ function getTown(obj) {
   }
   recurse(obj);
   return res;
-}
+}*****/
 
-getTown(towns);
-
-
-
-const getTowns = (state, lga) => {
-  
-};
+const getTown = (state, lga) => {};
 
 export default getTown;

@@ -1,3 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable quotes */
+/*eslint quotes: ["error", "double"]*/
+/*eslint-env es6*/
+/* eslint no-console: "error" */
 import React from "react";
 import { Link, BrowserRouter as Router } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
@@ -124,7 +129,7 @@ class Nav extends React.Component {
     const select = this.lga.current;
 
     // Check if the select has options if it does remove the options
-    if (select.options !== 0) {
+    if (select.options.length > 0) {
       let i,
         L = select.options.length - 1;
       for (i = L; i >= 0; i--) {
@@ -158,7 +163,7 @@ class Nav extends React.Component {
       }
     }
 
-    const lga = this.lga.current;
+    /***const lga = this.lga.current;
     const state = this._state.current;
     const lgaValue = lga.options[lga.selectedIndex].value;
     const stateValue = state.options[state.selectedIndex].value;
@@ -172,7 +177,7 @@ class Nav extends React.Component {
       option.setAttribute("id", element);
       option.textContent = element;
       select.appendChild(option);
-    }
+    }***/
   }
 
   render() {
