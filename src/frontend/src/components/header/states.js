@@ -1,4 +1,4 @@
-const states = [
+export const lowerState = [
     "Abia",
     "Abuja",
     "Adamawa",
@@ -15,6 +15,8 @@ const states = [
     "Edo",
     "Ekiti",
     "Gombe",
+];
+export const middleState = [
     "Imo",
     "Jigawa",
     "Kaduna",
@@ -30,12 +32,16 @@ const states = [
     "Ondo",
     "Osun",
     "Oyo",
+];
+
+export const upperState = [
     "Plateau",
     "Rivers",
     "Sokoto",
     "Taraba",
     "Yobe",
     "Zamfara"
-  ];
+];
 
-  export default states;
+
+  

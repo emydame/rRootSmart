@@ -139,7 +139,7 @@ class Nav extends React.Component {
 
     const st = event.target.value;
     const lgas = mapStateToLocals(st);
-
+    
     for (let index = 0; index < lgas.length; index++) {
       const option = document.createElement("option");
       const element = lgas[parseInt(index)];
