@@ -1,49 +1,12 @@
 /* eslint-disable no-fallthrough */
-const states = [
-  "Abia",
-  "Abuja",
-  "Adamawa",
-  "Akwa Ibom",
-  "Anambra",
-  "Bauchi",
-  "Bayelsa",
-  "Benue",
-  "Borno",
-  "Cross River",
-  "Delta",
-  "Ebonyi",
-  "Enugu",
-  "Edo",
-  "Ekiti",
-  "Gombe",
-  "Imo",
-  "Jigawa",
-  "Kaduna",
-  "Kano",
-  "Katsina",
-  "Kebbi",
-  "Kogi",
-  "Kwara",
-  "Lagos",
-  "Nasarawa",
-  "Niger",
-  "Ogun",
-  "Ondo",
-  "Osun",
-  "Oyo",
-  "Plateau",
-  "Rivers",
-  "Sokoto",
-  "Taraba",
-  "Yobe",
-  "Zamfara"
-];
+import states from "./states";
 
-function mapStateToLga(state) {
-  let values = [];
-  for (let index = 0; index < states.length; index++) {
+let values = [];
+
+function lowerState(state, stats) {
+  for (let index = 0; index < stats.length; index++) {
     switch (state) {
-      case states[0]:
+      case stats[0]:
         values.push(
           "Aba North",
           "Aba South",
@@ -61,11 +24,11 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[1]:
+      case stats[1]:
         values.push("Abaji", "Abuja Municipal Area Council", "Bwari", "Gwagwalada", "Kuje", "Kwali");
         break;
 
-      case states[2]:
+      case stats[2]:
         values.push(
           "Demsa",
           "Fufore",
@@ -91,7 +54,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[3]:
+      case stats[3]:
         values.push(
           "Abak",
           "Eket",
@@ -127,7 +90,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[4]:
+      case stats[4]:
         values.push(
           "Aguata",
           "Anambra East",
@@ -153,7 +116,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[5]:
+      case stats[5]:
         values.push(
           "Alkaleri",
           "Bauchi",
@@ -178,11 +141,11 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[6]:
+      case stats[6]:
         values.push("Brass", "Ekeremor", "Kolokuma/Opokuma", "Nembe", "Ogbia", "Sagbama", "Southern Ijaw", "Yenagoa");
         break;
 
-      case states[7]:
+      case stats[7]:
         values.push(
           "Ado",
           "Agatu",
@@ -210,7 +173,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[8]:
+      case stats[8]:
         values.push(
           "Abadam",
           "Askira/Uba",
@@ -242,13 +205,13 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[9]:
+      case stats[9]:
         values.push(
           "Abi",
           "Akamkpa",
           "Akpabuyo",
           "Bakassi",
-          "Bekwstatesa",
+          "Bekwstatsa",
           "Biase",
           "Boki",
           "Calabar Municipal",
@@ -265,7 +228,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[10]:
+      case stats[10]:
         values.push(
           "Aniocha North",
           "Aniocha South",
@@ -289,13 +252,13 @@ function mapStateToLga(state) {
           "Ughelli South",
           "Ukwuani",
           "Uvwie",
-          "Wstatesi North",
-          "Wstatesi South",
-          "Wstatesi South West"
+          "Wstatsi North",
+          "Wstatsi South",
+          "Wstatsi South West"
         );
         break;
 
-      case states[11]:
+      case stats[11]:
         values.push(
           "Abakaliki",
           "Afikpo North",
@@ -313,7 +276,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[12]:
+      case stats[12]:
         values.push(
           "Aninri",
           "Awgu",
@@ -335,7 +298,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[13]:
+      case stats[13]:
         values.push(
           "Akoko-Edo",
           "Egor",
@@ -358,7 +321,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[14]:
+      case stats[14]:
         values.push(
           "Ado Ekiti",
           "Efon",
@@ -379,7 +342,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[15]:
+      case stats[15]:
         values.push(
           "Akko",
           "Balanga",
@@ -394,8 +357,16 @@ function mapStateToLga(state) {
           "Yamaltu/Deba"
         );
         break;
+      default:
+        values.push("Error");
+    }
+  }
+}
 
-      case states[16]:
+function middleState(state, stats) {
+  for (let index = 0; index < stats.length; index++) {
+    switch (state) {
+      case stats[16]:
         values.push(
           "Aboh Mbaise",
           "Ahiazu Mbaise",
@@ -427,7 +398,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[17]:
+      case stats[17]:
         values.push(
           "Auyo",
           "Babura",
@@ -459,7 +430,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[18]:
+      case stats[18]:
         values.push(
           "Birnin Gwari",
           "Chikun",
@@ -487,7 +458,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[19]:
+      case stats[19]:
         values.push(
           "Ajingi",
           "Albasu",
@@ -536,7 +507,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[20]:
+      case stats[20]:
         values.push(
           "Bakori",
           "Batagarawa",
@@ -575,7 +546,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[21]:
+      case stats[21]:
         values.push(
           "Aleiro",
           "Arewa Dandi",
@@ -601,7 +572,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[22]:
+      case stats[22]:
         values.push(
           "Adavi",
           "Ajaokuta",
@@ -627,7 +598,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[23]:
+      case stats[23]:
         values.push(
           "Asa",
           "Baruten",
@@ -648,7 +619,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[24]:
+      case stats[24]:
         values.push(
           "Agege",
           "Ajeromi-Ifelodun",
@@ -673,7 +644,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[25]:
+      case stats[25]:
         values.push(
           "Akwanga",
           "Awe",
@@ -691,7 +662,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[26]:
+      case stats[26]:
         values.push(
           "Agaie",
           "Agwara",
@@ -721,7 +692,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[27]:
+      case stats[27]:
         values.push(
           "Abeokuta North",
           "Abeokuta South",
@@ -746,7 +717,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[28]:
+      case stats[28]:
         values.push(
           "Akoko North-East",
           "Akoko North-West",
@@ -769,7 +740,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[29]:
+      case stats[29]:
         values.push(
           "Aiyedaade",
           "Aiyedire",
@@ -804,7 +775,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[30]:
+      case stats[30]:
         values.push(
           "Afijio",
           "Akinyele",
@@ -841,8 +812,16 @@ function mapStateToLga(state) {
           "Surulere"
         );
         break;
+      default:
+        values.push("");
+    }
+  }
+}
 
-      case states[31]:
+function upperState(state, stats) {
+  for (let index = 0; index < stats.length; index++) {
+    switch (state) {
+      case stats[31]:
         values.push(
           "Barkin Ladi",
           "Bassa",
@@ -864,7 +843,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[32]:
+      case stats[32]:
         values.push(
           "Abua/Odual",
           "Ahoada East",
@@ -892,7 +871,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[33]:
+      case stats[33]:
         values.push(
           "Binji",
           "Bodinga",
@@ -920,7 +899,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[34]:
+      case stats[34]:
         values.push(
           "Ardo Kola",
           "Bali",
@@ -941,7 +920,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[35]:
+      case stats[35]:
         values.push(
           "Bade",
           "Bursari",
@@ -963,7 +942,7 @@ function mapStateToLga(state) {
         );
         break;
 
-      case states[36]:
+      case stats[36]:
         values.push(
           "Anka",
           "Bakura",
@@ -983,12 +962,18 @@ function mapStateToLga(state) {
         break;
 
       default:
-        values.push();
+        values.push("");
         break;
     }
   }
+}
 
-  // Removes duplicated from the statesay values
+function mapStateToLga(state) {
+  lowerState(state, states);
+  middleState(state, states);
+  upperState(state, states);
+
+  // Removes duplicated from the state say values
   return values.filter((a, b) => values.indexOf(a) === b);
 }
 
