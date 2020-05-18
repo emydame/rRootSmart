@@ -41,9 +41,9 @@ const states = [
 
 const mapStateToLga = (state) => {
   let values = [];
-  states.map((item, index, arr) => {
+  for (let index = 0; index < states.length; index++) {
     switch (state) {
-      case arr[0]: {
+      case states[0]:
         values.push(
           "Aba North",
           "Aba South",
@@ -60,12 +60,12 @@ const mapStateToLga = (state) => {
           "Umu Nneochi"
         );
         break;
-      }
-      case arr[1]: {
+
+      case states[1]:
         values.push("Abaji", "Abuja Municipal Area Council", "Bwari", "Gwagwalada", "Kuje", "Kwali");
         break;
-      }
-      case arr[2]: {
+
+      case states[2]:
         values.push(
           "Demsa",
           "Fufore",
@@ -90,8 +90,8 @@ const mapStateToLga = (state) => {
           "Yola South Local"
         );
         break;
-      }
-      case arr[3]: {
+
+      case states[3]:
         values.push(
           "Abak",
           "Eket",
@@ -126,8 +126,8 @@ const mapStateToLga = (state) => {
           "Uyo"
         );
         break;
-      }
-      case arr[4]: {
+
+      case states[4]:
         values.push(
           "Aguata",
           "Anambra East",
@@ -152,8 +152,8 @@ const mapStateToLga = (state) => {
           "Oyi"
         );
         break;
-      }
-      case arr[5]: {
+
+      case states[5]:
         values.push(
           "Alkaleri",
           "Bauchi",
@@ -177,12 +177,12 @@ const mapStateToLga = (state) => {
           "Zaki"
         );
         break;
-      }
-      case arr[6]: {
+
+      case states[6]:
         values.push("Brass", "Ekeremor", "Kolokuma/Opokuma", "Nembe", "Ogbia", "Sagbama", "Southern Ijaw", "Yenagoa");
         break;
-      }
-      case arr[7]: {
+
+      case states[7]:
         values.push(
           "Ado",
           "Agatu",
@@ -209,8 +209,8 @@ const mapStateToLga = (state) => {
           "Vandeikya"
         );
         break;
-      }
-      case arr[8]: {
+
+      case states[8]:
         values.push(
           "Abadam",
           "Askira/Uba",
@@ -241,14 +241,14 @@ const mapStateToLga = (state) => {
           "Shani"
         );
         break;
-      }
-      case arr[9]: {
+
+      case states[9]:
         values.push(
           "Abi",
           "Akamkpa",
           "Akpabuyo",
           "Bakassi",
-          "Bekwarra",
+          "Bekwstatesa",
           "Biase",
           "Boki",
           "Calabar Municipal",
@@ -264,8 +264,8 @@ const mapStateToLga = (state) => {
           "Yala"
         );
         break;
-      }
-      case arr[10]: {
+
+      case states[10]:
         values.push(
           "Aniocha North",
           "Aniocha South",
@@ -289,13 +289,13 @@ const mapStateToLga = (state) => {
           "Ughelli South",
           "Ukwuani",
           "Uvwie",
-          "Warri North",
-          "Warri South",
-          "Warri South West"
+          "Wstatesi North",
+          "Wstatesi South",
+          "Wstatesi South West"
         );
         break;
-      }
-      case arr[11]: {
+
+      case states[11]:
         values.push(
           "Abakaliki",
           "Afikpo North",
@@ -312,8 +312,8 @@ const mapStateToLga = (state) => {
           "Onicha"
         );
         break;
-      }
-      case arr[12]: {
+
+      case states[12]:
         values.push(
           "Aninri",
           "Awgu",
@@ -334,8 +334,8 @@ const mapStateToLga = (state) => {
           "Uzo Uwani"
         );
         break;
-      }
-      case arr[13]: {
+
+      case states[13]:
         values.push(
           "Akoko-Edo",
           "Egor",
@@ -357,8 +357,8 @@ const mapStateToLga = (state) => {
           "Uhunmwonde"
         );
         break;
-      }
-      case arr[14]: {
+
+      case states[14]:
         values.push(
           "Ado Ekiti",
           "Efon",
@@ -378,8 +378,8 @@ const mapStateToLga = (state) => {
           "Oye"
         );
         break;
-      }
-      case arr[15]: {
+
+      case states[15]:
         values.push(
           "Akko",
           "Balanga",
@@ -394,8 +394,8 @@ const mapStateToLga = (state) => {
           "Yamaltu/Deba"
         );
         break;
-      }
-      case arr[16]: {
+
+      case states[16]:
         values.push(
           "Aboh Mbaise",
           "Ahiazu Mbaise",
@@ -426,8 +426,8 @@ const mapStateToLga = (state) => {
           "Unuimo"
         );
         break;
-      }
-      case arr[17]: {
+
+      case states[17]:
         values.push(
           "Auyo",
           "Babura",
@@ -458,8 +458,8 @@ const mapStateToLga = (state) => {
           "Yankwashi"
         );
         break;
-      }
-      case arr[18]: {
+
+      case states[18]:
         values.push(
           "Birnin Gwari",
           "Chikun",
@@ -486,8 +486,8 @@ const mapStateToLga = (state) => {
           "Zaria"
         );
         break;
-      }
-      case arr[19]: {
+
+      case states[19]:
         values.push(
           "Ajingi",
           "Albasu",
@@ -535,8 +535,8 @@ const mapStateToLga = (state) => {
           "Wudil"
         );
         break;
-      }
-      case arr[20]: {
+
+      case states[20]:
         values.push(
           "Bakori",
           "Batagarawa",
@@ -574,8 +574,8 @@ const mapStateToLga = (state) => {
           "Zango"
         );
         break;
-      }
-      case arr[21]: {
+
+      case states[21]:
         values.push(
           "Aleiro",
           "Arewa Dandi",
@@ -600,8 +600,8 @@ const mapStateToLga = (state) => {
           "Zuru"
         );
         break;
-      }
-      case arr[22]: {
+
+      case states[22]:
         values.push(
           "Adavi",
           "Ajaokuta",
@@ -626,8 +626,8 @@ const mapStateToLga = (state) => {
           "Yagba West"
         );
         break;
-      }
-      case arr[23]: {
+
+      case states[23]:
         values.push(
           "Asa",
           "Baruten",
@@ -647,8 +647,8 @@ const mapStateToLga = (state) => {
           "Pategi"
         );
         break;
-      }
-      case arr[24]: {
+
+      case states[24]:
         values.push(
           "Agege",
           "Ajeromi-Ifelodun",
@@ -672,8 +672,8 @@ const mapStateToLga = (state) => {
           "Surulere"
         );
         break;
-      }
-      case arr[25]: {
+
+      case states[25]:
         values.push(
           "Akwanga",
           "Awe",
@@ -690,8 +690,8 @@ const mapStateToLga = (state) => {
           "Wamba"
         );
         break;
-      }
-      case arr[26]: {
+
+      case states[26]:
         values.push(
           "Agaie",
           "Agwara",
@@ -720,8 +720,8 @@ const mapStateToLga = (state) => {
           "Wushishi"
         );
         break;
-      }
-      case arr[27]: {
+
+      case states[27]:
         values.push(
           "Abeokuta North",
           "Abeokuta South",
@@ -745,8 +745,8 @@ const mapStateToLga = (state) => {
           "Shagamu"
         );
         break;
-      }
-      case arr[28]: {
+
+      case states[28]:
         values.push(
           "Akoko North-East",
           "Akoko North-West",
@@ -768,8 +768,8 @@ const mapStateToLga = (state) => {
           "Owo"
         );
         break;
-      }
-      case arr[29]: {
+
+      case states[29]:
         values.push(
           "Aiyedaade",
           "Aiyedire",
@@ -803,8 +803,8 @@ const mapStateToLga = (state) => {
           "Osogbo"
         );
         break;
-      }
-      case arr[30]: {
+
+      case states[30]:
         values.push(
           "Afijio",
           "Akinyele",
@@ -841,8 +841,8 @@ const mapStateToLga = (state) => {
           "Surulere"
         );
         break;
-      }
-      case arr[31]: {
+
+      case states[31]:
         values.push(
           "Barkin Ladi",
           "Bassa",
@@ -863,8 +863,8 @@ const mapStateToLga = (state) => {
           "Wase"
         );
         break;
-      }
-      case arr[32]: {
+
+      case states[32]:
         values.push(
           "Abua/Odual",
           "Ahoada East",
@@ -891,8 +891,8 @@ const mapStateToLga = (state) => {
           "Tai"
         );
         break;
-      }
-      case arr[33]: {
+
+      case states[33]:
         values.push(
           "Binji",
           "Bodinga",
@@ -919,8 +919,8 @@ const mapStateToLga = (state) => {
           "Yabo"
         );
         break;
-      }
-      case arr[34]: {
+
+      case states[34]:
         values.push(
           "Ardo Kola",
           "Bali",
@@ -940,8 +940,8 @@ const mapStateToLga = (state) => {
           "Zing"
         );
         break;
-      }
-      case arr[35]: {
+
+      case states[35]:
         values.push(
           "Bade",
           "Bursari",
@@ -962,8 +962,8 @@ const mapStateToLga = (state) => {
           "Yusufari"
         );
         break;
-      }
-      case arr[36]: {
+
+      case states[36]:
         values.push(
           "Anka",
           "Bakura",
@@ -981,14 +981,14 @@ const mapStateToLga = (state) => {
           "Zurmi"
         );
         break;
-      }
-      default: {
+
+      default:
         values.push();
         break;
-      }
     }
-  });
-  // Removes duplicated from the array values
+  }
+
+  // Removes duplicated from the statesay values
   return values.filter((a, b) => values.indexOf(a) === b);
 };
 

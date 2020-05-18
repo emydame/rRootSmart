@@ -142,7 +142,7 @@ class Nav extends React.Component {
 
     for (let index = 0; index < lgas.length; index++) {
       const option = document.createElement("option");
-      const element = lgas[index];
+      const element = (lgas[index]);
       option.setAttribute("name", element);
       option.setAttribute("id", element);
       option.textContent = element;
