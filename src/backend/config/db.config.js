@@ -23,11 +23,14 @@ db.sequelize = sequelize;
 db.users = require("../model/user.model.js")(sequelize, Sequelize);
 db.userCategory = require("../model/usercategory.model")(sequelize, Sequelize);
 db.userOrganization = require("../model/organization.model")(sequelize, Sequelize);
-db.userPrevilege = require("../model/previleges.model")(sequelize, Sequelize);
+db.userPrivilege = require("../model/privileges.model")(sequelize, Sequelize);
 db.userLogin = require("../model/userLoggin.model")(sequelize, Sequelize);
 db.fund = require("../model/funds.model")(sequelize, Sequelize);
 db.fundCategory = require("../model/fundCategory.model")(sequelize, Sequelize);
 db.fundApplication = require("../model/fundApplication.model")(sequelize, Sequelize);
 db.fundDisbursment = require("../model/disbursment.model")(sequelize, Sequelize);
+db.project = require("../model/project.model")(sequelize, Sequelize);
+db.projectCategory = require("../model/projectCategory.model")(sequelize, Sequelize);
+db.proposal = require("../model/projectProposal.model")(sequelize, Sequelize);
 
 module.exports = db;
