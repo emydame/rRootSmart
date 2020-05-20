@@ -1,12 +1,15 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-  "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.wrapper {
+  padding: 0;
 }
 
 code {
@@ -39,7 +42,6 @@ a {
   margin-right: 4px;
 }
 
-
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
   color: #fff;
@@ -50,23 +52,30 @@ a {
   background-color: #f90;
   height: 80px;
   margin-bottom: 30px;
+  width: 100%;
+  padding: 0 40px;
 }
 
-.container-fluid {
-  padding-right: 0;
-  padding-left: 0;
-  margin-right: auto;
-  margin-left: auto;
+.app-name {
+  color: white;
 }
 
 /*** Header styles ends here ********************/
 
 /* Carousel style starts here *******************/
+
+.carousel-warpper {
+  padding: 0;
+}
+
+.cap {
+  padding: 0 40px;
+}
+
 .carousel-item {
-  width: 95%;
-  padding-left: 5%;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 7px;
 }
 
 .carousel-item img {
@@ -76,44 +85,27 @@ a {
 
 /********** Content Styling starts here *******/
 .mainContent {
-  margin: 0 auto;
-  width: 97%;
+  width: 100%;
+  padding: 40px;
+  margin: 0;
+}
+
+.accm {
+  text-align: center;
 }
 
 h3 {
-  margin-left: 5%;
-  margin-bottom: 20px;
   color: #3d6cb9;
-}
-
-caption {
-  position: absolute;
-  margin-left: 57%;
-  margin-top: -60px;
-  color: #3d6cb9;
-  font-weight: 600;
 }
 
 div.content {
-  width: 90%;
-  position: relative;
-  margin: 0px auto;
   word-wrap: break-word;
-}
-
-.col {
-  border: none;
-  background: #3d6cb9;
-  text-align: center;
-  padding: 30px;
-  font-weight: 500;
-  margin-right: 15px;
-  margin-left: 15px;
 }
 
 .displayCon {
   background: #f90;
-  word-wrap: break-word;
+  margin: 0;
+  border: solid 1px black;
 }
 
 #link,
@@ -132,7 +124,7 @@ div.content {
   font-size: 1.5em;
 }
 
-.sponsors  {
+.sponsors {
   width: 50%;
   margin: 0 30%;
   padding: 10px;
@@ -148,9 +140,8 @@ div > img {
 
 .footer {
   background-color: #508ceeee;
-  height: 60px;
-  padding: 15px;
-  margin-top: 5%;
+  height: 100px;
+  padding: 0 40px;
   color: #fff;
 }
 
@@ -167,4 +158,3 @@ li {
 li.social {
   float: right;
 }
-
