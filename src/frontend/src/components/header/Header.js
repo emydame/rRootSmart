@@ -7,29 +7,6 @@ import { Link } from "react-router-dom";
 import { adminAction } from "../../redux/actionCreators";
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      status: ""
-    };
-    this.logout = this.logout.bind(this);
-  }
-
-  logout(event) {
-    event.preventDefault();
-    const item = event.target;
-    const { status } = this.state;
-    if (status === "true") {
-      this.setState({ status: "false" });
-      this.props.logout(false);
-      item.textContent = "Logout";
-    } else {
-      this.setState({ status: "true" });
-      this.props.logout(true);
-      item.textContent = "Login";
-    }
-  }
-
   async progName() {
     const header = document.querySelector("[data-app-name]");
     if (!header) {
@@ -57,6 +34,8 @@ class Header extends React.Component {
           <div className="col-md-4 links">
             <Nav />
           </div>
+          {/** nav bar**/}
+          <div className="col-md-2"></div>
         </div>
       </header>
     );

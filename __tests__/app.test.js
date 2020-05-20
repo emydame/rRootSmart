@@ -4,6 +4,7 @@
  * @jest-environment jsdom
  */
 
+
 const app = require("../src/frontend/src/app");
 
 describe("app module", () => {
