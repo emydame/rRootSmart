@@ -183,7 +183,7 @@ class Nav extends React.Component {
   render() {
     return (
 
-      <Container className="navbar h4">
+      <Container className="navbar">
         <ul className="nav">
           <Router>
             <li className="nav-item">
