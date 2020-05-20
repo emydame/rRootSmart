@@ -31,3 +31,5 @@ require("./routes/projectProposal.route")(app);
 app.listen(PORT, () => {
   PORT;
 });
+
+module.exports = { app };
