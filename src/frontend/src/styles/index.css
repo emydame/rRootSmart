@@ -100,6 +100,7 @@ h3 {
   background-color: #3379b794;
   border: none;
 }
+
 .btn-lg:hover {
   background-color: #f90;
   border: none;
@@ -110,14 +111,14 @@ h3 {
   margin-top: 5px;
   margin-bottom: 7px;
 }
+
 .carousel-item {
   height: 60vh;
 }
 
 .carousel-caption {
-  color: #ffffff;
+  color: #fff;
 }
-
 
 .text-primary {
   font-size: 16px;
@@ -125,27 +126,29 @@ h3 {
 }
 
 h3 {
-  text-align: left  ;
+  text-align: left;
 }
-
 
 /********** Content Styling starts here *******/
 .marketing .col-lg-4 {
-    margin-bottom: 1.5rem;
-    text-align: center;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
+
 .contents {
   background: #3d6cb9;
   padding: 8px;
   color: #f9f9f9;
 }
 
-.pb-5, .py-5 {
-  padding-bottom: 2rem!important;
+.pb-5,
+.py-5 {
+  padding-bottom: 2rem;
 }
 
-.pt-5, .py-5 {
-  padding-top: 2rem!important;
+.pt-5,
+.py-5 {
+  padding-top: 2rem;
 }
 
 .content {
@@ -165,14 +168,11 @@ h3 {
   color: #f90;
   font-weight: 600;
   text-align: center;
-  
 }
-
 
 /********** Content styling ends here ******/
 
 /*** Footer starts here ***/
-
 .footer {
   background-color: #487aca5d;
   height: 70px;
