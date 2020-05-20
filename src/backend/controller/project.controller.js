@@ -3,30 +3,42 @@ const Project = db.project;
 
 exports.create = (req, res) => {
   let today = new Date();
-  if (!req.body) {
-    return res.status(400).send({
-      messege: "Projects field is empty",
-    });
-  }
-  const project = new Project({
+  let projects = {
     projectId: req.body.projectId,
     projectCatId: req.body.projectCatId,
     projectName: req.body.projectName,
     description: req.body.description,
     createdBy: req.body.createdBy,
-    dateStart: today,
+    dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
-  });
-  project
-    .save()
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Not saved",
-      });
+    dateCreated: today
+  };
+  if (!req.body) {
+    return res.status(400).send({
+      messege: "Please fill all project input fields"
     });
+  } else {
+    Project.findOne({ where: { projectId: req.body.projectId } }).then((result) => {
+      if (result) {
+        res.status(400).send({
+          message: "Project already exist with this Id " + req.body.projectId
+        });
+      } else {
+        // Add project
+        const project = new Project(projects);
+        project
+          .save()
+          .then((data) => {
+            res.status(200).send(data);
+          })
+          .catch((err) => {
+            res.status(500).send({
+              message: err.message || "Not saved"
+            });
+          });
+      }
+    });
+  }
 };
 
 // Get all projects
@@ -37,21 +49,26 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something wrong while retrieving Proposals.",
+        message: err.message || "Something wrong while retrieving Proposals."
       });
     });
 };
 
-// Get single Project using conditional parameter
-
-exports.findAll = (req, res) => {
-  Project.findAll({ where: { projectId: req.body.projectId } })
+// Get single Project using  parameter
+exports.findOne = (req, res) => {
+  Project.findOne({ where: { projectId: req.body.projectId } })
     .then((data) => {
-      res.send(data);
+      if (!data) {
+        res.status(400).send({
+          message: " Project not found"
+        });
+      } else {
+        res.status(200).send(data);
+      }
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving Project.",
+        message: err.message || "Some error occurred while retrieving Project."
       });
     });
 };

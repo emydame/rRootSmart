@@ -1,9 +1,12 @@
 module.exports = (app) => {
   const project = require("../controller/project.controller");
 
+  // Add new projects
   app.post("/projects", project.create);
 
-  app.get("/projects", project.findAll);
+  // Retrieve all projects
+  app.get("/projects/list", project.findAll);
 
-  app.get("/projects/:id", project.findAll);
+  // Get single project
+  app.get("/project", project.findOne);
 };

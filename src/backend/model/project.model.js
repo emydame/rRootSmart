@@ -1,32 +1,37 @@
 module.exports = (sequelize, DataTypes) => {
-  const FundApplication = sequelize.define("fundapplications", {
-    projectId: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
+  const Project = sequelize.define(
+    "projects",
+    {
+      projectId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true
+      },
+      projectCatId: {
+        type: DataTypes.STRING
+      },
+      projectName: {
+        type: DataTypes.STRING
+      },
+      description: {
+        type: DataTypes.STRING
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      dateStart: {
+        type: DataTypes.STRING
+      },
+      dateEnd: {
+        type: DataTypes.STRING
+      },
+      dateCreated: {
+        type: DataTypes.DATE
+      }
     },
-    projectCatId: {
-      type: DataTypes.INTEGER,
-    },
-    projectName: {
-      type: DataTypes.STRING,
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    createdBy: {
-      type: DataTypes.STRING,
-    },
-    dateCtreated: {
-      type: DataTypes.DATE,
-    },
-    dateStart: {
-      type: DataTypes.DATE,
-    },
-    dateEnd: {
-      type: DataTypes.DATE,
-    },
-  });
-  return FundApplication;
+    {
+      timestamps: false
+    }
+  );
+  return Project;
 };
