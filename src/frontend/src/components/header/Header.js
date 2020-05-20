@@ -29,7 +29,8 @@ class Header extends React.Component {
   render() {
     return (
       <Container className="header" fluid>
-        <Row className="">
+        <div className="nav-links">
+        <Row className="menu">
           {/** logo */}
           <Col md="auto" id="img" className="mr-4 ml-3">
             <Link to="/home">
@@ -43,13 +44,14 @@ class Header extends React.Component {
           </Col>
 
           {/*** Navigation */}
-          <Col md="7" className="nav  pt-5 h4" id="navigation">
+          <Col md="8" className="nav  pt-5 h4" id="navigation">
             <Nav />
           </Col>
 
           {/** user setting */}
-          <Col md="1"></Col>
+          {/* <Col md="1"></Col> */}
         </Row>
+        </div>
       </Container>
     );
   }

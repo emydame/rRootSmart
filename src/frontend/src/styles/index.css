@@ -17,11 +17,6 @@ code {
 }
 
 /********Header styles starts here *****/
-.col-md-6 img {
-  height: 4em;
-  margin-left: 11%;
-}
-
 @media (max-width: 960px) {
   .col-md-6 img {
     margin-left: 5%;
@@ -34,6 +29,11 @@ a {
   font-weight: 700;
 }
 
+.body-text {
+  padding: auto 15px;
+  margin: auto 50px;
+}
+
 .nav > li > a {
   position: relative;
   display: block;
@@ -42,10 +42,19 @@ a {
   margin-right: 4px;
 }
 
+.nav-link {
+  font-size: 18px;
+  text-align: right;
+}
+
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
   color: #fff;
   background-color: #337ab7;
+}
+
+h3 {
+  color: #f90;
 }
 
 .header {
@@ -64,97 +73,121 @@ a {
 
 /* Carousel style starts here *******************/
 
-.carousel-warpper {
-  padding: 0;
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.cap {
-  padding: 0 40px;
+.carousel-bg {
+  height: 65vh;
 }
 
-.carousel-item {
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.d-block {
+  height: 60vh;
+}
+
+.btn-lg {
+  background-color: #3379b794;
+  border: none;
+}
+.btn-lg:hover {
+  background-color: #f90;
+  border: none;
+}
+
+.carousel {
   width: 100%;
   margin-top: 5px;
   margin-bottom: 7px;
 }
-
-.carousel-item img {
-  width: auto;
-  height: 55vh;
+.carousel-item {
+  height: 60vh;
 }
 
-/********** Content Styling starts here *******/
-.mainContent {
-  width: 100%;
-  padding: 40px;
-  margin: 0;
+.carousel-caption {
+  color: #ffffff;
 }
 
-.accm {
-  text-align: center;
+
+.text-primary {
+  font-size: 16px;
+  text-align: right;
 }
 
 h3 {
-  color: #3d6cb9;
+  text-align: left  ;
 }
 
-div.content {
-  word-wrap: break-word;
+
+/********** Content Styling starts here *******/
+.marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.contents {
+  background: #3d6cb9;
+  padding: 8px;
+  color: #f9f9f9;
 }
 
-.displayCon {
+.pb-5, .py-5 {
+  padding-bottom: 2rem!important;
+}
+
+.pt-5, .py-5 {
+  padding-top: 2rem!important;
+}
+
+.content {
   background: #f90;
-  margin: 0;
-  border: solid 1px black;
+  padding: 8px;
+  color: #f9f9f9;
 }
 
-#link,
-#md-link {
-  color: #fff;
-  text-decoration: none;
-}
-
-#link:hover {
-  color: #f90;
-  font-size: 1.5em;
-}
-
-#md-link:hover {
+.btn-sm {
   color: #3d6cb9;
-  font-size: 1.5em;
+  background: #f9f9f9;
+  padding: 2px 10px;
+  text-align: center;
 }
 
-.sponsors {
-  width: 50%;
-  margin: 0 30%;
-  padding: 10px;
+.sponsors-text {
+  color: #f90;
+  font-weight: 600;
+  text-align: center;
+  
 }
 
-div > img {
-  margin-right: 50px;
-}
 
 /********** Content styling ends here ******/
 
 /*** Footer starts here ***/
 
 .footer {
-  background-color: #508ceeee;
-  height: 100px;
-  padding: 0 40px;
+  background-color: #487aca5d;
+  height: 70px;
   color: #fff;
+  margin-top: 4rem;
 }
 
-ul.foo-nav {
-  display: inline;
+.foot-text {
+  padding-top: 20px;
 }
 
-li {
-  display: inline;
-  color: #f9f9f9;
-  margin-right: 30px;
+.top {
+  margin-left: 30px;
 }
 
-li.social {
-  float: right;
+.social {
+  margin-left: 10px;
 }

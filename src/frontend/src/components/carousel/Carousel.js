@@ -6,68 +6,70 @@ import Col from "react-bootstrap/Col";
 class Carousel extends React.Component {
   render() {
     return (
-      <Container fluid className="carousel-warpper">
-        <Row className="cap">
-          <Col md="3" className="">
-            <h3>Recent Updates</h3>
-          </Col>
-          <Col md="9" className="text-right">
-            <h5 className="text-primary">Built with your needs in mind, Access your financial leverage everywhere.</h5>
-          </Col>
-        </Row>
+        <div class="">
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="body-text">
+                    <h3>Recent Updates</h3>
+                  </div>
+              </div>
+              <div class="col-md-8">
+                  <div class="body-text">
+                  <h5 className="text-primary">Built with your needs in mind, Access your financial leverage everywhere.</h5>
+                  </div>
+              </div>
+          </div>
 
-        <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
-          <ol className="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-          </ol>
-          {/* images would be replaced with the desired image */}
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src="https://images.unsplash.com/photo-1561489396-888724a1543d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                className="d-block w-100"
-                alt="..."
-              />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>Transparency</h5>
-                <p>This platform provides total transparency and accountability</p>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                  <img src="https://res.cloudinary.com/lordefid/image/upload/v1589989860/carousel-3_j2auen.jpg" class="d-block w-100" alt="..."/>
+                    <div class="container">
+                      <div class="carousel-caption text-left">
+                        <h1>Financial Leverage.</h1>
+                  <p>We are ever ready to give you advice and guidance on acquiring and maximizing   funds to 
+                  attain that business growth you have always dreamt about. We are your your instrument to a better financial prospect. 
+                  </p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Read more</a></p>
+                </div>
               </div>
             </div>
-            <div className="carousel-item">
-              <img
-                src="https://images.unsplash.com/flagged/photo-1560790959-94da781aa017?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                className="d-block w-100"
-                alt="..."
-              />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>Team work</h5>
-                <p>We have an inclusive working style, all opinions matters.</p>
+            <div class="carousel-item">
+            <img src="https://cdn.pixabay.com/photo/2015/11/01/19/44/money-1017463_1280.jpg" class="d-block w-100" alt="..."/>
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>We Build Bridges</h1>
+                  <p>eaZSME builds bridges that connects businesses directly with a network of investors providing them with access to fast and flexible growth capital.</p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                </div>
               </div>
             </div>
-            <div className="carousel-item">
-              <img
-                src="https://images.unsplash.com/photo-1570126646281-5ec88111777f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                className="d-block w-100"
-                alt="..."
-              />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>Condusive Working Enviroment</h5>
-                <p>Our physical office is Condusive and humane.</p>
+            <div class="carousel-item">
+            <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,f_auto,h_757/v1589989872/carousel-1_e7h7w8.jpg" class="d-block w-100" alt="..."/>
+              <div class="container">
+                <div class="carousel-caption text-right">
+                  <h1>One more for good measure.</h1>
+                  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                </div>
               </div>
             </div>
           </div>
-          <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
+          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
           </a>
-          <a className="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
+          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
           </a>
         </div>
-      </Container>
+        </div>
     );
   }
 }
