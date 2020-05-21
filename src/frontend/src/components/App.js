@@ -22,7 +22,7 @@ class App extends React.Component {
         <Router history={history}>
           <Container fluid className="wrapper">
             <Header />
-            <Route path="/" exact render={props => (
+            <Route path="/" exact render={(props) => (
               <React.Fragment>
                 <Carousel />
               </React.Fragment>
