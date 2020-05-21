@@ -39,10 +39,10 @@ class Header extends React.Component {
           </Col>
 
           {/** App name */}
-          <Col md="auto" className=" pt-3 app-name">
+          {/** <Col md="auto" className=" pt-3 app-name">
             <h2 data-app-name></h2>
           </Col>
-
+    */}
           {/*** Navigation */}
           <Col md="8" className="nav  pt-5 h4" id="navigation">
             <Nav />
