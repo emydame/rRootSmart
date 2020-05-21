@@ -8,11 +8,11 @@ exports.create = (req, res) => {
     userId: req.body.userId,
     applicationId: req.body.applicationId,
     projectId: req.body.projectId,
-    filePath: req.body.filePath,
+    filePath: req.body.filePath
   };
   if (!req.body) {
     return res.status(400).send({
-      message: "Category cannot be empty",
+      message: "Category cannot be empty"
     });
   }
 
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Error occured",
+        message: err.message || "Error occured"
       });
     });
 };
@@ -37,7 +37,7 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something wrong while retrieving Proposals.",
+        message: err.message || "Something wrong while retrieving Proposals."
       });
     });
 };
