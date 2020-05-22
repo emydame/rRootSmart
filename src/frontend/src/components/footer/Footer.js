@@ -1,24 +1,25 @@
 import React from "react";
-import { Link, BrowserRouter as Router } from "react-router-dom";
-// import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class Footer extends React.Component {
   render() {
     return (
-      <footer className="footer">
-        <ul className="foo-nav">
-          <li>T&C</li>
-          <li>Regulations</li>
-          <li>Projects</li>
-          <li className="social">Facebook</li>
-          <li className="social">Twitter</li>
-          <li className="social">LinkedIn</li>
-        </ul>
-      </footer>
+
+          <footer class="footer">
+            <div class="container foot-text">
+            <p class="float-right top"><a href="#">Back to top</a></p>
+              <p class="float-right social"><a href="#">Facebook</a></p>
+              <p class="float-right social"><a href="#">Twitter</a></p>
+              <p class="float-right social"><a href="#">LinkedIn </a></p>
+              
+              <p>&copy; 2020 eaZSME,  &middot;  <a href="#">Privacy</a>  &middot;  <a href="#">Terms</a></p>
+              </div>
+          </footer>
+  
     );
   }
 }
 
 export default Footer;
-

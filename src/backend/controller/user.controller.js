@@ -50,7 +50,6 @@ exports.findOne = (req, res) => {
           message: "User Profile not found"
         });
       }
-
       // if user found, send user details
       res.status(200).send(user);
     })

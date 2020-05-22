@@ -1,23 +1,28 @@
 module.exports = (sequelize, DataTypes) => {
-  const Proposal = sequelize.define("projectproposals", {
-    proposalId: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
+  const Proposal = sequelize.define(
+    "projectproposal",
+    {
+      proposalId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true
+      },
+      userId: {
+        type: DataTypes.STRING
+      },
+      applicationId: {
+        type: DataTypes.STRING
+      },
+      projectId: {
+        type: DataTypes.STRING
+      },
+      filePath: {
+        type: DataTypes.STRING
+      }
     },
-    userId: {
-      type: DataTypes.INTEGER,
-    },
-    applicationId: {
-      type: DataTypes.INTEGER,
-    },
-    projectId: {
-      type: DataTypes.INTEGER,
-    },
-    filePath: {
-      type: DataTypes.STRING,
-    },
-  });
+    {
+      timestamps: false
+    }
+  );
   return Proposal;
 };

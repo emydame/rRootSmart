@@ -9,6 +9,8 @@ import Content from "./content/Content";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import store from "../redux/configurations/store";
+import Container from "react-bootstrap/Container";
+
 
 
 const history = createBrowserHistory();
@@ -18,12 +20,12 @@ class App extends React.Component {
     return (
       <Provider store={stores}>
         <Router history={history}>
-          <div className="container-fluid">
+          <Container fluid className="wrapper">
             <Header />
             <Carousel />
             <Content />
             <Footer />
-          </div>
+          </Container>
         </Router>
       </Provider>
     );

@@ -1,3 +1,3 @@
-const app = async () => "INDUSTRY, INNOVATION AND INFRASTRUCTURE SDG ";
+const app = async () => "eazySME-SDG ";
 
 export default app;

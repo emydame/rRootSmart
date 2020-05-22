@@ -32,5 +32,7 @@ db.fundDisbursment = require("../model/disbursment.model")(sequelize, Sequelize)
 db.project = require("../model/project.model")(sequelize, Sequelize);
 db.projectCategory = require("../model/projectCategory.model")(sequelize, Sequelize);
 db.proposal = require("../model/projectProposal.model")(sequelize, Sequelize);
+db.ngState = require("../model/states.model")(sequelize, Sequelize);
+db.lga = require("../model/lga.model")(sequelize, Sequelize);
 
 module.exports = db;
