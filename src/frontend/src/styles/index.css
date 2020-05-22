@@ -39,6 +39,12 @@ a {
   margin-right: 125px;
 }
 
+@media (max-width: 960px) {
+  .navi-links > mt-2 {
+    display: inline-block;
+  }
+}
+
 .mobile-nav {
   background-color: #3d6cb9;
   border: none;
@@ -55,6 +61,7 @@ h3 {
 
 .navbar1 {
   background-color: #f90;
+  position: static;
 }
 
 .app-name {
@@ -62,6 +69,86 @@ h3 {
 }
 
 /*** Header styles ends here ********************/
+
+/********* Modal Styles ***************/
+
+div.modal-header,
+div.modal-body,
+div.modal-footer {
+  background-color: #f9f9f9;
+  color: #337ab7;
+}
+
+div.modal-footer {
+  margin-right: 70px;
+  text-align: center;
+}
+
+div#login.text-light.modal-title.h4 {
+  color: #f90 !important;
+}
+
+div#registration.text-light.modal-title.h4 {
+  color: #f90 !important;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #3d6cb9;
+  border: none;
+  border-radius: 15px;
+}
+
+.btn-success:hover {
+  background-color: #254c8b;
+}
+
+div.modal-body {
+  position: relative;
+  margin: 0 auto;
+}
+
+div.modal-content {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.btn-danger {
+  display: none;
+}
+
+div.ml-4,
+.font-weight.bold {
+  color: #f90;
+}
+
+div > input:invalid:required {
+  background-image: none;
+}
+
+div > input:invalid {
+  box-shadow: none;
+}
+
+div > input:valid {
+    border: none;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-bottom: 2px solid #337ab7;
+  border-radius: .5rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
 /* Carousel style starts here *******************/
 
@@ -85,7 +172,7 @@ h3 {
 }
 
 .d-block {
-  height: 90vh;
+  height: 85vh;
 }
 
 .btn-lg {
@@ -100,12 +187,12 @@ h3 {
 
 .carousel {
   width: 100%;
-  margin-top: 5px;
+  margin-top: 3px;
   margin-bottom: 7px;
 }
 
-.carousel-item {
-  height: 90vh;
+div.text1 {
+  color: #000;
 }
 
 .carousel-caption {

@@ -47,7 +47,7 @@ class Header extends React.Component {
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
                 </li>
               </ul>
-              <div class="form-inline mt-2 mt-md-0 navi-links">
+              <div class="mt-2 mt-md-0 navi-links">
                 <Nav />
               </div>
             </div>
