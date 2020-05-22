@@ -24,7 +24,7 @@ code {
 }
 
 @media (max-width: 960px) {
-.navbar-brand img {
+  .navbar-brand img {
     margin-left: 5%;
   }
 }
@@ -212,7 +212,7 @@ h3 {
     height: 1rem;
     margin-left: 1rem;
   }
-} 
+}
 
 .social {
   margin-left: 10px;
