@@ -7,7 +7,7 @@ class Carousel extends React.Component {
   render() {
     return (
         <div class="">
-            <div class="row">
+            {/* <div class="row">
               <div class="col-md-4">
                   <div class="body-text">
                     <h3>Recent Updates</h3>
@@ -18,7 +18,7 @@ class Carousel extends React.Component {
                   <h5 className="text-primary">Built with your needs in mind, Access your financial leverage everywhere.</h5>
                   </div>
               </div>
-          </div>
+          </div> */}
 
               <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
