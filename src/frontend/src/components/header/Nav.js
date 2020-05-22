@@ -354,7 +354,7 @@ class Nav extends React.Component {
             <Row>
               <Col className="text-center pr-1">
                 <Modal.Title id="login" className="text-light">
-                  Contact us,Use the form below.
+                  Contact us, use the form below.
                 </Modal.Title>
               </Col>
             </Row>
