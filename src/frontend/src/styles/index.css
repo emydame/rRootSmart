@@ -207,6 +207,13 @@ h3 {
   margin-left: 3rem;
 }
 
+@media (max-width: 960px) {
+  .footer-img img {
+    height: 1rem;
+    margin-left: 1rem;
+  }
+} 
+
 .social {
   margin-left: 10px;
 }
