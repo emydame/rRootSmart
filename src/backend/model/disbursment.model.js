@@ -1,29 +1,37 @@
 module.exports = (sequelize, DataTypes) => {
-  const Disbursement = sequelize.define("disbursements", {
-    disbursementId: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
+  const Disbursement = sequelize.define(
+    "disbursements",
+    {
+      disbursementId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true
+      },
+      applicationId: {
+        type: DataTypes.STRING
+      },
+      fundId: {
+        type: DataTypes.STRING
+      },
+      disbursedTo: {
+        type: DataTypes.STRING
+      },
+      disbursedBy: {
+        type: DataTypes.STRING
+      },
+      bankName: {
+        type: DataTypes.STRING
+      },
+      accountNunber: {
+        type: DataTypes.STRING
+      },
+      status: {
+        type: DataTypes.STRING
+      }
     },
-    applicationId: {
-      type: DataTypes.INTEGER,
-    },
-    fundId: {
-      type: DataTypes.INTEGER,
-    },
-    disbursedTo: {
-      type: DataTypes.INTEGER,
-    },
-    disbursedBy: {
-      type: DataTypes.INTEGER,
-    },
-    bank: {
-      type: DataTypes.STRING,
-    },
-    status: {
-      type: DataTypes.STRING,
-    },
-  });
+    {
+      timestamps: false
+    }
+  );
   return Disbursement;
 };
