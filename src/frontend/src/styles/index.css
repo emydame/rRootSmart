@@ -172,34 +172,6 @@ h3 {
 
 /********** Content styling ends here ******/
 
-/********* About page styling starts here ****/
-
-.about-container {
-  width: 80%;
-  text-align: center;
-  margin: 0 auto;
-  padding-top: 5px;
-  padding-bottom: 2%;
-}
-
-.about-container span {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.about {
-  width: 70%;
-  margin: 0 auto;
-  text-align: justify;
-  line-height: 2rem;
-  padding: 20px;
-}
-
-.about-container h1 {
-  color: #3d6cb9;
-  padding-top: 5px;
-}
-
 /*** Footer starts here ***/
 .footer {
   background-color: #487aca5d;
