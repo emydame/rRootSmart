@@ -29,6 +29,10 @@ class Nav extends React.Component {
     };
     this.closeLogin = this.closeLogin.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleAbout = this.handleAbout.bind(this);
+    this.closeAbout = this.closeAbout.bind(this);
+    this.handleContact = this.handleContact.bind(this);
+    this.closeContact = this.closeContact.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
     this.closeRegistration = this.closeRegistration.bind(this);
     this.submitRegistration = this.submitRegistration.bind(this);
@@ -75,6 +79,22 @@ class Nav extends React.Component {
     this.setState({ show: false });
   }
 
+  handleAbout() {
+    this.setState({ about: true});
+  }
+
+  closeAbout() {
+    this.setState({ about: false });
+  }
+
+  handleContact() {
+    this.setState({ contact: true });
+  }
+
+  closeContact() {
+    this.setState({ contact:false });
+  }
+
   handleRegistration() {
     this.setState({ regShow: true });
   }
@@ -104,6 +124,19 @@ class Nav extends React.Component {
     const form = document.querySelector(`form[name="registration"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     console.log(formFields);
+  }
+
+  submitContact(e) {
+    e.preventDefault();
+    const required = document.querySelectorAll(`input[required]`);
+    // Check if all the fields are filled
+    required.forEach((element) => {
+      if (element.value === "") {
+        this.logFormText.current.classList.remove("d-none");
+        return;
+      }
+    });
+
   }
 
   submitLogin(event) {
@@ -198,12 +231,12 @@ class Nav extends React.Component {
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="nav-link">
+              <Link to="" onClick={this.handleContact} className="nav-link">
                 Contact
               </Link>
             </li>
             <li>
-              <Link to="/about" className="nav-link">
+              <Link onClick={this.handleAbout} to="" className="nav-link">
                 About
               </Link>
             </li>
@@ -279,6 +312,92 @@ class Nav extends React.Component {
             </Row>
           </Modal.Footer>
         </Modal>
+
+           {/*** About Modal */}
+          <Modal
+          size="md"
+          show={this.state.about}
+          onHide={this.closeAbout}
+          dialogClassName="modal-90w"
+          aria-labelledby="login"
+          bsPrefix="modal"
+        >
+          <Modal.Header closeButton bsPrefix="modal-header">
+            <Row>
+              <Col className="text-center pr-1">
+                <Modal.Title id="login" className="text-light">
+                  About eazSME
+                </Modal.Title>
+              </Col>
+            </Row>
+          </Modal.Header>
+          <Modal.Body bsPrefix="modal-body">
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit enim architecto placeat.
+                Expedita assumenda porro voluptatibus illum cum, quasi, 
+                deserunt repellendus optio labore libero facilis consequatur alias placeat itaque iste.
+              </p>
+            </div>
+          </Modal.Body>
+        </Modal>
+
+         {/*** Contact Modal */}
+        <Modal
+          size="lg"
+          show={this.state.contact}
+          onHide={this.closeContact}
+          dialogClassName="modal-90w"
+          aria-labelledby="login"
+          bsPrefix="modal"
+        >
+          <Modal.Header closeButton bsPrefix="modal-header">
+            <Row>
+              <Col className="text-center pr-1">
+                <Modal.Title id="login" className="text-light">
+                  Contact us, use the form below.
+                </Modal.Title>
+              </Col>
+            </Row>
+          </Modal.Header>
+          <Modal.Body bsPrefix="modal-body">
+            <form action="" name="contact">
+            <Row>
+                <Col>
+                  <Form.Group controlId="formBasicText1">
+                    <Form.Label className="font-weight-bold">
+                      Full Name<sup className="text-danger">*</sup>
+                    </Form.Label>
+                    <Form.Control type="text" placeholder="Enter full name" required name="fullName" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId="formBasicText2">
+                    <Form.Label className="font-weight-bold">
+                      Email Address<sup className="text-danger">*</sup>
+                    </Form.Label>
+                    <Form.Control type="email" placeholder="Enter mail address" required name="email" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Col lg="12">
+                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Label className="font-weight-bold">
+                      Message<sup className="text-danger">*</sup>
+                    </Form.Label>
+                    <Form.Control as="textarea" rows="7" cols="" required name="address" />
+                  </Form.Group>
+                </Col>
+
+                <Button variant="success" type="submit" className="btn-block" onClick={this.submitContact}>
+                Submit
+              </Button>
+            </form>
+            
+          </Modal.Body>
+        </Modal>
+
 
         {/** Registration Modal */}
         <Modal
