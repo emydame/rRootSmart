@@ -32,3 +32,5 @@ require("./routes/lga.route")(app);
 app.listen(PORT, () => {
   PORT;
 });
+
+module.exports = { app };
