@@ -1,26 +1,31 @@
 module.exports = (sequelize, DataTypes) => {
-  const FundApplication = sequelize.define("fundapplications", {
-    applicationId: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
+  const FundApplication = sequelize.define(
+    "fundapplications",
+    {
+      applicationId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true
+      },
+      userId: {
+        type: DataTypes.STRING
+      },
+      fundId: {
+        type: DataTypes.STRING
+      },
+      fundCatId: {
+        type: DataTypes.STRING
+      },
+      status: {
+        type: DataTypes.STRING
+      },
+      applicationDate: {
+        type: DataTypes.DATE
+      }
     },
-    userId: {
-      type: DataTypes.INTEGER,
-    },
-    fundId: {
-      type: DataTypes.INTEGER,
-    },
-    fundCatId: {
-      type: DataTypes.INTEGER,
-    },
-    status: {
-      type: DataTypes.STRING,
-    },
-    applicationDate: {
-      type: DataTypes.DATE,
-    },
-  });
+    {
+      timestamps: false
+    }
+  );
   return FundApplication;
 };
