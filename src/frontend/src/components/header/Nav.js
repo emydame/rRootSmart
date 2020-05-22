@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable quotes */
 /*eslint quotes: ["error", "double"]*/
