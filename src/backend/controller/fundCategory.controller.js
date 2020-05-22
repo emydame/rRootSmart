@@ -16,7 +16,7 @@ exports.create = (req, res) => {
       message: "Fields cannot be empty"
     });
   }
-  {
+  
     FundCategory.findOne({ where: { fundCatId: req.body.fundCatId } }).then((data) => {
       if (data) {
         res.status(400).send({
