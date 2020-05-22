@@ -84,8 +84,8 @@ div.modal-footer {
   text-align: center;
 }
 
-div#login.text-light.modal-title.h4 {
-  color: #f90 !important;
+div > #login.text-light.modal-title.h4 {
+  color: #f90;
 }
 
 div > #registration.text-light.modal-title.h4 {
@@ -126,12 +126,12 @@ div > input:invalid {
   box-shadow: none;
 }
 
-div > input:invalid:required {
-  background-image: none;
-}
-
 div > input:valid {
   border: none;
+}
+
+div > input:invalid:required {
+  background-image: none;
 }
 
 .form-control {
@@ -147,7 +147,7 @@ div > input:valid {
   background-clip: padding-box;
   border-bottom: 2px solid #337ab7;
   border-radius: 0.5rem;
-  transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 /* Carousel style starts here *******************/
