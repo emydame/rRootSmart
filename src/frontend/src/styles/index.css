@@ -17,8 +17,14 @@ code {
 }
 
 /********Header styles starts here *****/
+
+.navbar-brand img {
+  height: 4rem;
+  margin-left: 155px;
+}
+
 @media (max-width: 960px) {
-  .col-md-6 img {
+  .navbar-brand img {
     margin-left: 5%;
   }
 }
@@ -29,40 +35,26 @@ a {
   font-weight: 700;
 }
 
-.body-text {
-  padding: auto 15px;
-  margin: auto 50px;
+.navi-links {
+  margin-right: 125px;
 }
 
-.nav > li > a {
-  position: relative;
-  display: block;
-  margin-top: -52px;
-  padding: 10px 6px;
-  margin-right: 4px;
+.mobile-nav {
+  background-color: #3d6cb9;
+  border: none;
 }
 
-.nav-link {
-  font-size: 18px;
-  text-align: right;
-}
-
-.nav-pills > li.active > a:focus,
-.nav-pills > li.active > a:hover {
-  color: #fff;
-  background-color: #337ab7;
+.mobile-nav:hover {
+  border: none;
+  background-color: #3d6cb99c;
 }
 
 h3 {
   color: #f90;
 }
 
-.header {
+.navbar1 {
   background-color: #f90;
-  height: 80px;
-  margin-bottom: 30px;
-  width: 100%;
-  padding: 0 40px;
 }
 
 .app-name {
@@ -93,7 +85,7 @@ h3 {
 }
 
 .d-block {
-  height: 60vh;
+  height: 90vh;
 }
 
 .btn-lg {
@@ -113,7 +105,7 @@ h3 {
 }
 
 .carousel-item {
-  height: 60vh;
+  height: 90vh;
 }
 
 .carousel-caption {
@@ -164,10 +156,36 @@ h3 {
   text-align: center;
 }
 
+.content-separator {
+  border: 1px solid #337ab7;
+  background-color: #3d6cb9;
+  margin-bottom: -5px;
+}
+
 .sponsors-text {
   color: #f90;
   font-weight: 600;
+  text-align: left;
+  margin-bottom: 13px;
+}
+
+.sponsors {
+  list-style-type: none;
   text-align: center;
+}
+
+.sp-links {
+  display: inline;
+  margin-right: 50px;
+}
+
+.sp-container {
+  margin-top: -13px;
+}
+
+.sponsor-logo {
+  text-align: center;
+  margin-bottom: 8px;
 }
 
 /********** Content styling ends here ******/
@@ -184,8 +202,16 @@ h3 {
   padding-top: 20px;
 }
 
-.top {
-  margin-left: 30px;
+.footer-img img {
+  height: 2rem;
+  margin-left: 3rem;
+}
+
+@media (max-width: 960px) {
+  .footer-img img {
+    height: 1rem;
+    margin-left: 1rem;
+  }
 }
 
 .social {
