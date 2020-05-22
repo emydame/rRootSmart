@@ -160,6 +160,15 @@ div > input:valid {
   -ms-user-select: none;
   user-select: none;
 }
+/* content style starts here */
+.content{
+  width: 92%;  
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2%;
+  
+}
 
 .carousel-bg {
   height: 65vh;

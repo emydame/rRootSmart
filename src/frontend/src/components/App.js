@@ -3,13 +3,15 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { createBrowserHistory } from "history";
-import { Router } from "react-router-dom";
+import { Router,Route } from "react-router-dom";
 import Carousel from "./carousel/Carousel";
 import Content from "./content/Content";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
+import About from "./header/About";
 import store from "../redux/configurations/store";
 import Container from "react-bootstrap/Container";
+
 
 
 const history = createBrowserHistory();
