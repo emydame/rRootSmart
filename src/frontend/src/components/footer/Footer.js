@@ -9,11 +9,17 @@ class Footer extends React.Component {
 
           <footer class="footer">
             <div class="container foot-text">
-            <p class="float-right top"><a href="#">Back to top</a></p>
-              <p class="float-right social"><a href="#">Facebook</a></p>
-              <p class="float-right social"><a href="#">Twitter</a></p>
-              <p class="float-right social"><a href="#">LinkedIn </a></p>
-              
+            <div class="float-right">
+            <a href="https://www.facebook.com/signup" target="_blank" className="footer-img"><img
+                      src="https://res.cloudinary.com/lordefid/image/upload/v1590108539/facebook_dvbkhd.png"
+                      /></a>
+            <a href="https://twitter.com/i/flow/signup" target="_blank" className="footer-img"><img
+                      src="https://res.cloudinary.com/lordefid/image/upload/v1590108539/twitter_e6e59l.png"
+                      /></a>
+            <a href="https://www.linkedin.com/signup" target="_blank" className="footer-img"><img
+                      src="https://res.cloudinary.com/lordefid/image/upload/v1590108539/linkedin_b2x3ts.png"
+                      /></a>
+            </div>
               <p>&copy; 2020 eaZSME,  &middot;  <a href="#">Privacy</a>  &middot;  <a href="#">Terms</a></p>
               </div>
           </footer>
