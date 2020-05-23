@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,6 +31,6 @@ require("./routes/lga.route")(app);
 
 app.listen(PORT, () => {
   PORT;
-});
+}); 
 
 module.exports = { app };

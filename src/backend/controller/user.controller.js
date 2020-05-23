@@ -14,14 +14,14 @@ exports.create = (req, res) => {
   };
   // Check empty request
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(204).send({
       message: "User details cannot be empty"
     });
   } else {
     //Query userlogin table to check if user login credentials already exist
     User.findOne({ where: { userId: userData.userId } }).then((data) => {
       if (data) {
-        res.status(400).send({
+        res.status(401).send({
           message: "User already registerred"
         });
       } else {
@@ -36,7 +36,7 @@ exports.create = (req, res) => {
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(pass.password, salt, (err, hash) => {
                   if (err) {
-                    return res.status(400).send({
+                    return res.status(500).send({
                       message: err.message
                     });
                   } else {
@@ -58,11 +58,11 @@ exports.create = (req, res) => {
                   }
                 });
               });
-            }else {
+            } else {
               res.status(400).send({
                 message: " Not saved"
               });
-            } 
+            }
           })
           .catch((err) => {
             res.status(500).send({
@@ -81,21 +81,15 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Something wrong while retrieving users."
+        message: err.message
       });
     });
 };
 
 //fine single user by id
 exports.findOne = (req, res) => {
-  User.findOne({ userId: req.body.userId })
+  User.findOne({ where: { userId: req.body.userId } })
     .then((user) => {
-      if (!user) {
-        return res.status(404).send({
-          message: "User Profile not found"
-        });
-      }
-      // if user found, send user details
       res.status(200).send(user);
     })
     .catch((err) => {
@@ -104,9 +98,8 @@ exports.findOne = (req, res) => {
           message: "User Profile not found "
         });
       }
-
       return res.status(500).send({
-        message: "Something went wrong retrieving User profile "
+        message: err.message
       });
     });
 };
