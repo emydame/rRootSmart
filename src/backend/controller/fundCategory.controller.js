@@ -37,8 +37,7 @@ exports.create = (req, res) => {
           });
       }
     });
-  }
-};
+  };
 
 //Get categories
 exports.findAll = (req, res) => {
