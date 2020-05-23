@@ -30,10 +30,10 @@ describe("create()", () => {
       disbursementId: 2,
       applicationId: 2,
       fundId: 1,
-      disbursedBy: 1,
+      disbursedBy: "1",
       bankName: "GTBanks",
-      accountNunber: 1202394004,
-      status: true
+      accountNunber: "1202394004",
+      status: "success"
     });
     expect(res.statusCode).toEqual(200);
   });

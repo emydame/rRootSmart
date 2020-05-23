@@ -30,7 +30,7 @@ describe("create()", () => {
       userId: 6,
       privilegeName: "Assign User Role",
       description: "Any user with this privilege can assign roles",
-      createdBy: 1
+      createdBy: "1"
     });
     expect(res.statusCode).toEqual(200);
   });

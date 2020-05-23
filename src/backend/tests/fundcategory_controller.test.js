@@ -30,7 +30,7 @@ describe("create()", () => {
       fundCatId: 1,
       categoryName: "Loan",
       description: "Offer loan for agricultural purposes",
-      createdBy: 3
+      createdBy: "3"
     });
     expect(res.statusCode).toEqual(200);
   });

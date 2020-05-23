@@ -33,7 +33,7 @@ describe("create()", () => {
       companyName: "Ade and sons",
       RCNumber: "RC4438G",
       email: "email@email.com",
-      BVN: 23334453,
+      BVN: "23334453",
       address: "7, hassan street, Ikeja",
       dateIncorporated: "23-05-1992"
     });

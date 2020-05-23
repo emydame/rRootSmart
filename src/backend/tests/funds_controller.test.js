@@ -31,7 +31,7 @@ describe("create()", () => {
       organizationId: 1,
       fundCatId: 2,
       amount: 2000,
-      status: true,
+      status: "success",
       dateInitiated: "12-03-1999"
     });
     expect(res.statusCode).toEqual(200);

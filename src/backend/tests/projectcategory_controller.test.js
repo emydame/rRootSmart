@@ -30,7 +30,7 @@ describe("create()", () => {
       projectCatId: 1,
       categoryName: "Agriculture",
       categoryDescription: "Fish Farming, Plantain Plantation",
-      createdBy: 1
+      createdBy: "1"
     });
     expect(res.statusCode).toEqual(200);
   });

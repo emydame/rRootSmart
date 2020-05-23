@@ -32,7 +32,7 @@ describe("create()", () => {
       projectCatId: 2,
       projectName: "fishing support",
       description: "advance medium and small scale fish farms",
-      createdBy: 1,
+      createdBy: "1",
       dateStart: "23-01-2010",
       dateEnd: "24-10-2020"
     });

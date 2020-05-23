@@ -31,7 +31,7 @@ describe("create()", () => {
       userId: 2,
       fundId: 1,
       fundCatId: 2,
-      status: true
+      status: "success"
     });
     expect(res.statusCode).toEqual(200);
   });

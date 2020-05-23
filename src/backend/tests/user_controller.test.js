@@ -31,7 +31,7 @@ describe("create()", () => {
       firstName: "Ade",
       lastName: "philip",
       email: "e@philip.com",
-      phoneNumber: 3904894
+      phoneNumber: "3904894"
     });
     expect(res.statusCode).toEqual(200);
   });

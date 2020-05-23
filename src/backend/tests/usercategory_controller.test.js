@@ -31,7 +31,7 @@ describe("create()", () => {
       userId: 1,
       categoryName: "SME",
       description: "small scale enterprise",
-      createdBy: 1
+      createdBy: "1"
     });
     expect(res.statusCode).toEqual(200);
   });
