@@ -2,7 +2,7 @@ require("mysql2/node_modules/iconv-lite").encodingExists("foo");
 
 const supertest = require("supertest");
 const { app } = require("../app");
-const fundsControllers = require("../controller/funds.controller");
+const fundAppControllers = require("../controller/fundApplication.controller");
 
 let apiServer;
 jest.setTimeout(30000);
@@ -19,21 +19,20 @@ describe("create()", () => {
     } 
   });
   it("should be a function", () => {
-    const res = typeof fundsControllers.create;
+    const res = typeof fundAppControllers.create;
     expect(res).toEqual("function");
   });
-  it("should not create funds when no data is sent", async () => {
-    const res = await apiServer.post("/invest");
+  it("should not apply for fund when no data is sent", async () => {
+    const res = await apiServer.post("/fund/apply");
     expect(res.statusCode).toEqual(400);
   });
-  it("should create funds when valid data", async () => {
-    const res = await apiServer.post("/invest").send({
+  it("should make a fund application with valid data", async () => {
+    const res = await apiServer.post("/fund/apply").send({
+      applicationId: 1,
+      userId: 2,
       fundId: 1,
-      organizationId: 1,
       fundCatId: 2,
-      amount: 2000,
-      status: true,
-      dateInitiated: "12-03-1999"
+      status: true
     });
     expect(res.statusCode).toEqual(200);
   });
