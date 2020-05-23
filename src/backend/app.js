@@ -13,7 +13,7 @@ const db = require("./config/db.config");
 app.use(cors());
 
 //sync db
-db.sequelize.sync().then(() => {});
+db.sequelize.sync({force: true}).then(() => {});
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);
@@ -29,8 +29,11 @@ require("./routes/projectProposal.route")(app);
 require("./routes/states.route")(app);
 require("./routes/lga.route")(app);
 
-app.listen(PORT, () => {
-  PORT;
-});
+if (process.env.NODE_ENV !== "test"){
+  app.listen(PORT, () => {
+    PORT;
+  });
+}
+
 
 module.exports = { app };
