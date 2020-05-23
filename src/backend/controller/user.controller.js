@@ -1,35 +1,73 @@
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const db = require("../config/db.config");
 const User = db.users;
 
 // Post User
 exports.create = (req, res) => {
-  let userData ={
-    
-  }
-  if (!req.body) {
-    return res.status(400).send({
-      message: "User details cannot be empty"
-    });
-  }
-
-  // create new user instance
-  const user = new User({
+  let userData = {
     userId: req.body.userId,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber
-  });
-  user
-    .save()
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Something wrong while creating the user profile."
-      });
+  };
+  // Check empty request
+  if (!req.body) {
+    return res.status(400).send({
+      message: "User details cannot be empty"
     });
+  } else {
+    //Query userlogin table to check if user login credentials already exist
+    User.findOne({ where: { userId: userData.userId } }).then((data) => {
+      if (data) {
+        res.status(400).send({
+          message: "User already registerred"
+        });
+      } else {
+        // save user
+        const user = new User(userData);
+        user
+          .save()
+          .then((data) => {
+            // save login credentials if user details is succesfully saved
+            if (data) {
+              // Endcode password
+              bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(pass.password, salt, (err, hash) => {
+                  if (err) {
+                    return res.status(400).send({
+                      message: err.message
+                    });
+                  } else {
+                    pass.password = hash;
+                    pass.saltSecret = salt;
+                    pass
+                      .save()
+                      .then((data) => {
+                        //Generate token
+                        let payload = { subject: data };
+                        let token = jwt.sign(payload, secret);
+                        res.status(200).send({ token });
+                      })
+                      .catch((err) => {
+                        res.status(500).send({
+                          message: err.message
+                        });
+                      });
+                  }
+                });
+              });
+            } 
+          })
+          .catch((err) => {
+            res.status(500).send({
+              message: err.message || "Something wrong while creating the user profile."
+            });
+          });
+      }
+    });
+  }
 };
 
 exports.findAll = (req, res) => {
