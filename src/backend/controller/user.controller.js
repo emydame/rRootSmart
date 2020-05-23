@@ -1,8 +1,11 @@
 const db = require("../config/db.config");
 const User = db.users;
 
-// Post a User
+// Post User
 exports.create = (req, res) => {
+  let userData ={
+    
+  }
   if (!req.body) {
     return res.status(400).send({
       message: "User details cannot be empty"
