@@ -5,7 +5,6 @@ const { app } = require("../app");
 const proposalControllers = require("../controller/projectProposal.controller");
 
 let apiServer;
-jest.setTimeout(30000);
 
 describe("create()", () => {
   beforeEach(async () => {
