@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("../config/db.config");
 const User = db.users;
+const Userpass = db.userLogin;
 
 // Post User
 exports.create = (req, res) => {
@@ -12,6 +13,12 @@ exports.create = (req, res) => {
     email: req.body.email,
     phoneNumber: req.body.phoneNumber
   };
+  let userPass = {
+    userId: req.body.userId,
+    userCatId: req.body.userCatId,
+    username: req.body.username,
+    password: req.body.password
+  };
   // Check empty request
   if (!req.body) {
     return res.status(204).send({
@@ -19,10 +26,10 @@ exports.create = (req, res) => {
     });
   } else {
     //Query userlogin table to check if user login credentials already exist
-    User.findOne({ where: { userId: userData.userId } }).then((data) => {
+    Userpass.findOne({ where: { userId: userPass.userId } }).then((data) => {
       if (data) {
-        res.status(401).send({
-          message: "User already registerred"
+        return res.status(400).send({
+          message: "User already exist"
         });
       } else {
         // save user
@@ -32,11 +39,12 @@ exports.create = (req, res) => {
           .then((data) => {
             // save login credentials if user details is succesfully saved
             if (data) {
-              // Endcode password
+              const pass = new Userpass(userPass);
+              // Encode password
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(pass.password, salt, (err, hash) => {
                   if (err) {
-                    return res.status(500).send({
+                    return res.status(400).send({
                       message: err.message
                     });
                   } else {
@@ -60,7 +68,7 @@ exports.create = (req, res) => {
               });
             } else {
               res.status(400).send({
-                message: " Not saved"
+                message: "Not saved"
               });
             }
           })
