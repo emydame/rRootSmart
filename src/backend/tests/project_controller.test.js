@@ -7,11 +7,11 @@ const projectControllers = require("../controller/project.controller");
 let apiServer;
 
 describe("create()", () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     apiServer = supertest(app);
   });
-  afterAll(async () => {
-    await apiServer.close();
+  afterEach(async () => {
+    if (apiServer.close) await apiServer.close();
   });
   it("should be a function", () => {
     const res = typeof projectControllers.create;

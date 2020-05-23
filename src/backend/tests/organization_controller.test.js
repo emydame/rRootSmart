@@ -7,11 +7,11 @@ const organizationControllers = require("../controller/userOrganisation.controll
 let apiServer;
 
 describe("create()", () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     apiServer = supertest(app);
   });
-  afterAll(async () => {
-    await apiServer.close();
+  afterEach(async () => {
+    if (apiServer.close) await apiServer.close();
   });
   it("should be a function", () => {
     const res = typeof organizationControllers.create;
