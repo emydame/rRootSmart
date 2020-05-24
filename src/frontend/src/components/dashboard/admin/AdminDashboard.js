@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint no-console: "error" */
+
 import React from "react";
 import { Layout, Menu, Breadcrumb, Row, Col } from "antd";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
