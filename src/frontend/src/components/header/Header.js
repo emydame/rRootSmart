@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from "react";
 import Nav from "./Nav";
@@ -47,7 +50,7 @@ class Header extends React.Component {
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
                 </li>
               </ul>
-              <div class="form-inline mt-2 mt-md-0 navi-links">
+              <div class="mt-2 mt-md-0 navi-links">
                 <Nav />
               </div>
             </div>
