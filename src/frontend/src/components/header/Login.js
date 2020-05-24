@@ -1,0 +1,106 @@
+import React from "react";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import { Link } from "react-router-dom";
+
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this.closeLogin = this.closeLogin.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.submitLogin = this.submitLogin.bind(this);
+  }
+
+  handleLogin() {
+    this.setState({ show: true });
+  }
+
+  closeLogin() {
+    this.props.closeModal();
+  }
+
+  submitLogin(event) {
+    this.props.login(event);
+  }
+
+  render() {
+    return (
+      <>
+        {/*** Login Modal */}
+        <Modal
+          size="md"
+          show={this.props.showModal}
+          onHide={this.closeLogin}
+          dialogClassName="modal-90w"
+          aria-labelledby="login"
+          bsPrefix="modal"
+        >
+          <Modal.Header closeButton bsPrefix="modal-header">
+            <Row>
+              <Col className="text-center pr-1">
+                <Modal.Title id="login" className="text-light">
+                  Login
+                </Modal.Title>
+              </Col>
+            </Row>
+          </Modal.Header>
+          <Modal.Body bsPrefix="modal-body">
+            <Form name="login">
+              <Form.Text className="text-danger h4 d-none" bsPrefix="form-text" ref={this.props.current}>
+                Fields mark * are required
+              </Form.Text>
+              <Form.Group controlId="formBasicEmail1">
+                <Form.Label className="font-weight-bold">
+                  Email address<sup className="text-danger">*</sup>
+                </Form.Label>
+                <Form.Control type="email" placeholder="Enter email" required name="email" />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword1">
+                <Form.Label className="font-weight-bold">
+                  Password<sup className="text-danger">*</sup>
+                </Form.Label>
+                <Form.Control type="password" placeholder="Password" required name="password" />
+              </Form.Group>
+              <Form.Group controlId="formBasicCheckbox">
+                <Form.Check
+                  type="checkbox"
+                  label="Remember Me!"
+                  defaultChecked="checked"
+                  className="font-weight-bold"
+                  name="rememberMe"
+                  ref={this.rememberMe}
+                />
+              </Form.Group>
+              <Button variant="success" type="submit" className="btn-block" onClick={this.submitLogin}>
+                Submit
+              </Button>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Row>
+              <Col md="1" className="mr-4">
+                <Button type="submit" variant="danger" onClick={this.closeLogin}>
+                  Cancel
+                </Button>
+              </Col>
+              <Col md="auto" className="ml-4 font-weight-bold">
+                Not a member?&nbsp;
+                <Link to="/signup">Sign Up</Link>
+                &nbsp;&nbsp; Forget &nbsp;
+                <Link to="/recover-password">Password?</Link>
+              </Col>
+            </Row>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+}
+
+export default Login;
