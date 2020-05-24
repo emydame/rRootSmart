@@ -367,7 +367,7 @@ class Nav extends React.Component {
                 MEET OUR TEAM
                 </Modal.Title>   
               <p>
-              We are a skilled team of Business Analyst, Software Develpers, Project Managers who identified a gap in financing
+              We are a skilled team of Business Analyst, Software Developers, Project Managers who identified a gap in financing
               Small and Medium Business Enterprises and have decided to bridge the gap. Our Mission is to make investement funds 
               accessible to SMEs and the utilization of the funds monitored and regulated.
               </p>
