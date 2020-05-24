@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/heading-has-content */
 import React from "react";
 import Nav from "./Nav";
