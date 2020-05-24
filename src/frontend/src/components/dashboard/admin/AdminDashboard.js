@@ -26,11 +26,9 @@ class AdminDashboard extends React.Component {
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<PieChartOutlined />}>
-             View Projects
+              View Projects
             </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              
-            </Menu.Item>
+            <Menu.Item key="2" icon={<DesktopOutlined />}></Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">

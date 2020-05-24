@@ -1,3 +1,9 @@
+/* eslint-disable quotes */
+/*eslint quotes: ["error", "double"]*/
+/*eslint-env es6*/
+/* eslint-disable no-console */
+/* eslint no-console: "error" */
+
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -20,9 +26,9 @@ class Registration extends React.Component {
     this.submitRegistration = this.submitRegistration.bind(this);
     this.mapStateToLGA = this.mapStateToLGA.bind(this);
     this.mapLGAToTown = this.mapLGAToTown.bind(this);
-    this.handleBlur=this.handleBlur.bind(this);
-    this.handleConfirmPasswordChange=this.handleConfirmPasswordChange.bind(this);
-    this.handlePasswordChange=this.handlePasswordChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   closeRegistration() {
@@ -47,7 +53,7 @@ class Registration extends React.Component {
   }
 
   handleConfirmPasswordChange(event) {
-    this.props.handleConfirmPasswordChange(event)
+    this.props.handleConfirmPasswordChange(event);
   }
 
   handlePasswordChange(event) {

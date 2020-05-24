@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
+/* eslint no-console: "error" */
 import React from "react";
 import { Layout, Menu, Row, Col } from "antd";
-import { ZoomOutOutlined , FileAddOutlined, KeyOutlined } from "@ant-design/icons";
+import { ZoomOutOutlined, FileAddOutlined, KeyOutlined } from "@ant-design/icons";
 import { Router, Route } from "react-router";
 import { Switch, Link } from "react-router-dom";
 import Project from "./Project";

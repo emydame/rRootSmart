@@ -1,5 +1,5 @@
 import React from "react";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 import "./Dashboard.css";
 import { Router, Route } from "react-router";
 import SmeDashboard from "./sme/SmeDashboard";

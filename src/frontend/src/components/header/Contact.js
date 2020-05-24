@@ -1,3 +1,7 @@
+/* eslint-disable quotes */
+/*eslint quotes: ["error", "double"]*/
+/*eslint-env es6*/
+
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
