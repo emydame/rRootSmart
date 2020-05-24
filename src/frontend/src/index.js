@@ -4,8 +4,7 @@ import "./styles/index.css";
 import App from "./components/App";
 import { Provider } from "react-redux";
 import createHistory from "history/createBrowserHistory";
-import { Router } from "react-router";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Router } from "react-router-dom";
 import store from "./redux/configurations/store";
 import Dashboards from "./components/dashboard/Dashboard";
 

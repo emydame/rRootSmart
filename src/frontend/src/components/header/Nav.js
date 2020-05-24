@@ -4,7 +4,7 @@
 /*eslint-env es6*/
 /* eslint no-console: "error" */
 import React from "react";
-import { Link, BrowserRouter as Router, withRouter } from "react-router-dom";
+import { Link, Redirect, BrowserRouter as Router, withRouter } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import serialize from "form-serialize";
 import "../../styles/modal.css";
@@ -13,7 +13,6 @@ import Contact from "./Contact";
 import Login from "./Login";
 import Registration from "./Registration";
 import "../../styles/modal.css";
-import { Redirect } from "react-router";
 import mapStateToLocals from "./stateToLocals";
 import getTown from "./localsToTown";
 import getTowns from "./localsToTown";
@@ -160,8 +159,6 @@ class Nav extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-
-
   showLoginModal(event) {
     event.preventDefault();
     this.setState({ showLog: true });
@@ -178,8 +175,8 @@ class Nav extends React.Component {
         this.logFormText.current.classList.remove("d-none");
         return;
       }
-      console.log("click");
-      this.setState({ redirect: "/sme" });
+      this.props.history.push("/sme");
+      // this.setState({ redirect: "/sme" });
     });
 
     const form = document.querySelector(`form[name="login"]`);
@@ -205,11 +202,13 @@ class Nav extends React.Component {
     this.setState({ showAbout: false });
   }
 
-  
-
   render() {
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />;
+      return (
+        <Router>
+          <Redirect to={this.state.redirect} />
+        </Router>
+      );
     }
     return (
       <Container className="navbar">
@@ -244,12 +243,11 @@ class Nav extends React.Component {
           _state={this._state}
           town={this.town}
           register={this.submitRegistration}
-          mapStateToLga= {this.mapStateToLGA}
-          mapLGAToTown = {this.mapLGAToTown}
+          mapStateToLga={this.mapStateToLGA}
+          mapLGAToTown={this.mapLGAToTown}
           handleBlur={this.handleBlur}
           handleConfirmPasswordChange={this.handleConfirmPasswordChange}
           handlePasswordChange={this.handlePasswordChange}
-
         />
         <Login
           showModal={this.state.showLog}
@@ -259,7 +257,6 @@ class Nav extends React.Component {
         />
         <Contact showModal={this.state.showContact} closeModal={this.closeContactModal} />
         <About showModal={this.state.showAbout} closeModal={this.closeAboutModal} />
-
       </Container>
     );
   }
