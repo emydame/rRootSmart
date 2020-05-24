@@ -259,6 +259,7 @@ class Nav extends React.Component {
         />
         <Contact showModal={this.state.showContact} closeModal={this.closeContactModal} />
         <About showModal={this.state.showAbout} closeModal={this.closeAboutModal} />
+
       </Container>
     );
   }
