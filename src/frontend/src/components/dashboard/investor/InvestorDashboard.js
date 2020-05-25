@@ -4,7 +4,7 @@
 import React from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
-import { Avatar } from 'antd';
+import { Avatar } from "antd";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;

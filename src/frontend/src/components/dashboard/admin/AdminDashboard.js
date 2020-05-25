@@ -3,7 +3,7 @@
 
 import React from "react";
 import { Layout, Menu, Breadcrumb, Row, Col } from "antd";
-import { Avatar } from 'antd';
+import { Avatar } from "antd";
 import { Link } from "react-router-dom";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 

@@ -2,7 +2,7 @@
 /* eslint no-console: "error" */
 import React from "react";
 import { Layout, Menu, Row, Col } from "antd";
-import { Avatar } from 'antd';
+import { Avatar } from "antd";
 import { ZoomOutOutlined, FileAddOutlined, KeyOutlined } from "@ant-design/icons";
 import { Switch, Link, Router, Route } from "react-router-dom";
 import Project from "./Project";

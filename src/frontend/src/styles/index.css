@@ -245,8 +245,16 @@ h3 {
 .btn-sm {
   color: #3d6cb9;
   background: #f9f9f9;
-  padding: 2px 10px;
+  padding: 4px 20px;
   text-align: center;
+  border: none;
+  border-radius: 15px;
+}
+
+.btn-sm:hover {
+  background: #3d6cb9;
+  border: none;
+  color: #fff;
 }
 
 .content-separator {
