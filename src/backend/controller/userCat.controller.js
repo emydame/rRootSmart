@@ -3,11 +3,13 @@ const UserCategory = db.userCategory;
 
 // Post a User category
 exports.create = (req, res) => {
+  let today = new Date();
   let requests = {
     userCatId: req.body.userCatId,
     categoryName: req.body.categoryName,
     description: req.body.description,
-    createdBy: req.body.createdBy
+    createdBy: req.body.createdBy,
+    createdAt: today
   };
   if (!req.body) {
     return res.status(400).send({
@@ -41,8 +43,8 @@ exports.create = (req, res) => {
 //return all user categories
 exports.findAll = (req, res) => {
   UserCategory.findAll()
-    .then((users) => {
-      res.status(200).send(users);
+    .then((data) => {
+      res.status(200).send(data);
     })
     .catch((err) => {
       return res.status(500).send({

@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -13,7 +13,7 @@ const db = require("./config/db.config");
 app.use(cors());
 
 //sync db
-db.sequelize.sync({force : false}).then(() => {});
+db.sequelize.sync({ force: false }).then(() => {});
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);
@@ -31,6 +31,6 @@ require("./routes/lga.route")(app);
 
 app.listen(PORT, () => {
   console.log(`Server starts at port , ${PORT}`);
-}); 
+});
 
 module.exports = { app };
