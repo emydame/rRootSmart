@@ -5,26 +5,24 @@ module.exports = (sequelize, DataTypes) => {
       userCatId: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
-      userId: {
-        type: DataTypes.STRING,
-      },
+
       categoryName: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       description: {
-        type: DataTypes.STRING,
-      },
-      dateCreated: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING
       },
       createdBy: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
+      createdAt: {
+        type: DataTypes.DATE
+      }
     },
     {
-      timestamps: false,
+      timestamps: false   
     }
   );
   return UserCategory;
