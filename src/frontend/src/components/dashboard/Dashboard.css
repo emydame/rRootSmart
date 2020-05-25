@@ -7,3 +7,36 @@ iframe {
   width: 100%;
   height: 100%;
 }
+
+.ant-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  color: #fff;
+  line-height: 64px;
+  background: #3d6cb9;
+}
+
+.ant-layout-sider {
+  position: relative;
+  min-width: 0;
+  background: #f90;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.ant-layout-sider-trigger {
+  background: #b56717;
+}
+
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+  color: rgba(255, 255, 255, 0.65);
+  background: #b56717;
+}
+
+.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+  background: #f90;
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #3d6cb9;
+}

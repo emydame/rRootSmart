@@ -38,7 +38,7 @@ class Carousel extends React.Component {
               </div>
             </div>
             <div class="carousel-item">
-            <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,f_auto,h_757/v1589989872/carousel-1_e7h7w8.jpg" class="d-block w-100" alt="..."/>
+            <img src="https://res.cloudinary.com/lordefid/image/upload/v1589989872/carousel-1_e7h7w8.jpg" class="d-block w-100" alt="..."/>
               <div class="container">
                 <div class="carousel-caption text-right">
                   <h1>Community Friendly</h1>
