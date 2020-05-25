@@ -4,6 +4,7 @@
 import React from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
+import { Avatar } from 'antd';
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -48,6 +49,10 @@ class InvestorDashboard extends React.Component {
             <Link className="dashboard-img" to="#">
               <img src={"./logo.png"} alt="logo" />
             </Link>
+            <div className="avatar">
+              <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
+              
+            </div>
           </Header>
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
@@ -58,7 +63,7 @@ class InvestorDashboard extends React.Component {
               Bill is a cat.
             </div>
           </Content>
-          <Footer style={{ textAlign: "center" }}>Ant Design ©2018 Created by Ant UED</Footer>
+          {/* <Footer style={{ textAlign: "center" }}>eaZSME ©2020  Created by Team-028</Footer> */}
         </Layout>
       </Layout>
     );

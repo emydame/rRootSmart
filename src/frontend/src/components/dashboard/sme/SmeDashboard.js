@@ -2,6 +2,7 @@
 /* eslint no-console: "error" */
 import React from "react";
 import { Layout, Menu, Row, Col } from "antd";
+import { Avatar } from 'antd';
 import { ZoomOutOutlined, FileAddOutlined, KeyOutlined } from "@ant-design/icons";
 import { Switch, Link, Router, Route } from "react-router-dom";
 import Project from "./Project";
@@ -40,7 +41,13 @@ class SmeDashboard extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background header">
-            <Row align="middle">
+          <Link className="dashboard-img" to="#">
+              <img src={"./logo.png"} alt="logo" />
+            </Link>
+            <div className="avatar">
+              <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
+            </div>
+            <Row align="middle user-greeting">
               <Col md="10">Welcome {/*** Name of the user  */}</Col>
               <Col></Col>
             </Row>

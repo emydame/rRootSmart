@@ -42,9 +42,17 @@ iframe {
   background-color: #3d6cb9;
 }
 
-/* investor dashboard styles goes here */
-
-.dashboard-img img {
+.dashboard-img > img {
   height: 3rem;
   margin-left: 20px;
+}
+
+.avatar {
+  float: right;
+  margin-right: 100px;
+}
+
+.user-greeting {
+  position: absolute;
+  color: #000;
 }

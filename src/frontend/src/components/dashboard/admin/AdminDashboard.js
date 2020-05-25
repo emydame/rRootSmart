@@ -3,6 +3,8 @@
 
 import React from "react";
 import { Layout, Menu, Breadcrumb, Row, Col } from "antd";
+import { Avatar } from 'antd';
+import { Link } from "react-router-dom";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -36,10 +38,12 @@ class AdminDashboard extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background header">
-            <Row align="middle">
-              <Col md="10">Welcome {/*** Name of the user  */}</Col>
-              <Col></Col>
-            </Row>
+            <Link className="dashboard-img" to="#">
+                <img src={"./logo.png"} alt="logo" />
+            </Link>
+            <div className="avatar">
+                <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
+            </div>
           </Header>
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
