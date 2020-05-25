@@ -21,6 +21,7 @@ class Footer extends React.Component {
                       /></a>
             </div>
               <p>&copy; 2020 eaZSME,  &middot;  <a href="#">Privacy</a>  &middot;  <a href="#">Terms</a></p>
+
               </div>
           </footer>
   

@@ -3,4 +3,7 @@ module.exports = (app) => {
 
   // Create a new User Category
   app.post("/category", userCategory.create);
+
+  // Retrieve all User Categories
+  app.get("/category/all", userCategory.findAll);
 };
