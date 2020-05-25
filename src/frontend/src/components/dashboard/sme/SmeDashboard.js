@@ -3,8 +3,7 @@
 import React from "react";
 import { Layout, Menu, Row, Col } from "antd";
 import { ZoomOutOutlined, FileAddOutlined, KeyOutlined } from "@ant-design/icons";
-import { Router, Route } from "react-router";
-import { Switch, Link } from "react-router-dom";
+import { Switch, Link, Router, Route } from "react-router-dom";
 import Project from "./Project";
 import Proposal from "./Proposal";
 
