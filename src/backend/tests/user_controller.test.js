@@ -7,11 +7,15 @@ const userControllers = require("../controller/user.controller");
 let apiServer;
 
 describe("create()", () => {
-  beforeAll(async () => {
-    apiServer = supertest(app);
+  beforeEach(async () => {
+    if(!(apiServer && apiServer.listen)){
+      apiServer = supertest(app);
+    } 
   });
-  afterAll(async () => {
-    await apiServer.close();
+  afterEach(async () => {
+    if (apiServer.close){
+      await apiServer.close();
+    } 
   });
   it("should be a function", () => {
     const res = typeof userControllers.create;
@@ -19,7 +23,7 @@ describe("create()", () => {
   });
   it("should not create a user when no data is sent", async () => {
     const res = await apiServer.post("/user");
-    expect(res.statusCode).toEqual(400);
+    expect(res.statusCode).toEqual(500);
   });
   it("should create a user with valid data", async () => {
     const res = await apiServer.post("/user").send({
@@ -27,7 +31,7 @@ describe("create()", () => {
       firstName: "Ade",
       lastName: "philip",
       email: "e@philip.com",
-      phoneNumber: 3904894
+      phoneNumber: "3904894"
     });
     expect(res.statusCode).toEqual(200);
   });
