@@ -30,7 +30,7 @@ require("./routes/states.route")(app);
 require("./routes/lga.route")(app);
 
 app.listen(PORT, () => {
-  console.log(`Server starts at port , ${PORT}`);
+  PORT
 }); 
 
 
