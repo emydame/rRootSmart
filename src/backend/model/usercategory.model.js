@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       createdAt: {
-        type: DataTypes.STRING
+        type: DataTypes.DATE
       }
     },
     {
-      timestamps: false
+      timestamps: false   
     }
   );
   return UserCategory;
