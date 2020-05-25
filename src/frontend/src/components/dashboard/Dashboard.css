@@ -1,3 +1,4 @@
+
 .header {
   padding: 0;
   color: white;
@@ -22,6 +23,11 @@ iframe {
   background: #f90;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+}
+
+.avatar {
+  float: right;
+  margin-right: 100px;
 }
 
 .ant-layout-sider-trigger {
@@ -52,7 +58,3 @@ iframe {
   margin-left: 20px;
 }
 
-.avatar {
-  float: right;
-  margin-right: 100px;
-}
