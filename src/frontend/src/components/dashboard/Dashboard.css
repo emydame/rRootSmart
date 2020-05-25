@@ -42,6 +42,11 @@ iframe {
   background-color: #3d6cb9;
 }
 
+.user-greeting {
+  position: absolute;
+  color: #000;
+}
+
 .dashboard-img > img {
   height: 3rem;
   margin-left: 20px;
@@ -50,9 +55,4 @@ iframe {
 .avatar {
   float: right;
   margin-right: 100px;
-}
-
-.user-greeting {
-  position: absolute;
-  color: #000;
 }
