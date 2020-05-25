@@ -32,7 +32,7 @@ class AdminDashboard extends React.Component {
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<AppstoreOutlined />}>
-             <Link to="/admin/smeandprojects"> SMEs/Projects</Link>
+            <Link to="/admin/smeandprojects"> SMEs/Projects</Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<DollarCircleOutlined />}>
             <Link to="/admin/investorsandfunding">Investors/Funding</Link>
