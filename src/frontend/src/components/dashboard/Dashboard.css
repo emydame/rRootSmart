@@ -13,7 +13,7 @@ iframe {
   padding: 0 50px;
   color: #fff;
   line-height: 64px;
-  background: #3d6cb9;
+  background: #f90;
 }
 
 .ant-layout-sider {
@@ -25,12 +25,13 @@ iframe {
 }
 
 .ant-layout-sider-trigger {
-  background: #b56717;
+  background: #3d6cb9;
 }
 
-.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+.ant-menu.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub {
   color: rgba(255, 255, 255, 0.65);
-  background: #b56717;
+  background: #3d6cb9;
 }
 
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
@@ -39,4 +40,10 @@ iframe {
 
 .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: #3d6cb9;
+}
+
+/* investor dashboard styles goes here */
+.dashboard-img img {
+  height: 3rem;
+  margin-left: 20px;
 }

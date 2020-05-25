@@ -3,6 +3,7 @@
 
 import React from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
+import { Link } from "react-router-dom";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -43,7 +44,11 @@ class InvestorDashboard extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
+          <Header className="site-layout-background" style={{ padding: 0 }}>
+            <Link className="dashboard-img" to="#">
+              <img src={"./logo.png"} alt="logo" />
+            </Link>
+          </Header>
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
