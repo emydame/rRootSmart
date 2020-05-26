@@ -17,6 +17,7 @@ db.sequelize.sync({ force: false }).then(() => {});
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);
+require("./routes/userLogin.route")(app);
 require("./routes/userOganization.route")(app);
 require("./routes/privilege.route")(app);
 require("./routes/funds.route")(app);
@@ -28,6 +29,7 @@ require("./routes/projectCategory.route")(app);
 require("./routes/projectProposal.route")(app);
 require("./routes/states.route")(app);
 require("./routes/lga.route")(app);
+require("./routes/role.route")(app);
 
 if (process.env.NODE_ENV !== "test"){
   app.listen(PORT, () => {

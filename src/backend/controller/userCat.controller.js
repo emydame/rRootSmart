@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     categoryName: req.body.categoryName,
     description: req.body.description,
     createdBy: req.body.createdBy,
-    createdAt: today
+    dateCreated: today
   };
   if (!req.body) {
     return res.status(400).send({
@@ -19,9 +19,7 @@ exports.create = (req, res) => {
     // query user category table to check if category already exist
     UserCategory.findOne({ where: { categoryName: requests.categoryName } }).then((data) => {
       if (data) {
-        return res.status(401).send({
-          message: "Category already exist"
-        });
+        return res.status(401).send(data); // Data returned signify that category already exist
       } else {
         // create user category
         const userCategory = new UserCategory(requests);
