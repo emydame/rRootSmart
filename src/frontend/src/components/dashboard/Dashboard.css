@@ -87,6 +87,10 @@ li.dashboard-item-1 {
   margin-top: -10px;
 }
 
+.menu-icon {
+  color: #3d6cb9;
+}
+
 span.anticon-bell {
   font-size: 20px;
   color: #3d6cb9;
@@ -100,9 +104,5 @@ span.anticon-bell {
 
 a.ant-dropdown-trigger {
   margin-left: -20px;
-  color: #3d6cb9;
-}
-
-.menu-icon {
   color: #3d6cb9;
 }
