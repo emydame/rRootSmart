@@ -52,7 +52,7 @@ describe("GET /fund/applications/list with findAll()", () => {
     const res = typeof fundAppControllers.findAll;
     expect(res).toEqual("function");
   });
-  it("should fetch all users from the server", async () => {
+  it("should fetch all fund applications from the server", async () => {
     const res = await apiServer.get("/fund/applications/list");
     expect(res.statusCode).toEqual(200);
   });
