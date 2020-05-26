@@ -2,13 +2,12 @@
 /* eslint no-console: "error" */
 
 import React from "react";
-import { Badge, Dropdown } from 'antd';
-import { FileDoneOutlined } from '@ant-design/icons';
-import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Badge, Dropdown, Avatar } from "antd";
+import { FileDoneOutlined } from "@ant-design/icons";
+import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
-import { Avatar } from "antd";
-import { BellFilled } from '@ant-design/icons';
+import { BellFilled } from "@ant-design/icons";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 const menu = (

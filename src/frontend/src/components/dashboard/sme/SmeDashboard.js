@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Badge, Dropdown, Layout, Menu } from 'antd';
-import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
-import { Avatar } from "antd";
-import { BellFilled, FileDoneOutlined, UserOutlined } from '@ant-design/icons';
+import { Badge, Dropdown, Layout, Menu, Avatar } from "antd";
+import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
+import { BellFilled, FileDoneOutlined, UserOutlined } from "@ant-design/icons";
 import { ZoomOutOutlined, FileAddOutlined, KeyOutlined } from "@ant-design/icons";
 import { Switch, Link, Router, Route } from "react-router-dom";
 import Project from "./Project";
