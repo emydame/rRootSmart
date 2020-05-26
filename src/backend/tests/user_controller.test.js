@@ -57,3 +57,28 @@ describe("GET /users with findAll()", () => {
     expect(res.statusCode).toEqual(200);
   });
 });
+
+describe("GET /users/:id with findOne()", () => {
+  beforeEach(async () => {
+    if(!(apiServer && apiServer.listen)){
+      apiServer = supertest(app);
+    } 
+  });
+  afterEach(async () => {
+    if (apiServer.close){
+      await apiServer.close();
+    } 
+  });
+  it("findAll() should be a function", () => {
+    const res = typeof userControllers.findOne;
+    expect(res).toEqual("function");
+  });
+  it("should fetch single user info from the server", async () => {
+    const res = await apiServer.get("/users/6");
+    expect(res.statusCode).toEqual(200);
+  });
+  it("should not fetch user data for an invalid id", async () => {
+    const res = await apiServer.get("/users/1rwrtr");
+    expect(res.statusCode).toEqual(500);
+  });
+});
