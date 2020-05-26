@@ -2,10 +2,14 @@ module.exports = (sequelize, DataTypes) => {
   const LoginUser = sequelize.define(
     "userlogin",
     {
-      userId: {
+      loginId: {
         type: DataTypes.STRING,
         required: true,
         allowNull: false,
+      },
+      userId: {
+        type: DataTypes.STRING,
+        required: true,
       },
       userCatId: {
         type: DataTypes.STRING,
