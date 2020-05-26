@@ -2,7 +2,6 @@
 /* eslint no-console: "error" */
 
 import React from "react";
-<<<<<<
 import { Switch, Router, Route, Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Row, Col,Badge, Dropdown, Avatar } from "antd";
 import { DesktopOutlined,CaretDownFilled, UsergroupAddOutlined, SettingOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined,LogoutOutlined,AppstoreOutlined, DollarCircleOutlined,FileDoneOutlined, BellFilled } from "@ant-design/icons";
