@@ -4,18 +4,18 @@ module.exports = (sequelize, DataTypes) => {
     {
       loginId: {
         type: DataTypes.STRING,
-        required: true,
+        primaryKey : true,
         allowNull: false,
       },
       userId: {
         type: DataTypes.STRING,
         required: true,
       },
-      userCatId: {
+      categoryName: {
         type: DataTypes.STRING,
         required: true,
       },
-      username: {
+      username: {  
         type: DataTypes.STRING,
         required: true,
       },

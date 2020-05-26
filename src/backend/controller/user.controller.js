@@ -16,8 +16,9 @@ exports.create = (req, res) => {
     phoneNumber: req.body.phoneNumber
   };
   let userPass = {
+    loginId: req.body.loginId,
     userId: req.body.userId,
-    userCatId: req.body.userCatId,
+    categoryName: req.body.categoryName,
     username: req.body.username,
     password: req.body.password
   };
@@ -28,18 +29,16 @@ exports.create = (req, res) => {
     });
   } else {
     //Query user table to check if details already exist
-    User.findOne({ where: { userId: userData.userId } }).then((resut) => {
-      if (resut) {
-        return res.status(401).send({
-          message: "User already exist"
-        });
+    User.findOne({ where: { userId: userData.userId } }).then((data) => {
+      if (data) {
+        // return result if data already exist
+        return res.status(401).send(data); 
       } else {
         //Query userlogin table to check if user login credentials already exist
         Userpass.findOne({ where: { userId: userPass.userId } }).then((data) => {
           if (data) {
-            return res.status(401).send({
-              message: "User already exist"
-            });
+            // return data if user login creadentials exist
+            return res.status(401).send(data);
           } else {
             // save user
             const user = new User(userData);
