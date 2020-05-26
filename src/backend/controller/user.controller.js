@@ -32,7 +32,7 @@ exports.create = (req, res) => {
     User.findOne({ where: { userId: userData.userId } }).then((data) => {
       if (data) {
         // return result if data already exist
-        return res.status(401).send(data); 
+        return res.status(401).send(data);
       } else {
         //Query userlogin table to check if user login credentials already exist
         Userpass.findOne({ where: { userId: userPass.userId } }).then((data) => {
@@ -95,10 +95,10 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   User.findAll()
     .then((users) => {
-      res.status(200).send(users);
+      return res.status(200).send(users);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message
       });
     });
