@@ -7,9 +7,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true
       },
-      loginId : {
-        type : DataTypes.STRING,
-      },
       categoryName: {
         type: DataTypes.STRING
       },
@@ -19,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       createdBy: {
         type: DataTypes.STRING
       },
-      createdAt: {
+      dateCreated: {
         type: DataTypes.DATE
       }
     },

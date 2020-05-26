@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     categoryName: req.body.categoryName,
     description: req.body.description,
     createdBy: req.body.createdBy,
-    createdAt: today
+    dateCreated: today
   };
   if (!req.body) {
     return res.status(400).send({
