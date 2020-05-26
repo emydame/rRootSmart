@@ -17,16 +17,19 @@ exports.findOne = (req, res) => {
     }
   })
     .then((data) => {
-      if (bcrypt.compareSync(request.password, data.password)) {
-        let payload = { subject: data };
-        let token = jwt.sign(payload, process.env.SECRET_KEY, {
-          expiresIn: 1440
-        });
-        res.status(200).send({ token });
+      // Check if login credentials exist
+      if (!data) {
+        return res.status(401).send(); // return empty string to signify login creadentials not found
       } else {
-        res.status(401).send({
-          message: "Invalid username or password"
-        });
+        if (bcrypt.compareSync(request.password, data.password)) {
+          let payload = { subject: data };
+          let token = jwt.sign(payload, process.env.SECRET_KEY, {
+            expiresIn: 1440
+          });
+          res.status(200).send({ token });
+        } else {
+          res.status(401).send(); // return empty string to signify login creadentials not found
+        }
       }
     })
     .catch((err) => {
