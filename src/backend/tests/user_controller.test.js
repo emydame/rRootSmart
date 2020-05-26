@@ -36,3 +36,24 @@ describe("create()", () => {
     expect(res.statusCode).toEqual(200);
   });
 });
+
+describe("GET /users with findAll()", () => {
+  beforeEach(async () => {
+    if(!(apiServer && apiServer.listen)){
+      apiServer = supertest(app);
+    } 
+  });
+  afterEach(async () => {
+    if (apiServer.close){
+      await apiServer.close();
+    } 
+  });
+  it("findAll() should be a function", () => {
+    const res = typeof userControllers.findAll;
+    expect(res).toEqual("function");
+  });
+  it("should fetch all users from the server", async () => {
+    const res = await apiServer.get("/users");
+    expect(res.statusCode).toEqual(200);
+  });
+});

@@ -29,8 +29,10 @@ require("./routes/projectProposal.route")(app);
 require("./routes/states.route")(app);
 require("./routes/lga.route")(app);
 
-app.listen(PORT, () => {
-  PORT;
-});
+if (process.env.NODE_ENV !== "test"){
+  app.listen(PORT, () => {
+    PORT;
+  });
+}
 
 module.exports = { app };
