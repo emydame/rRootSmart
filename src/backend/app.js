@@ -29,6 +29,7 @@ require("./routes/projectCategory.route")(app);
 require("./routes/projectProposal.route")(app);
 require("./routes/states.route")(app);
 require("./routes/lga.route")(app);
+require("./routes/role.route")(app);
 
 app.listen(PORT, () => {
   PORT;

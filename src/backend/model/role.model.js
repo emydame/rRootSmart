@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Role = sequelize.define(
     "roles",
     {
-      roleId: {
+      id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
