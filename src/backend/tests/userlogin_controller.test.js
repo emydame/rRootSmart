@@ -22,7 +22,7 @@ describe("GET /login with findOne()", () => {
     expect(res).toEqual("function");
   });
   it("should login with valid data", async () => {
-    const res = await apiServer.get("/login");
+    const res = await apiServer.post("/login");
     expect(res.statusCode).toEqual(200).send({ username: "sme", password: "admin" });
   });
   it("should not login with invalid data", async () => {
