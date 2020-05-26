@@ -81,6 +81,6 @@ describe("GET /project with findOne()", () => {
   });
   it("should not fetch project data for an invalid id", async () => {
     const res = await apiServer.get("/project").send({ projectId: 'dfasdf'});
-    expect(res.statusCode).toEqual(500);
+    expect(res.statusCode).toEqual(400);
   });
 });
