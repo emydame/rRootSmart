@@ -85,7 +85,7 @@ class InvestorDashboard extends React.Component {
                     </Link></li>
                 <li className="dashboard-item-1 item-right">
                     <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
                       <CaretDownFilled id="menu-trigger" />
                       </a>
                     </Dropdown>
