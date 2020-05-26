@@ -68,7 +68,7 @@ describe("GET /funds/category with findOne()", () => {
       await apiServer.close();
     }
   });
-  it("findAll() should be a function", () => {
+  it("findOne() should be a function", () => {
     const res = typeof fundCatControllers.findOne;
     expect(res).toEqual("function");
   });

@@ -69,7 +69,7 @@ describe("GET /fund/application/:id with findOne()", () => {
       await apiServer.close();
     } 
   });
-  it("findAll() should be a function", () => {
+  it("findOne() should be a function", () => {
     const res = typeof fundAppControllers.findOne;
     expect(res).toEqual("function");
   });
