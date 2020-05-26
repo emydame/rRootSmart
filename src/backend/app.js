@@ -17,6 +17,7 @@ db.sequelize.sync({ force: false }).then(() => {});
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);
+require("./routes/userLogin.route")(app);
 require("./routes/userOganization.route")(app);
 require("./routes/privilege.route")(app);
 require("./routes/funds.route")(app);
