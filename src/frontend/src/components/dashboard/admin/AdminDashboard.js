@@ -11,27 +11,27 @@ import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutl
 
 const menu = (
   <Menu id="dropdown-menu">
-    <Menu.Item icon={<UserOutlined />}>
+    <Menu.Item className="menu-icon" icon={<UserOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Profile
       </a>
     </Menu.Item>
-    <Menu.Item icon={<UsergroupAddOutlined />}>
+    <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Manage Users
       </a>
     </Menu.Item>
-    <Menu.Item icon={<FileDoneOutlined />}>
+    <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Review Reports
       </a>
     </Menu.Item>
-    <Menu.Item icon={<SettingOutlined />}>
+    <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Settings
       </a>
     </Menu.Item>
-    <Menu.Item icon={<LogoutOutlined />}>
+    <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Logout
       </a>
