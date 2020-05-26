@@ -18,15 +18,11 @@ exports.findOne = (req, res) => {
         return res.status(401).send(); // return empty string to signify login creadentials not found
       } else {
         if (bcrypt.compareSync(request.password, data.password)) {
-          res.send(data)
-          if(data){
-            // Return user organisation details along side user login data
-          }
-          // let payload = { subject: data };
-          // let token = jwt.sign(payload, process.env.SECRET_KEY, {
-          //   expiresIn: 1440
-          // });
-          // res.status(200).send({ token }); 
+          let payload = { subject: data };
+          let token = jwt.sign(payload, process.env.SECRET_KEY, {
+            expiresIn: 1440
+          });
+          res.status(200).send({ token });
         } else {
           return res.status(401).send(); // return empty string to signify login creadentials not found
         }

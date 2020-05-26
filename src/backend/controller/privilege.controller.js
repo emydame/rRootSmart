@@ -1,10 +1,10 @@
 const db = require("../config/db.config");
-const Role = db.role;
+const Privilege = db.privilege;
 
 exports.create = (req, res) => {
   let date = new Date();
   let request = {
-    roleName: req.body.roleName,
+    privilegeName: req.body.privilegeName,
     description: req.body.description,
     dateCreated: date
   };
@@ -14,14 +14,14 @@ exports.create = (req, res) => {
       message: "Input fields cannot be empty "
     });
   } else {
-    // Check is role already exist
-    Role.findOne({ where: { roleName: request.roleName } }).then((data) => {
+    // Check is privilege already exist
+    Privilege.findOne({ where: { privilegeName: request.privilegeName } }).then((data) => {
       if (data) {
         return res.status(401).send("Role laready exist");
       } else {
-        //Save role
-        let role = new Role(request);
-        role
+        //Save privilege
+        let privilege = new Privilege(request);
+        privilege
           .save()
           .then((data) => {
             return res.status(200).send(data);
