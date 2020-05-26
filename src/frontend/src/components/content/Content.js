@@ -20,7 +20,7 @@ class Content extends React.Component {
                       <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                       </div>
-                      <small class="text-muted">9 mins</small>
+                      <small class="text-muted" id="muted-text">9 mins</small>
                     </div>
                   </div>
                 </div>
@@ -33,7 +33,7 @@ class Content extends React.Component {
                       <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                       </div>
-                      <small class="text-muted">9 mins</small>
+                      <small class="text-muted" id="muted-text">12 hrs ago</small>
                     </div>
                   </div>
                 </div>
@@ -46,7 +46,7 @@ class Content extends React.Component {
                       <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                       </div>
-                      <small class="text-muted">9 mins</small>
+                      <small class="text-muted" id="muted-text">9 days ago</small>
                     </div>
                   </div>
                 </div>
@@ -77,42 +77,6 @@ class Content extends React.Component {
                       /></a></li>
             </ul>
           </div>
-              {/* <div class="container">
-                <div class="row">
-                <div class="col-md-2 sponsors-text"> Official Sponsors</div>
-                <hr className="content-separator"></hr>
-                  <div class="col-md-2 sponsor-logo">
-                      <img
-                        src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732624/paypal-logo-vector-download-400x400_yy1m3o.jpg"
-                        alt="paypal-logo"
-                      />
-                  </div>
-                  <hr className="content-separator"></hr>
-                  <div class="col-md-2 sponsor-logo">
-                      <img
-                        src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732623/FirstBank_Logo_coyuui.jpg"
-                        alt="firstbank-logo"
-                      />
-                  </div>
-                  <hr className="content-separator"></hr>
-                  <div class="col-md-2 sponsor-logo">
-                      <div class="">
-                      <img
-                      src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732608/Andella_gmanxz.png"
-                      alt="andela-logo"
-                    />
-                      </div>
-                  </div>
-                  <hr className="content-separator"></hr>
-                  <div class="col-md-2 sponsor-logo">
-                      <img
-                      src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_30/v1589732622/Group_157_rzbgqx.png"
-                      alt="facebook-logo"
-                      />
-                </div>
-                <div class="col-md-2"></div>
-              </div>
-          </div> */}
         </Container>
       
     );

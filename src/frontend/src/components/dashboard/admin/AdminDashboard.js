@@ -3,10 +3,11 @@
 
 import React from "react";
 import { Switch, Router, Route, Link } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Row, Col } from "antd";
+import { Layout, Menu, Breadcrumb, Row, Col, Avatar } from "antd";
 import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined,LogoutOutlined,AppstoreOutlined, DollarCircleOutlined } from "@ant-design/icons";
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
+
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -42,10 +43,12 @@ class AdminDashboard extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background header">
-            <Row align="middle">
-              <Col md="10">Welcome {/*** Name of the user  */}</Col>
-              <Col></Col>
-            </Row>
+            <Link className="dashboard-img" to="#">
+                <img src={"./logo.png"} alt="logo" />
+            </Link>
+            <div className="avatar">
+                <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
+            </div>
           </Header>
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
