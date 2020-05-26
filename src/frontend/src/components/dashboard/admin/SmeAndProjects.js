@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 
@@ -72,6 +72,6 @@ export default class SmeAndProjects extends Component {
 
       </Table>
     </Card.Body>
-    )
+    );
   }
 }
