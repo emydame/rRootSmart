@@ -8,14 +8,14 @@ let apiServer;
 
 describe("create()", () => {
   beforeEach(async () => {
-    if(!(apiServer && apiServer.listen)){
+    if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
-    } 
+    }
   });
   afterEach(async () => {
-    if (apiServer.close){
+    if (apiServer.close) {
       await apiServer.close();
-    } 
+    }
   });
   it("should be a function", () => {
     const res = typeof projectControllers.create;
@@ -41,14 +41,14 @@ describe("create()", () => {
 
 describe("GET /projects/list with findAll()", () => {
   beforeEach(async () => {
-    if(!(apiServer && apiServer.listen)){
+    if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
-    } 
+    }
   });
   afterEach(async () => {
-    if (apiServer.close){
+    if (apiServer.close) {
       await apiServer.close();
-    } 
+    }
   });
   it("findAll() should be a function", () => {
     const res = typeof projectControllers.findAll;
@@ -62,14 +62,14 @@ describe("GET /projects/list with findAll()", () => {
 
 describe("GET /project with findOne()", () => {
   beforeEach(async () => {
-    if(!(apiServer && apiServer.listen)){
+    if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
-    } 
+    }
   });
   afterEach(async () => {
-    if (apiServer.close){
+    if (apiServer.close) {
       await apiServer.close();
-    } 
+    }
   });
   it("findAll() should be a function", () => {
     const res = typeof projectControllers.findOne;
@@ -80,7 +80,7 @@ describe("GET /project with findOne()", () => {
     expect(res.statusCode).toEqual(200);
   });
   it("should not fetch project data for an invalid id", async () => {
-    const res = await apiServer.get("/project").send({ projectId: 'dfasdf'});
+    const res = await apiServer.get("/project").send({ projectId: "dfasdf" });
     expect(res.statusCode).toEqual(400);
   });
 });
