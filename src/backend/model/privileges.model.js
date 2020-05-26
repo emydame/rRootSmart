@@ -1,26 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
-  const Privilege = sequelize.define("userprivileges", {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true
+  const Privilege = sequelize.define(
+    "privileges",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+      },
+      privilegeName: {
+        type: DataTypes.STRING
+      },
+      description: {
+        type: DataTypes.STRING
+      },
+      createdBy: {
+        type: DataTypes.STRING
+      },
+      dateCreated: {
+        type: DataTypes.DATE
+      }
     },
-    userId: {
-      type: DataTypes.STRING
-    },
-    privilegeName: {
-      type: DataTypes.STRING
-    },
-    description: {
-      type: DataTypes.STRING
-    },
-    dateCreated: {
-      type: DataTypes.DATE
-    },
-    createdBy: {
-      type: DataTypes.STRING
+    {
+      timestamps: false
     }
-  });
+  );
   return Privilege;
 };
