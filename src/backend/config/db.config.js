@@ -34,6 +34,10 @@ db.projectCategory = require("../model/projectCategory.model")(sequelize, Sequel
 db.proposal = require("../model/projectProposal.model")(sequelize, Sequelize);
 db.ngState = require("../model/states.model")(sequelize, Sequelize);
 db.lga = require("../model/lga.model")(sequelize, Sequelize);
-db.role =  require("../model/role.model")(sequelize, Sequelize);
+db.role = require("../model/role.model")(sequelize, Sequelize);
 
+// Table relatioships
+ db.userCategory.belongsTo(db.userLogin);
+ db.userLogin.belongsTo(db.users);
+ db.userOrganization.belongsTo(db.userCategory);
 module.exports = db;

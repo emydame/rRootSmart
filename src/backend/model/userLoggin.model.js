@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         required: true,
       },
-      categoryName: {
+      userCatId: {
         type: DataTypes.STRING,
         required: true,
       },

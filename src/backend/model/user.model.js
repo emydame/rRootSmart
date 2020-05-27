@@ -5,27 +5,33 @@ module.exports = (sequelize, Sequelize) => {
       userId: {
         type: Sequelize.STRING,
         primaryKey: true,
-        allowNull: false,
+        allowNull: false
+      },
+      organizationId: {
+        type: Sequelize.STRING
       },
       firstName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       lastName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       phoneNumber: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       isVerified: {
         type: Sequelize.BOOLEAN,
-        default: false,
+        default: false
       },
+      dateCreated: {
+        type: Sequelize.STRING
+      }
     },
     {
-      timestamps: false,
+      timestamps: false
     }
   );
 

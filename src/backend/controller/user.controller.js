@@ -18,11 +18,11 @@ exports.create = (req, res) => {
   let userPass = {
     loginId: req.body.loginId,
     userId: req.body.userId,
-    categoryName: req.body.categoryName,
+    userCatId: req.body.userCatId,
     username: req.body.username,
     password: req.body.password
   };
-  //Check empty request
+  //Check empty request  
   if (!req.body) {
     return res.status(204).send({
       message: "User details cannot be empty"
