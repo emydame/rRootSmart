@@ -22,7 +22,7 @@ describe("create()", () => {
     expect(res).toEqual("function");
   });
   it("should not create a user when no data is sent", async () => {
-    const res = await apiServer.post("/user");
+    const res = await apiServer.post("/register");
     expect(res.statusCode).toEqual(500);
   });
   it("should create a user with valid data", async () => {
