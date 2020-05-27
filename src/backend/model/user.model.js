@@ -22,6 +22,12 @@ module.exports = (sequelize, Sequelize) => {
       phoneNumber: {
         type: Sequelize.STRING
       },
+      role: {
+        type: Sequelize.STRING
+      },
+      privilege: {
+        type: Sequelize.STRING
+      },
       isVerified: {
         type: Sequelize.BOOLEAN,
         default: false
