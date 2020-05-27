@@ -73,11 +73,11 @@ describe("GET /projects/category/one with findOne()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch single project category info from the server", async () => {
-    const res = await apiServer.get("/projects/category").send({ projectCatId: "1" });
+    const res = await apiServer.get("/projects/category/one").send({ projectCatId: "1" });
     expect(res.statusCode).toEqual(200);
   });
   it("should not fetch project category data for an invalid id", async () => {
-    const res = await apiServer.get("/projects/category").send({ projectCatId: "sfdf" });
+    const res = await apiServer.get("/projects/category/one").send({ projectCatId: "sfdf" });
     expect(res.statusCode).toEqual(404);
   });
 });
