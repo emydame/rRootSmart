@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         required: true,
       },
-      categoryName: {
+      organizationId: {
         type: DataTypes.STRING,
         required: true,
       },
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      timestamps: false,
+      timestamps: false,   
     }
   );
   return LoginUser;

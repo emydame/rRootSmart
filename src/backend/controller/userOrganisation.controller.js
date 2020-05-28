@@ -5,9 +5,8 @@ const Organization = db.userOrganization;
 exports.create = (req, res) => {
   let request = {
     organizationId: req.body.organizationId,
-    userId: req.body.userId,
-    userCatId: req.body.userCatId,
     companyName: req.body.companyName,
+    category: req.body.category,
     RCNumber: req.body.RCNumber,
     email: req.body.email,
     BVN: req.body.BVN,
