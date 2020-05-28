@@ -7,8 +7,7 @@ const db = require("../config/db.config");
 const UserLogin = db.userLogin;
 const User = db.users;
 const Organization = db.userOrganization;
-const Category = db.userCategory;
-
+  
 exports.findOne = (req, res) => {
   let request = {
     username: req.body.username,
@@ -22,12 +21,11 @@ exports.findOne = (req, res) => {
       } else {
         if (bcrypt.compareSync(request.password, data.password)) {
           res.send(data);
-          if(data){
-            Category.findOne({where : {userCatId : data.userCatId}}).then((result)=>{
-              res.send(result)
-            })
+          if (data) {
+            Category.findOne({ where: { userCatId: data.userCatId } }).then((result) => {
+              res.send(result);
+            });
           }
-         
 
           // let payload = { subject: data };
           // let token = jwt.sign(payload, process.env.SECRET_KEY, {

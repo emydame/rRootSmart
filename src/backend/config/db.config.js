@@ -36,6 +36,7 @@ db.ngState = require("../model/states.model")(sequelize, Sequelize);
 db.lga = require("../model/lga.model")(sequelize, Sequelize);
 db.role = require("../model/role.model")(sequelize, Sequelize);
 
-// Table relatioships  
- 
+// Table relatioships
+db.users.belongsTo(db.userOrganization);
+
 module.exports = db;
