@@ -47,7 +47,7 @@ exports.create = (req, res) => {
                 let orgId = Math.floor(Math.random() * 10000) + 1;
                 let userRole = "Admin";
                 let userPrivilege = "Level 1";
-                // save user
+                // Create new instance of  user
                 const user = new User({
                   userId: req.body.userId,
                   organizationId: orgId,
@@ -59,6 +59,7 @@ exports.create = (req, res) => {
                   privilege: userPrivilege,
                   dateCreated: today
                 });
+                // save new user
                 user
                   .save()
                   .then((data) => {
