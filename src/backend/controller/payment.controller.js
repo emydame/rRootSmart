@@ -20,7 +20,7 @@ exports.create = (req, res) => {
   };
   if (!req.body) {
     return res.status(400).send({
-      messege: "Please fill all funds input fields"
+      messege: "Please all input fields required"
     });
   } else {
     Payment.findOne({ where: { paymentId: req.body.paymentId } }).then((data) => {
