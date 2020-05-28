@@ -7,9 +7,12 @@ module.exports = (app) => {
   // Retrieve all payments
   app.get("/payments", payment.findAll);
 
+  // Retrieve payments by Id
+  app.get("/payments", payment.findOne);
+
   // Retrieve all payment with given status
-  app.get("/payments/status", payment.findOne);
+  app.get("/payments/status", payment.findAll);
 
   // Retrieve all payments made by SME
-  app.get("/payments/organizationId", payment.findOne);
+  app.get("/payments/sme", payment.findAll);
 };

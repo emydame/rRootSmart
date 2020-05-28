@@ -59,13 +59,32 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Get Payments made  by organisation
+// Get Payments made  by id
 exports.findOne = (req, res) => {
+  Fund.findOne({ where: { paymentId: req.body.paymentId } })
+    .then((data) => {
+      if (!data) {
+        return res.status(400).send({
+          message: " Record not found"
+        });
+      } else {
+        return res.status(200).send(data);
+      }
+    })
+    .catch((err) => {
+      return res.status(500).send({
+        message: err.message
+      });
+    });
+};
+
+// Get Payments made  by organisation
+exports.findAll = (req, res) => {
   Fund.findAll({ where: { organizationId: req.body.organizationId } })
     .then((data) => {
       if (!data) {
         return res.status(400).send({
-          message: " Fund not found"
+          message: " Record not found"
         });
       } else {
         return res.status(200).send(data);
@@ -79,12 +98,12 @@ exports.findOne = (req, res) => {
 };
 
 // Get Payments by status
-exports.findOne = (req, res) => {
+exports.findAll = (req, res) => {
   Fund.findAll({ where: { status: req.body.status } })
     .then((data) => {
       if (!data) {
         return res.status(400).send({
-          message: " Fund not found"
+          message: " Record not found"
         });
       } else {
         return res.status(200).send(data);
