@@ -5,7 +5,7 @@ const Lga = db.lga;
 exports.create = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
-      messege: "Please fill all  input fields",
+      messege: "Please fill all  input fields"
     });
   } else {
     // Save LGA
@@ -13,11 +13,11 @@ exports.create = (req, res) => {
     lga
       .save()
       .then((data) => {
-        res.status(200).send(data);
+        return res.status(200).send(data);
       })
       .catch((err) => {
-        res.status(500).send({
-          message: err.message || "Not saved",
+        return res.status(500).send({
+          message: err.message || "Not saved"
         });
       });
   }
@@ -27,11 +27,11 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Lga.findAll()
     .then((result) => {
-      res.status(200).send(result);
+      return res.status(200).send(result);
     })
     .catch((err) => {
-      res.status(500).send({
-        message: err.message,
+      return res.status(500).send({
+        message: err.message
       });
     });
 };

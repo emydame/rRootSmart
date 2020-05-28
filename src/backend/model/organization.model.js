@@ -7,17 +7,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true
       },
-      userId: {
-        type: DataTypes.STRING
-      },
-      userCatId: {
-        type: DataTypes.STRING
-      },
       companyName: {
         type: DataTypes.STRING
       },
-      RCNumber: {
+      category: {
         type: DataTypes.STRING
+      },
+      RCNumber: {
+        type: DataTypes.STRING  
       },
       email: {
         type: DataTypes.STRING
