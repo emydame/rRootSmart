@@ -6,7 +6,7 @@ exports.create = (req, res) => {
   let date = new Date();
   let requests = {
     applicationId: req.body.applicationId,
-    userId: req.body.userId,
+    organizationId: req.body.organizationId,
     fundId: req.body.fundId,
     fundCatId: req.body.fundCatId,
     status: req.body.status,
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
       where: { applicationId: req.body.applicationId }
     }).then((data) => {
       if (data) {
-        res.status(400).send({
+        return res.status(400).send({
           message: "Application already Submit"
         });
       } else {
@@ -30,10 +30,10 @@ exports.create = (req, res) => {
         fundApplication
           .save()
           .then((data) => {
-            res.status(200).send(data);
+            return res.status(200).send(data);
           })
           .catch((err) => {
-            res.status(500).send({
+            return res.status(500).send({
               message: err.message || "Something went wrong."
             });
           });
@@ -46,10 +46,10 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   FundApplication.findAll()
     .then((result) => {
-      res.status(200).send(result);
+      return res.status(200).send(result);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message
       });
     });
@@ -63,15 +63,15 @@ exports.findOne = (req, res) => {
   FundApplication.findAll({ where: { userId: req.body.userId } })
     .then((data) => {
       if (!data) {
-        res.status(400).send({
+        return res.status(400).send({
           message: " Fund Application not found"
         });
       } else {
-        res.send(data);
+        return res.status(200).send(data);
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message
       });
     });

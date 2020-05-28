@@ -9,6 +9,7 @@ This API record details of funds disbursed
 exports.create = (req, res) => {
   let requests = {
     disbursementId: req.body.disbursementId,
+    organizationId: req.body.organizationId,
     applicationId: req.body.applicationId,
     fundId: req.body.fundId,
     disbursedBy: req.body.disbursedBy,
@@ -25,19 +26,19 @@ exports.create = (req, res) => {
       where: { disbursementId: req.body.disbursementId }
     }).then((data) => {
       if (data) {
-        res.status(400).send({
+        return res.status(400).send({
           message: "Fund already disbursed"
         });
       } else {
-        // create new user instance
+        // create disbursemenr
         const fundDisbursement = new Disbursement(requests);
         fundDisbursement
           .save()
           .then((data) => {
-            res.status(200).send(data);
+            return res.status(200).send(data);
           })
           .catch((err) => {
-            res.status(500).send({
+            return res.status(500).send({
               message: err.message
             });
           });
@@ -50,10 +51,10 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Disbursement.findAll()
     .then((result) => {
-      res.status(200).send(result);
+      return res.status(200).send(result);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message
       });
     });
@@ -64,15 +65,15 @@ exports.findOne = (req, res) => {
   Disbursement.findAll({ where: { disbursementId: req.body.disbursementId } })
     .then((data) => {
       if (!data) {
-        res.status(400).send({
+        return res.status(400).send({
           message: " Record not found"
         });
       } else {
-        res.send(data);
+        return res.status(200).send(data);
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message
       });
     });

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true
       },
-      userId: {
+      organizationId: {
         type: DataTypes.STRING
       },
       fundId: {

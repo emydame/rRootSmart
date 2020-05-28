@@ -20,10 +20,10 @@ exports.create = (req, res) => {
   proposal
     .save()
     .then((data) => {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Error occured"
       });
     });
@@ -33,10 +33,10 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Proposal.findAll()
     .then((result) => {
-      res.status(200).send(result);
+      return res.status(200).send(result);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Something wrong while retrieving Proposals."
       });
     });

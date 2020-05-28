@@ -10,7 +10,6 @@ const Organization = db.userOrganization;
 exports.create = (req, res) => {
   let today = new Date();
 
-  
   //Check empty request
   if (!req.body) {
     return res.status(204).send({
@@ -83,7 +82,7 @@ exports.create = (req, res) => {
                                 //Generate token
                                 let payload = { subject: data };
                                 let token = jwt.sign(payload, secret);
-                                res.status(200).send({ token });
+                                return res.status(200).send({ token });
                               })
                               .catch((err) => {
                                 res.status(500).send({
@@ -94,13 +93,13 @@ exports.create = (req, res) => {
                         });
                       });
                     } else {
-                      res.status(400).send({
+                      return res.status(400).send({
                         message: "Not saved"
                       });
                     }
                   })
                   .catch((err) => {
-                    res.status(500).send({
+                    return res.status(500).send({
                       message: err.message || "Something wrong while creating the user profile."
                     });
                   });

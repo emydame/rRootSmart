@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 
   FundCategory.findOne({ where: { fundCatId: req.body.fundCatId } }).then((data) => {
     if (data) {
-      res.status(400).send({
+      return res.status(400).send({
         message: "Fund category lready exist"
       });
     } else {
@@ -28,10 +28,10 @@ exports.create = (req, res) => {
       fundCategory
         .save()
         .then((data) => {
-          res.status(200).send(data);
+          return res.status(200).send(data);
         })
         .catch((err) => {
-          res.status(500).send({
+          return res.status(500).send({
             message: err.message || "Something went wrong."
           });
         });
@@ -43,10 +43,10 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   FundCategory.findAll()
     .then((result) => {
-      res.status(200).send(result);
+      return res.status(200).send(result);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Something wrong while retrieving Fund Category."
       });
     });
@@ -57,15 +57,15 @@ exports.findOne = (req, res) => {
   FundCategory.findAll({ where: { categoryName: req.body.categoryName } })
     .then((data) => {
       if (!data) {
-        res.status(400).send({
+        return res.status(400).send({
           message: " Category not found"
         });
       } else {
-        res.send(data);
+        return res.status(200).send(data);
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Some error occurred while retrieving Fund categorie."
       });
     });

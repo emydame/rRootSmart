@@ -18,10 +18,10 @@ exports.create = (req, res) => {
   category
     .save()
     .then((data) => {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Error occured"
       });
     });
@@ -31,10 +31,10 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   ProjectCategory.findAll()
     .then((result) => {
-      res.status(200).send(result);
+      return res.status(200).send(result);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Something wrong while retrieving Project category."
       });
     });
@@ -45,15 +45,15 @@ exports.findOne = (req, res) => {
   ProjectCategory.findOne({ where: { projectCatId: req.body.projectCatId } })
     .then((data) => {
       if (!data) {
-        res.status(400).send({
+        return res.status(400).send({
           message: " Project category not found"
         });
       } else {
-        res.status(200).send(data);
+        return res.status(200).send(data);
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Some error occurred while retrieving Project category."
       });
     });
