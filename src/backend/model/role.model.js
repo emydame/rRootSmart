@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true
       },
       roleName: {
-        type: DataTypes.STRING(25)
+        type: DataTypes.STRING
       },
       description: {
-        type: DataTypes.STRING(200)
+        type: DataTypes.STRING
       },
       createdBy: {
-        type: DataTypes.STRING(35)
+        type: DataTypes.STRING
       },
       dateCreated: {
         type: DataTypes.DATE

@@ -11,23 +11,23 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       firstName: {
-        type: Sequelize.STRING(35)
+        type: Sequelize.STRING
       },
       lastName: {
-        type: Sequelize.STRING(35)
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING(35),
+        type: Sequelize.STRING,
         required: true
       },
       phoneNumber: {
-        type: Sequelize.STRING(25)
+        type: Sequelize.STRING
       },
       role: {
-        type: Sequelize.STRING(25)
+        type: Sequelize.STRING
       },
       privilege: {
-        type: Sequelize.STRING(25)
+        type: Sequelize.STRING
       },
       isVerified: {
         type: Sequelize.BOOLEAN,
