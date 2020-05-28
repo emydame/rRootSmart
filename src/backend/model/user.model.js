@@ -17,7 +17,8 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        required: true
       },
       phoneNumber: {
         type: Sequelize.STRING
@@ -33,7 +34,7 @@ module.exports = (sequelize, Sequelize) => {
         default: false
       },
       dateCreated: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       }
     },
     {

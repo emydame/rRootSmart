@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       RCNumber: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING  
       },
       email: {
         type: DataTypes.STRING
