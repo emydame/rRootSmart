@@ -18,10 +18,10 @@ exports.create = (req, res) => {
   privilege
     .save()
     .then((data) => {
-      res.status(200).send("User privileges assigned");
+      return res.status(200).send(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      return res.status(500).send({
         message: err.message || "Privileges not assigned"
       });
     });

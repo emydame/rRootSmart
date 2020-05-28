@@ -26,7 +26,7 @@ exports.create = (req, res) => {
         userCategory
           .save()
           .then((data) => {
-            res.status(200).send(data);
+            return res.status(200).send(data);
           })
           .catch((err) => {
             return res.status(500).send({
@@ -42,7 +42,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   UserCategory.findAll()
     .then((data) => {
-      res.status(200).send(data);
+      return res.status(200).send(data);
     })
     .catch((err) => {
       return res.status(500).send({

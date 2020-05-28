@@ -7,6 +7,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true
       },
+      organization: {
+        type: DataTypes.STRING
+      },
       applicationId: {
         type: DataTypes.STRING
       },
