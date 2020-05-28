@@ -30,7 +30,7 @@ exports.create = (req, res) => {
         });
       } else {
         // Add Payment
-        const payment = new Fund(requests);
+        const payment = new Payment(requests);
         payment
           .save()
           .then((data) => {
@@ -61,7 +61,7 @@ exports.findAll = (req, res) => {
 
 // Get Payments made  by id
 exports.findOne = (req, res) => {
-  Fund.findOne({ where: { paymentId: req.body.paymentId } })
+  Payment.findOne({ where: { paymentId: req.body.paymentId } })
     .then((data) => {
       if (!data) {
         return res.status(400).send({
@@ -80,7 +80,7 @@ exports.findOne = (req, res) => {
 
 // Get Payments made  by organisation
 exports.findAll = (req, res) => {
-  Fund.findAll({ where: { organizationId: req.body.organizationId } })
+  Payment.findAll({ where: { organizationId: req.body.organizationId } })
     .then((data) => {
       if (!data) {
         return res.status(400).send({
@@ -99,7 +99,7 @@ exports.findAll = (req, res) => {
 
 // Get Payments by status
 exports.findAll = (req, res) => {
-  Fund.findAll({ where: { status: req.body.status } })
+  Payment.findAll({ where: { status: req.body.status } })
     .then((data) => {
       if (!data) {
         return res.status(400).send({
