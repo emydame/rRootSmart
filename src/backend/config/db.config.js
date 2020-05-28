@@ -38,5 +38,6 @@ db.role = require("../model/role.model")(sequelize, Sequelize);
 
 // Table relatioships
 db.users.belongsTo(db.userOrganization);
+db.userOrganization.hasMany(db.users);
 
 module.exports = db;

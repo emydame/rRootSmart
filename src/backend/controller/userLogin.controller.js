@@ -7,7 +7,7 @@ const db = require("../config/db.config");
 const UserLogin = db.userLogin;
 const User = db.users;
 const Organization = db.userOrganization;
-  
+
 exports.findOne = (req, res) => {
   let request = {
     username: req.body.username,
@@ -17,23 +17,32 @@ exports.findOne = (req, res) => {
     .then((data) => {
       // Check if login credentials exist
       if (!data) {
-        return res.status(401).send("Not found"); // return empty string to signify login creadentials not found
+        return res.status(401).send({
+          message: " Invalid username or password"
+        });
       } else {
         if (bcrypt.compareSync(request.password, data.password)) {
-          res.send(data);
+          //res.send(data);
           if (data) {
-            Category.findOne({ where: { userCatId: data.userCatId } }).then((result) => {
-              res.send(result);
+            Organization.findAll({
+              include: [
+                {
+                  model: User
+                }
+              ]
+            }).then((result) => {
+              //res.send(result)
+              let payload = { subject: result };
+              let token = jwt.sign(payload, process.env.SECRET_KEY, {
+                expiresIn: 1440
+              });
+              res.status(200).send({ token });
             });
           }
-
-          // let payload = { subject: data };
-          // let token = jwt.sign(payload, process.env.SECRET_KEY, {
-          //   expiresIn: 1440
-          // });
-          // res.status(200).send({ token });
         } else {
-          return res.status(401).send(); // return empty string to signify login creadentials not found
+          return res.status(401).send({
+            message: "Invalid username or password"
+          }); // return empty string to signify login creadentials not found
         }
       }
     })
