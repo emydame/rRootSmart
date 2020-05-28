@@ -10,12 +10,7 @@ const Organization = db.userOrganization;
 exports.create = (req, res) => {
   let today = new Date();
 
-  let userPass = {
-    loginId: req.body.loginId,
-    userId: req.body.userId,
-    username: req.body.username,
-    password: req.body.password
-  };
+  
   //Check empty request
   if (!req.body) {
     return res.status(204).send({
@@ -37,7 +32,7 @@ exports.create = (req, res) => {
             });
           } else {
             //Query userlogin table to check if user login credentials already exist
-            Userpass.findOne({ where: { userId: userPass.userId } }).then((data) => {
+            Userpass.findOne({ where: { userId: req.body.userId } }).then((data) => {
               if (data) {
                 // return data if user login creadentials exist
                 return res.status(401).send({
@@ -65,7 +60,13 @@ exports.create = (req, res) => {
                   .then((data) => {
                     // save login credentials if user details is succesfully saved
                     if (data) {
-                      const pass = new Userpass(userPass);
+                      const pass = new Userpass({
+                        loginId: req.body.loginId,
+                        userId: req.body.userId,
+                        organizationId: orgId,
+                        username: req.body.username,
+                        password: req.body.password
+                      });
                       // Encode password
                       bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(pass.password, salt, (err, hash) => {

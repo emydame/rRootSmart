@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         required: true,
       },
+      organizationId: {
+        type: DataTypes.STRING,
+        required: true,
+      },
       username: {  
         type: DataTypes.STRING,
         required: true,

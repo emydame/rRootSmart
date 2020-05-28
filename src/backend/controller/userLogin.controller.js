@@ -24,12 +24,10 @@ exports.findOne = (req, res) => {
         if (bcrypt.compareSync(request.password, data.password)) {
           //res.send(data);
           if (data) {
-            Organization.findAll({
-              include: [
-                {
-                  model: User
-                }
-              ]
+            Organization.findOne({
+              where: {
+                organizationId: data.organizationId
+              }
             }).then((result) => {
               //res.send(result)
               let payload = { subject: result };
