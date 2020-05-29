@@ -13,6 +13,7 @@ const data = [
       Organization: 'FCT Farmer',
       startDate: '2019-01-20',
       endDate: '2020-01-20',
+      status:'In Progress',
     },
     {
       key: '2',
@@ -21,6 +22,7 @@ const data = [
       Organization: 'eazSME',
       startDate: '2020-01-20',
       endDate: '2020-12-20',
+      status:'Completed: under review',
     },
     {
       key: '3',
@@ -29,6 +31,7 @@ const data = [
       Organization: 'SWIFTY Networks',
       startDate: '2019-06-20',
       endDate: '2020-01-20',
+      status:'Closed',
     },
   ];
 
@@ -58,6 +61,11 @@ const columns = [
         title: 'End Date',
         dataIndex: 'endDate',
         key: 'endDate',
+      },
+      {
+        title: 'Status',
+        dataIndex: 'status',
+        key: 'status',
       },
      {
       title: 'Action',
