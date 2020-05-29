@@ -58,7 +58,7 @@ class RegulatorDashboard extends React.Component {
         <Menu
           theme="dark"
           onClick={this.handleClick}
-          defaultOpenKeys={['sub1']}
+          defaultOpenKeys={["sub1"]}
           selectedKeys={[this.state.current]}
           mode="inline"
         >

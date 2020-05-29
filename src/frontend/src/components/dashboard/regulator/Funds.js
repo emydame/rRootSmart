@@ -2,61 +2,61 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import { Table, Tag, Space } from 'antd';
+import { Table, Tag, Space } from "antd";
 
 
 /*datasource*/
 const data = [
     {
-      key: '1',
-      Organization: 'FCT Farmer',
-      category: 'Loan',
-      Amount: 'N200,000,00',      
-      Status: 'Approved',
+      key: "1",
+      Organization: "FCT Farmer",
+      category: "Loan",
+      Amount: "N200,000,00",      
+      Status: "Approved",
      
     },
     {
-      key: '2',
-      Organization: 'eazSME',
-      category: 'Government SME Grant',
-      Amount: 'N5,000,000,00',      
-      Status: 'Disbursed',
+      key: "2",
+      Organization: "eazSME",
+      category: "Government SME Grant",
+      Amount: "N5,000,000,00",      
+      Status: "Disbursed",
     },
     {
-      key: '3',
-      Organization: 'SWIFTY Networks',
-      category: 'Loan',
-      Amount: 'N500,000,00',      
-      Status: 'Rejected',
+      key: "3",
+      Organization: "SWIFTY Networks",
+      category: "Loan",
+      Amount: "N500,000,00",      
+      Status: "Rejected",
     },
   ];
 
 const columns = [
     {
-      title: ' Company Name',
-      dataIndex: 'Organization',
-      key: 'Organization',
+      title: "Company Name",
+      dataIndex: "Organization",
+      key: "Organization",
       /* render: text => <a>{text}</a>,*/
     },
     {
-      title: 'Category',
-      dataIndex: 'category',
-      key: 'category',
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
     },
     {
-      title: 'Amount',
-      dataIndex: 'Amount',
-      key: 'Amount',
+      title: "Amount",
+      dataIndex: "Amount",
+      key: "Amount",
     },
     
       {
-        title: 'Status',
-        dataIndex: 'Status',
-        key: 'Status',
+        title: "Status",
+        dataIndex: "Status",
+        key: "Status",
       },
      {
-      title: 'Action',
-      key: 'action',
+      title: "Action",
+      key: "action",
       render: (text, record) => (
         <Space size="middle">
                 <Link to="#"> View Details</Link>
