@@ -1,10 +1,10 @@
 import React from "react";
-import { DatePicker } from 'antd';
+import { DatePicker } from "antd";
 import moment from 'moment';
 import { Link } from "react-router-dom";
 
-const dateFormat = 'YYYY/MM/DD';
-const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
+const dateFormat = "YYYY/MM/DD";
+const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
 
 class Addusers extends React.Component {
   constructor(props) {

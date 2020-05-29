@@ -112,7 +112,9 @@ a.ant-dropdown-trigger {
   background-color: #dfeaf3;
 }
 
-.table-dark tbody+tbody, .table-dark td, .table-dark th, .table-dark thead th {
+.table-dark tbody + tbody,
+.table-dark td, .table-dark th,
+.table-dark thead th {
   border-color: #dfeaf3;
 }
 
@@ -126,19 +128,6 @@ a.ant-dropdown-trigger {
   border: none;
   border-radius: 5px;
 }
-
-/* .th-header {
-  background-color: #3d6cb9;
-  color: #fff;
-}
-
-.sme-block {
-  border: 1px solid #000;
-} */
-
-/* .th-date {
-  text-align: right;
-} */
 
 ul.pagination {
   float: right;
