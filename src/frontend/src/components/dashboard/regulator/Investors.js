@@ -10,6 +10,7 @@ const data = [
     {
       key: '1',
       Organization: 'FCT Farmer',
+      category: 'Agriculture',
       RCNumber: 'RC0304CH',      
       Incorporation: '2019-01-20',
       Email: 'fctfarm@gmail.com',
@@ -34,7 +35,7 @@ const data = [
 
 const columns = [
     {
-        Organization: ' Company Name',
+      title: ' Company Name',
       dataIndex: 'Organization',
       key: 'Organization',
       /* render: text => <a>{text}</a>,*/
@@ -80,7 +81,7 @@ export default class Investors extends Component {
           <div className="update" style={{textAlign:"center"}}>
             <h4> *** Investors View *** </h4>         
           </div>
-          <p>Investors details</p>
+          <Table columns={columns} dataSource={data} />
         </Card.Body>
       );
     }
