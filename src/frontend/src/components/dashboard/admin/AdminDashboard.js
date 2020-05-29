@@ -3,12 +3,23 @@
 
 import React from "react";
 import { Switch, Router, Route, Link } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Row, Col,Badge, Dropdown, Avatar } from "antd";
-import { DesktopOutlined,CaretDownFilled, UsergroupAddOutlined, SettingOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined,LogoutOutlined,AppstoreOutlined, DollarCircleOutlined,FileDoneOutlined, BellFilled } from "@ant-design/icons";
+import { Layout, Menu, Breadcrumb, Row, Col, Badge, Dropdown, Avatar } from "antd";
+import {
+  CaretDownFilled,
+  UsergroupAddOutlined,
+  SettingOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  AppstoreOutlined,
+  DollarCircleOutlined,
+  FileDoneOutlined,
+  BellFilled
+} from "@ant-design/icons";
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
-
-
+import Create from "./user/Create";
+import Remove from "./user/Remove";
+import Update from "./user/Update";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -64,44 +75,62 @@ class AdminDashboard extends React.Component {
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<AppstoreOutlined />}>
-            <Link to="/admin/smeandprojects"> SMEs/Projects</Link>
+              <Link to="/admin/smeandprojects"> SMEs/Projects</Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<DollarCircleOutlined />}>
-            <Link to="/admin/investorsandfunding">Investors/Funding</Link>
+              <Link to="/admin/investorsandfunding">Investors/Funding</Link>
             </Menu.Item>
-            <Menu.Item key="3" icon={<LogoutOutlined/>}> Log Out</Menu.Item>
+            <Menu.Item key="3" icon={<LogoutOutlined />}>
+              {" "}
+              Log Out
+            </Menu.Item>
+            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+              <Menu.Item key="4">
+                <Link to="/admin/create-user">Create</Link>
+              </Menu.Item>
+              <Menu.Item key="5" icon={<UserOutlined />}>
+                <Link to="/admin/update-user">Update</Link>
+              </Menu.Item>
+              <Menu.Item key="6" icon={<UserOutlined />}>
+                <Link to="/admin/deactivate-user">Deactivate</Link>
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background header">
-          <ul className="dashboard-items">
-                <li className="dashboard-item-1">
-                    <Link className="dashboard-img" to="#">
-                      <img src={"./logo.png"} alt="logo" />
-                    </Link></li>
-                    <li className="dashboard-item-1 item-right">
-                    <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                      <CaretDownFilled />
-                      </a>
-                    </Dropdown>
-                </li>  
-                <li className="dashboard-item-1 item-right">   
-                    <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
-                </li>
-                <li className="dashboard-item-1 item-right">
-                    <Badge className="badge-item" count={5}>
-                      <a href="#" className="example" />
-                    </Badge>
-                    <BellFilled className="notificationBell" />
-                </li>
-              </ul>
+            <ul className="dashboard-items">
+              <li className="dashboard-item-1">
+                <Link className="dashboard-img" to="#">
+                  <img src={"./logo.png"} alt="logo" />
+                </Link>
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Dropdown overlay={menu}>
+                  <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                    <CaretDownFilled />
+                  </a>
+                </Dropdown>
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Badge className="badge-item" count={5}>
+                  <a href="#" className="example" />
+                </Badge>
+                <BellFilled className="notificationBell" />
+              </li>
+            </ul>
           </Header>
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>
                 <Route path="/admin/investorsandfunding" component={InvestorsAndFunding} />
                 <Route path="/admin/smeandprojects" component={SmeAndProjects} />
+                <Route path="/admin/create-user" component={Create} />
+                <Route path="/admin/update-user" component={Update} />
+                <Route path="/admin/deactivate-user" component={Remove} />
               </Switch>
             </Router>
           </Content>
