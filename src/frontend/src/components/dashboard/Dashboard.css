@@ -134,6 +134,18 @@ ul.pagination {
   float: right;
 }
 
+.fund-text {
+  text-align: right;
+}
+
+.investHistory-btn {
+  padding: 6px 15px;
+  color: #fff;
+  background: #3d6cb9;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
 .invest-Title {
   margin-top: -8px;
   margin-bottom: 15px;
@@ -151,14 +163,3 @@ ul.pagination {
   color: #fff;
 }
 
-.fund-text {
-  text-align: right;
-}
-
-.investHistory-btn {
-  padding: 6px 15px;
-  color: #fff;
-  background: #3d6cb9;
-  border-radius: 15px;
-  margin-right: 5px;
-}
