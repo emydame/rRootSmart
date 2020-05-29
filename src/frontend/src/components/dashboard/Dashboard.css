@@ -150,3 +150,15 @@ ul.pagination {
   border-radius: 15px;
   color: #fff;
 }
+
+.fund-text {
+  text-align: right;
+}
+
+.investHistory-btn {
+  padding: 6px 15px;
+  color: #fff;
+  background: #3d6cb9;
+  border-radius: 15px;
+  margin-right: 5px;
+}

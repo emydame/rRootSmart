@@ -57,14 +57,28 @@ class Addusers extends React.Component {
             <input type="phone" class="form-control" id="inputPhone2" />
           </div>
           <div class="form-group col-md-4">
-            <label for="InputName">Grade Level</label>
-            <input type="text" class="form-control" id="inputName" />
+            <label for="inputState">Assign Team</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>Team 1</option>
+              <option>Team 2</option>
+              <option>Team 3</option>
+              <option>Team 4</option>
+              <option>Team5</option>
+            </select>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Supervisor</label>
-            <input type="text" class="form-control" id="inputCity" />
+        <div class="form-group col-md-6">
+            <label for="inputState">Assign Supervisor</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>Mr. John Rock</option>
+              <option>Dr. Iket Ubong</option>
+              <option>James Brown</option>
+              <option>Mrs Mary Adewale</option>
+              <option>Miss Angela Obi</option>
+            </select>
           </div>
           <div class="form-group col-md-2">
             <label for="inputDate">Date</label><br></br>

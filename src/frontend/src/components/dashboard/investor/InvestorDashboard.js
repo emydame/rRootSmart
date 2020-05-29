@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "antd";
 import { Switch, Router, Route, } from "react-router-dom";
 import { BellFilled, UserAddOutlined, UserSwitchOutlined, RiseOutlined } from "@ant-design/icons";
-import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -65,7 +65,7 @@ class InvestorDashboard extends React.Component {
             <Menu.Item key="1" icon={<PieChartOutlined />}>
               <Link to="/investor/SmeProposals">All Proposals</Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
+            <Menu.Item key="2" icon={<BarChartOutlined />}>
               <Link to="/investor/InvestmentHistory">Investment History</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
@@ -74,11 +74,11 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="5" icon={<ReconciliationOutlined />}><Link to="/investor/Investroles">Roles</Link></Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-              <Menu.Item key="6">Team 1</Menu.Item>
+              <Menu.Item key="7">Team 1</Menu.Item>
               <Menu.Item key="8">Team 2</Menu.Item>
             </SubMenu>
             <Menu.Item key="9" icon={<RiseOutlined />}><Link to="/investor/TotalInvestments">Total Funds Invested</Link></Menu.Item>
-            <Menu.Item key="9" icon={<RiseOutlined />}><Link to="/investor/TotalInvestments">Total Funds Invested</Link></Menu.Item>
+            <Menu.Item key="3" icon={<LogoutOutlined/>}> Log Out</Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">

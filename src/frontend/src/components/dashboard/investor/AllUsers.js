@@ -14,21 +14,23 @@ class AllUsers extends React.Component {
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Full Name</th>
+                    <th scope="col">Firt Name</th>
+                    <th scope="col">Last Name</th>
                     <th scope="col">Phone No(s)</th>
-                    <th scope="col">Address</th>
+                    <th scope="col">Department</th>
                     <th scope="col">Supervisor</th>
                     <th scope="col">Role</th>
                     <th scope="col">Date</th>
-                    <th scope="col">More Details</th>
+                    <th scope="col">Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
                     <td>Mark Otto</td>
+                    <td>Otto</td>
                     <td>080350000</td>
-                    <td>345 Badagry Road, Lagos</td>
+                    <td>Teller</td>
                     <td>Mr. Matthew Oji</td>
                     <td>Adviser</td>
                     <td>09-05-2020</td>
@@ -39,8 +41,9 @@ class AllUsers extends React.Component {
                   <tr>
                     <th scope="row">2</th>
                     <td>Jacob Ahare</td>
+                    <td>Ahare</td>
                     <td>0607000404, 0805586866</td>
-                    <td>83 last Card Road to Nowhere, Lagos</td>
+                    <td>Customer Service</td>
                     <td>Ajaba Lawrence</td>
                     <td>Accountant</td>
                     <td>28-05-2020</td>
@@ -51,6 +54,7 @@ class AllUsers extends React.Component {
                   <tr>
                     <th scope="row">3</th>
                     <td>Larry Okota</td>
+                    <td>Okota</td>
                     <td>--</td>
                     <td>--</td>
                     <td>--</td>

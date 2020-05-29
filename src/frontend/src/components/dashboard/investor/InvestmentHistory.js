@@ -7,7 +7,10 @@ class InvesmentHistory extends React.Component {
   render() {
     return (
       <>
-      <div className="invest-Title">List of Funded Projects</div>
+      <div>
+          <div className="invest-Title">List of Funded Projects</div>
+        </div>
+      
       <table class="table table-sm table-dark">
         <thead>
           <tr>
