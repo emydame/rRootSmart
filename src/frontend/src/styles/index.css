@@ -156,7 +156,6 @@ div > input:invalid:required {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-
 /* Carousel style starts here *******************/
 
 .bd-placeholder-img {

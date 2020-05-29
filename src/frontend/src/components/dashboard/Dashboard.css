@@ -113,7 +113,8 @@ a.ant-dropdown-trigger {
 }
 
 .table-dark tbody + tbody,
-.table-dark td, .table-dark th,
+.table-dark td,
+.table-dark th,
 .table-dark thead th {
   border-color: #dfeaf3;
 }

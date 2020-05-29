@@ -1,6 +1,6 @@
 import React from "react";
 import { DatePicker } from "antd";
-import moment from 'moment';
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const dateFormat = "YYYY/MM/DD";
@@ -18,7 +18,7 @@ class Addusers extends React.Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.name === 'isGoing' ? target.checked : target.value;
+    const value = target.name === "isGoing" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -68,7 +68,7 @@ class Addusers extends React.Component {
           </div>
           <div class="form-group col-md-2">
             <label for="inputDate">Date</label><br></br>
-            <DatePicker defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+            <DatePicker defaultValue={moment("2015/01/01", dateFormat)} format={dateFormat} />
           </div>
           <div class="form-group col-md-4">
             <label for="inputState">Assign Role</label>
