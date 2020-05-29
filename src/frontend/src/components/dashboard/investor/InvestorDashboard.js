@@ -78,6 +78,7 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="8">Team 2</Menu.Item>
             </SubMenu>
             <Menu.Item key="9" icon={<RiseOutlined />}><Link to="/investor/TotalInvestments">Total Funds Invested</Link></Menu.Item>
+            <Menu.Item key="9" icon={<RiseOutlined />}><Link to="/investor/TotalInvestments">Total Funds Invested</Link></Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">

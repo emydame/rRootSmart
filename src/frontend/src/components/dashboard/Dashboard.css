@@ -141,3 +141,12 @@ ul.pagination {
   color: #3d6cb9;
   font-weight: 600;
 }
+
+.btn-allUsers {
+  border-inline-end-color: none;
+  padding: 0 10px;
+  background-color: #3d6cb9;
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+}
