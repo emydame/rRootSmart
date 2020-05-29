@@ -26,18 +26,22 @@ class Addusers extends React.Component {
     });
   }
 
-  render() {
+  render() {  
     return (
       <form>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" />
+            <label for="inputEmail4">First Name</label>
+            <input type="text" class="form-control" id="inputFirstName" />
           </div>
           <div class="form-group col-md-6">
-            <label for="InputName">Full Name</label>
+            <label for="InputName">Last Name</label>
             <input type="text" class="form-control" id="inputName" />
           </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Email Address</label>
+          <input type="email" class="form-control" id="inputEmail"  />
         </div>
         <div class="form-group">
           <label for="inputAddress">Address</label>
@@ -45,7 +49,7 @@ class Addusers extends React.Component {
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="inputPhone">Phone Number</label>
+            <label for="inputPhone">Phone</label>
             <input type="phone" class="form-control" id="inputPhone" />
           </div>
           <div class="form-group col-md-4">

@@ -20,6 +20,7 @@ class AllUsers extends React.Component {
                     <th scope="col">Supervisor</th>
                     <th scope="col">Role</th>
                     <th scope="col">Date</th>
+                    <th scope="col">More Details</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,9 @@ class AllUsers extends React.Component {
                     <td>Mr. Matthew Oji</td>
                     <td>Adviser</td>
                     <td>09-05-2020</td>
+                    <th scope="col"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      Details
+                    </button></th>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
@@ -40,7 +44,9 @@ class AllUsers extends React.Component {
                     <td>Ajaba Lawrence</td>
                     <td>Accountant</td>
                     <td>28-05-2020</td>
-                    
+                    <th scope="col"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      Details
+                    </button></th>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
@@ -50,6 +56,9 @@ class AllUsers extends React.Component {
                     <td>--</td>
                     <td>--</td>
                     <td>--</td>
+                    <th scope="col"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      Details
+                    </button></th>
                     
                   </tr>
                 </tbody>
