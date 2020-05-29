@@ -20,29 +20,17 @@ import Projectcategories from "./Projectcategories";
 const menu = (
   <Menu id="dropdown-menu">
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Profile
-      </a>
+    <Link to="/regulator/Profile"> Profile</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Manage Users
-      </a>
+    <Link to="/regulator/OrgUsers"> Manage Users</Link>
     </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Review Reports
-      </a>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Settings
-      </a>
+      <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
+      <Link to="/regulator/Settings"> Settings</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Logout
-      </a>
+    <Link to="#"> Log out</Link>
+     
     </Menu.Item>
   </Menu>
 );
@@ -85,8 +73,7 @@ class RegulatorDashboard extends React.Component {
             <Menu.Item key="1"><Link to="/regulator/SMEs"> SMEs List</Link></Menu.Item>           
           </SubMenu>
           <SubMenu key="sub4" icon={<SettingOutlined />} title="Funds">
-          <Menu.Item key="1"><Link to="/regulator/Funds"> All Funds</Link></Menu.Item>   
-            
+          <Menu.Item key="1"><Link to="/regulator/Funds"> All Funds</Link></Menu.Item>             
           </SubMenu>
           <SubMenu key="sub5" icon={<SettingOutlined />} title="Users">
           <Menu.Item key="1"><Link to="/regulator/Users"> Users List</Link></Menu.Item>  
@@ -113,7 +100,7 @@ class RegulatorDashboard extends React.Component {
                 </li>
                 <li className="dashboard-item-1 item-right">
                     <Badge className="badge-item" count={5}>
-                      <a href="#" className="example" />
+                     <Link to="/#" className="example"> </Link>
                     </Badge>
                     <BellFilled className="notificationBell" />
                 </li>
