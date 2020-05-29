@@ -90,10 +90,9 @@ class RegulatorDashboard extends React.Component {
                     </Link></li>
                     <li className="dashboard-item-1 item-right">
                     <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                      <CaretDownFilled />
-                      </a>
-                    </Dropdown>
+                   
+                      <Link to="/#" className="ant-dropdown-link" onClick={(e) => e.preventDefault()}> </Link>
+                       </Dropdown>
                 </li>  
                 <li className="dashboard-item-1 item-right">   
                     <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
@@ -110,9 +109,10 @@ class RegulatorDashboard extends React.Component {
             <Router history={this.props.history}>
               <Switch>
               <Route path="/regulator/projects" component={Projects} />
-                <Route path="/regulator/investor" component={Investors} />
+              <Route path="/regulator/Projectcategories" component={Projectcategories} />
+                <Route path="/regulator/Investors" component={Investors} />
                 <Route path="/regulator/SMEs" component={SMEs} />
-                <Route path="/regulator/users" component={Users} />
+                <Route path="/regulator/Users" component={Users} />
                 <Route path="/regulator/Funds" component={Funds} />
               </Switch>
             </Router>
