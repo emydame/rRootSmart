@@ -1,14 +1,21 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 
 import React from "react";
-import { Badge, Dropdown, Avatar } from "antd";
+import { Switch, Router, Route, Link } from "react-router-dom";
 import { FileDoneOutlined } from "@ant-design/icons";
 import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Layout, Menu, Breadcrumb } from "antd";
-import { Link } from "react-router-dom";
-import { BellFilled } from "@ant-design/icons";
-import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { Layout, Menu, Breadcrumb, Row, Col,Badge, Dropdown, Avatar } from "antd";
+import {AppstoreOutlined, DollarCircleOutlined,BellFilled } from "@ant-design/icons";
+import { DesktopOutlined, PieChartOutlined,MailOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import Investors from "./Investors";
+import Projects from "./Projects";
+import Users from "./Users";
+import SMEs from "./SMEs";
+import Funds from "./Funds";
+import Projectcategories from "./Projectcategories";
+
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -56,29 +63,39 @@ class RegulatorDashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-          <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
-              Option 1
-            </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              Option 2
-            </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9" icon={<FileOutlined />} />
-          </Menu>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "60px" }}>
+          <div className="logo"></div>          
+          <br />
+        <br />
+        <Menu
+          theme="dark"
+          onClick={this.handleClick}
+          defaultOpenKeys={['sub1']}
+          selectedKeys={[this.state.current]}
+          mode="inline"
+        >
+          <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">
+            <Menu.Item key="1"><Link to="/regulator/Projectcategories"> Project Categories</Link></Menu.Item>
+            <Menu.Item key="2"><Link to="/regulator/Projects"> Projects List</Link></Menu.Item>
+                </SubMenu>
+          <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Investors">
+          <Menu.Item key="1"><Link to="/regulator/Investors"> Investors List</Link></Menu.Item>
+          </SubMenu>
+            <SubMenu key="sub3" title="SMEs">
+            <Menu.Item key="1"><Link to="/regulator/SMEs"> SMEs List</Link></Menu.Item>           
+          </SubMenu>
+          <SubMenu key="sub4" icon={<SettingOutlined />} title="Funds">
+          <Menu.Item key="1"><Link to="/regulator/Funds"> All Funds</Link></Menu.Item>   
+            
+          </SubMenu>
+          <SubMenu key="sub5" icon={<SettingOutlined />} title="Users">
+          <Menu.Item key="1"><Link to="/regulator/Users"> Users List</Link></Menu.Item>  
+          <Menu.Item key="2"><Link to="/regulator/OrgUsers"> Organisation Users</Link></Menu.Item>  
+          </SubMenu>
+        </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header className="site-layout-background header">
           <ul className="dashboard-items">
                 <li className="dashboard-item-1">
                     <Link className="dashboard-img" to="#">
@@ -103,13 +120,15 @@ class RegulatorDashboard extends React.Component {
               </ul>
           </Header>
           <Content style={{ margin: "0 16px" }}>
-            <Breadcrumb style={{ margin: "16px 0" }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Bill is a cat.
-            </div>
+            <Router history={this.props.history}>
+              <Switch>
+              <Route path="/regulator/projects" component={Projects} />
+                <Route path="/regulator/investor" component={Investors} />
+                <Route path="/regulator/SMEs" component={SMEs} />
+                <Route path="/regulator/users" component={Users} />
+                <Route path="/regulator/Funds" component={Funds} />
+              </Switch>
+            </Router>
           </Content>
           {/* <Footer style={{ textAlign: "center" }}>Ant Design ©2018 Created by Ant UED</Footer> */}
         </Layout>
