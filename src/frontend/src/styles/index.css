@@ -111,12 +111,13 @@ div > #registration.text-light.modal-title.h4 {
 div.modal-body {
   position: relative;
   margin: 0 auto;
+  width: 85%;
 }
 
-div.modal-content {
+/* div.modal-content {
   width: 70%;
   margin: 0 auto;
-}
+} */
 
 .btn-danger {
   display: none;
@@ -154,6 +155,7 @@ div > input:invalid:required {
   border-radius: 0.5rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
 
 /* Carousel style starts here *******************/
 
