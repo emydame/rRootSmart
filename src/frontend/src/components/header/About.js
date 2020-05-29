@@ -89,27 +89,40 @@ class About extends React.Component {
               </p>
               <hr></hr>
               <Row>
-                <Col> 
+                <Col className="dev-frame"> 
                 <figure>
                   <img src={"./Emilia.png"} alt=""/>
                 <figcaption>Emilia Anochirionye; Technical Team Lead
                 </figcaption>
+                <a href="#" target="_blank">View Portfolio</a>
               </figure>             
                             
                 </Col>
-                <Col>                   
+                <Col className="dev-frame">                   
                 <figure>
-                  <img src={"./Emilia.png"} alt=""/>
-                <figcaption>Emilia Anochirionye; Technical Team Lead
+                  <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_200,w_200/v1567112037/220190826_163351912_r9yfcl.jpg"} alt=""/>
+                <figcaption>Agba Fidelis; UI/UX Designer, Frontend Web Developer
                 </figcaption>
+                <a href="https://aboutfidelis.netlify.app" target="_blank">View Portfolio</a>
               </figure>                       
                 </Col>
-                <Col>                   
+                <Col className="dev-frame">                   
                 <figure>
                   <img src={"./Emilia.png"} alt=""/>
                 <figcaption>Emilia Anochirionye;
                    Technical Team Lead
                 </figcaption>
+                <a href="#" target="_blank">View Portfolio</a> 
+              </figure>
+                                    
+                </Col> 
+                <Col className="dev-frame">                   
+                <figure>
+                  <img src={"./Emilia.png"} alt=""/>
+                <figcaption>Emilia Anochirionye;
+                   Technical Team Lead
+                </figcaption>
+                <a href="#" target="_blank">View Portfolio</a>
               </figure>                      
                 </Col> 
               

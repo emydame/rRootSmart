@@ -114,11 +114,6 @@ div.modal-body {
   width: 85%;
 }
 
-/* div.modal-content {
-  width: 70%;
-  margin: 0 auto;
-} */
-
 .btn-danger {
   display: none;
 }
@@ -138,6 +133,13 @@ div > input:valid {
 
 div > input:invalid:required {
   background-image: none;
+}
+
+.dev-frame {
+  border: 1px solid #3d6cb9;
+  margin: 10px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .form-control {
@@ -171,9 +173,9 @@ div > input:invalid:required {
   height: 65vh;
 }
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
+@media (max-width: 960px) {
+  .d-block {
+    height:50vh;
   }
 }
 
