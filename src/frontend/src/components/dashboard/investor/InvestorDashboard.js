@@ -19,12 +19,10 @@ import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOut
 const menu = (
   <Menu id="dropdown-menu">
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-      <Link to="/investor/SmeProposals">All Proposals</Link>
+      <Link to="/investor/">Profile</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Manage Users
-      </a>
+      <Link to="/investor/AllUsers">Manage Users</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">

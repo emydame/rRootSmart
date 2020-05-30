@@ -118,6 +118,10 @@ div.modal-body {
   display: none;
 }
 
+.terms-text {
+  text-align: center;
+}
+
 div.ml-4,
 .font-weight.bold {
   color: #f90;
@@ -142,9 +146,18 @@ div > input:invalid:required {
   text-align: center;
 }
 
+.form-section-text {
+  color: #f90;
+  font-weight: 600;
+}
+
+.incorpDate {
+  margin-left: -20px;
+}
+
 .form-control {
   display: block;
-  width: 100%;
+  width: 90%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -186,6 +199,11 @@ div > input:invalid:required {
 .btn-lg {
   background-color: #3379b794;
   border: none;
+}
+
+.btn-block {
+  width: 30%;
+  margin-bottom: 15px;
 }
 
 .btn-lg:hover {
