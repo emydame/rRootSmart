@@ -32,10 +32,6 @@ module.exports = (sequelize, Sequelize) => {
       privilege: {
         type: Sequelize.STRING
       },
-      isVerified: {
-        type: Sequelize.BOOLEAN,
-        default: false
-      },
       dateCreated: {
         type: Sequelize.DATE
       }
