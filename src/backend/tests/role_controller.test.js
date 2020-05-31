@@ -22,7 +22,7 @@ describe("create()", () => {
     expect(res).toEqual("function");
   });
   it("should not create role when no data is sent", async () => {
-    const res = await apiServer.post("/payment");
+    const res = await apiServer.post("/roles");
     expect(res.statusCode).toEqual(400);
   });
   it("should create role when valid data", async () => {
