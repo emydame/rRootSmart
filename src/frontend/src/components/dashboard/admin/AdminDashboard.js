@@ -7,6 +7,8 @@ import { Layout, Menu, Badge, Dropdown, Avatar } from "antd";
 import {CaretDownFilled, UsergroupAddOutlined, SettingOutlined, UserOutlined,LogoutOutlined,AppstoreOutlined, DollarCircleOutlined,FileDoneOutlined, BellFilled } from "@ant-design/icons";
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 
 
@@ -74,30 +76,23 @@ class AdminDashboard extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background header">
-          <ul className="dashboard-items">
-                <li className="dashboard-item-1">
-                    <Link className="dashboard-img" to="#">
-                      <img src={"./logo.png"} alt="logo" />
-                    </Link></li>
-                    <li className="dashboard-item-1 item-right">
-                    <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                      <CaretDownFilled />
-                      </a>
-                    </Dropdown>
-                </li>  
-                <li className="dashboard-item-1 item-right">   
-                    <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
-                </li>
-                <li className="dashboard-item-1 item-right">
-                    <Badge className="badge-item" count={5}>
-                      <a href="#" className="example" />
-                    </Badge>
-                    <BellFilled className="notificationBell" />
-                </li>
-              </ul>
-          </Header>
+          {/* <Header className="site-layout-background header"> */}
+          <nav class="navbar">
+              <Link className="dashboard-img" to="#">
+                <img src={"./logo.png"} alt="logo" />
+              </Link>
+              <div>
+                <Badge className="badge-item" count={5}>
+                  <a href="#" className="example" />
+                </Badge>
+                  <BellFilled className="notificationBell" />
+                </div>
+              <Dropdown overlay={menu}>
+                <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" className="ant-dropdown-link" onClick={(e) => e.preventDefault()} />
+              </Dropdown>
+          </nav>
+          
+                {/* Content elements are here */}
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>

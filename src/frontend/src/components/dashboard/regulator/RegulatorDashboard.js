@@ -9,6 +9,7 @@ import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined 
 import { Layout, Menu, Breadcrumb, Row, Col,Badge, Dropdown, Avatar } from "antd";
 import {AppstoreOutlined, DollarCircleOutlined,BellFilled } from "@ant-design/icons";
 import { DesktopOutlined, PieChartOutlined,MailOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+
 import Investors from "./Investors";
 import Projects from "./Projects";
 import Users from "./Users";
@@ -29,8 +30,6 @@ const menu = (
       <Link to="/regulator/Settings"> Settings</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
-    <Link to="#"> Log out</Link>
-     
     </Menu.Item>
   </Menu>
 );
@@ -51,7 +50,7 @@ class RegulatorDashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "60px" }}>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "20px" }}>
           <div className="logo"></div>          
           <br />
         <br />
@@ -82,29 +81,20 @@ class RegulatorDashboard extends React.Component {
         </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background header">
-          <ul className="dashboard-items">
-                <li className="dashboard-item-1">
-                    <Link className="dashboard-img" to="#">
-                      <img src={"./logo.png"} alt="logo" />
-                    </Link></li>
-                    <li className="dashboard-item-1 item-right">
-                    <Dropdown overlay={menu}>
-                   
-                      <Link to="/#" className="ant-dropdown-link" onClick={(e) => e.preventDefault()}> </Link>
-                       </Dropdown>
-                </li>  
-                <li className="dashboard-item-1 item-right">   
-                    <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
-                </li>
-                <li className="dashboard-item-1 item-right">
-                    <Badge className="badge-item" count={5}>
-                     <Link to="/#" className="example"> </Link>
-                    </Badge>
+          <nav class="navbar">
+                <Link className="dashboard-img" to="#">
+                  <img src={"./logo.png"} alt="logo" />
+                </Link>
+                <div>
+                  <Badge className="badge-item" count={5}>
+                    <a href="#" className="example" />
+                  </Badge>
                     <BellFilled className="notificationBell" />
-                </li>
-              </ul>
-          </Header>
+                  </div>
+                <Dropdown overlay={menu}>
+                  <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" className="ant-dropdown-link" onClick={(e) => e.preventDefault()} />
+                </Dropdown>
+            </nav>
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>
