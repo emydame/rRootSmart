@@ -3,12 +3,22 @@
 
 import React from "react";
 import { Badge, Dropdown, Avatar } from "antd";
-import { FileDoneOutlined } from "@ant-design/icons";
-import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Switch, Router, Route, Link } from "react-router-dom";
+import {
+  CaretDownFilled,
+  UsergroupAddOutlined,
+  SettingOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  AppstoreOutlined,
+  DollarCircleOutlined,
+  FileDoneOutlined,
+  BellFilled
+} from "@ant-design/icons";
 import { Layout, Menu, Breadcrumb } from "antd";
-import { Link } from "react-router-dom";
-import { BellFilled } from "@ant-design/icons";
-import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import Create from "./user/Create";
+import Remove from "./user/Remove";
+import Update from "./user/Update";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -59,57 +69,55 @@ class RegulatorDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
-              Option 1
-            </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              Option 2
-            </Menu.Item>
+            <Menu.Item key="1">Option 1</Menu.Item>
+            <Menu.Item key="2">Option 2</Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
+              <Menu.Item key="4" icon={<UserOutlined />}>
+                <Link to="/regulator/create-user">Create</Link>
+              </Menu.Item>
+              <Menu.Item key="5" icon={<UserOutlined />}>
+                <Link to="/regulator/update-user">Update</Link>
+              </Menu.Item>
+              <Menu.Item key="6" icon={<UserOutlined />}>
+                <Link to="/regulator/deactivate-user">Deactivate</Link>
+              </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9" icon={<FileOutlined />} />
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-          <ul className="dashboard-items">
-                <li className="dashboard-item-1">
-                    <Link className="dashboard-img" to="#">
-                      <img src={"./logo.png"} alt="logo" />
-                    </Link></li>
-                    <li className="dashboard-item-1 item-right">
-                    <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                      <CaretDownFilled />
-                      </a>
-                    </Dropdown>
-                </li>  
-                <li className="dashboard-item-1 item-right">   
-                    <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
-                </li>
-                <li className="dashboard-item-1 item-right">
-                    <Badge className="badge-item" count={5}>
-                      <a href="#" className="example" />
-                    </Badge>
-                    <BellFilled className="notificationBell" />
-                </li>
-              </ul>
+            <ul className="dashboard-items">
+              <li className="dashboard-item-1">
+                <Link className="dashboard-img" to="#">
+                  <img src={"./logo.png"} alt="logo" />
+                </Link>
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Dropdown overlay={menu}>
+                  <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                    <CaretDownFilled />
+                  </a>
+                </Dropdown>
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Badge className="badge-item" count={5}>
+                  <a href="#" className="example" />
+                </Badge>
+                <BellFilled className="notificationBell" />
+              </li>
+            </ul>
           </Header>
           <Content style={{ margin: "0 16px" }}>
-            <Breadcrumb style={{ margin: "16px 0" }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Bill is a cat.
-            </div>
+            <Router history={this.props.history}>
+              <Switch>
+                <Route path="/regulator/create-user" component={Create} />
+                <Route path="/regulator/update-user" component={Update} />
+                <Route path="/regulator/deactivate-user" component={Remove} />
+              </Switch>
+            </Router>
           </Content>
           {/* <Footer style={{ textAlign: "center" }}>Ant Design ©2018 Created by Ant UED</Footer> */}
         </Layout>

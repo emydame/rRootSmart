@@ -85,7 +85,7 @@ class AdminDashboard extends React.Component {
               Log Out
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="4">
+              <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/admin/create-user">Create</Link>
               </Menu.Item>
               <Menu.Item key="5" icon={<UserOutlined />}>

@@ -2,12 +2,24 @@
 /* eslint no-console: "error" */
 import React from "react";
 import { Badge, Dropdown, Layout, Menu, Avatar } from "antd";
-import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
-import { BellFilled, FileDoneOutlined, UserOutlined } from "@ant-design/icons";
-import { ZoomOutOutlined, FileAddOutlined, KeyOutlined } from "@ant-design/icons";
 import { Switch, Link, Router, Route } from "react-router-dom";
 import Project from "./Project";
 import Proposal from "./Proposal";
+import {
+  CaretDownFilled,
+  UsergroupAddOutlined,
+  SettingOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  FileDoneOutlined,
+  BellFilled,
+  ZoomOutOutlined,
+  FileAddOutlined
+} from "@ant-design/icons";
+import Create from "./user/Create";
+import Remove from "./user/Remove";
+import Update from "./user/Update";
+
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -68,6 +80,17 @@ class SmeDashboard extends React.Component {
             <Menu.Item key="2" icon={<FileAddOutlined />}>
               <Link to="/sme/proposal">Create Proposal</Link>
             </Menu.Item>
+            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+              <Menu.Item key="4" icon={<UserOutlined />}>
+                <Link to="/sme/create-user">Create</Link>
+              </Menu.Item>
+              <Menu.Item key="5" icon={<UserOutlined />}>
+                <Link to="/sme/update-user">Update</Link>
+              </Menu.Item>
+              <Menu.Item key="6" icon={<UserOutlined />}>
+                <Link to="/sme/deactivate-user">Deactivate</Link>
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -100,6 +123,9 @@ class SmeDashboard extends React.Component {
               <Switch>
                 <Route path="/sme/projects" component={Project} />
                 <Route path="/sme/proposal" component={Proposal} />
+                <Route path="/sme/create-user" component={Create} />
+                <Route path="/sme/update-user" component={Update} />
+                <Route path="/sme/deactivate-user" component={Remove} />
               </Switch>
             </Router>
           </Content>
