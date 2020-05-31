@@ -197,4 +197,7 @@ h5  {
   text-align: center;
   color: #3d6cb9;
 }
-
+.img-holder {
+  border: 1px solid #fff;
+  background: #fff;
+}

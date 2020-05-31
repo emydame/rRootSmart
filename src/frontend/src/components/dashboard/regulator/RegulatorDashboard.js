@@ -16,17 +16,19 @@ import Users from "./Users";
 import SMEs from "./SMEs";
 import Funds from "./Funds";
 import Projectcategories from "./Projectcategories";
-
+import Create from "./user/Create";
+import Remove from "./user/Remove";
+import Update from "./user/Update";
 
 const menu = (
   <Menu id="dropdown-menu">
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-    <Link to="/regulator/Profile"> Profile</Link>
+      <Link to="/regulator/Profile"> Profile</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
-    <Link to="/regulator/OrgUsers"> Manage Users</Link>
+      <Link to="/regulator/OrgUsers"> Manage Users</Link>
     </Menu.Item>
-      <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
+    <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
       <Link to="/regulator/Settings"> Settings</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
@@ -50,24 +52,29 @@ class RegulatorDashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "20px" }}>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "42px" }}>
           <div className="logo"></div>          
           <br />
-        <br />
-        <Menu
-          theme="dark"
-          onClick={this.handleClick}
-          defaultOpenKeys={["sub1"]}
-          selectedKeys={[this.state.current]}
-          mode="inline"
-        >
-          <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">
-            <Menu.Item key="1"><Link to="/regulator/Projectcategories"> Project Categories</Link></Menu.Item>
-            <Menu.Item key="2"><Link to="/regulator/Projects"> Projects List</Link></Menu.Item>
-                </SubMenu>
-          <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Investors">
-          <Menu.Item key="1"><Link to="/regulator/Investors"> Investors List</Link></Menu.Item>
-          </SubMenu>
+          <Menu
+            theme="dark"
+            onClick={this.handleClick}
+            defaultOpenKeys={["sub1"]}
+            selectedKeys={[this.state.current]}
+            mode="inline"
+          >
+            <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">
+              <Menu.Item key="1">
+                <Link to="/regulator/Projectcategories"> Project Categories</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/regulator/Projects"> Projects List</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Investors">
+              <Menu.Item key="1">
+                <Link to="/regulator/Investors"> Investors List</Link>
+              </Menu.Item>
+            </SubMenu>
             <SubMenu key="sub3" title="SMEs">
             <Menu.Item key="1"><Link to="/regulator/SMEs"> SMEs List</Link></Menu.Item>           
           </SubMenu>
@@ -97,12 +104,15 @@ class RegulatorDashboard extends React.Component {
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>
-              <Route path="/regulator/projects" component={Projects} />
-              <Route path="/regulator/Projectcategories" component={Projectcategories} />
+                <Route path="/regulator/projects" component={Projects} />
+                <Route path="/regulator/Projectcategories" component={Projectcategories} />
                 <Route path="/regulator/Investors" component={Investors} />
                 <Route path="/regulator/SMEs" component={SMEs} />
                 <Route path="/regulator/Users" component={Users} />
                 <Route path="/regulator/Funds" component={Funds} />
+                <Route path="/regulator/create-user" component={Create} />
+                <Route path="/regulator/update-user" component={Update} />
+                <Route path="/regulator/deactivate-user" component={Remove} />
               </Switch>
             </Router>
           </Content>

@@ -9,12 +9,21 @@ import AllUsers from "./AllUsers";
 import InvestmentHistory from "./InvestmentHistory";
 import { Badge, Dropdown, Layout, Menu } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
-import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined, ReconciliationOutlined} from "@ant-design/icons";
+import {
+  CaretDownFilled,
+  UsergroupAddOutlined,
+  SettingOutlined,
+  LogoutOutlined,
+  ReconciliationOutlined
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Avatar } from "antd";
-import { Switch, Router, Route, } from "react-router-dom";
+import { Switch, Router, Route } from "react-router-dom";
 import { BellFilled, UserAddOutlined, UserSwitchOutlined, RiseOutlined } from "@ant-design/icons";
 import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import Create from "./user/Create";
+import Remove from "./user/Remove";
+import Update from "./user/Update";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -31,7 +40,7 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class InvestorDashboard extends React.Component {
@@ -98,16 +107,19 @@ class InvestorDashboard extends React.Component {
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb> */}
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            <Router history={this.props.history}>
-              <Switch>
-                <Route path="/investor/SmeProposals" component={SmeProposals} />
-                <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
-                <Route path="/investor/TotalInvestments" component={TotalInvestments} />
-                <Route path="/investor/AddUsers" component={AddUsers} />
-                <Route path="/investor/AllUsers" component={AllUsers} />
-              </Switch>
-            </Router>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <Router history={this.props.history}>
+                <Switch>
+                  <Route path="/investor/SmeProposals" component={SmeProposals} />
+                  <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
+                  <Route path="/investor/TotalInvestments" component={TotalInvestments} />
+                  <Route path="/investor/AddUsers" component={AddUsers} />
+                  <Route path="/investor/AllUsers" component={AllUsers} />
+                  <Route path="/investor/create-user" component={Create} />
+                  <Route path="/investor/update-user" component={Update} />
+                  <Route path="/investor/deactivate-user" component={Remove} />
+                </Switch>
+              </Router>
             </div>
           </Content>
           {/* <Footer style={{ textAlign: "center" }}>eaZSME ©2020  Created by Team-028</Footer> */}
