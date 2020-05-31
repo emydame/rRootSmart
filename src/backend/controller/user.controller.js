@@ -62,7 +62,7 @@ exports.create = (req, res) => {
                   firstName: req.body.firstName,
                   lastName: req.body.lastName,
                   otherName: req.body.otherName,
-                  email: req.body.email1,
+                  email: req.body.email,
                   phoneNumber: req.body.phoneNumber,
                   role: userRole,
                   privilege: userPrivilege,
@@ -76,11 +76,11 @@ exports.create = (req, res) => {
                       const organization = new Organization({
                         organizationId: orgId,
                         companyName: req.body.companyName,
-                        category: req.body.category,
-                        RCNumber: req.body.RCNumber,
-                        email: req.body.email2,
+                        category: req.body.userType,
+                        RCNumber: req.body.rcNumber,
+                        email: req.body.companyEmail,
                         BVN: req.body.BVN,
-                        address: req.body.address,
+                        address: req.body.companyAddress,
                         dateIncorporated: req.body.dateIncorporated
                       });
                       //Save organization
