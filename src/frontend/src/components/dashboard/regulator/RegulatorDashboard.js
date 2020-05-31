@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 
 import React from "react";
-import { Badge, Dropdown, Avatar } from "antd";
 import { Switch, Router, Route, Link } from "react-router-dom";
+import { Layout, Menu, Breadcrumb, Row, Col, Badge, Dropdown, Avatar } from "antd";
 import {
   CaretDownFilled,
   UsergroupAddOutlined,
@@ -13,9 +14,16 @@ import {
   AppstoreOutlined,
   DollarCircleOutlined,
   FileDoneOutlined,
-  BellFilled
+  BellFilled,
+  MailOutlined
 } from "@ant-design/icons";
-import { Layout, Menu, Breadcrumb } from "antd";
+
+import Investors from "./Investors";
+import Projects from "./Projects";
+import Users from "./Users";
+import SMEs from "./SMEs";
+import Funds from "./Funds";
+import Projectcategories from "./Projectcategories";
 import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
@@ -23,29 +31,16 @@ import Update from "./user/Update";
 const menu = (
   <Menu id="dropdown-menu">
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Profile
-      </a>
+      <Link to="/regulator/Profile"> Profile</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Manage Users
-      </a>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Review Reports
-      </a>
+      <Link to="/regulator/OrgUsers"> Manage Users</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Settings
-      </a>
+      <Link to="/regulator/Settings"> Settings</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Logout
-      </a>
+      <Link to="#"> Log out</Link>
     </Menu.Item>
   </Menu>
 );
@@ -66,11 +61,45 @@ class RegulatorDashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-          <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "60px" }}>
+          <div className="logo"></div>
+          <br />
+          <br />
+          <Menu
+            theme="dark"
+            onClick={this.handleClick}
+            defaultOpenKeys={["sub1"]}
+            selectedKeys={[this.state.current]}
+            mode="inline"
+          >
+            <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">
+              <Menu.Item key="1">
+                <Link to="/regulator/Projectcategories"> Project Categories</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/regulator/Projects"> Projects List</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Investors">
+              <Menu.Item key="1">
+                <Link to="/regulator/Investors"> Investors List</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub3" title="SMEs">
+              <Menu.Item key="1">
+                <Link to="/regulator/SMEs"> SMEs List</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub4" icon={<SettingOutlined />} title="Funds">
+              <Menu.Item key="1">
+                <Link to="/regulator/Funds"> Funds Application</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub5" icon={<SettingOutlined />} title="Users">
+              <Menu.Item key="1">
+                <Link to="/regulator/Users"> Users List</Link>
+              </Menu.Item>
+            </SubMenu>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
               <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/regulator/create-user">Create</Link>
@@ -85,7 +114,7 @@ class RegulatorDashboard extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header className="site-layout-background header">
             <ul className="dashboard-items">
               <li className="dashboard-item-1">
                 <Link className="dashboard-img" to="#">
@@ -94,9 +123,9 @@ class RegulatorDashboard extends React.Component {
               </li>
               <li className="dashboard-item-1 item-right">
                 <Dropdown overlay={menu}>
-                  <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                    <CaretDownFilled />
-                  </a>
+                  <Link to="/#" className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                    {" "}
+                  </Link>
                 </Dropdown>
               </li>
               <li className="dashboard-item-1 item-right">
@@ -104,7 +133,9 @@ class RegulatorDashboard extends React.Component {
               </li>
               <li className="dashboard-item-1 item-right">
                 <Badge className="badge-item" count={5}>
-                  <a href="#" className="example" />
+                  <Link to="/#" className="example">
+                    {" "}
+                  </Link>
                 </Badge>
                 <BellFilled className="notificationBell" />
               </li>
@@ -113,6 +144,12 @@ class RegulatorDashboard extends React.Component {
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>
+                <Route path="/regulator/projects" component={Projects} />
+                <Route path="/regulator/Projectcategories" component={Projectcategories} />
+                <Route path="/regulator/Investors" component={Investors} />
+                <Route path="/regulator/SMEs" component={SMEs} />
+                <Route path="/regulator/Users" component={Users} />
+                <Route path="/regulator/Funds" component={Funds} />
                 <Route path="/regulator/create-user" component={Create} />
                 <Route path="/regulator/update-user" component={Update} />
                 <Route path="/regulator/deactivate-user" component={Remove} />
