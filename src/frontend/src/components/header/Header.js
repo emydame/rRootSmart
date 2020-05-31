@@ -32,7 +32,7 @@ class Header extends React.Component {
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top navbar1">
             <Link className="navbar-brand" to="#">
-              <img src={"./logo.png"} alt="logo" />
+              <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
             </Link>
             <button
               className="navbar-toggler mobile-nav"

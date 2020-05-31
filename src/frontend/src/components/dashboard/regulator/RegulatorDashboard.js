@@ -75,15 +75,14 @@ class RegulatorDashboard extends React.Component {
           <Menu.Item key="1"><Link to="/regulator/Funds"> Funds Application</Link></Menu.Item>             
           </SubMenu>
           <SubMenu key="sub5" icon={<SettingOutlined />} title="Users">
-          <Menu.Item key="1"><Link to="/regulator/Users"> Users List</Link></Menu.Item>  
-         
+          <Menu.Item key="1"><Link to="/regulator/Users"> Users List</Link></Menu.Item> 
           </SubMenu>
         </Menu>
         </Sider>
         <Layout className="site-layout">
           <nav class="navbar">
                 <Link className="dashboard-img" to="#">
-                  <img src={"./logo.png"} alt="logo" />
+                  <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
                 </Link>
                 <div>
                   <Badge className="badge-item" count={5}>
