@@ -9,12 +9,21 @@ import AllUsers from "./AllUsers";
 import InvestmentHistory from "./InvestmentHistory";
 import { Badge, Dropdown, Layout, Menu, Breadcrumb } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
-import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined, ReconciliationOutlined} from "@ant-design/icons";
+import {
+  CaretDownFilled,
+  UsergroupAddOutlined,
+  SettingOutlined,
+  LogoutOutlined,
+  ReconciliationOutlined
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Avatar } from "antd";
-import { Switch, Router, Route, } from "react-router-dom";
+import { Switch, Router, Route } from "react-router-dom";
 import { BellFilled, UserAddOutlined, UserSwitchOutlined, RiseOutlined } from "@ant-design/icons";
 import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import Create from "./user/Create";
+import Remove from "./user/Remove";
+import Update from "./user/Update";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -41,7 +50,7 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class InvestorDashboard extends React.Component {
@@ -67,58 +76,87 @@ class InvestorDashboard extends React.Component {
               <Link to="/investor/InvestmentHistory">Investment History</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-            <Menu.Item key="4"><Link to="/investor/AddUsers"><UserAddOutlined />Add Users</Link></Menu.Item>
-              <Menu.Item key="3" icon={<UserSwitchOutlined />}><Link to="/investor/AllUsers">All Users</Link></Menu.Item>
-              <Menu.Item key="5" icon={<ReconciliationOutlined />}><Link to="/investor/Investroles">Roles</Link></Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/investor/AddUsers">
+                  <UserAddOutlined />
+                  Add Users
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="3" icon={<UserSwitchOutlined />}>
+                <Link to="/investor/AllUsers">All Users</Link>
+              </Menu.Item>
+              <Menu.Item key="5" icon={<ReconciliationOutlined />}>
+                <Link to="/investor/Investroles">Roles</Link>
+              </Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
               <Menu.Item key="7">Team 1</Menu.Item>
               <Menu.Item key="8">Team 2</Menu.Item>
             </SubMenu>
-            <Menu.Item key="9" icon={<RiseOutlined />}><Link to="/investor/TotalInvestments">Total Funds Invested</Link></Menu.Item>
-            <Menu.Item key="3" icon={<LogoutOutlined/>}> Log Out</Menu.Item>
+            <Menu.Item key="9" icon={<RiseOutlined />}>
+              <Link to="/investor/TotalInvestments">Total Funds Invested</Link>
+            </Menu.Item>
+            <Menu.Item key="3" icon={<LogoutOutlined />}>
+              {" "}
+              Log Out
+            </Menu.Item>
+            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+              <Menu.Item key="4" icon={<UserOutlined />}>
+                <Link to="/investor/create-user">Create</Link>
+              </Menu.Item>
+              <Menu.Item key="5" icon={<UserOutlined />}>
+                <Link to="/investor/update-user">Update</Link>
+              </Menu.Item>
+              <Menu.Item key="6" icon={<UserOutlined />}>
+                <Link to="/investor/deactivate-user">Deactivate</Link>
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-              <ul className="dashboard-items">
-                <li className="dashboard-item-1">
-                    <Link className="dashboard-img" to="#">
-                      <img src={"./logo.png"} alt="logo" />
-                    </Link></li>
-                <li className="dashboard-item-1 item-right">
-                    <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                      <CaretDownFilled id="menu-trigger" />
-                      </a>
-                    </Dropdown>
-                </li>  
-                <li className="dashboard-item-1 item-right">   
-                    <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
-                </li>
-                <li className="dashboard-item-1 item-right">
-                    <Badge className="badge-item" count={5}>
-                      <a href="#" className="example" />
-                    </Badge>
-                    <BellFilled className="notificationBell" />
-                </li>
-              </ul>
+            <ul className="dashboard-items">
+              <li className="dashboard-item-1">
+                <Link className="dashboard-img" to="#">
+                  <img src={"./logo.png"} alt="logo" />
+                </Link>
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Dropdown overlay={menu}>
+                  <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                    <CaretDownFilled id="menu-trigger" />
+                  </a>
+                </Dropdown>
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
+              </li>
+              <li className="dashboard-item-1 item-right">
+                <Badge className="badge-item" count={5}>
+                  <a href="#" className="example" />
+                </Badge>
+                <BellFilled className="notificationBell" />
+              </li>
+            </ul>
           </Header>
           <Content style={{ margin: "0 16px" }}>
             {/* <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb> */}
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            <Router history={this.props.history}>
-              <Switch>
-                <Route path="/investor/SmeProposals" component={SmeProposals} />
-                <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
-                <Route path="/investor/TotalInvestments" component={TotalInvestments} />
-                <Route path="/investor/AddUsers" component={AddUsers} />
-                <Route path="/investor/AllUsers" component={AllUsers} />
-              </Switch>
-            </Router>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <Router history={this.props.history}>
+                <Switch>
+                  <Route path="/investor/SmeProposals" component={SmeProposals} />
+                  <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
+                  <Route path="/investor/TotalInvestments" component={TotalInvestments} />
+                  <Route path="/investor/AddUsers" component={AddUsers} />
+                  <Route path="/investor/AllUsers" component={AllUsers} />
+                  <Route path="/investor/create-user" component={Create} />
+                  <Route path="/investor/update-user" component={Update} />
+                  <Route path="/investor/deactivate-user" component={Remove} />
+                </Switch>
+              </Router>
             </div>
           </Content>
           {/* <Footer style={{ textAlign: "center" }}>eaZSME ©2020  Created by Team-028</Footer> */}
