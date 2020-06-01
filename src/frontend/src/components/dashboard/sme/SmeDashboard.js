@@ -26,14 +26,10 @@ import EditProfile from "./user/EditProfile";
 const menu = (
   <Menu id="dropdown-menu">
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Profile
-      </a>
+      <Link to="/sme/ProfileDetails">Profile</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Manage Users
-      </a>
+      <Link to="/sme/create">Manage Users</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
@@ -106,7 +102,7 @@ class SmeDashboard extends React.Component {
         <Layout className="site-layout">
           <nav class="navbar">
                 <Link className="dashboard-img" to="#">
-                  <img src={"./logo.png"} alt="logo" />
+                  <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
                 </Link>
                 <div>
                   <Badge className="badge-item" count={5}>

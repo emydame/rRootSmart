@@ -20,7 +20,7 @@ import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
 import ProfileDetails from "./user/ProfileDetails";
-import EditProfile from "./user/EditProfile"
+import EditProfile from "./user/EditProfile";
 
 const menu = (
   <Menu id="dropdown-menu">
