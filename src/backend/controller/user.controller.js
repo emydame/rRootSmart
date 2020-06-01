@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const nodeMailer = require("nodemailer");
 const secret = "serete";
 const db = require("../config/db.config");
-const User = db.users;
+const User = db.user;
 const Userpass = db.userLogin;
 const Organization = db.userOrganization;
 
@@ -28,7 +29,7 @@ exports.create = (req, res) => {
         Organization.findOne({ where: { email: req.body.companyEmail } }).then((data) => {
           if (data) {
             return res.status(401).send({
-              message: "Organisation already registered" 
+              message: "Organisation already registered"
             });
           } else {
             //Query userlogin table to check if user login credentials already exist
@@ -54,7 +55,7 @@ exports.create = (req, res) => {
                  * company admin while sub-user form is access from the company's admin
                  * dashboard
                  */
-                
+
                 // Create new instance of  user
                 const user = new User({
                   userId: userID,
@@ -78,7 +79,7 @@ exports.create = (req, res) => {
                         companyName: req.body.companyName,
                         category: req.body.userType,
                         RCNumber: req.body.rcNumber,
-                        email: req.body.companyEmail, 
+                        email: req.body.companyEmail,
                         BVN: req.body.BVN,
                         address: req.body.companyAddress,
                         dateIncorporated: req.body.dateIncorporated
@@ -87,12 +88,12 @@ exports.create = (req, res) => {
                       organization.save().then((data) => {
                         // save login credentials if user details is succesfully saved
                         if (data) {
-                          const pass = new Userpass({ 
+                          const pass = new Userpass({
                             loginId: loginID,
                             userId: userID,
                             organizationId: orgId,
                             email: req.body.email,
-                            password: req.body.password  
+                            password: req.body.password
                           });
                           // Encode password
                           bcrypt.genSalt(10, (err, salt) => {
@@ -106,11 +107,44 @@ exports.create = (req, res) => {
                                 pass.saltSecret = salt;
                                 pass
                                   .save()
-                                  .then((data) => {
-                                    if (data) {
-                                      Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
-                                        return res.send(data);
+                                  .then((result) => {
+                                    if (result) {
+                                      let payload = { subject: result };
+                                      let token = jwt.sign(payload, secret);
+                                      let transporter = nodeMailer.createTransport({
+                                        service: "gmail",
+                                        auth: {
+                                          user: "victoryohanna@gmail.com",
+                                          pass: "tanams@5562"
+                                        }
                                       });
+                                      let mailOptions = {
+                                        from: "no-reply@gmail.com",
+                                        to: result.email,
+                                        subject: "Account Verification Token",
+                                        text:
+                                          "Hello,\n\n" +
+                                          "Please verify your account by clicking the link: \nhttp://" +
+                                          req.headers.host +
+                                          "/confirmation/" +
+                                          token +
+                                          ".\n"
+                                      };
+                                      transporter.sendMail(mailOptions, (err) => {
+                                        if (err) {
+                                          return res.status(500).send({
+                                            message: err.message
+                                          });
+                                        } else {
+                                          res.status(200).send({
+                                            message: "Verification message sent"
+                                          });
+                                        }
+                                      });
+
+                                      // Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
+                                      //   return res.send(data);
+                                      // });
                                     }
                                   })
                                   .catch((err) => {

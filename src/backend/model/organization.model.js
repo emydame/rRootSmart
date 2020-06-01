@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       companyName: {
         type: DataTypes.STRING
-      },
+      },  
       category: {
         type: DataTypes.STRING
       },
       RCNumber: {
         type: DataTypes.STRING  
       },
-      email: {
+      email: { 
         type: DataTypes.STRING
       },
       BVN: {
