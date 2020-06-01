@@ -28,9 +28,14 @@ iframe {
   background: #3d6cb9;
 }
 
+.ant-layout-sider-children {
+  height: 100%;
+  padding-top: 0.1px;
+}
+
 .ant-menu.ant-menu-dark,
 .ant-menu-dark .ant-menu-sub {
-  color: rgba(255, 255, 255, 0.65);
+  color: #ffffffa6;
   background: #3d6cb9;
 }
 
@@ -51,12 +56,18 @@ iframe {
   height: 3rem;
 }
 
-ul.dashboard-items {
+.dashboard-items {
   list-style-type: none;
   width: 95%;
 }
 
-li.dashboard-item-1 {
+@media (max-width: 960px) {
+  .dashboard-items {
+    position: absolute;
+  }
+}
+
+.dashboard-item-1 {
   display: inline;
   margin-right: 30px;
 }
@@ -102,6 +113,11 @@ span.anticon-bell {
   background-color: #f90;
 }
 
+.dropDown-btn {
+  border: none;
+  background: #f90;
+}
+
 a.ant-dropdown-trigger {
   margin-left: -20px;
   color: #3d6cb9;
@@ -122,6 +138,18 @@ a.ant-dropdown-trigger {
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #f90;
+}
+@media (max-width: 750px) {
+  .card-body,
+  div.site-layout-background {
+    display: block;
+    overflow: auto;
+  }
+}
+
+nav.navbar {
+  background: #f90;
+  padding: 8px 40px;
 }
 
 .table-btn {
@@ -163,3 +191,13 @@ ul.pagination {
   color: #fff;
 }
 
+.content-title,
+p,
+h5  {
+  text-align: center;
+  color: #3d6cb9;
+}
+.img-holder {
+  border: 1px solid #fff;
+  background: #fff;
+}

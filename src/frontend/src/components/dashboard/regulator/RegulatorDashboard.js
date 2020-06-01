@@ -4,19 +4,11 @@
 
 import React from "react";
 import { Switch, Router, Route, Link } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Row, Col, Badge, Dropdown, Avatar } from "antd";
-import {
-  CaretDownFilled,
-  UsergroupAddOutlined,
-  SettingOutlined,
-  UserOutlined,
-  LogoutOutlined,
-  AppstoreOutlined,
-  DollarCircleOutlined,
-  FileDoneOutlined,
-  BellFilled,
-  MailOutlined
-} from "@ant-design/icons";
+import { FileDoneOutlined } from "@ant-design/icons";
+import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Layout, Menu, Breadcrumb, Row, Col,Badge, Dropdown, Avatar } from "antd";
+import {AppstoreOutlined, DollarCircleOutlined,BellFilled } from "@ant-design/icons";
+import { DesktopOutlined, PieChartOutlined,MailOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 import Investors from "./Investors";
 import Projects from "./Projects";
@@ -40,7 +32,6 @@ const menu = (
       <Link to="/regulator/Settings"> Settings</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
-      <Link to="#"> Log out</Link>
     </Menu.Item>
   </Menu>
 );
@@ -61,9 +52,8 @@ class RegulatorDashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "60px" }}>
-          <div className="logo"></div>
-          <br />
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "42px" }}>
+          <div className="logo"></div>          
           <br />
           <Menu
             theme="dark"
@@ -86,61 +76,31 @@ class RegulatorDashboard extends React.Component {
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub3" title="SMEs">
-              <Menu.Item key="1">
-                <Link to="/regulator/SMEs"> SMEs List</Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub4" icon={<SettingOutlined />} title="Funds">
-              <Menu.Item key="1">
-                <Link to="/regulator/Funds"> Funds Application</Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub5" icon={<SettingOutlined />} title="Users">
-              <Menu.Item key="1">
-                <Link to="/regulator/Users"> Users List</Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="4" icon={<UserOutlined />}>
-                <Link to="/regulator/create-user">Create</Link>
-              </Menu.Item>
-              <Menu.Item key="5" icon={<UserOutlined />}>
-                <Link to="/regulator/update-user">Update</Link>
-              </Menu.Item>
-              <Menu.Item key="6" icon={<UserOutlined />}>
-                <Link to="/regulator/deactivate-user">Deactivate</Link>
-              </Menu.Item>
-            </SubMenu>
-          </Menu>
+            <Menu.Item key="1"><Link to="/regulator/SMEs"> SMEs List</Link></Menu.Item>           
+          </SubMenu>
+          <SubMenu key="sub4" icon={<SettingOutlined />} title="Funds">
+          <Menu.Item key="1"><Link to="/regulator/Funds"> Funds Application</Link></Menu.Item>             
+          </SubMenu>
+          <SubMenu key="sub5" icon={<SettingOutlined />} title="Users">
+          <Menu.Item key="1"><Link to="/regulator/Users"> Users List</Link></Menu.Item> 
+          </SubMenu>
+        </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background header">
-            <ul className="dashboard-items">
-              <li className="dashboard-item-1">
+          <nav class="navbar">
                 <Link className="dashboard-img" to="#">
-                  <img src={"./logo.png"} alt="logo" />
+                  <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
                 </Link>
-              </li>
-              <li className="dashboard-item-1 item-right">
+                <div>
+                  <Badge className="badge-item" count={5}>
+                    <a href="#" className="example" />
+                  </Badge>
+                    <BellFilled className="notificationBell" />
+                  </div>
                 <Dropdown overlay={menu}>
-                  <Link to="/#" className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                    {" "}
-                  </Link>
+                  <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" className="ant-dropdown-link" onClick={(e) => e.preventDefault()} />
                 </Dropdown>
-              </li>
-              <li className="dashboard-item-1 item-right">
-                <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
-              </li>
-              <li className="dashboard-item-1 item-right">
-                <Badge className="badge-item" count={5}>
-                  <Link to="/#" className="example">
-                    {" "}
-                  </Link>
-                </Badge>
-                <BellFilled className="notificationBell" />
-              </li>
-            </ul>
-          </Header>
+            </nav>
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>

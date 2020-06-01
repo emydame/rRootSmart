@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Badge, Dropdown, Layout, Menu, Avatar } from "antd";
+import { Badge, Dropdown, Layout, Menu, Avatar, Modal, Button } from "antd";
 import { Switch, Link, Router, Route } from "react-router-dom";
-import Project from "./Project";
+// import Project from "./Project";
 import Proposal from "./Proposal";
 import {
   CaretDownFilled,
@@ -71,12 +71,13 @@ class SmeDashboard extends React.Component {
   render() {
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "60px" }}>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "64px" }}>
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<ZoomOutOutlined />}>
               <Link to="/sme/projects">View Projects</Link>
             </Menu.Item>
+            
             <Menu.Item key="2" icon={<FileAddOutlined />}>
               <Link to="/sme/proposal">Create Proposal</Link>
             </Menu.Item>
@@ -94,34 +95,24 @@ class SmeDashboard extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background header">
-          <ul className="dashboard-items">
-                <li className="dashboard-item-1">
-                    <Link className="dashboard-img" to="#">
-                      <img src={"./logo.png"} alt="logo" />
-                    </Link></li>
-                  <li className="dashboard-item-1 item-right">
-                    <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-                      <CaretDownFilled />
-                      </a>
-                    </Dropdown>
-                </li>  
-                <li className="dashboard-item-1 item-right">   
-                    <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" />
-                </li>
-                <li className="dashboard-item-1 item-right">
-                    <Badge className="badge-item" count={5}>
-                      <a href="#" className="example" />
-                    </Badge>
+          <nav class="navbar">
+                <Link className="dashboard-img" to="#">
+                  <img src={"./logo.png"} alt="logo" />
+                </Link>
+                <div>
+                  <Badge className="badge-item" count={5}>
+                    <a href="#" className="example" />
+                  </Badge>
                     <BellFilled className="notificationBell" />
-                </li>
-              </ul>
-          </Header>
+                  </div>
+                <Dropdown overlay={menu}>
+                  <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" className="ant-dropdown-link" onClick={(e) => e.preventDefault()} />
+                </Dropdown>
+            </nav>
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>
-                <Route path="/sme/projects" component={Project} />
+                {/* <Route path="/sme/projects" component={Project} /> */}
                 <Route path="/sme/proposal" component={Proposal} />
                 <Route path="/sme/create-user" component={Create} />
                 <Route path="/sme/update-user" component={Update} />
