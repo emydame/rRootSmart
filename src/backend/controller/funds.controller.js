@@ -55,7 +55,7 @@ exports.findAll = (req, res) => {
     .then((result) => {
       return res.status(200).json({
         status: "success",
-        data
+        data: result
       });
     })
     .catch((err) => {

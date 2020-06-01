@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       return res.status(500).json({
-        status: "error",status: "error",
+        status: "error",
         message: err.message || "Privileges not assigned"
       });
     });
