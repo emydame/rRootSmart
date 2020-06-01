@@ -29,7 +29,7 @@ describe("create()", () => {
     const res = await apiServer.post("/roles").send({
       roleName: "Admin",
       description: "Manage user processes",
-      dateCreated: '2013-07-04'
+      dateCreated: "2013-07-04"
     });
     expect(res.statusCode).toEqual(200);
   });

@@ -31,7 +31,7 @@ describe("create()", () => {
       organizationId: 1,
       fundId: 1,
       accountNumber: 998494,
-      bankName: GTBank,
+      bankName: "GTBank",
       amount: 10000,
       status: "processing",
       paidBy: 1,
