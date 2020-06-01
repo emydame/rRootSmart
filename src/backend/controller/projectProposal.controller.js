@@ -29,7 +29,7 @@ exports.create = (req, res) => {
     });
 };
 
-//Retreive all proposall
+//Retreive all proposall 
 exports.findAll = (req, res) => {
   Proposal.findAll()
     .then((result) => {

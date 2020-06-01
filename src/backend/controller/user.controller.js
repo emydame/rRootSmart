@@ -9,7 +9,8 @@ const Organization = db.userOrganization;
 // Post User
 exports.create = (req, res) => {
   let today = new Date();
-
+  let userRole = "Admin";
+  let userPrivilege = "Level 1";
   //Check empty request
   if (!req.body) {
     return res.status(204).send({
@@ -17,21 +18,21 @@ exports.create = (req, res) => {
     });
   } else {
     //Query user table to check if details already exist
-    User.findOne({ where: { userId: req.body.userId } }).then((data) => {
+    User.findOne({ where: { email: req.body.email } }).then((data) => {
       if (data) {
         // return result if data already exist
         return res.status(401).send({
           message: "User already exist"
         });
       } else {
-        Organization.findOne({ where: { email: req.body.email } }).then((data) => {
+        Organization.findOne({ where: { email: req.body.companyEmail } }).then((data) => {
           if (data) {
             return res.status(401).send({
-              message: "Organisation already registered"
+              message: "Organisation already registered" 
             });
           } else {
             //Query userlogin table to check if user login credentials already exist
-            Userpass.findOne({ where: { userId: req.body.userId } }).then((data) => {
+            Userpass.findOne({ where: { email: req.body.email } }).then((data) => {
               if (data) {
                 // return data if user login creadentials exist
                 return res.status(401).send({
@@ -39,14 +40,28 @@ exports.create = (req, res) => {
                 });
               } else {
                 let orgId = Math.floor(Math.random() * 10000) + 1;
-                let userRole = "Admin";
-                let userPrivilege = "Level 1";
+                let userID = Math.floor(Math.random() * 100000) + 1;
+                let loginID = Math.floor(Math.random() * 10000) + 1;
+                /**
+                 * It is assume that any user that successfuly submit registeration
+                 * form becomes the company's admin with all privileges.
+                 * Therefore, USER ROLE is set to ADMIN by defualt while PRIVILEGE to
+                 * LEVEL 1.
+                 * Admin will then create other users (company staff) and assign roles
+                 * and privileges to each staff.
+                 *
+                 * NOTE: The default signup page is meant to register companies and overall
+                 * company admin while sub-user form is access from the company's admin
+                 * dashboard
+                 */
+                
                 // Create new instance of  user
                 const user = new User({
-                  userId: req.body.userId,
+                  userId: userID,
                   organizationId: orgId,
                   firstName: req.body.firstName,
                   lastName: req.body.lastName,
+                  otherName: req.body.otherName,
                   email: req.body.email,
                   phoneNumber: req.body.phoneNumber,
                   role: userRole,
@@ -57,44 +72,60 @@ exports.create = (req, res) => {
                 user
                   .save()
                   .then((data) => {
-                    // save login credentials if user details is succesfully saved
                     if (data) {
-                      const pass = new Userpass({
-                        loginId: req.body.loginId,
-                        userId: req.body.userId,
+                      const organization = new Organization({
                         organizationId: orgId,
-                        username: req.body.username,
-                        password: req.body.password
+                        companyName: req.body.companyName,
+                        category: req.body.userType,
+                        RCNumber: req.body.rcNumber,
+                        email: req.body.companyEmail, 
+                        BVN: req.body.BVN,
+                        address: req.body.companyAddress,
+                        dateIncorporated: req.body.dateIncorporated
                       });
-                      // Encode password
-                      bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(pass.password, salt, (err, hash) => {
-                          if (err) {
-                            return res.status(400).send({
-                              message: err.message
-                            });
-                          } else {
-                            pass.password = hash;
-                            pass.saltSecret = salt;
-                            pass
-                              .save()
-                              .then((data) => {
-                                //Generate token
-                                let payload = { subject: data };
-                                let token = jwt.sign(payload, secret);
-                                return res.status(200).send({ token });
-                              })
-                              .catch((err) => {
-                                res.status(500).send({
+                      //Save organization
+                      organization.save().then((data) => {
+                        // save login credentials if user details is succesfully saved
+                        if (data) {
+                          const pass = new Userpass({ 
+                            loginId: loginID,
+                            userId: userID,
+                            organizationId: orgId,
+                            email: req.body.email,
+                            password: req.body.password  
+                          });
+                          // Encode password
+                          bcrypt.genSalt(10, (err, salt) => {
+                            bcrypt.hash(pass.password, salt, (err, hash) => {
+                              if (err) {
+                                return res.status(400).send({
                                   message: err.message
                                 });
-                              });
-                          }
-                        });
-                      });
-                    } else {
-                      return res.status(400).send({
-                        message: "Not saved"
+                              } else {
+                                pass.password = hash;
+                                pass.saltSecret = salt;
+                                pass
+                                  .save()
+                                  .then((data) => {
+                                    if (data) {
+                                      Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
+                                        return res.send(data);
+                                      });
+                                    }
+                                  })
+                                  .catch((err) => {
+                                    return res.status(500).send({
+                                      message: err.message
+                                    });
+                                  });
+                              }
+                            });
+                          });
+                        } else {
+                          return res.status(400).send({
+                            message: "Not saved"
+                          });
+                        }
                       });
                     }
                   })

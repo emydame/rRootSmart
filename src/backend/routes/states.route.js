@@ -3,5 +3,5 @@ module.exports = (app) => {
 
   app.post("/state", states.create);
 
-  app.get("/states", states.findAll);
+  app.get("/states/all", states.findAll);
 };
