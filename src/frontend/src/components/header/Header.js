@@ -32,7 +32,7 @@ class Header extends React.Component {
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top navbar1">
             <Link className="navbar-brand" to="#">
-              <img src={"./logo.png"} alt="logo" />
+              <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
             </Link>
             <button
               className="navbar-toggler mobile-nav"
@@ -66,31 +66,7 @@ class Header extends React.Component {
           </nav>
         </header>
       </div>
-      // <Container classNameName="header" fluid>
-      //   <div classNameName="nav-links">
-      //   <Row classNameName="menu">
-      //     {/** logo */}
-      //     <Col md="auto" id="img" classNameName="mr-4 ml-3">
-      //       <Link to="/home">
-      //         <img src={"./logo.png"} alt="logo" />
-      //       </Link>
-      //     </Col>
-
-      //     {/* * App name
-      //     <Col md="auto" classNameName=" pt-3 app-name">
-      //       <h2 data-app-name></h2>
-      //     </Col> */}
-
-      //     {/*** Navigation */}
-      //     <Col md="8" classNameName="nav  pt-5 h4" id="navigation">
-      //       <Nav />
-      //     </Col>
-
-      //     {/** user setting */}
-      //     {/* <Col md="1"></Col> */}
-      //   </Row>
-      //   </div>
-      // </Container>
+      
     );
   }
 }

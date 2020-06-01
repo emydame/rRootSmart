@@ -149,6 +149,7 @@ div > input:invalid:required {
 .form-section-text {
   color: #f90;
   font-weight: 600;
+  text-align: left;
 }
 
 .incorpDate {

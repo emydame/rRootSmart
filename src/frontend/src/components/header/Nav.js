@@ -182,6 +182,8 @@ class Nav extends React.Component {
     const form = document.querySelector(`form[name="login"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
 
+    
+
     localStorage.setItem("email", formFields.emaill);
     localStorage.setItem("password", formFields.password);
   }
