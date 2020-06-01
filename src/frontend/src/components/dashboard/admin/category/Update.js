@@ -66,8 +66,13 @@ class Update extends React.Component {
   }
 
   render() {
-    const { data, success, error } = this.state;
-    const { projectCatId, categoryName, categoryDescription, createdBy } = data;
+    const data = this.state.data;
+    const success = this.state.success;
+    const error = this.state.error;
+    const projectCatId = data.projectCatId;
+    const categoryName = data.categoryName;
+    const categoryDescription = data.categoryDescription;
+    const createdBy = data.createdBy;
     return (
       <Card.Body>
         {success ? (

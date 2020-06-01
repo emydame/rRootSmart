@@ -34,7 +34,7 @@ class View extends React.Component {
   }
 
   render() {
-    const { data } = this.state;
+    const data = this.state.data;
     return (
       <Card.Body>
         <Table striped bordered hover size="sm">

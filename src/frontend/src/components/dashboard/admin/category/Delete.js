@@ -35,7 +35,8 @@ class Delete extends React.Component {
   }
 
   render() {
-    const { success, error } = this.state;
+    const success = this.state.success;
+    const error  = this.state.error;
     return (
       <Card.Body>
         {success ? (

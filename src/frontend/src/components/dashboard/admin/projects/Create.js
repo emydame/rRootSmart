@@ -1,4 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable no-multi-str */
+/*eslint quotes: ["error", "backtick"]*/
+/*eslint-env es6*/
+/* eslint no-console: "error" */
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -15,8 +19,8 @@ class Create extends React.Component {
 
     this.state = {
       category: [],
-      success: "",
-      error: "",
+      success: ``,
+      error: ``,
       data: []
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -30,7 +34,7 @@ class Create extends React.Component {
 
   async getCategory() {
     await axios
-      .get("https://eazsme-backend.herokuapp.com/projects/category/")
+      .get(`https://eazsme-backend.herokuapp.com/projects/category/`)
       .then((data) => this.setState(data))
       .catch((error) => console.log(error));
 
@@ -39,9 +43,9 @@ class Create extends React.Component {
     const { data } = this.state;
     // based on type of data is array
     for (let i = 0; i < data.length; i++) {
-      const option = document.createElement("option");
-      option.name = data[i].categoryName;
-      option.value = data[i].categoryName;
+      const option = document.createElement(`option`);
+      option.name = data[parseInt(i)].categoryName;
+      option.value = data[parseInt(i)].categoryName;
       select.appendChild(option);
     }
   }
@@ -55,19 +59,20 @@ class Create extends React.Component {
     const form = document.querySelector(`form[name="create-project"]`);
     const formFields = serialize(form, { hash: true });
     await axios
-      .post("https://eazsme-backend.herokuapp.com/projects", formFields)
+      .post(`https://eazsme-backend.herokuapp.com/projects`, formFields)
       .then((data) => {
-        if ((data.status = "success")) {
-          this.setState({ success: "User Successfully created!" });
+        if ((data.status === `success`)) {
+          this.setState({ success: `User Successfully created!` });
         } else {
-          this.setState({ error: "Error creating User" });
+          this.setState({ error: `Error creating User` });
         }
       })
       .catch((error) => console.log(error));
   }
 
   render() {
-    const { success, error } = this.state;
+    const success = this.state.success;
+    const error = this.state.error;
     return (
       <Card.Body>
         {success ? (
@@ -103,15 +108,15 @@ class Create extends React.Component {
                     height: 200,
                     menubar: false,
                     plugins: [
-                      "advlist autolink lists link image",
-                      "charmap print preview anchor help",
-                      "searchreplace visualblocks code",
-                      "insertdatetime media table paste wordcount"
+                      `advlist autolink lists link image`,
+                      `charmap print preview anchor help`,
+                      `searchreplace visualblocks code`,
+                      `insertdatetime media table paste wordcount`
                     ],
                     toolbar:
-                      "undo redo | formatselect | bold italic | \
+                      `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
-                    bullist numlist outdent indent | help"
+                    bullist numlist outdent indent | help`
                   }}
                   onChange={this.handleEditorChange}
                   name="catDescription"

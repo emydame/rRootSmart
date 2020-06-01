@@ -1,4 +1,7 @@
 /* eslint-disable no-multi-str */
+/*eslint quotes: ["error", "backtick"]*/
+/*eslint-env es6*/
+/* eslint-disable no-console */
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -14,9 +17,9 @@ class Create extends React.Component {
     super(props);
 
     this.state = {
-      description: "",
-      success: "",
-      error: ""
+      description: ``,
+      success: ``,
+      error: ``
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -31,19 +34,20 @@ class Create extends React.Component {
     const form = document.querySelector(`form[name="create-category"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
-      .post("https://eazsme-backend.herokuapp.com/projects/category", formFields)
+      .post(`https://eazsme-backend.herokuapp.com/projects/category`, formFields)
       .then((data) => {
-        if ((data.status = "success")) {
-          this.setState({ success: "User Successfully created!" });
+        if ((data.status = `success`)) {
+          this.setState({ success: `User Successfully created!` });
         } else {
-          this.setState({ error: "Error creating User" });
+          this.setState({ error: `Error creating User` });
         }
       })
       .catch((error) => console.log(error));
   }
 
   render() {
-    const { success, error } = this.state;
+    const success = this.state.success;
+    const error = this.state.error;
     return (
       <Card.Body>
         {success ? (
@@ -73,15 +77,15 @@ class Create extends React.Component {
                     height: 200,
                     menubar: false,
                     plugins: [
-                      "advlist autolink lists link image",
-                      "charmap print preview anchor help",
-                      "searchreplace visualblocks code",
-                      "insertdatetime media table paste wordcount"
+                      `advlist autolink lists link image`,
+                      `charmap print preview anchor help`,
+                      `searchreplace visualblocks code`,
+                      `insertdatetime media table paste wordcount`
                     ],
                     toolbar:
-                      "undo redo | formatselect | bold italic | \
+                      `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
-                    bullist numlist outdent indent | help"
+                    bullist numlist outdent indent | help`
                   }}
                   onChange={this.handleEditorChange}
                   name="catDescription"
