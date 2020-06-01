@@ -6,7 +6,7 @@ import { Switch, Link, Router, Route } from "react-router-dom";
 // import Project from "./Project";
 import Proposal from "./Proposal";
 import {
-  CaretDownFilled,
+  RiseOutlined,
   UsergroupAddOutlined,
   SettingOutlined,
   UserOutlined,
@@ -19,6 +19,7 @@ import {
 import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
+import ProfileDetails from "../sme/user/ProfileDetails";
 
 
 const menu = (
@@ -74,6 +75,9 @@ class SmeDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "64px" }}>
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+          <Menu.Item key="1" icon={<RiseOutlined />}>
+              <Link to="/sme/ProfileDetails">Profile Details</Link>
+            </Menu.Item>
             <Menu.Item key="1" icon={<ZoomOutOutlined />}>
               <Link to="/sme/projects">View Projects</Link>
             </Menu.Item>
@@ -117,6 +121,7 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/create-user" component={Create} />
                 <Route path="/sme/update-user" component={Update} />
                 <Route path="/sme/deactivate-user" component={Remove} />
+                <Route path="/sme/ProfileDetails" component={ProfileDetails} />
               </Switch>
             </Router>
           </Content>

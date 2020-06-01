@@ -24,6 +24,7 @@ import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOut
 import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
+import ProfileDetails from "./user/ProfileDetails";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -59,8 +60,9 @@ class InvestorDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<RiseOutlined />}><Link to="/investor/ProfileDetails">Profile Details</Link>
-          </Menu.Item>
+            <Menu.Item key="1" icon={<RiseOutlined />}>
+              <Link to="/investor/ProfileDetails">Profile Details</Link>
+            </Menu.Item>
             <Menu.Item key="2" icon={<PieChartOutlined />}>
               <Link to="/investor/SmeProposals">All Proposals</Link>
             </Menu.Item>
@@ -118,6 +120,7 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
                   <Route path="/investor/deactivate-user" component={Remove} />
+                  <Route path="/investor/ProfileDetails" component={ProfileDetails} />
                 </Switch>
               </Router>
             </div>

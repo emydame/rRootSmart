@@ -192,7 +192,6 @@ ul.pagination {
 }
 
 .content-title,
-p,
 h5  {
   text-align: center;
   color: #3d6cb9;
@@ -200,4 +199,9 @@ h5  {
 .img-holder {
   border: 1px solid #fff;
   background: #fff;
+}
+
+.profile-title-text {
+  color: #3d6cb9;
+  margin-bottom: 10px;
 }

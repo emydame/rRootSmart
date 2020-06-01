@@ -5,7 +5,7 @@ import React from "react";
 import { Switch, Router, Route, Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb, Badge, Dropdown, Avatar } from "antd";
 import {
-  CaretDownFilled,
+  RiseOutlined,
   UsergroupAddOutlined,
   SettingOutlined,
   UserOutlined,
@@ -15,6 +15,7 @@ import {
   FileDoneOutlined,
   BellFilled
 } from "@ant-design/icons";
+import ProfileDetails from "./user/ProfileDetails"
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
 import Col from "react-bootstrap/Col";
@@ -81,6 +82,9 @@ class AdminDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+          <Menu.Item key="1" icon={<RiseOutlined />}>
+              <Link to="/admin/ProfileDetails">Profile Details</Link>
+            </Menu.Item>
             <Menu.Item key="1" icon={<AppstoreOutlined />}>
               <Link to="/admin/smeandprojects"> SMEs/Projects</Link>
             </Menu.Item>
@@ -133,6 +137,7 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/create-user" component={Create} />
                 <Route path="/admin/update-user" component={Update} />
                 <Route path="/admin/deactivate-user" component={Remove} />
+                <Route path="/admin/ProfileDetails" component={ProfileDetails} />
               </Switch>
             </Router>
           </Content>
