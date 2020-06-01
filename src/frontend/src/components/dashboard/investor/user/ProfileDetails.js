@@ -10,6 +10,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import EditProfile from "./EditProfile"
 
 
 function getBase64(img, callback) {
@@ -64,20 +65,10 @@ class ProfileDetails extends React.Component {
       <>
       <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
           <Row>
-            <Col md="3" className="orgAvatar">
-              <div class="">
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                beforeUpload={beforeUpload}
-                onChange={this.handleChange}
-              >
-                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: "100%" }} /> : uploadButton}
-              </Upload>
-              </div>
+            <Col md="3" className="">
+            <div class="text-center">
+            <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_100/v1591025399/images_j7kyno.png" class="rounded" alt="..." fluid />
+          </div>
             </Col>
             <Col>
             <div>
@@ -113,7 +104,7 @@ class ProfileDetails extends React.Component {
                     <Col md="12">
                       <div class="text-right">
                         <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
-                            Edit Profile
+                            <Link to="/investor/EditProfile"> Edit Profile</Link>
                         </Button>
                       </div>
                     </Col>
@@ -147,33 +138,33 @@ class ProfileDetails extends React.Component {
                   </Col>
                   
 
-                  <strong class="profile-title-text">Manage Password</strong>
+                  <strong class="profile-title-text full">Manage Password</strong>
                   <Row>
                         <div class="form-group col-md-4">
                           <label for="inputEmail4">Old Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" value="" />
+                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
                         </div>
                         <div class="form-group col-md-4">
                           <label for="inputEmail4">New Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" value="" />
+                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
                         </div>
                         <div class="form-group col-md-4">
                           <label for="inputEmail4">Confirm Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" value="" />
+                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
                         </div>
                       
-                        <div class="form-group col-md-6">
+                        {/* <div class="form-group col-md-6">
                           <Form.Check
                             type="checkbox"
                             label="Confirm Change?"
                             className="font-weight-bold terms-text"
                             name="termsOfCondition"/><br></br>
-                        </div>
-                        <div class="form-group col-md-6 text-center">
+                        </div> */}
+                        {/* <div class="form-group col-md-6 text-center">
                         <Button variant="success" type="submit" className="btn-block" onClick={this.upadtePassword}>
                           Update
                         </Button>
-                        </div>
+                        </div> */}
                     </Row>
                   </div>
 
