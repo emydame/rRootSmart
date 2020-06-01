@@ -1,6 +1,8 @@
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
+/*eslint quotes: ["error", "double"]*/
+/*eslint-env es6*/
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
@@ -22,7 +24,7 @@ class ViewDetails extends React.Component {
   }
 
   async fetchData() {
-    const { projectId } = this.props.match;
+    const projectId = this.props.match.projectId;
     await axios
       .get("https://eazsme-backend.herokuapp.com/projects/" + projectId)
       .then((data) => {

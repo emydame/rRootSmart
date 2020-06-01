@@ -1,6 +1,8 @@
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
+/*eslint quotes: ["error", "double"]*/
+/*eslint-env es6*/
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
