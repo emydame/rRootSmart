@@ -13,7 +13,8 @@ exports.create = (req, res) => {
   let userPrivilege = "Level 1";
   //Check empty request
   if (!req.body) {
-    return res.status(204).send({
+    return res.status(204).json({
+      status: "error",
       message: "User details cannot be empty"
     });
   } else {
@@ -21,13 +22,15 @@ exports.create = (req, res) => {
     User.findOne({ where: { email: req.body.email } }).then((data) => {
       if (data) {
         // return result if data already exist
-        return res.status(401).send({
+        return res.status(401).json({
+          status: "error",
           message: "User already exist"
         });
       } else {
         Organization.findOne({ where: { email: req.body.companyEmail } }).then((data) => {
           if (data) {
-            return res.status(401).send({
+            return res.status(401).json({
+              status: "error",
               message: "Organisation already registered" 
             });
           } else {
@@ -35,7 +38,8 @@ exports.create = (req, res) => {
             Userpass.findOne({ where: { email: req.body.email } }).then((data) => {
               if (data) {
                 // return data if user login creadentials exist
-                return res.status(401).send({
+                return res.status(401).json({
+                  status: "error",
                   message: "User already exist"
                 });
               } else {
@@ -98,7 +102,8 @@ exports.create = (req, res) => {
                           bcrypt.genSalt(10, (err, salt) => {
                             bcrypt.hash(pass.password, salt, (err, hash) => {
                               if (err) {
-                                return res.status(400).send({
+                                return res.status(400).json({
+                                  status: "error",
                                   message: err.message
                                 });
                               } else {
@@ -109,12 +114,16 @@ exports.create = (req, res) => {
                                   .then((data) => {
                                     if (data) {
                                       Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
-                                        return res.send(data);
+                                        return res.json({
+                                          status: "success",
+                                          data
+                                        });
                                       });
                                     }
                                   })
                                   .catch((err) => {
-                                    return res.status(500).send({
+                                    return res.status(500).json({
+                                      status: "error",
                                       message: err.message
                                     });
                                   });
@@ -122,7 +131,8 @@ exports.create = (req, res) => {
                             });
                           });
                         } else {
-                          return res.status(400).send({
+                          return res.status(400).json({
+                            status: "error",
                             message: "Not saved"
                           });
                         }
@@ -130,7 +140,8 @@ exports.create = (req, res) => {
                     }
                   })
                   .catch((err) => {
-                    return res.status(500).send({
+                    return res.status(500).json({
+                      status: "error",
                       message: err.message || "Something wrong while creating the user profile."
                     });
                   });
@@ -146,10 +157,14 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   User.findAll()
     .then((users) => {
-      return res.status(200).send(users);
+      return res.status(200).json({
+        status: "success",
+        data: users
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
@@ -159,15 +174,20 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   User.findOne({ where: { userId: req.body.userId } })
     .then((user) => {
-      res.status(200).send(user);
+      res.status(200).json({
+        status: "success",
+        data: user
+      });
     })
     .catch((err) => {
       if (err.kind === "ObjectId") {
-        return res.status(404).send({
+        return res.status(404).json({
+          status: "error",
           message: "User Profile not found "
         });
       }
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });

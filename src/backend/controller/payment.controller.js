@@ -19,13 +19,15 @@ exports.create = (req, res) => {
     paymentDate: req.body.paymentDate
   };
   if (!req.body) {
-    return res.status(400).send({
-      messege: "Please all input fields required"
+    return res.status(400).json({
+      status: "error",
+      message: "Please all input fields required"
     });
   } else {
     Payment.findOne({ where: { paymentId: req.body.paymentId } }).then((data) => {
       if (data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: "Record already exist"
         });
       } else {
@@ -34,10 +36,14 @@ exports.create = (req, res) => {
         payment
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message || "Not saved"
             });
           });
@@ -50,10 +56,13 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Payment.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "error",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
         message: err.message
       });
     });
@@ -64,15 +73,20 @@ exports.findOne = (req, res) => {
   Payment.findOne({ where: { paymentId: req.body.paymentId } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Record not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
@@ -83,15 +97,20 @@ exports.findAll = (req, res) => {
   Payment.findAll({ where: { organizationId: req.body.organizationId } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Record not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
@@ -102,15 +121,20 @@ exports.findAll = (req, res) => {
   Payment.findAll({ where: { status: req.body.status } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Record not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });

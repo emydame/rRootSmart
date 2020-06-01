@@ -12,14 +12,16 @@ exports.create = (req, res) => {
     createdBy: req.body.createdBy
   };
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
+      status: "error",
       message: "Fields cannot be empty"
     });
   }
  
   FundCategory.findOne({ where: { fundCatId: req.body.fundCatId } }).then((data) => {
     if (data) {
-      return res.status(400).send({
+      return res.status(400).json({
+        status: "error",
         message: "Fund category lready exist"
       });
     } else {
@@ -28,10 +30,14 @@ exports.create = (req, res) => {
       fundCategory
         .save()
         .then((data) => {
-          return res.status(200).send(data);
+          return res.status(200).json({
+            status: "success",
+            data
+          });
         })
         .catch((err) => {
-          return res.status(500).send({
+          return res.status(500).json({
+            status: "error",
             message: err.message || "Something went wrong."
           });
         });
@@ -43,10 +49,14 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   FundCategory.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "error",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Something wrong while retrieving Fund Category."
       });
     });
@@ -57,15 +67,20 @@ exports.findOne = (req, res) => {
   FundCategory.findAll({ where: { categoryName: req.body.categoryName } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Category not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Some error occurred while retrieving Fund categorie."
       });
     });
