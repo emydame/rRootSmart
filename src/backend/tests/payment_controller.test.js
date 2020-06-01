@@ -113,7 +113,7 @@ describe("GET /payments/status with findAll()", () => {
 });
 
 
-describe("GET /payments/sme with findAll()", () => {
+describe("GET /payments/org with findAll()", () => {
   beforeEach(async () => {
     if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
@@ -129,7 +129,7 @@ describe("GET /payments/sme with findAll()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch single payment info from the server", async () => {
-    const res = await apiServer.get("/payment/sme").send({ userId: "1" });
+    const res = await apiServer.get("/payment/org").send({ userId: "1" });
     expect(res.statusCode).toEqual(200);
   });
   it("should not fetch payment data for an invalid id for the SME ", async () => {

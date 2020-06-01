@@ -37,7 +37,7 @@ describe("create()", () => {
   });
 });
 
-describe("GET /proposals with findAll()", () => {
+describe("GET /proposals/all with findAll()", () => {
   beforeEach(async () => {
     if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
@@ -53,7 +53,7 @@ describe("GET /proposals with findAll()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch project proposal from the server", async () => {
-    const res = await apiServer.get("/proposals");
+    const res = await apiServer.get("/proposals/all");
     expect(res.statusCode).toEqual(200);
   });
 });
