@@ -15,7 +15,7 @@ import {
   FileDoneOutlined,
   BellFilled
 } from "@ant-design/icons";
-import ProfileDetails from "./user/ProfileDetails"
+import ProfileDetails from "./user/ProfileDetails";
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
 import Col from "react-bootstrap/Col";

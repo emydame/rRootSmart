@@ -60,13 +60,13 @@ class Create extends React.Component {
         )}
         <div className="content-text"><h5>Create a User and Assign Role</h5></div>
         <Row>
-          <Col md="3" className="img-holder">
+          {/* <Col md="3" className="img-holder">
           <div class="text-center">
             <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_200/v1567112037/220190826_163351912_r9yfcl.jpg" class="rounded" alt="..." fluid />
           </div>
-          </Col>
+          </Col> */}
           <Col md="9">
-          <form name="create-user">
+          <form name="create-user" id="createUser">
                   <div class="form-row" controlId="userFirstName">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">First Name</label>

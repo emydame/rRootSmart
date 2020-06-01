@@ -2,15 +2,15 @@
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Upload, message, Button } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import reqwest from 'reqwest';
+import { Upload, message, Button } from "antd";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import reqwest from "reqwest";
 // import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
-import EditProfile from "./EditProfile"
+import EditProfile from "./EditProfile";
 
 
 function getBase64(img, callback) {
@@ -20,13 +20,13 @@ function getBase64(img, callback) {
 }
 
 function beforeUpload(file) {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!');
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
+    message.error("Image must smaller than 2MB!");
   }
   return isJpgOrPng && isLt2M;
 }
@@ -37,11 +37,11 @@ class ProfileDetails extends React.Component {
     };
 
     handleChange = info => {
-      if (info.file.status === 'uploading') {
+      if (info.file.status === "uploading") {
         this.setState({ loading: true });
         return;
       }
-      if (info.file.status === 'done') {
+      if (info.file.status === "done") {
         // Get this url from response in real world.
         getBase64(info.file.originFileObj, imageUrl =>
           this.setState({
