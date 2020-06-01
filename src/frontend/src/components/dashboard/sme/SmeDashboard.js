@@ -20,6 +20,7 @@ import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
 import ProfileDetails from "../sme/user/ProfileDetails";
+import EditProfile from "./user/EditProfile";
 
 
 const menu = (
@@ -96,6 +97,10 @@ class SmeDashboard extends React.Component {
                 <Link to="/sme/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
+            <Menu.Item key="4" icon={<LogoutOutlined />}>
+              {" "}
+              Log Out
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -122,6 +127,7 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/update-user" component={Update} />
                 <Route path="/sme/deactivate-user" component={Remove} />
                 <Route path="/sme/ProfileDetails" component={ProfileDetails} />
+                <Route path="/sme/EditProfile" component={EditProfile} />
               </Switch>
             </Router>
           </Content>

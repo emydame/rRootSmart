@@ -23,6 +23,7 @@ import Row from "react-bootstrap/Row";
 import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
+import EditProfile from "./user/EditProfile";
 
 
 
@@ -138,6 +139,7 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/update-user" component={Update} />
                 <Route path="/admin/deactivate-user" component={Remove} />
                 <Route path="/admin/ProfileDetails" component={ProfileDetails} />
+                <Route path="/admin/EditProfile" component={EditProfile} />
               </Switch>
             </Router>
           </Content>

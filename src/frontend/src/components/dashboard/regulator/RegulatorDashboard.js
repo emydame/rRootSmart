@@ -20,6 +20,7 @@ import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
 import ProfileDetails from "./user/ProfileDetails";
+import EditProfile from "./user/EditProfile"
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -129,6 +130,7 @@ class RegulatorDashboard extends React.Component {
                 <Route path="/regulator/update-user" component={Update} />
                 <Route path="/regulator/deactivate-user" component={Remove} />
                 <Route path="/regulator/ProfileDetails" component={ProfileDetails} />
+                <Route path="/regulator/EditProfile" component={EditProfile} />
               </Switch>
             </Router>
           </Content>

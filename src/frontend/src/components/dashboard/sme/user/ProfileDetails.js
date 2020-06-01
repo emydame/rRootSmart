@@ -104,7 +104,7 @@ class ProfileDetails extends React.Component {
                     <Col md="12">
                       <div class="text-right">
                         <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
-                            <Link to="/investor/EditProfile"> Edit Profile</Link>
+                            <Link to="/sme/EditProfile"> Edit Profile</Link>
                         </Button>
                       </div>
                     </Col>
@@ -173,7 +173,7 @@ class ProfileDetails extends React.Component {
           <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
               <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 profile-title-text">Investor Details</strong>
+                <strong class="d-inline-block mb-2 profile-title-text">SME Details</strong>
               <Col>
             <div class="form-row" controlId="companyName">
                     <div class="form-group col-md-12">

@@ -65,7 +65,7 @@ class Create extends React.Component {
             <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_200/v1567112037/220190826_163351912_r9yfcl.jpg" class="rounded" alt="..." fluid />
           </div>
           </Col> */}
-          <Col md="9">
+          <Col md="12">
           <form name="create-user" id="createUser">
                   <div class="form-row" controlId="userFirstName">
                     <div class="form-group col-md-6">

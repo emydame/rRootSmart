@@ -13,116 +13,72 @@ import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 
 
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-}
 
 class ProfileDetails extends React.Component {
-    state = {
-      loading: false,
-    };
-
-    handleChange = info => {
-      if (info.file.status === "uploading") {
-        this.setState({ loading: true });
-        return;
-      }
-      if (info.file.status === "done") {
-        // Get this url from response in real world.
-        getBase64(info.file.originFileObj, imageUrl =>
-          this.setState({
-            imageUrl,
-            loading: false,
-          }),
-        );
-      }
-    };
 
     render() {
-      const uploadButton = (
-        <div>
-          {this.state.loading ? <LoadingOutlined /> : <PlusOutlined />}
-          <div className="ant-upload-text">Upload</div>
-        </div>
-      );
-      const { imageUrl } = this.state;
-  
-    return (
-      <>
-      <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
-          <Row>
-            <Col md="3" className="">
-            <div class="text-center">
-            <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_100/v1591025399/images_j7kyno.png" class="rounded" alt="..." fluid />
-          </div>
-            </Col>
-            <Col>
-            <div>
-            </div>
-            <div className="profile-title-text"> <strong >Admin Details</strong></div>
-            <div class="form-row" controlId="userFirstName">
-                    <div class="form-group col-md-4">
-                      <label for="inputEmail4">First Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Adam " />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="inputEmail4">Last Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Oshimiole" />
-                    </div>
-                    <div class="form-group col-md-4 ">
-                      <label for="inputEmail4">Other Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Jagajaga" />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="inputEmail4">Reg. Date: </label>
-                        <input type="text" data="" id="inputFirstName" value="1/06/2020" />
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="inputEmail4">Phone No: </label>
-                        <input type="text" data="" id="inputFirstName" value="08045453553" />
-                    </div>
-                    <div class="form-group col-md-4 ">
-                      <label for="inputEmail4">Email:   </label>
-                        <input type="text" data="" id="inputFirstName" value="jadajaga@fgn.net" />
-                    </div>
-                  </div>
-                  <Row>
-                    <Col md="12">
-                      <div class="text-right">
-                        <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
-                            <Link to="/investor/EditProfile"> Edit Profile</Link>
-                        </Button>
-                      </div>
-                    </Col>
-                  </Row>
-            </Col>
-          </Row>
-        </div>
-
-        <div class="row mb-2">
-          <div class="col-md-6">
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 profile-title-text">More Info</strong>
+      return (
+          <>
+          <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
+              <Row>
+                <Col md="3" className="">
+                <div class="text-center">
+                <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_100/v1591025399/images_j7kyno.png" class="rounded" alt="..." fluid />
+              </div>
+                </Col>
                 <Col>
-                <div class="form-row" controlId="companyName">
-                        <div class="form-group col-md-12">
-                          <label for="inputAddress1">Address: </label>
-                            <input type="text" data="" id="inputAddress1" value="Allway Boulevard, Lagos Coast" />
+                <div>
+                </div>
+                <div className="profile-title-text"> <strong >Admin Details</strong></div>
+                <div class="form-row" controlId="userFirstName">
+                        <div class="form-group col-md-4">
+                          <label for="inputEmail4">First Name: </label>
+                            <input type="text" data="" id="inputFirstName" value="Adam " />
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputEmail4">Last Name: </label>
+                            <input type="text" data="" id="inputFirstName" value="Oshimiole" />
+                        </div>
+                        <div class="form-group col-md-4 ">
+                          <label for="inputEmail4">Other Name: </label>
+                            <input type="text" data="" id="inputFirstName" value="Jagajaga" />
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputEmail4">Reg. Date: </label>
+                            <input type="text" data="" id="inputFirstName" value="1/06/2020" />
+                        </div>
+                        <div class="form-group col-md-4">
+                          <label for="inputEmail4">Phone No: </label>
+                            <input type="text" data="" id="inputFirstName" value="08045453553" />
+                        </div>
+                        <div class="form-group col-md-4 ">
+                          <label for="inputEmail4">Email:   </label>
+                            <input type="text" data="" id="inputFirstName" value="jadajaga@fgn.net" />
+                        </div>
+                      </div>
+                      <Row>
+                        <Col md="12">
+                          <div class="text-right">
+                            <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
+                                <Link to="/regulator/EditProfile"> Edit Profile</Link>
+                            </Button>
+                          </div>
+                        </Col>
+                      </Row>
+                </Col>
+              </Row>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 profile-title-text">More Info</strong>
+                    <Col>
+                    <div class="form-row" controlId="companyName">
+                            <div class="form-group col-md-12">
+                              <label for="inputAddress1">Address: </label>
+                                <input type="text" data="" id="inputAddress1" value="Allway Boulevard, Lagos Coast" />
                         </div>
                         
                         <div class="form-group col-md-6">
@@ -173,7 +129,7 @@ class ProfileDetails extends React.Component {
           <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
               <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 profile-title-text">Investor Details</strong>
+                <strong class="d-inline-block mb-2 profile-title-text">Regulator Details</strong>
               <Col>
             <div class="form-row" controlId="companyName">
                     <div class="form-group col-md-12">
