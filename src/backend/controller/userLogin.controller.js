@@ -27,7 +27,7 @@ exports.findOne = (req, res) => {
                 organizationId: data.organizationId
               }
             }).then((result) => {
-              return res.send(result);   
+              return res.send(result);
             });
           }
         } else {

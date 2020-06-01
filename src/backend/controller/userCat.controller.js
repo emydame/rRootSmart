@@ -1,7 +1,7 @@
 const db = require("../config/db.config");
 const UserCategory = db.userCategory;
 
-// Post a User category
+// Post User category
 exports.create = (req, res) => {
   let today = new Date();
   let requests = {

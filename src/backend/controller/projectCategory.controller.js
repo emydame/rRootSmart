@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
         message: err.message || "Something wrong while retrieving Project category."
       });
     });
-};
+};   
 
 // Get single Project category using  parameter
 exports.findOne = (req, res) => {

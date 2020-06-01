@@ -5,5 +5,5 @@ module.exports = (app) => {
 
   app.get("/disbursed/all", disbursedFund.findAll);
 
-  app.get("/disbursed", disbursedFund.findOne);
+  app.get("/disbursed/:id", disbursedFund.findOne);
 };

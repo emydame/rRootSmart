@@ -60,7 +60,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Get funds by status
+// Get fund disbursement by id
 exports.findOne = (req, res) => {
   Disbursement.findAll({ where: { disbursementId: req.body.disbursementId } })
     .then((data) => {

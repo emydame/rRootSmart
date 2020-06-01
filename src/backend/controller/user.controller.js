@@ -18,21 +18,21 @@ exports.create = (req, res) => {
     });
   } else {
     //Query user table to check if details already exist
-    User.findOne({ where: { email: req.body.email1 } }).then((data) => {
+    User.findOne({ where: { email: req.body.email } }).then((data) => {
       if (data) {
         // return result if data already exist
         return res.status(401).send({
           message: "User already exist"
         });
       } else {
-        Organization.findOne({ where: { email: req.body.email2 } }).then((data) => {
+        Organization.findOne({ where: { email: req.body.companyEmail } }).then((data) => {
           if (data) {
             return res.status(401).send({
-              message: "Organisation already registered"
+              message: "Organisation already registered" 
             });
           } else {
             //Query userlogin table to check if user login credentials already exist
-            Userpass.findOne({ where: { userId: req.body.userId } }).then((data) => {
+            Userpass.findOne({ where: { email: req.body.email } }).then((data) => {
               if (data) {
                 // return data if user login creadentials exist
                 return res.status(401).send({
@@ -78,7 +78,7 @@ exports.create = (req, res) => {
                         companyName: req.body.companyName,
                         category: req.body.userType,
                         RCNumber: req.body.rcNumber,
-                        email: req.body.companyEmail,
+                        email: req.body.companyEmail, 
                         BVN: req.body.BVN,
                         address: req.body.companyAddress,
                         dateIncorporated: req.body.dateIncorporated
@@ -87,11 +87,11 @@ exports.create = (req, res) => {
                       organization.save().then((data) => {
                         // save login credentials if user details is succesfully saved
                         if (data) {
-                          const pass = new Userpass({
+                          const pass = new Userpass({ 
                             loginId: loginID,
                             userId: userID,
                             organizationId: orgId,
-                            email: req.body.email1,
+                            email: req.body.email,
                             password: req.body.password  
                           });
                           // Encode password
