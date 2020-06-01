@@ -2,15 +2,14 @@
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Upload, message, Button } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { Upload, message, Button } from 'antd';
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import reqwest from "reqwest";
 // import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
-import EditProfile from "./EditProfile";
 
 
 function getBase64(img, callback) {
@@ -22,7 +21,7 @@ function getBase64(img, callback) {
 function beforeUpload(file) {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
+    message.error("You can only upload JPG/PNG file!");
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
@@ -65,10 +64,20 @@ class ProfileDetails extends React.Component {
       <>
       <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
           <Row>
-            <Col md="3" className="">
-            <div class="text-center">
-            <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_100/v1591025399/images_j7kyno.png" class="rounded" alt="..." fluid />
-          </div>
+            <Col md="3" className="orgAvatar">
+              <div class="">
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className="avatar-uploader"
+                showUploadList={false}
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                beforeUpload={beforeUpload}
+                onChange={this.handleChange}
+              >
+                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: "100%" }} /> : uploadButton}
+              </Upload>
+              </div>
             </Col>
             <Col>
             <div>
@@ -77,38 +86,29 @@ class ProfileDetails extends React.Component {
             <div class="form-row" controlId="userFirstName">
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">First Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Adam " />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="Adam " />
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Last Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Oshimiole" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="Oshimiole" />
                     </div>
                     <div class="form-group col-md-4 ">
                       <label for="inputEmail4">Other Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Jagajaga" />
+                        <input type="text" data="" class="form-data" id="inputFirstName" class="form-control" placeholder="Jagajaga" />
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Reg. Date: </label>
-                        <input type="text" data="" id="inputFirstName" value="1/06/2020" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="1/06/2020" />
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Phone No: </label>
-                        <input type="text" data="" id="inputFirstName" value="08045453553" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="08045453553" />
                     </div>
                     <div class="form-group col-md-4 ">
                       <label for="inputEmail4">Email:   </label>
-                        <input type="text" data="" id="inputFirstName" value="jadajaga@fgn.net" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="jadajaga@fgn.net" />
                     </div>
                   </div>
-                  <Row>
-                    <Col md="12">
-                      <div class="text-right">
-                        <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
-                            <Link to="/investor/EditProfile"> Edit Profile</Link>
-                        </Button>
-                      </div>
-                    </Col>
-                  </Row>
             </Col>
           </Row>
         </div>
@@ -122,17 +122,17 @@ class ProfileDetails extends React.Component {
                 <div class="form-row" controlId="companyName">
                         <div class="form-group col-md-12">
                           <label for="inputAddress1">Address: </label>
-                            <input type="text" data="" id="inputAddress1" value="Allway Boulevard, Lagos Coast" />
+                            <input type="text" data="" id="inputAddress1" class="form-control" placeholder="Allway Boulevard, Lagos Coast" />
                         </div>
                         
                         <div class="form-group col-md-6">
                           <label for="inputState1">State: </label>
-                            <input type="text" data="" id="inputState1" value="Lagos State" />
+                            <input type="text" data="" id="inputState1" class="form-control" placeholder="Lagos State" />
                         </div>
                         
                         <div class="form-group col-md-6">
                           <label for="inputLga">L.G.A: </label>
-                            <input type="text" data="" id="inputLga" value="dangotegroup.org" />
+                            <input type="text" data=""class="form-control" id="inputLga" placeholder="dangotegroup.org" />
                         </div>
                     </div>
                   </Col>
@@ -140,31 +140,31 @@ class ProfileDetails extends React.Component {
 
                   <strong class="profile-title-text full">Manage Password</strong>
                   <Row>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                           <label for="inputEmail4">Old Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
+                            <input type="text" class="form-control" data="" id="inputCompanyPhone" value="" />
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                           <label for="inputEmail4">New Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
+                            <input type="text" class="form-control" data="" id="inputCompanyPhone" value="" />
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                           <label for="inputEmail4">Confirm Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
+                            <input type="text" class="form-control" data="" id="inputCompanyPhone" value="" />
                         </div>
                       
-                        {/* <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 full">
                           <Form.Check
                             type="checkbox"
                             label="Confirm Change?"
                             className="font-weight-bold terms-text"
-                            name="termsOfCondition"/><br></br>
-                        </div> */}
-                        {/* <div class="form-group col-md-6 text-center">
+                            name="termsOfCondition"/>
+                        </div>
+                        <div class="form-group col-md-12 text-center full">
                         <Button variant="success" type="submit" className="btn-block" onClick={this.upadtePassword}>
                           Update
                         </Button>
-                        </div> */}
+                        </div>
                     </Row>
                   </div>
 
@@ -173,42 +173,44 @@ class ProfileDetails extends React.Component {
           <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
               <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 profile-title-text">Investor Details</strong>
+                <strong class="d-inline-block mb-2 profile-title-text">Regulator Details</strong>
               <Col>
             <div class="form-row" controlId="companyName">
                     <div class="form-group col-md-12">
                       <label for="inputEmail4">Company Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Dangote Group of Companies" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="Dangote Group of Companies" />
                     </div>
                     
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Incorporation Date: </label>
-                        <input type="text" data="" id="inputFirstName" value="1/06/1930" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="1/06/1930" />
                     </div>
                     
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Email Address:   </label>
-                        <input type="text" data="" id="inputCompanyEmail" value="dangotegroup.org" />
+                        <input type="text" data="" id="inputCompanyEmail" class="form-control" placeholder="dangotegroup.org" />
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Company Phone: </label>
-                        <input type="text" data="" id="inputCompanyPhone" value="+1 233 35355" />
+                        <input type="text" data="" id="inputCompanyPhone" class="form-control" placeholder="+1 233 35355" />
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">RCC No: </label>
-                        <input type="text" data="" id="inputFirstName" value="RCC2342543" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="RCC2342543" />
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Company ID.: </label>
-                        <input type="text" data="" id="inputFirstName" value="Ad234535ED4" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="Ad234535ED4" />
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Company BVN: </label>
-                        <input type="text" data="" id="inputFirstName" value="12345678921" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="12345678921" />
                     </div>
                     <div class="form-group col-md-12">
                       <label for="inputEmail4">Company Address: </label>
-                        <input type="text" data="" id="inputFirstName" value="456 EazyWay, Lagos" />
+                        <input type="text" data="" id="inputFirstName" class="form-control" placeholder="456 EazyWay, Lagos" />
+                        <br></br>
+                        <br></br>
                         <br></br>
                         <br></br>
                     </div>

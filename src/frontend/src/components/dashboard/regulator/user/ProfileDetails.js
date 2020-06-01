@@ -10,6 +10,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import EditProfile from "./EditProfile";
 
 
 function getBase64(img, callback) {
@@ -21,7 +22,7 @@ function getBase64(img, callback) {
 function beforeUpload(file) {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
   if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
+    message.error('You can only upload JPG/PNG file!');
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
@@ -36,11 +37,11 @@ class ProfileDetails extends React.Component {
     };
 
     handleChange = info => {
-      if (info.file.status === 'uploading') {
+      if (info.file.status === "uploading") {
         this.setState({ loading: true });
         return;
       }
-      if (info.file.status === 'done') {
+      if (info.file.status === "done") {
         // Get this url from response in real world.
         getBase64(info.file.originFileObj, imageUrl =>
           this.setState({
@@ -64,20 +65,10 @@ class ProfileDetails extends React.Component {
       <>
       <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
           <Row>
-            <Col md="3" className="orgAvatar">
-              <div class="">
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                beforeUpload={beforeUpload}
-                onChange={this.handleChange}
-              >
-                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: "100%" }} /> : uploadButton}
-              </Upload>
-              </div>
+            <Col md="3" className="">
+            <div class="text-center">
+            <img src="https://res.cloudinary.com/lordefid/image/upload/c_scale,h_100/v1591025399/images_j7kyno.png" class="rounded" alt="..." fluid />
+          </div>
             </Col>
             <Col>
             <div>
@@ -113,7 +104,7 @@ class ProfileDetails extends React.Component {
                     <Col md="12">
                       <div class="text-right">
                         <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
-                            Edit Profile
+                            <Link to="/investor/EditProfile"> Edit Profile</Link>
                         </Button>
                       </div>
                     </Col>
@@ -147,33 +138,33 @@ class ProfileDetails extends React.Component {
                   </Col>
                   
 
-                  <strong class="profile-title-text">Manage Password</strong>
+                  <strong class="profile-title-text full">Manage Password</strong>
                   <Row>
                         <div class="form-group col-md-4">
                           <label for="inputEmail4">Old Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" value="" />
+                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
                         </div>
                         <div class="form-group col-md-4">
                           <label for="inputEmail4">New Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" value="" />
+                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
                         </div>
                         <div class="form-group col-md-4">
                           <label for="inputEmail4">Confirm Password: </label>
-                            <input type="text" class="" data="" id="inputCompanyPhone" value="" />
+                            <input type="text" class="" data="" id="inputCompanyPhone" class="form-control" value="" disabled />
                         </div>
                       
-                        <div class="form-group col-md-6">
+                        {/* <div class="form-group col-md-6">
                           <Form.Check
                             type="checkbox"
                             label="Confirm Change?"
                             className="font-weight-bold terms-text"
                             name="termsOfCondition"/><br></br>
-                        </div>
-                        <div class="form-group col-md-6 text-center">
+                        </div> */}
+                        {/* <div class="form-group col-md-6 text-center">
                         <Button variant="success" type="submit" className="btn-block" onClick={this.upadtePassword}>
                           Update
                         </Button>
-                        </div>
+                        </div> */}
                     </Row>
                   </div>
 
@@ -182,7 +173,7 @@ class ProfileDetails extends React.Component {
           <div class="col-md-6">
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
               <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 profile-title-text">Regulator Details</strong>
+                <strong class="d-inline-block mb-2 profile-title-text">Investor Details</strong>
               <Col>
             <div class="form-row" controlId="companyName">
                     <div class="form-group col-md-12">
