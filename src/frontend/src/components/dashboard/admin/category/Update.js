@@ -52,7 +52,7 @@ class Update extends React.Component {
 
   async submitUpdate(e) {
     e.preventDefault();
-    const form = document.querySelector(`form[name="update"]`);
+    const form = document.querySelector("form[name=\"update\"]");
     const formFields = serialize(form, { hash: true });
     const { catID } = this.state;
     await axios
