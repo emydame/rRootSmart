@@ -53,7 +53,7 @@ exports.findAll = (req, res) => {
       });
     });
 };
-
+ 
 // Get single Project using  parameter
 exports.findOne = (req, res) => {
   Project.findOne({ where: { projectId: req.body.projectId } })
