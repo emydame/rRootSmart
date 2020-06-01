@@ -15,7 +15,7 @@ import EditProfile from "./EditProfile";
 
 function getBase64(img, callback) {
   const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
+  reader.addEventListener("load", () => callback(reader.result));
   reader.readAsDataURL(img);
 }
 
@@ -36,14 +36,14 @@ class ProfileDetails extends React.Component {
       loading: false,
     };
 
-    handleChange = info => {
+    handleChange = (info) => {
       if (info.file.status === "uploading") {
         this.setState({ loading: true });
         return;
       }
       if (info.file.status === "done") {
         // Get this url from response in real world.
-        getBase64(info.file.originFileObj, imageUrl =>
+        getBase64(info.file.originFileObj, (imageUrl) =>
           this.setState({
             imageUrl,
             loading: false,

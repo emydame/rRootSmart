@@ -191,6 +191,11 @@ ul.pagination {
   color: #fff;
 }
 
+.full {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 .content-title,
 h5  {
   text-align: center;
@@ -204,9 +209,4 @@ h5  {
 .profile-title-text {
   color: #3d6cb9;
   margin-bottom: 10px;
-}
-
-.full {
-  margin-top: 25px;
-  margin-bottom: 25px;
 }
