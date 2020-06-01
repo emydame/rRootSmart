@@ -16,13 +16,15 @@ exports.create = (req, res) => {
     dateInitiated: req.body.dateInitiated
   };
   if (!req.body) {
-    return res.status(400).send({
-      messege: "Please fill all funds input fields"
+    return res.status(400).json({
+      status: "error",
+      message: "Please fill all funds input fields"
     });
   } else {
     Fund.findOne({ where: { fundId: req.body.fundId } }).then((result) => {
       if (result) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: "Fund already exist with this Id " + req.body.fundIdId
         });
       } else {
@@ -31,10 +33,14 @@ exports.create = (req, res) => {
         fund
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message || "Not saved"
             });
           });
@@ -47,10 +53,14 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Fund.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "success",
+        data
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Something wrong while retrieving Funds."
       });
     });
@@ -61,15 +71,20 @@ exports.findOne = (req, res) => {
   Fund.findAll({ where: { organizationId: req.body.organizationId } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Fund not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Some error occurred while retrieving Funds."
       });
     });
@@ -80,15 +95,20 @@ exports.findOne = (req, res) => {
   Fund.findAll({ where: { status: req.body.status } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Fund not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Some error occurred while retrieving Funds."
       });
     });
