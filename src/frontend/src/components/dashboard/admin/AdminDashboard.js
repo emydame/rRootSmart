@@ -45,11 +45,13 @@ const menu = (
       </a>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
+
       <a target="_blank" rel="noopener noreferrer" href="#">
         Settings
       </a>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
+    { " " }
       <a target="_blank" rel="noopener noreferrer" href="#">
         Logout
       </a>
@@ -87,10 +89,6 @@ class AdminDashboard extends React.Component {
             <Menu.Item key="2" icon={<DollarCircleOutlined />}>
               <Link to="/admin/investorsandfunding">Investors/Funding</Link>
             </Menu.Item>
-            <Menu.Item key="3" icon={<LogoutOutlined />}>
-              {" "}
-              Log Out
-            </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
               <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/admin/create-user">Create</Link>
@@ -102,6 +100,10 @@ class AdminDashboard extends React.Component {
                 <Link to="/admin/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
+            <Menu.Item key="3" icon={<LogoutOutlined />}>
+              {" "}
+              Log Out
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
