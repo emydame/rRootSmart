@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const RolePrevilege = sequelize.define("roleprevilege", {
-    rolePrevilegeId: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,

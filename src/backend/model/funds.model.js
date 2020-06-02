@@ -2,30 +2,34 @@ module.exports = (sequelize, DataTypes) => {
   const Fund = sequelize.define(
     "funds",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+      },
       fundId: {
         type: DataTypes.STRING,
-        required: true,
-        allowNull: false,
-        primaryKey: true,
+        allowNull: false
       },
       organizationId: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       fundCatId: {
-        type: DataTypes.STRING,  
+        type: DataTypes.STRING
       },
       amount: {
-        type: DataTypes.STRING,    
+        type: DataTypes.STRING
       },
       status: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       dateInitiated: {
-        type: DataTypes.STRING,
-      },
+        type: DataTypes.STRING
+      }
     },
     {
-      timestamps: false,
+      timestamps: false
     }
   );
   return Fund;

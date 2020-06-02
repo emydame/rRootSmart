@@ -1,32 +1,36 @@
 module.exports = (sequelize, DataTypes) => {
   const Milestone = sequelize.define("milestone", {
-    milestoneId: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
+    },
+    milestoneId: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     applicationId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     dateStart: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATE
     },
     dateEnd: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATE
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     confirmedBy: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING
     },
     dateConfirmed: {
-      type: DataTypes.DATE,
-    },
+      type: DataTypes.DATE
+    }
   });
   return Milestone;
 };

@@ -143,7 +143,7 @@ exports.create = (req, res) => {
                                       // });
 
                                       Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
-                                        return res.send(data);  
+                                        return res.send(data);
                                       });
                                     }
                                   })

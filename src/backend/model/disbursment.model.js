@@ -2,10 +2,16 @@ module.exports = (sequelize, DataTypes) => {
   const Disbursement = sequelize.define(
     "disbursements",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement : true,
+        primaryKey: true
+      },
       disbursementId: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true
+        
       },
       organization: {
         type: DataTypes.STRING

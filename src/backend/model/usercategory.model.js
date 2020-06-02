@@ -2,8 +2,9 @@ module.exports = (sequelize, DataTypes) => {
   const UserCategory = sequelize.define(
     "usercategories",
     {
-      userCatId: {
-        type: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
@@ -21,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     {
-      timestamps: false   
+      timestamps: false
     }
   );
   return UserCategory;

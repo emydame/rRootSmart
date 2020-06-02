@@ -2,21 +2,26 @@ module.exports = (sequelize, DataTypes) => {
   const UserOrgnization = sequelize.define(
     "organizations",
     {
-      organizationId: {
-        type: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
+      organizationId: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       companyName: {
         type: DataTypes.STRING
-      },  
+      },
       category: {
         type: DataTypes.STRING
       },
       RCNumber: {
-        type: DataTypes.STRING  
+        type: DataTypes.STRING
       },
-      email: { 
+      email: {
         type: DataTypes.STRING
       },
       BVN: {
