@@ -74,6 +74,7 @@ class Nav extends React.Component {
     await axios
       .post("http://localhost:4000/register", formFields)
       .then((data) => {
+        console.log(data);
         if (data.status === "success") {
           this.setState({ success: "User successfully signed up!" });
         } else {
