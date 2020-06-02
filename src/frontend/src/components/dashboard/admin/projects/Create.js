@@ -91,7 +91,7 @@ class Create extends React.Component {
               {/** Make a request for all the project category and populate select  store value in redux state*/}
               <Form.Group controlId="projectCatId">
                 <Form.Label>Category Type:</Form.Label>
-                <Form.Control as="select" ref={this.categorySelect}></Form.Control>
+                <Form.Control as="select" ref={this.categorySelect} name="categoryCatId"></Form.Control>
               </Form.Group>
 
               <Form.Group controlId="projectName">
