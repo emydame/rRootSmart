@@ -1,23 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
   const Repayment = sequelize.define("repayment", {
-    repaymentId: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
+    },
+    repaymentId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     applicationId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     repaymentDAte: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATE
     },
     status: {
-      type: DataTypes.STRING,
-    },
+      type: DataTypes.STRING
+    }
   });
   return Repayment;
 };

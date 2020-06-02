@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const ManageSession = sequelize.define("usersessions", {
-    sessionId: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     userIP: {
       type: DataTypes.STRING,

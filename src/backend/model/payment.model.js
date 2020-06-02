@@ -2,11 +2,15 @@ module.exports = (sequelize, DataTypes) => {
   const Payment = sequelize.define(
     "payments",
     {
-      paymentId: {
+      id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
+      },
+      paymentId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
       organizationId: {
         type: DataTypes.STRING

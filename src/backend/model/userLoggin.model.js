@@ -2,29 +2,34 @@ module.exports = (sequelize, DataTypes) => {
   const LoginUser = sequelize.define(
     "userlogin",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false
+      },
       loginId: {
         type: DataTypes.STRING,
-        primaryKey : true,
-        allowNull: false,
+        allowNull: false
       },
       userId: {
         type: DataTypes.STRING,
-        required: true,
+        required: true
       },
       organizationId: {
         type: DataTypes.STRING,
-        required: true,
+        required: true
       },
-      username: {  
+      email: {
         type: DataTypes.STRING,
-        required: true,
+        required: true
       },
       password: {
-        type: DataTypes.STRING,
-      },
+        type: DataTypes.STRING
+      }
     },
     {
-      timestamps: false,   
+      timestamps: false
     }
   );
   return LoginUser;

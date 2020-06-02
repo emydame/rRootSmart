@@ -35,3 +35,15 @@ exports.create = (req, res) => {
     });
   }
 };
+
+exports.findAll = (req, res) => {
+  Role.findAll()
+    .then((roles) => {
+      return res.status(200).send(roles);
+    })
+    .catch((err) => {
+      return res.status(500).send({
+        message: err.message
+      });
+    });
+};

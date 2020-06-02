@@ -3,7 +3,7 @@ const Fund = db.fund;
 /**
  * This API will keep track of all funds recieved from
  * investors
- */
+ */ 
 
 // Invest funds
 exports.create = (req, res) => {

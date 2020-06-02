@@ -35,3 +35,15 @@ exports.create = (req, res) => {
     });
   }
 };
+
+exports.findAll = (req, res) => {
+  Privilege.findAll()
+    .then((privileges) => {
+      return res.status(200).send(privileges);
+    })
+    .catch((err) => {
+      return res.status(500).send({
+        message: err.message
+      });
+    });
+};

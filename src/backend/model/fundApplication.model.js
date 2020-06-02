@@ -2,10 +2,15 @@ module.exports = (sequelize, DataTypes) => {
   const FundApplication = sequelize.define(
     "fundapplications",
     {
-      applicationId: {
-        type: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        autoincrement: true,
         allowNull: false,
         primaryKey: true
+      },
+      applicationId: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       organizationId: {
         type: DataTypes.STRING
