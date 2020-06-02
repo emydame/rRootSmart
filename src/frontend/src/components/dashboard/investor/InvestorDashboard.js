@@ -4,8 +4,6 @@
 import React from "react";
 import SmeProposals from "./SmeProposals";
 import TotalInvestments from "./TotalInvestments";
-import AddUsers from "./AddUsers";
-import AllUsers from "./AllUsers";
 import InvestmentHistory from "./InvestmentHistory";
 import { Badge, Dropdown, Layout, Menu } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
@@ -24,6 +22,8 @@ import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOut
 import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
+import ProfileDetails from "./user/ProfileDetails";
+import EditProfile from "./user/EditProfile";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -59,19 +59,26 @@ class InvestorDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<RiseOutlined />}><Link to="/investor/ProfileDetails">Profile Details</Link>
-          </Menu.Item>
+            <Menu.Item key="1" icon={<RiseOutlined />}>
+              <Link to="/investor/ProfileDetails">Profile Details</Link>
+            </Menu.Item>
             <Menu.Item key="2" icon={<PieChartOutlined />}>
               <Link to="/investor/SmeProposals">All Proposals</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="Investments">
             <Menu.Item key="4"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
-              <Menu.Item key="5" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link></Menu.Item>
-            </SubMenu>
+              <Menu.Item key="5" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link>
+            </Menu.Item ></SubMenu>
             <SubMenu key="sub2" icon={<UserOutlined />} title="User">
-            <Menu.Item key="6"><Link to="/investor/AddUsers"><UserAddOutlined />Add Users</Link></Menu.Item>
-              <Menu.Item key="7" icon={<UserSwitchOutlined />}><Link to="/investor/AllUsers">All Users</Link></Menu.Item>
-              <Menu.Item key="8" icon={<ReconciliationOutlined />}><Link to="/investor/Investroles">Roles</Link></Menu.Item>
+              <Menu.Item key="6" icon={<UserOutlined />}>
+                <Link to="/investor/create-user">Create</Link>
+              </Menu.Item>
+              <Menu.Item key="7" icon={<UserOutlined />}>
+                <Link to="/investor/update-user">Update</Link>
+              </Menu.Item>
+              <Menu.Item key="8" icon={<UserOutlined />}>
+                <Link to="/investor/deactivate-user">Deactivate</Link>
+              </Menu.Item>
             </SubMenu>
             <SubMenu key="sub3" icon={<TeamOutlined />} title="Team">
               <Menu.Item key="9">Team 1</Menu.Item>
@@ -113,11 +120,11 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/SmeProposals" component={SmeProposals} />
                   <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
                   <Route path="/investor/TotalInvestments" component={TotalInvestments} />
-                  <Route path="/investor/AddUsers" component={AddUsers} />
-                  <Route path="/investor/AllUsers" component={AllUsers} />
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
                   <Route path="/investor/deactivate-user" component={Remove} />
+                  <Route path="/investor/ProfileDetails" component={ProfileDetails} />
+                  <Route path="/investor/EditProfile" component={EditProfile} />
                 </Switch>
               </Router>
             </div>

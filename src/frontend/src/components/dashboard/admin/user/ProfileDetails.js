@@ -16,7 +16,6 @@ import EditProfile from "./EditProfile";
 
 class ProfileDetails extends React.Component {
     render() {
-  
     return (
       <>
       <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
@@ -60,7 +59,7 @@ class ProfileDetails extends React.Component {
                     <Col md="12">
                       <div class="text-right">
                         <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
-                            <Link to="/investor/EditProfile"> Edit Profile</Link>
+                            <Link to="/admin/EditProfile"> Edit Profile</Link>
                         </Button>
                       </div>
                     </Col>
