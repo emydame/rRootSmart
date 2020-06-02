@@ -109,42 +109,42 @@ exports.create = (req, res) => {
                                   .save()
                                   .then((result) => {
                                     if (result) {
-                                      let payload = { subject: result };
-                                      let token = jwt.sign(payload, secret);
-                                      let transporter = nodeMailer.createTransport({
-                                        service: "gmail",
-                                        auth: {
-                                          user: "victoryohanna@gmail.com",
-                                          pass: "tanams@5562"
-                                        }
-                                      });
-                                      let mailOptions = {
-                                        from: "no-reply@gmail.com",
-                                        to: result.email,
-                                        subject: "Account Verification Token",
-                                        text:
-                                          "Hello,\n\n" +
-                                          "Please verify your account by clicking the link: \nhttp://" +
-                                          req.headers.host +
-                                          "/confirmation/" +
-                                          token +
-                                          ".\n"
-                                      };
-                                      transporter.sendMail(mailOptions, (err) => {
-                                        if (err) {
-                                          return res.status(500).send({
-                                            message: err.message
-                                          });
-                                        } else {
-                                          res.status(200).send({
-                                            message: "Verification message sent"
-                                          });
-                                        }
-                                      });
-
-                                      // Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
-                                      //   return res.send(data);
+                                      // let payload = { subject: result };
+                                      // let token = jwt.sign(payload, secret);
+                                      // let transporter = nodeMailer.createTransport({
+                                      //   service: "sendgrid",
+                                      //   auth: {
+                                      //     user: process.env.SENDGRID_USERNAME,
+                                      //     pass: process.env.SENDGRID_PASSWORD
+                                      //   }
                                       // });
+                                      // let mailOptions = {
+                                      //   from: "no-reply@gmail.com",
+                                      //   to: result.email,
+                                      //   subject: "Account Verification Token",
+                                      //   text:
+                                      //     "Hello,\n\n" +
+                                      //     "Please verify your account by clicking the link: \nhttp://" +
+                                      //     req.headers.host +
+                                      //     "/confirmation/" +
+                                      //     token +
+                                      //     ".\n"
+                                      // };
+                                      // transporter.sendMail(mailOptions, (err) => {
+                                      //   if (err) {
+                                      //     return res.status(500).send({
+                                      //       message: err.message
+                                      //     });
+                                      //   } else {
+                                      //     res.status(200).send({
+                                      //       message: "Verification message sent"
+                                      //     });
+                                      //   }
+                                      // });
+
+                                      Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
+                                        return res.send(data);  
+                                      });
                                     }
                                   })
                                   .catch((err) => {

@@ -8,19 +8,19 @@ const UserLogin = db.userLogin;
 const Organization = db.userOrganization;
 
 exports.findOne = (req, res) => {
-  let request = {
-    email: req.body.email,
-    password: req.body.password
-  };
-  UserLogin.findOne({ where: { email: request.email } })
+  // let request = {
+  //   email: req.body.email,
+  //   password: req.body.password   
+  // };
+  UserLogin.findOne({ where: { email: req.body.email } })
     .then((data) => {
       // Check if login credentials exist
       if (!data) {
         return res.status(401).send({
-          message: " Invalid username or password"
+          message: "Invalid email or password"
         });
       } else {
-        if (bcrypt.compareSync(request.password, data.password)) {
+        if (bcrypt.compareSync(req.body.password, data.password)) {
           if (data) {
             Organization.findOne({
               where: {
@@ -32,7 +32,7 @@ exports.findOne = (req, res) => {
           }
         } else {
           return res.status(401).send({
-            message: "Invalid username or password"
+            message: "Invalid email or password"
           }); 
         }
       }
