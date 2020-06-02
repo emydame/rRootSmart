@@ -27,7 +27,7 @@ class View extends React.Component {
       .get("https://eazsme-backend.herokuapp.com/projects/all")
       .then((data) => {
         if (data.status === "success") {
-          this.setState({ data: data.push(data) });
+          this.setState({ data });
         }
       })
       .catch((error) => console.log(error));

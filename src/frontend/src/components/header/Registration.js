@@ -16,9 +16,6 @@ import { Link } from "react-router";
 import { DatePicker } from "antd";
 import moment from "moment";
 
-const dateFormat = "YYYY/MM/DD";
-const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY"];
-
 class Registration extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +27,6 @@ class Registration extends React.Component {
     this.closeRegistration = this.closeRegistration.bind(this);
     this.submitRegistration = this.submitRegistration.bind(this);
     this.mapStateToLGA = this.mapStateToLGA.bind(this);
-    this.mapLGAToTown = this.mapLGAToTown.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -49,10 +45,6 @@ class Registration extends React.Component {
     this.props.mapStateToLga(event);
   }
 
-  mapLGAToTown(event) {
-    this.props.mapLGAToTown(this);
-  }
-
   handleBlur(event) {
     this.props.handleBlur(event);
   }
@@ -66,11 +58,18 @@ class Registration extends React.Component {
   }
 
   render() {
+    const success = this.props.success;
+    const error = this.props.error;
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
     return (
       <>
+        {success ? (
+          <Form.Text className="text-bold text-success">{success}</Form.Text>
+        ) : (
+          <Form.Text className="text-bold text-danger">{error}</Form.Text>
+        )}
         {/** Registration Modal */}
         <Modal
           size="xl"
@@ -134,12 +133,12 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
               </Row>
-                
+
               <Row>
                 <Col>
                   <Form.Group controlId="formBasicText4">
                     <Form.Label className="font-weight-bold">
-                      Phone Number  <sup className="text-danger">*</sup>
+                      Phone Number <sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control type="text" placeholder="Enter Name of Organization" required name="phoneNumber1" />
                   </Form.Group>
@@ -154,12 +153,20 @@ class Registration extends React.Component {
                 </Col>
               </Row>
               <Row>
-              <Col>
+                <Col>
                   <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label className="font-weight-bold">
                       Address<sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control as="textarea" rows="2" cols="2" required name="address" maxLength="200" placeholder="Address text here..." />
+                    <Form.Control
+                      as="textarea"
+                      rows="2"
+                      cols="2"
+                      required
+                      name="address"
+                      maxLength="200"
+                      placeholder="Address text here..."
+                    />
                   </Form.Group>
                 </Col>
                 <Col>
@@ -213,9 +220,8 @@ class Registration extends React.Component {
                     </Form.Control>
                   </Form.Group>
                 </Col>
-                
               </Row>
-              
+
               <Row>
                 <Col md="6">
                   <Form.Group controlId="formBasicSelect3">
@@ -243,7 +249,7 @@ class Registration extends React.Component {
               </Row>
 
               <hr></hr>
-                <h5 className="form-section-text">Organization Details</h5>
+              <h5 className="form-section-text">Organization Details</h5>
               <hr></hr>
               <Row>
                 <Col>
@@ -314,13 +320,21 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
               </Row>
-                <Row>
+              <Row>
                 <Col>
                   <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label className="font-weight-bold">
                       Company Address<sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control as="textarea" rows="2" cols="" required name="companyAddress" maxLength="200" placeholder="Company Address..." />
+                    <Form.Control
+                      as="textarea"
+                      rows="2"
+                      cols=""
+                      required
+                      name="companyAddress"
+                      maxLength="200"
+                      placeholder="Company Address..."
+                    />
                   </Form.Group>
                 </Col>
                 <Col>
@@ -331,11 +345,11 @@ class Registration extends React.Component {
                     <Form.Control type="email" placeholder="Enter email" required name="companyEmail" />
                   </Form.Group>
                 </Col>
-                </Row>
-                
+              </Row>
+
               <hr></hr>
 
-                <h5 className="form-section-text">Create Password</h5>
+              <h5 className="form-section-text">Create Password</h5>
               <hr></hr>
               <Row>
                 <Col>
@@ -372,21 +386,21 @@ class Registration extends React.Component {
                     />
                   </Form.Group>
                 </Col>
-                
-              </Row><br></br>
+              </Row>
+              <br></br>
 
-                {/**Implemet terms and conditon later */}
-                    <Form.Check
-                      type="checkbox"
-                      label="Agreed to terms and conditions?"
-                      className="font-weight-bold terms-text"
-                      name="termsOfCondition"
-                    /><br></br>
-                  
-                  <Button variant="success" type="submit" className="btn-block" onClick={this.submitRegistration}>
-                    Register
-                  </Button>
-                  
+              {/**Implemet terms and conditon later */}
+              <Form.Check
+                type="checkbox"
+                label="Agreed to terms and conditions?"
+                className="font-weight-bold terms-text"
+                name="termsOfCondition"
+              />
+              <br></br>
+
+              <Button variant="success" type="submit" className="btn-block" onClick={this.submitRegistration}>
+                Register
+              </Button>
             </Form>
           </Modal.Body>
         </Modal>
