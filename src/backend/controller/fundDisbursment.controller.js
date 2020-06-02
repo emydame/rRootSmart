@@ -18,7 +18,8 @@ exports.create = (req, res) => {
     status: req.body.status
   };
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
+      status: "error",
       message: "Fields cannot be empty"
     });
   } else {
@@ -26,7 +27,8 @@ exports.create = (req, res) => {
       where: { disbursementId: req.body.disbursementId }
     }).then((data) => {
       if (data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: "Fund already disbursed"
         });
       } else {
@@ -35,10 +37,15 @@ exports.create = (req, res) => {
         fundDisbursement
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              message: "Fund disbursed successfully",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message
             });
           });
@@ -51,29 +58,39 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Disbursement.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "success",
+        message: "All disbursed Funds fetched",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
 };
 
-// Get funds by status
+// Get fund disbursement by id
 exports.findOne = (req, res) => {
   Disbursement.findAll({ where: { disbursementId: req.body.disbursementId } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Record not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });

@@ -14,7 +14,8 @@ exports.create = (req, res) => {
     dateIncorporated: req.body.dateIncorporated
   };
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
+      status: "error",
       message: "User organization details cannot be empty"
     });
   } else {
@@ -24,17 +25,24 @@ exports.create = (req, res) => {
     }).then((data) => {
       if (data) {
         // return organization's details found
-        return res.status(401).send("Organisation already registerred");
+        return res.status(401).json({
+          status: "error",
+          message: "Organisation already registerred"
+        });
       } else {
         //save organization
         const userOrganization = new Organization(request);
         userOrganization
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message || "Unable to save organization details."
             });
           });
@@ -47,10 +55,14 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Organization.findAll()
     .then((organizations) => {
-      return res.status(200).send(organizations);
+      return res.status(200).json({
+        status: "success",
+        data: organizations
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
@@ -61,15 +73,20 @@ exports.findOne = (req, res) => {
   Organization.findOne({ where: { organizationId: req.body.organizationId } })
     .then((data) => {
       if (!data) {
-        return res.status(401).send({
+        return res.status(401).json({
+          status: "error",
           message: " organization not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
@@ -80,15 +97,20 @@ exports.findAll = (req, res) => {
   Organization.findAll({ where: { userCatId: req.body.userCatId } })
     .then((data) => {
       if (!data) {
-        return res.status(401).send({
+        return res.status(401).json({
+          status: "error",
           message: " organization not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });

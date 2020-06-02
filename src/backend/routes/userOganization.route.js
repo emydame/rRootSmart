@@ -8,7 +8,7 @@ module.exports = (app) => {
   app.get("/organizations/all", organization.findAll);
 
   //Return single organization by organization's id
-  app.get("/organizations/id", organization.findOne);
+  app.get("/organizations/:id", organization.findOne);
 
   //Return single organization by organization's category
   app.get("/organizations/list", organization.findAll);

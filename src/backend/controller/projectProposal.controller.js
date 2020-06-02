@@ -11,7 +11,8 @@ exports.create = (req, res) => {
     filePath: req.body.filePath
   };
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
+      status: "error",
       message: "Category cannot be empty"
     });
   }
@@ -20,23 +21,31 @@ exports.create = (req, res) => {
   proposal
     .save()
     .then((data) => {
-      return res.status(200).send(data);
+      return res.status(200).json({
+        status: "success",
+        data
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Error occured"
       });
     });
 };
 
-//Retreive all proposall
+//Retreive all proposall 
 exports.findAll = (req, res) => {
   Proposal.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "success",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Something wrong while retrieving Proposals."
       });
     });

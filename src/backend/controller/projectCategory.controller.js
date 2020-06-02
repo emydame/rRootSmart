@@ -10,7 +10,8 @@ exports.create = (req, res) => {
     createdBy: req.body.createdBy
   };
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
+      status: "error",
       message: "Category cannot be empty"
     });
   }
@@ -18,10 +19,14 @@ exports.create = (req, res) => {
   category
     .save()
     .then((data) => {
-      return res.status(200).send(data);
+      return res.status(200).json({
+        status: "success",
+        data
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Error occured"
       });
     });
@@ -31,29 +36,38 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   ProjectCategory.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "error",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Something wrong while retrieving Project category."
       });
     });
-};
+};   
 
 // Get single Project category using  parameter
 exports.findOne = (req, res) => {
   ProjectCategory.findOne({ where: { projectCatId: req.body.projectCatId } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Project category not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Some error occurred while retrieving Project category."
       });
     });

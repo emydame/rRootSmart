@@ -14,13 +14,15 @@ exports.create = (req, res) => {
     dateCreated: today
   };
   if (!req.body) {
-    return res.status(400).send({
-      messege: "Please fill all project input fields"
+    return res.status(400).json({
+      status: "error",
+      message: "Please fill all project input fields"
     });
   } else {
     Project.findOne({ where: { projectId: req.body.projectId } }).then((result) => {
       if (result) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: "Project already exist with this Id " + req.body.projectId
         });
       } else {
@@ -29,10 +31,14 @@ exports.create = (req, res) => {
         project
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message || "Not saved"
             });
           });
@@ -45,29 +51,38 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Project.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "success",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Something wrong while retrieving Proposals."
       });
     });
 };
-
+ 
 // Get single Project using  parameter
 exports.findOne = (req, res) => {
   Project.findOne({ where: { projectId: req.body.projectId } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: " Project not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json({
+          status: "success",
+          data
+        });
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Some error occurred while retrieving Project."
       });
     });
