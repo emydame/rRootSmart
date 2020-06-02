@@ -1,9 +1,12 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-shadow */
 const db = require("../config/db.config");
+
 const Organization = db.userOrganization;
 
 // Post User organization
 exports.create = (req, res) => {
-  let request = {
+  const request = {
     organizationId: req.body.organizationId,
     companyName: req.body.companyName,
     category: req.body.category,
@@ -17,16 +20,16 @@ exports.create = (req, res) => {
     return res.status(400).send({
       message: "User organization details cannot be empty"
     });
-  } else {
-    //Check if organization is registerre
+  } 
+    // Check if organization is registerre
     Organization.findOne({
       where: { organizationId: request.organizationId }
     }).then((data) => {
       if (data) {
         // return organization's details found
         return res.status(401).send("Organisation already registerred");
-      } else {
-        //save organization
+      } 
+        // save organization
         const userOrganization = new Organization(request);
         userOrganization
           .save()
@@ -38,9 +41,9 @@ exports.create = (req, res) => {
               message: err.message || "Unable to save organization details."
             });
           });
-      }
+      
     });
-  }
+  
 };
 
 // Retrieve all organizations
@@ -64,9 +67,9 @@ exports.findOne = (req, res) => {
         return res.status(401).send({
           message: " organization not found"
         });
-      } else {
+      } 
         return res.status(200).send(data);
-      }
+      
     })
     .catch((err) => {
       return res.status(500).send({
@@ -83,9 +86,9 @@ exports.findAll = (req, res) => {
         return res.status(401).send({
           message: " organization not found"
         });
-      } else {
+      } 
         return res.status(200).send(data);
-      }
+      
     })
     .catch((err) => {
       return res.status(500).send({

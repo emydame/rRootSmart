@@ -1,9 +1,13 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
 process.env.SECRET_KEY = "secret";
 
 // Require database
 const db = require("../config/db.config");
+
 const UserLogin = db.userLogin;
 const Organization = db.userOrganization;
 
@@ -19,7 +23,7 @@ exports.findOne = (req, res) => {
         return res.status(401).send({
           message: "Invalid email or password"
         });
-      } else {
+      } 
         if (bcrypt.compareSync(req.body.password, data.password)) {
           if (data) {
             Organization.findOne({
@@ -35,7 +39,7 @@ exports.findOne = (req, res) => {
             message: "Invalid email or password"
           }); 
         }
-      }
+      
     })
     .catch((err) => {
       return res.status(500).send({
