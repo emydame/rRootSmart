@@ -2,7 +2,7 @@ require("mysql2/node_modules/iconv-lite").encodingExists("foo");
 
 const supertest = require("supertest");
 const { app } = require("../app");
-const proposalControllers = require("../controller/projectProposal.controller");
+const roleControllers = require("../controller/role.controller");
 
 let apiServer;
 
@@ -18,26 +18,24 @@ describe("create()", () => {
     } 
   });
   it("should be a function", () => {
-    const res = typeof proposalControllers.create;
+    const res = typeof roleControllers.create;
     expect(res).toEqual("function");
   });
-  it("should not create a new proposal when no data is sent", async () => {
-    const res = await apiServer.post("/proposals");
-    expect(res.statusCode).toEqual(500);
+  it("should not create role when no data is sent", async () => {
+    const res = await apiServer.post("/roles");
+    expect(res.statusCode).toEqual(400);
   });
-  it("should create a new proposal with valid data", async () => {
-    const res = await apiServer.post("/proposals").send({
-      proposalId: 1,
-      userId: 1,
-      applicationId: 14,
-      projectId: 3,
-      filePath: "../files/myproposal.pdf"
+  it("should create role when valid data", async () => {
+    const res = await apiServer.post("/roles").send({
+      roleName: "Admin",
+      description: "Manage user processes",
+      dateCreated: "2013-07-04"
     });
     expect(res.statusCode).toEqual(200);
   });
 });
 
-describe("GET /proposals/all with findAll()", () => {
+describe("GET /roles/all with findAll()", () => {
   beforeEach(async () => {
     if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
@@ -52,8 +50,8 @@ describe("GET /proposals/all with findAll()", () => {
     const res = typeof proposalControllers.findAll;
     expect(res).toEqual("function");
   });
-  it("should fetch project proposal from the server", async () => {
-    const res = await apiServer.get("/proposals/all");
+  it("should fetch roles from the server", async () => {
+    const res = await apiServer.get("/roles/all");
     expect(res.statusCode).toEqual(200);
   });
 });

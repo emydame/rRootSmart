@@ -4,13 +4,15 @@ const NgState = db.ngState;
 // Add states
 exports.create = (req, res) => {
   if (!req.body) {
-    return res.status(400).send({
-      messege: "Please fill all  input fields"
+    return res.status(400).json({
+      status: "error",
+      message: "Please fill all  input fields"
     });
   } else {
     NgState.findOne({ where: { id: req.body.id } }).then((result) => {
       if (result) {
-        res.status(400).send({
+        res.status(400).json({
+          status: "error",
           message: "State already exist with this Id " + req.body.id
         });
       } else {
@@ -22,10 +24,14 @@ exports.create = (req, res) => {
         ngState
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message || "Not saved"
             });
           });
@@ -38,10 +44,14 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   NgState.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "success",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });

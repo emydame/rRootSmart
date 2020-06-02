@@ -39,7 +39,7 @@ describe("create()", () => {
   });
 });
 
-describe("GET /projects/list with findAll()", () => {
+describe("GET /projects/all with findAll()", () => {
   beforeEach(async () => {
     if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
@@ -55,12 +55,12 @@ describe("GET /projects/list with findAll()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch all projects from the server", async () => {
-    const res = await apiServer.get("/projects/list");
+    const res = await apiServer.get("/projects/all");
     expect(res.statusCode).toEqual(200);
   });
 });
 
-describe("GET /project with findOne()", () => {
+describe("GET /projects/:id with findOne()", () => {
   beforeEach(async () => {
     if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
@@ -76,11 +76,11 @@ describe("GET /project with findOne()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch single project info from the server", async () => {
-    const res = await apiServer.get("/project").send({ projectId: 1 });
+    const res = await apiServer.get("/projects/1");
     expect(res.statusCode).toEqual(200);
   });
   it("should not fetch project data for an invalid id", async () => {
-    const res = await apiServer.get("/project").send({ projectId: "dfasdf" });
+    const res = await apiServer.get("/projects/kdffdf");
     expect(res.statusCode).toEqual(400);
   });
 });

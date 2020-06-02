@@ -13,7 +13,8 @@ exports.create = (req, res) => {
     applicationDate: date
   };
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
+      status: "error",
       message: "Fields cannot be empty"
     });
   } else {
@@ -21,7 +22,8 @@ exports.create = (req, res) => {
       where: { applicationId: req.body.applicationId }
     }).then((data) => {
       if (data) {
-        return res.status(400).send({
+        return res.status(400).json({
+          status: "error",
           message: "Application already Submit"
         });
       } else {
@@ -30,10 +32,15 @@ exports.create = (req, res) => {
         fundApplication
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              message: "New Fund Application Created",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message || "Something went wrong."
             });
           });
@@ -46,10 +53,14 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   FundApplication.findAll()
     .then((result) => {
-      return res.status(200).send(result);
+      return res.status(200).json({
+        status: "success",
+        data: result
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
@@ -63,15 +74,15 @@ exports.findOne = (req, res) => {
   FundApplication.findAll({ where: { userId: req.body.userId } })
     .then((data) => {
       if (!data) {
-        return res.status(400).send({
+        return res.status(400).json({
           message: " Fund Application not found"
         });
       } else {
-        return res.status(200).send(data);
+        return res.status(200).json(data);
       }
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
         message: err.message
       });
     });
