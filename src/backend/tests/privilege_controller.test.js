@@ -35,3 +35,24 @@ describe("create()", () => {
     expect(res.statusCode).toEqual(200);
   });
 });
+
+describe("GET /privileges with findAll()", () => {
+  beforeEach(async () => {
+    if (!(apiServer && apiServer.listen)) {
+      apiServer = supertest(app);
+    }
+  });
+  afterEach(async () => {
+    if (apiServer.close) {
+      await apiServer.close();
+    }
+  });
+  it("findAll() should be a function", () => {
+    const res = typeof privilegeControllers.findAll;
+    expect(res).toEqual("function");
+  });
+  it("should fetch privileges from the server", async () => {
+    const res = await apiServer.get("/privileges");
+    expect(res.statusCode).toEqual(200);
+  });
+});

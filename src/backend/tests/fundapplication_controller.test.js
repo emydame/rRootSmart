@@ -37,7 +37,7 @@ describe("create()", () => {
   });
 });
 
-describe("GET /fund/applications/list with findAll()", () => {
+describe("GET /fund/applications/all with findAll()", () => {
   beforeEach(async () => {
     if(!(apiServer && apiServer.listen)){
       apiServer = supertest(app);
@@ -53,7 +53,7 @@ describe("GET /fund/applications/list with findAll()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch all fund applications from the server", async () => {
-    const res = await apiServer.get("/fund/applications/list");
+    const res = await apiServer.get("/fund/applications/all");
     expect(res.statusCode).toEqual(200);
   });
 });

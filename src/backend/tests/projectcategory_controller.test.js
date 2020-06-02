@@ -57,7 +57,7 @@ describe("GET /projects/category with findAll()", () => {
   });
 });
 
-describe("GET /projects/category/one with findOne()", () => {
+describe("GET /projects/category/:id with findOne()", () => {
   beforeEach(async () => {
     if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
@@ -73,11 +73,11 @@ describe("GET /projects/category/one with findOne()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch single project category info from the server", async () => {
-    const res = await apiServer.get("/projects/category/one").send({ projectCatId: "1" });
+    const res = await apiServer.get("/projects/category/1");
     expect(res.statusCode).toEqual(200);
   });
   it("should not fetch project category data for an invalid id", async () => {
-    const res = await apiServer.get("/projects/category/one").send({ projectCatId: "sfdf" });
+    const res = await apiServer.get("/projects/category/fadlf");
     expect(res.statusCode).toEqual(404);
   });
 });
