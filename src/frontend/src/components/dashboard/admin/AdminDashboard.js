@@ -5,7 +5,9 @@ import React from "react";
 import { Switch, Router, Route, Link } from "react-router-dom";
 import { Layout, Menu, Badge, Dropdown, Avatar } from "antd";
 import {
-  RiseOutlined,
+  UserDeleteOutlined,
+  UserAddOutlined,
+  ProfileOutlined,
   UsergroupAddOutlined,
   SettingOutlined,
   UserOutlined,
@@ -13,7 +15,9 @@ import {
   AppstoreOutlined,
   DollarCircleOutlined,
   FileDoneOutlined,
-  BellFilled
+  BellFilled,
+  SwitcherOutlined,
+  ProjectOutlined
 } from "@ant-design/icons";
 import ProfileDetails from "./user/ProfileDetails";
 import InvestorsAndFunding from "./InvestorsAndFunding";
@@ -22,14 +26,16 @@ import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
 import EditProfile from "./user/EditProfile";
-
 import CreatCategory from "./category/Create";
+import ViewCategory from "./category/View";
 import DeleteCategory from "./category/Delete";
 import UpdateCategory from "./category/Update";
-import ViewCategory from "./category/View";
 import CreateProject from "./projects/Create";
-import ViewProjects from "./projects/View";
-import ViewProject from "./projects/ViewDetails";
+import ViewProject from "./projects/View";
+
+
+
+
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -86,7 +92,7 @@ class AdminDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<RiseOutlined />}>
+          <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/admin/ProfileDetails">Profile Details</Link>
             </Menu.Item>
             <Menu.Item key="1" icon={<AppstoreOutlined />}>
@@ -96,32 +102,36 @@ class AdminDashboard extends React.Component {
               <Link to="/admin/investorsandfunding">Investors/Funding</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="4" icon={<UserOutlined />}>
+              <Menu.Item key="4" icon={<UserAddOutlined />}>
                 <Link to="/admin/create-user">Create</Link>
               </Menu.Item>
               <Menu.Item key="5" icon={<UserOutlined />}>
                 <Link to="/admin/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="6" icon={<UserOutlined />}>
+              <Menu.Item key="6" icon={<UserDeleteOutlined />}>
                 <Link to="/admin/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub3" icon={<UserOutlined />} title="Category">
-              <Menu.Item key="7" icon={<UserOutlined />}>
+            <SubMenu key="sub3" icon={<SwitcherOutlined />} title="Category">
+              <Menu.Item key="7" icon={<SwitcherOutlined />}>
                 <Link to="/admin/create-category">Create Category</Link>
               </Menu.Item>
-              <Menu.Item key="8" icon={<UserOutlined />}>
+              <Menu.Item key="8" icon={<SwitcherOutlined />}>
                 <Link to="/admin/view-category">View Category</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub4" icon={<UserOutlined />} title="Projects">
-              <Menu.Item key="9" icon={<UserOutlined />}>
+            <SubMenu key="sub4" icon={<ProjectOutlined />} title="Projects">
+              <Menu.Item key="9" icon={<ProjectOutlined />}>
                 <Link to="/admin/create-project">Create Project</Link>
               </Menu.Item>
-              <Menu.Item key="10" icon={<UserOutlined />}>
+              <Menu.Item key="10" icon={<ProjectOutlined />}>
                 <Link to="/admin/view-projects">View Projects</Link>
               </Menu.Item>
             </SubMenu>
+            <Menu.Item key="3" icon={<LogoutOutlined />}>
+              {" "}
+              Log Out
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -160,8 +170,6 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/create-user" component={Create} />
                 <Route path="/admin/update-user" component={Update} />
                 <Route path="/admin/deactivate-user" component={Remove} />
-                <Route path="/admin/ProfileDetails" component={ProfileDetails} />
-                <Route path="/admin/EditProfile" component={EditProfile} />
                 <Route path="/admin/create-category" component={CreatCategory} />
                 <Route path="/admin/view-category" component={ViewCategory} />
                 <Route path="/admin/delete-category/:categoryId" component={DeleteCategory} />
@@ -169,6 +177,8 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/create-project" component={CreateProject} />
                 <Route path="/admin/view-projects" component={ViewProject} />
                 <Route path="/admin/view-project/:projectId" component={ViewProject} />
+                <Route path="/admin/ProfileDetails" component={ProfileDetails} />
+                <Route path="/admin/EditProfile" component={EditProfile} />
               </Switch>
             </Router>
           </Content>

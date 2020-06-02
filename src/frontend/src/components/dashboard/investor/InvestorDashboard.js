@@ -12,18 +12,23 @@ import {
   UsergroupAddOutlined,
   SettingOutlined,
   LogoutOutlined,
-  ReconciliationOutlined
+  ReconciliationOutlined,
+  ProjectOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Avatar } from "antd";
 import { Switch, Router, Route } from "react-router-dom";
 import { BellFilled, UserAddOutlined, UserSwitchOutlined, RiseOutlined } from "@ant-design/icons";
 import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import AllUsers from "./user/AllUsers";
 import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
 import ProfileDetails from "./user/ProfileDetails";
+import ProjectDetails from "./ProjectDetails";
 import EditProfile from "./user/EditProfile";
+import CreateProject from "./projects/Create";
+import ViewProject from "./projects/View";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -70,6 +75,9 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="5" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link>
             </Menu.Item ></SubMenu>
             <SubMenu key="sub2" icon={<UserOutlined />} title="User">
+              <Menu.Item key="11" icon={<UserOutlined />}>
+                <Link to="/investor/AllUser">All Users</Link>
+              </Menu.Item>
               <Menu.Item key="6" icon={<UserOutlined />}>
                 <Link to="/investor/create-user">Create</Link>
               </Menu.Item>
@@ -83,6 +91,14 @@ class InvestorDashboard extends React.Component {
             <SubMenu key="sub3" icon={<TeamOutlined />} title="Team">
               <Menu.Item key="9">Team 1</Menu.Item>
               <Menu.Item key="10">Team 2</Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub4" icon={<ProjectOutlined />} title="Projects">
+              <Menu.Item key="9" icon={<ProjectOutlined />}>
+                <Link to="/investor/create-project">Create Project</Link>
+              </Menu.Item>
+              <Menu.Item key="10" icon={<ProjectOutlined />}>
+                <Link to="/investor/view-projects">View Projects</Link>
+              </Menu.Item>
             </SubMenu>
             <Menu.Item key="3" icon={<LogoutOutlined/>}> Log Out</Menu.Item>
           </Menu>
@@ -120,11 +136,16 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/SmeProposals" component={SmeProposals} />
                   <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
                   <Route path="/investor/TotalInvestments" component={TotalInvestments} />
+                  <Route path="/investor/AllUsers" component={AllUsers} />
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
                   <Route path="/investor/deactivate-user" component={Remove} />
                   <Route path="/investor/ProfileDetails" component={ProfileDetails} />
                   <Route path="/investor/EditProfile" component={EditProfile} />
+                  <Route path="/investor/create-project" component={CreateProject} />
+                <Route path="/investor/view-projects" component={ViewProject} />
+                <Route path="/investor/view-project/:projectId" component={ViewProject} />
+                  <Route path="/investor/ProjectDetails" component={ProjectDetails} />
                 </Switch>
               </Router>
             </div>
