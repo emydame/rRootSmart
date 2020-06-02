@@ -40,3 +40,70 @@ describe("create()", () => {
     expect(res.statusCode).toEqual(200);
   });
 });
+
+describe("GET /organizations/all with findAll()", () => {
+  beforeEach(async () => {
+    if (!(apiServer && apiServer.listen)) {
+      apiServer = supertest(app);
+    }
+  });
+  afterEach(async () => {
+    if (apiServer.close) {
+      await apiServer.close();
+    }
+  });
+  it("findAll() should be a function", () => {
+    const res = typeof organizationControllers.findAll;
+    expect(res).toEqual("function");
+  });
+  it("should fetch all organizations from the server", async () => {
+    const res = await apiServer.get("/organizations/all");
+    expect(res.statusCode).toEqual(200);
+  });
+});
+
+describe("GET /organizations/list with findAll()", () => {
+  beforeEach(async () => {
+    if (!(apiServer && apiServer.listen)) {
+      apiServer = supertest(app);
+    }
+  });
+  afterEach(async () => {
+    if (apiServer.close) {
+      await apiServer.close();
+    }
+  });
+  it("findAll() should be a function", () => {
+    const res = typeof organizationControllers.findAll;
+    expect(res).toEqual("function");
+  });
+  it("should fetch all organizations from the server by category", async () => {
+    const res = await apiServer.get("/organizations/list").send({userCatId: 1});
+    expect(res.statusCode).toEqual(200);
+  });
+});
+
+describe("GET /organizations/:id with findOne()", () => {
+  beforeEach(async () => {
+    if (!(apiServer && apiServer.listen)) {
+      apiServer = supertest(app);
+    }
+  });
+  afterEach(async () => {
+    if (apiServer.close) {
+      await apiServer.close();
+    }
+  });
+  it("findAll() should be a function", () => {
+    const res = typeof organizationControllers.findOne;
+    expect(res).toEqual("function");
+  });
+  it("should fetch single organizations info from the server", async () => {
+    const res = await apiServer.get("/organizations/2");
+    expect(res.statusCode).toEqual(200);
+  });
+  it("should not fetch project data for an invalid id", async () => {
+    const res = await apiServer.get("/organizations/1fadff");
+    expect(res.statusCode).toEqual(400);
+  });
+});

@@ -87,10 +87,10 @@ class Update extends React.Component {
           <Form.Text className="text-bold text-danger">{error}</Form.Text>
         )}
         <Row>
-          <Col md="4">
+          {/* <Col md="4">
             <Image src="holder.js/100px250" fluid />
-          </Col>
-          <Col md="8">
+          </Col> */}
+          <Col md="12">
             <Form name="update">
               <Form.Group controlId="fullName">
                 <Form.Label>Full Name</Form.Label>

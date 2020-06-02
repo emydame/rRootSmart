@@ -7,7 +7,7 @@ import { Switch, Router, Route, Link } from "react-router-dom";
 import { FileDoneOutlined } from "@ant-design/icons";
 import { CaretDownFilled, UsergroupAddOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Menu, Breadcrumb, Row, Col,Badge, Dropdown, Avatar } from "antd";
-import {AppstoreOutlined, DollarCircleOutlined,BellFilled } from "@ant-design/icons";
+import {AppstoreOutlined, RiseOutlined,BellFilled } from "@ant-design/icons";
 import { DesktopOutlined, PieChartOutlined,MailOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 
 import Investors from "./Investors";
@@ -19,6 +19,8 @@ import Projectcategories from "./Projectcategories";
 import Create from "./user/Create";
 import Remove from "./user/Remove";
 import Update from "./user/Update";
+import ProfileDetails from "./user/ProfileDetails";
+import EditProfile from "./user/EditProfile";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -62,28 +64,42 @@ class RegulatorDashboard extends React.Component {
             selectedKeys={[this.state.current]}
             mode="inline"
           >
+            <Menu.Item key="1" icon={<RiseOutlined />}>
+              <Link to="/Regulator/ProfileDetails">Profile Details</Link>
+            </Menu.Item>
             <SubMenu key="sub1" icon={<MailOutlined />} title="Projects">
-              <Menu.Item key="1">
+              <Menu.Item key="5">
                 <Link to="/regulator/Projectcategories"> Project Categories</Link>
               </Menu.Item>
-              <Menu.Item key="2">
+              <Menu.Item key="6">
                 <Link to="/regulator/Projects"> Projects List</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Investors">
-              <Menu.Item key="1">
+              <Menu.Item key="2">
                 <Link to="/regulator/Investors"> Investors List</Link>
               </Menu.Item>
+            <Menu.Item key="3">
+              <Link to="/regulator/SMEs"> SMEs List</Link>
+            </Menu.Item>           
+        
+          <SubMenu key="sub2" icon={<SettingOutlined />} title="Funds">
+          <Menu.Item key="7"><Link to="/regulator/Funds"> Funds Application</Link></Menu.Item>             
+          </SubMenu>
+          <SubMenu key="sub3" icon={<UserOutlined />} title="User">
+              <Menu.Item key="8" icon={<UserOutlined />}>
+                <Link to="/regulator/create-user">Create</Link>
+              </Menu.Item>
+              <Menu.Item key="9" icon={<UserOutlined />}>
+                <Link to="/regulator/update-user">Update</Link>
+              </Menu.Item>
+              <Menu.Item key="10" icon={<UserOutlined />}>
+                <Link to="/regulator/deactivate-user">Deactivate</Link>
+              </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub3" title="SMEs">
-            <Menu.Item key="1"><Link to="/regulator/SMEs"> SMEs List</Link></Menu.Item>           
-          </SubMenu>
-          <SubMenu key="sub4" icon={<SettingOutlined />} title="Funds">
-          <Menu.Item key="1"><Link to="/regulator/Funds"> Funds Application</Link></Menu.Item>             
-          </SubMenu>
-          <SubMenu key="sub5" icon={<SettingOutlined />} title="Users">
-          <Menu.Item key="1"><Link to="/regulator/Users"> Users List</Link></Menu.Item> 
-          </SubMenu>
+            <Menu.Item key="4" icon={<LogoutOutlined />}>
+              {" "}
+              Log Out
+            </Menu.Item>
         </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -113,6 +129,8 @@ class RegulatorDashboard extends React.Component {
                 <Route path="/regulator/create-user" component={Create} />
                 <Route path="/regulator/update-user" component={Update} />
                 <Route path="/regulator/deactivate-user" component={Remove} />
+                <Route path="/regulator/ProfileDetails" component={ProfileDetails} />
+                <Route path="/regulator/EditProfile" component={EditProfile} />
               </Switch>
             </Router>
           </Content>

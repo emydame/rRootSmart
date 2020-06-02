@@ -191,8 +191,12 @@ ul.pagination {
   color: #fff;
 }
 
+.full {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 .content-title,
-p,
 h5  {
   text-align: center;
   color: #3d6cb9;
@@ -200,4 +204,23 @@ h5  {
 .img-holder {
   border: 1px solid #fff;
   background: #fff;
+}
+
+.stripped {
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
+}
+
+.download {
+  text-align: right;
+  margin: 20px;
+  padding: 20px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.profile-title-text {
+  color: #3d6cb9;
+  margin-bottom: 10px;
 }

@@ -10,24 +10,28 @@ exports.create = (req, res) => {
   };
   // check empty request
   if (!req.body) {
-    return res.status(400).send({
+    return res.status(400).json({
       message: "Input fields cannot be empty "
     });
   } else {
     // Check is role already exist
     Role.findOne({ where: { roleName: request.roleName } }).then((data) => {
       if (data) {
-        return res.status(401).send("Role laready exist");
+        return res.status(401).json("Role laready exist");
       } else {
         //Save role
         let role = new Role(request);
         role
           .save()
           .then((data) => {
-            return res.status(200).send(data);
+            return res.status(200).json({
+              status: "success",
+              data
+            });
           })
           .catch((err) => {
-            return res.status(500).send({
+            return res.status(500).json({
+              status: "error",
               message: err.message
             });
           });
@@ -39,10 +43,14 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Role.findAll()
     .then((roles) => {
-      return res.status(200).send(roles);
+      return res.status(200).json({
+        status: "success",
+        data: roles
+      });
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message
       });
     });
