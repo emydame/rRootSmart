@@ -17,6 +17,7 @@ app.use(cors());
 //sync db
 db.sequelize.sync({ force: true }).then(() => {});
 
+
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);
 require("./routes/userLogin.route")(app);

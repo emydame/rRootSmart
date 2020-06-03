@@ -39,8 +39,8 @@ db.payment = require("../model/payment.model")(sequelize, Sequelize);
 
 // Table Associations
 
-db.userOrganization.hasMany(db.user);
+// db.userOrganization.hasMany(db.user);
 
-db.user.belongsTo(db.userOrganization ); 
+// db.user.belongsTo(db.userOrganization ); 
 
 module.exports = db;

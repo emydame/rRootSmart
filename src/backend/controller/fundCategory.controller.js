@@ -5,8 +5,9 @@ const FundCategory = db.fundCategory;
     projects in the same category to be funded
 */
 exports.create = (req, res) => {
+  const id = Math.floor(Math.random() * 10000) + 1;
   let requests = {
-    fundCatId: req.body.fundCatId,
+    fundCatId: id,
     categoryName: req.body.categoryName,
     description: req.body.description,
     createdBy: req.body.createdBy

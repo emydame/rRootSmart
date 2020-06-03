@@ -3,9 +3,10 @@ const FundApplication = db.fundApplication;
 
 // Post a application
 exports.create = (req, res) => {
-  let date = new Date();
+  let date = new Date();  
+  const appId = Math.floor(Math.random() * 10000) + 1;
   let requests = {
-    applicationId: req.body.applicationId,
+    applicationId: appId,
     organizationId: req.body.organizationId,
     fundId: req.body.fundId,
     fundCatId: req.body.fundCatId,
