@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import ProjectDetails from "./ProjectDetails";
 
 class SmeProposals extends React.Component {
@@ -9,6 +11,14 @@ class SmeProposals extends React.Component {
     return (
       <nav aria-label="Page navigation example">
       <Card.Body>
+      <div className="sachBody">
+      <ul className="sach">
+        <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" > Search</Button></li>
+          <li><Form.Group controlId="searchId">
+          <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" />
+        </Form.Group></li>
+        </ul>
+      </div>
         <table class="table table-striped">
           <thead>
             <tr>
