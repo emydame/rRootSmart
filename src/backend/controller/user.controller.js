@@ -131,13 +131,12 @@ exports.create = (req, res) => {
               })
               .catch((error) => {
                 status = true;
-                console.log(error);
               });
           });
         });
       }
     })
-    .catch((error) => console.log(error));
+    .catch((error) => error);
 
   if (status) {
     return res.status(500).json({
