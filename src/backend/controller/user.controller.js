@@ -1,7 +1,9 @@
+/* eslint no-console: "error" */
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
+
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodeMailer = require("nodemailer");
@@ -13,185 +15,150 @@ const User = db.user;
 const Userpass = db.userLogin;
 const Organization = db.userOrganization;
 
-// Post User
 exports.create = (req, res) => {
-  const today = new Date();
-  const userRole = "Admin";
-  const userPrivilege = "Level 1";
-  // Check empty request
+  let today = new Date();
+  let userRole = "Admin";
+  let userPrivilege = "Level 1";
+  let orgId = Math.floor(Math.random() * 10000) + 1;
+  let userID = Math.floor(Math.random() * 100000) + 1;
+  let loginID = Math.floor(Math.random() * 10000) + 1;
+
+  //Check empty request
   if (!req.body) {
     return res.status(204).json({
       status: "error",
       message: "User details cannot be empty"
     });
-  } 
-    // Query user table to check if details already exist
-    User.findOne({ where: { email: req.body.email } }).then((data) => {
+  }
+
+  let error = "";
+  let status = false;
+  let saved = "";
+  User.findOne({ where: { email: req.body.email } })
+    .then((data) => {
       if (data) {
         // return result if data already exist
-        return res.status(401).json({
-          status: "error",
-          message: "User already exist"
+        error = "User already exist";
+        return;
+      } else {
+        // Create new instance of  user
+        const user = new User({
+          userId: userID,
+          organizationId: orgId,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          otherName: req.body.otherName,
+          email: req.body.email,
+          phoneNumber: req.body.phoneNumber,
+          role: userRole,
+          privilege: userPrivilege,
+          dateCreated: today
         });
-      } 
-        Organization.findOne({ where: { email: req.body.companyEmail } }).then((data) => {
-          if (data) {
-            return res.status(401).json({
-              status: "error",
-              message: "Organisation already registered" 
-            });
-          } 
-            // Query userlogin table to check if user login credentials already exist
-            Userpass.findOne({ where: { email: req.body.email } }).then((data) => {
-              if (data) {
-                // return data if user login creadentials exist
-                return res.status(401).json({
-                  status: "error",
-                  message: "User already exist"
-                });
-              } 
-                const orgId = Math.floor(Math.random() * 10000) + 1;
-                const userID = Math.floor(Math.random() * 100000) + 1;
-                const loginID = Math.floor(Math.random() * 10000) + 1;
-                /**
-                 * It is assume that any user that successfuly submit registeration
-                 * form becomes the company's admin with all privileges.
-                 * Therefore, USER ROLE is set to ADMIN by defualt while PRIVILEGE to
-                 * LEVEL 1.
-                 * Admin will then create other users (company staff) and assign roles
-                 * and privileges to each staff.
-                 *
-                 * NOTE: The default signup page is meant to register companies and overall
-                 * company admin while sub-user form is access from the company's admin
-                 * dashboard
-                 */
+        user
+          .save()
+          .then((data) => {
+            saved = "Data saved successfully";
+          })
+          .catch((error) => {
+            status = true;
+          });
+      }
+    })
+    .catch((error) => error);
 
-                // Create new instance of  user
-                const user = new User({
-                  userId: userID,
-                  organizationId: orgId,
-                  firstName: req.body.firstName,
-                  lastName: req.body.lastName,
-                  otherName: req.body.otherName,
-                  email: req.body.email,
-                  phoneNumber: req.body.phoneNumber,
-                  role: userRole,
-                  privilege: userPrivilege,
-                  dateCreated: today
-                });
-                // save new user
-                user
-                  .save()
-                  .then((data) => {
-                    if (data) {
-                      const organization = new Organization({
-                        organizationId: orgId,
-                        companyName: req.body.companyName,
-                        category: req.body.userType,
-                        RCNumber: req.body.rcNumber,
-                        email: req.body.companyEmail,
-                        BVN: req.body.BVN,
-                        address: req.body.companyAddress,
-                        dateIncorporated: req.body.dateIncorporated
-                      });
-                      // Save organization
-                      organization.save().then((data) => {
-                        // save login credentials if user details is succesfully saved
-                        if (data) {
-                          const pass = new Userpass({
-                            loginId: loginID,
-                            userId: userID,
-                            organizationId: orgId,
-                            email: req.body.email,
-                            password: req.body.password
-                          });
-                          // Encode password
-                          bcrypt.genSalt(10, (err, salt) => {
-                            bcrypt.hash(pass.password, salt, (err, hash) => {
-                              if (err) {
-                                return res.status(400).json({
-                                  status: "error",
-                                  message: err.message
-                                });
-                              } 
-                                pass.password = hash;
-                                pass.saltSecret = salt;
-                                pass
-                                  .save()
-                                  .then((result) => {
-                                    if (result) {
-                                      // let payload = { subject: result };
-                                      // let token = jwt.sign(payload, secret);
-                                      // let transporter = nodeMailer.createTransport({
-                                      //   service: "sendgrid",
-                                      //   auth: {
-                                      //     user: process.env.SENDGRID_USERNAME,
-                                      //     pass: process.env.SENDGRID_PASSWORD
-                                      //   }
-                                      // });
-                                      // let mailOptions = {
-                                      //   from: "no-reply@gmail.com",
-                                      //   to: result.email,
-                                      //   subject: "Account Verification Token",
-                                      //   text:
-                                      //     "Hello,\n\n" +
-                                      //     "Please verify your account by clicking the link: \nhttp://" +
-                                      //     req.headers.host +
-                                      //     "/confirmation/" +
-                                      //     token +
-                                      //     ".\n"
-                                      // };
-                                      // transporter.sendMail(mailOptions, (err) => {
-                                      //   if (err) {
-                                      //     return res.status(500).send({
-                                      //       message: err.message
-                                      //     });
-                                      //   } else {
-                                      //     res.status(200).send({
-                                      //       message: "Verification message sent"
-                                      //     });
-                                      //   }
-                                      // });
-
-                                      Organization.findOne({ where: { organizationId: orgId } }).then((data) => {
-                                        return res.json({
-                                          status: "success",
-                                          data
-                                        });
-                                      });
-                                    }
-                                  })
-                                  .catch((err) => {
-                                    return res.status(500).json({
-                                      status: "error",
-                                      message: err.message
-                                    });
-                                  });
-                              
-                            });
-                          });
-                        } else {
-                          return res.status(400).json({
-                            status: "error",
-                            message: "Not saved"
-                          });
-                        }
-                      });
-                    }
-                  })
-                  .catch((err) => {
-                    return res.status(500).json({
-                      status: "error",
-                      message: err.message || "Something wrong while creating the user profile."
-                    });
-                  });
-              
-            });
-          
+  Organization.findOne({ where: { email: req.body.companyEmail } })
+    .then((data) => {
+      if (data) {
+        // return result if data already exist
+        error = "User already exist";
+        return;
+      } else {
+        const organization = new Organization({
+          organizationId: orgId,
+          companyName: req.body.companyName,
+          category: req.body.userType,
+          RCNumber: req.body.rccNumber,
+          email: req.body.companyEmail,
+          BVN: req.body.bvn,
+          address: req.body.companyAddress,
+          dateIncorporated: req.body.dateIncorporated,
+          createdAt: today,
+          updatedAt: today
         });
-      
+
+        //Save organization
+        organization
+          .save()
+          .then((data) => {
+            saved = "Data saved successfully";
+          })
+          .catch((error) => {
+            status = true;
+          });
+      }
+    })
+    .catch((error) => error);
+
+  Userpass.findOne({ where: { email: req.body.email } })
+    .then((data) => {
+      if (data) {
+        // return result if data already exist
+        error = "User already exist";
+        return;
+      } else {
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(req.body.password, salt, (err, hash) => {
+            // Now we can store the password hash in db.
+            if (err) {
+              return res.status(401).json({
+                status: "error",
+                message: "Unauthorized user"
+              });
+            }
+            const pass = new Userpass({
+              loginId: loginID,
+              userId: userID,
+              organizationId: orgId,
+              email: req.body.email,
+              password: hash,
+              category: req.body.userType
+            });
+
+            pass
+              .save()
+              .then((data) => {
+                saved = "Data saved successfully";
+              })
+              .catch((error) => {
+                status = true;
+              });
+          });
+        });
+      }
+    })
+    .catch((error) => error);
+
+  if (status) {
+    return res.status(500).json({
+      status: "error",
+      message: error
     });
-  
+  } else {
+    const data = {
+      category: req.body.userType,
+      organizationId: orgId,
+      userId: userID,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      otherName: req.body.otherName,
+      email: req.body.email
+    };
+    return res.status(200).json({
+      status: "success",
+      data,
+      message: saved
+    });
+  }
 };
 
 exports.findAll = (req, res) => {

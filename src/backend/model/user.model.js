@@ -1,3 +1,5 @@
+/* eslint no-console: "error" */
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "users",
@@ -8,12 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false
       },
-      userId: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
+
       organizationId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
       },
       firstName: {
