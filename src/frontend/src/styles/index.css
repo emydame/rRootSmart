@@ -340,3 +340,11 @@ h3 {
 .social {
   margin-left: 10px;
 }
+
+.sachBody {
+  margin-bottom: 60px;
+}
+
+.sach li {
+  display: inline;
+}

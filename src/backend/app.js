@@ -14,8 +14,9 @@ const db = require("./config/db.config");
 // Set CORS for all headers
 app.use(cors());
 
-// sync db
-db.sequelize.sync({ force: false }).then(() => {});
+//sync db
+db.sequelize.sync({ force: true }).then(() => {});
+
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);

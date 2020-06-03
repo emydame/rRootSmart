@@ -41,8 +41,7 @@ class Registration extends React.Component {
   }
 
   mapStateToLGA(event) {
-    console.log(this.props);
-    this.props.mapStateToLga(event);
+        this.props.mapStateToLga(event);
   }
 
   handleBlur(event) {
@@ -93,7 +92,7 @@ class Registration extends React.Component {
               <hr></hr>
               <Row>
                 <Col>
-                  <Form.Group controlId="formBasicText1">
+                  <Form.Group controlId="firstName">
                     <Form.Label className="font-weight-bold">
                       First Name<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -101,7 +100,7 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="formBasicText2">
+                  <Form.Group controlId="lastName">
                     <Form.Label className="font-weight-bold">
                       Last Name<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -112,13 +111,13 @@ class Registration extends React.Component {
 
               <Row>
                 <Col>
-                  <Form.Group controlId="formBasicText3">
+                  <Form.Group controlId="otherName">
                     <Form.Label className="font-weight-bold">Other Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter other name" name="otherName" />
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="formBasicSelect">
+                  <Form.Group controlId="positionHeld">
                     <Form.Label className="font-weight-bold">
                       Position Held<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -136,7 +135,7 @@ class Registration extends React.Component {
 
               <Row>
                 <Col>
-                  <Form.Group controlId="formBasicText4">
+                  <Form.Group controlId="phoneNumber">
                     <Form.Label className="font-weight-bold">
                       Phone Number <sup className="text-danger">*</sup>
                     </Form.Label>
@@ -144,7 +143,7 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="formBasicEmail2">
+                  <Form.Group controlId="email">
                     <Form.Label className="font-weight-bold">
                       Email<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -154,7 +153,7 @@ class Registration extends React.Component {
               </Row>
               <Row>
                 <Col>
-                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                  <Form.Group controlId="address1">
                     <Form.Label className="font-weight-bold">
                       Address<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -170,7 +169,7 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="formBasicSelect2">
+                  <Form.Group controlId="state">
                     <Form.Label className="font-weight-bold">
                       Select State<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -224,9 +223,15 @@ class Registration extends React.Component {
 
               <Row>
                 <Col md="6">
+<<<<<<< HEAD
                   <Form.Group controlId="formBasicSelect3">
                     {/* <Form.Label className="font-weight-bold">
                       <sup className="text-danger">*</sup>
+=======
+                  <Form.Group controlId="lga">
+                    <Form.Label className="font-weight-bold">
+                      LGA<sup className="text-danger">*</sup>
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
                     </Form.Label>
                     <Form.Control
                       as="select"
@@ -237,8 +242,14 @@ class Registration extends React.Component {
                     ></Form.Control> */}
                   </Form.Group>
                 </Col>
+<<<<<<< HEAD
                 <Col md="6">
                   <Form.Group controlId="formBasicSelect3">
+=======
+
+                <Col md="3">
+                  <Form.Group controlId="dataRegistered" class="form-group">
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
                     <Form.Label className="font-weight-bold">
                       LGA<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -258,7 +269,7 @@ class Registration extends React.Component {
               <hr></hr>
               <Row>
                 <Col>
-                  <Form.Group controlId="formBasicText1">
+                  <Form.Group controlId="companyName">
                     <Form.Label className="font-weight-bold">
                       Comapany Name<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -266,7 +277,11 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
                 <Col>
+<<<<<<< HEAD
                   <Form.Group controlId="formBasicCAC">
+=======
+                  <Form.Group controlId="companyId">
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
                     <Form.Label className="font-weight-bold">
                       BVN Number<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -277,7 +292,7 @@ class Registration extends React.Component {
               </Row>
               <Row>
                 <Col md="6">
-                  <Form.Group controlId="formBasicSelect">
+                  <Form.Group controlId="userCat">
                     <Form.Label className="font-weight-bold">
                       User Category<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -289,28 +304,53 @@ class Registration extends React.Component {
                     </Form.Control>
                   </Form.Group>
                 </Col>
+<<<<<<< HEAD
                 <Col md="6">
                   <Form.Group controlId="formBasicText2">
+=======
+                <Col md="3">
+                  <Form.Group controlId="rccNumber">
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
                     <Form.Label className="font-weight-bold">
                       RCC Number<sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control type="text" placeholder="Enter RCC Number" required name="rccNumber" />
                   </Form.Group>
                 </Col>
+<<<<<<< HEAD
               </Row>
 
               <Row>
               <Col>
                   <Form.Group controlId="formBasicEmail2">
+=======
+                <Col md="3" className="incorpDate">
+                  <Form.Group controlId="incorpDate">
+                    <Form.Label className="font-weight-bold">
+                      Incorporation Date<sup className="text-danger">*</sup>
+                    </Form.Label>
+                    <Form.Control type="date" required name="dateIncorporated" />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                  <Form.Group controlId="bvnNumber">
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
                     <Form.Label className="font-weight-bold">
                       Company Email<sup className="text-danger">*</sup>
                     </Form.Label>
+<<<<<<< HEAD
                     <Form.Control type="email" placeholder="Enter email" required name="companyEmail" />
+=======
+                    <Form.Control type="number" placeholder="Bank verification number" name="bvn" required />
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
                   </Form.Group>
                 </Col>
 
                 <Col>
-                  <Form.Group controlId="formBasicPhoneNum">
+                  <Form.Group controlId="companyPhone">
                     <Form.Label className="font-weight-bold">
                       Company Phone<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -319,9 +359,15 @@ class Registration extends React.Component {
                 </Col>
               </Row>
               <Row>
+<<<<<<< HEAD
                 <Col md="6">
                   <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label className="font-weight-bold ">
+=======
+                <Col>
+                  <Form.Group controlId="companyAddress">
+                    <Form.Label className="font-weight-bold">
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
                       Company Address<sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control
@@ -335,7 +381,18 @@ class Registration extends React.Component {
                     />
                   </Form.Group>
                 </Col>
+<<<<<<< HEAD
                 
+=======
+                <Col>
+                  <Form.Group controlId="companyEmail">
+                    <Form.Label className="font-weight-bold">
+                      Company Email<sup className="text-danger">*</sup>
+                    </Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" required name="companyEmail" />
+                  </Form.Group>
+                </Col>
+>>>>>>> 642d2bee77dee99180c3debfcf8da9660e585b27
               </Row>
 
               <hr></hr>
@@ -344,7 +401,7 @@ class Registration extends React.Component {
               <hr></hr>
               <Row>
                 <Col>
-                  <Form.Group controlId="formBasicPassword2">
+                  <Form.Group controlId="password1">
                     <Form.Text className="text-warning font-weight-bold">
                       Password including numbers, special characters is advised
                     </Form.Text>
@@ -361,7 +418,7 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="formBasicPassword2">
+                  <Form.Group controlId="password2">
                     <Form.Text className="text-warning font-weight-bold">
                       Password including numbers, special characters is advised
                     </Form.Text>
