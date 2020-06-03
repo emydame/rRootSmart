@@ -7,8 +7,9 @@ const db = require("../config/db.config");
 const Payment = db.payment;
 
 exports.create = (req, res) => {
+  id = Math.floor(Math.random() * 10000) + 1;
   let requests = {
-    paymentId: req.body.payment,
+    paymentId: id,
     organizationId: req.body.organizationId,
     fundId: req.body.fundId,
     accountNumber: req.body.accountNumber,

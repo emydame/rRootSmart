@@ -3,8 +3,10 @@ const Project = db.project;
 
 exports.create = (req, res) => {
   let today = new Date();
+  id = Math.floor(Math.random() * 10000) + 1;
+
   let projects = {
-    projectId: req.body.projectId,
+    projectId: id,
     projectCatId: req.body.projectCatId,
     projectName: req.body.projectName,
     description: req.body.description,
@@ -63,7 +65,7 @@ exports.findAll = (req, res) => {
       });
     });
 };
- 
+
 // Get single Project using  parameter
 exports.findOne = (req, res) => {
   Project.findOne({ where: { projectId: req.body.projectId } })

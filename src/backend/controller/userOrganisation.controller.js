@@ -6,8 +6,9 @@ const Organization = db.userOrganization;
 
 // Post User organization
 exports.create = (req, res) => {
+  id = Math.floor(Math.random() * 10000) + 1;
   const request = {
-    organizationId: req.body.organizationId,
+    organizationId: id,
     companyName: req.body.companyName,
     category: req.body.category,
     RCNumber: req.body.RCNumber,
