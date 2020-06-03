@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
+/* eslint no-console: "error" */
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodeMailer = require("nodemailer");
@@ -154,7 +155,7 @@ exports.create = (req, res) => {
     };
     return res.status(200).json({
       status: "success",
-      data: data,
+      data,
       message: saved
     });
   }
