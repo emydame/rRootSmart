@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { Table, Tag, Space } from "antd";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 
 /*datasource*/
@@ -81,6 +83,15 @@ export default class Investors extends Component {
           <div className="update" style={{textAlign:"center"}}>
             <h4> *** Investors View *** </h4>         
           </div>
+          <div className="sachBody">
+            <ul className="sach">
+              <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" > Search</Button></li>
+              <li><Form.Group controlId="searchId">
+                  <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter Company name" name="search" />
+                  </Form.Group>
+              </li>
+          </ul>
+        </div>
           <Table columns={columns} dataSource={data} />
         </Card.Body>
       );

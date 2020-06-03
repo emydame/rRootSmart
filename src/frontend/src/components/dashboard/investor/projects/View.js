@@ -5,6 +5,8 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 
 class View extends React.Component {
@@ -37,6 +39,14 @@ class View extends React.Component {
     const data = this.state.data;
     return (
       <Card.Body>
+        <div className="sachBody">
+        <ul className="sach">
+          <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" > Search</Button></li>
+            <li><Form.Group controlId="searchId">
+            <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" />
+          </Form.Group></li>
+          </ul>
+        </div> 
         <Table striped bordered hover size="sm">
           <thead>
             <tr>

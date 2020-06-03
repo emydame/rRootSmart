@@ -7,8 +7,9 @@ This API record details of funds disbursed
 */
 
 exports.create = (req, res) => {
+  const id = Math.floor(Math.random() * 10000) + 1;
   let requests = {
-    disbursementId: req.body.disbursementId,
+    disbursementId: id,
     organizationId: req.body.organizationId,
     applicationId: req.body.applicationId,
     fundId: req.body.fundId,

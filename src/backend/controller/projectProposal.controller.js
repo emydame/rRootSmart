@@ -3,8 +3,9 @@ const Proposal = db.proposal;
 
 //Add proposal
 exports.create = (req, res) => {
+  let id = Math.floor(Math.random() * 10000) + 1;
   let requestBody = {
-    proposalId: req.body.proposalId,
+    proposalId: id,
     userId: req.body.userId,
     applicationId: req.body.applicationId,
     projectId: req.body.projectId,

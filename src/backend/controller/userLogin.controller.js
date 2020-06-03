@@ -14,7 +14,7 @@ const Organization = db.userOrganization;
 exports.findOne = (req, res) => {
   // let request = {
   //   email: req.body.email,
-  //   password: req.body.password   
+  //   password: req.body.password
   // };
   UserLogin.findOne({ where: { email: req.body.email } })
     .then((data) => {
@@ -24,27 +24,30 @@ exports.findOne = (req, res) => {
           status: "error",
           message: " Invalid username or password"
         });
-      } 
-        if (bcrypt.compareSync(req.body.password, data.password)) {
-          if (data) {
-            Organization.findOne({
-              where: {
-                organizationId: data.organizationId
-              }
-            }).then((result) => {
-              return res.json({
-                status: "success",
-                data: result
-              });
+      }
+
+      bcrypt
+        .compare(req.body.password, data.password)
+        .then((val) => {
+          if (!val) {
+            return res.status(401).json({
+              status: "error",
+              message: " Invalid username or password"
             });
+          } else {
+            if (data.email === req.body.email) {
+              const result = {
+                category: data.category,
+                email: data.email
+              };
+              return res.status(200).json({
+                status: "success",
+                result
+              });
+            }
           }
-        } else {
-          return res.status(401).json({
-            status: "error",
-            message: "Invalid username or password"
-          }); 
-        }
-      
+        })
+        .catch((error) => error);
     })
     .catch((err) => {
       return res.status(500).json({
