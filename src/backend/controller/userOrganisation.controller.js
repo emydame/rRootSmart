@@ -49,9 +49,9 @@ exports.create = (req, res) => {
               message: err.message || "Unable to save organization details."
             });
           });
-      
-    });
-  
+    }
+  });
+    
 };
 
 // Retrieve all organizations
