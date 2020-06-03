@@ -47,7 +47,7 @@ exports.findOne = (req, res) => {
             }
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.error(error));
     })
     .catch((err) => {
       return res.status(500).json({

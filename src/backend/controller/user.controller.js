@@ -3,7 +3,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
-/* eslint no-console: "error" */
+
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodeMailer = require("nodemailer");
