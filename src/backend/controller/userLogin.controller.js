@@ -1,9 +1,13 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
 process.env.SECRET_KEY = "secret";
 
 // Require database
 const db = require("../config/db.config");
+
 const UserLogin = db.userLogin;
 const Organization = db.userOrganization;
 
@@ -16,10 +20,11 @@ exports.findOne = (req, res) => {
     .then((data) => {
       // Check if login credentials exist
       if (!data) {
-        return res.status(401).send({
-          message: "Invalid email or password"
+        return res.status(401).json({
+          status: "error",
+          message: " Invalid username or password"
         });
-      } else {
+      } 
         if (bcrypt.compareSync(req.body.password, data.password)) {
           if (data) {
             Organization.findOne({
@@ -27,18 +32,23 @@ exports.findOne = (req, res) => {
                 organizationId: data.organizationId
               }
             }).then((result) => {
-              return res.send(result);
+              return res.json({
+                status: "success",
+                data: result
+              });
             });
           }
         } else {
-          return res.status(401).send({
-            message: "Invalid email or password"
+          return res.status(401).json({
+            status: "error",
+            message: "Invalid username or password"
           }); 
         }
-      }
+      
     })
     .catch((err) => {
-      return res.status(500).send({
+      return res.status(500).json({
+        status: "error",
         message: err.message || "Something went wrong"
       });
     });

@@ -38,7 +38,7 @@ describe("create()", () => {
   });
 });
 
-describe("GET /funds with findAll()", () => {
+describe("GET /funds/all with findAll()", () => {
   beforeEach(async () => {
     if (!(apiServer && apiServer.listen)) {
       apiServer = supertest(app);
@@ -54,7 +54,7 @@ describe("GET /funds with findAll()", () => {
     expect(res).toEqual("function");
   });
   it("should fetch funds from the server", async () => {
-    const res = await apiServer.get("/funds");
+    const res = await apiServer.get("/funds/all");
     expect(res.statusCode).toEqual(200);
   });
 });
@@ -79,8 +79,35 @@ describe("GET /funds/status with findOne()", () => {
     expect(res.statusCode).toEqual(200);
   });
   it("should not fetch fund data for an invalid id", async () => {
-    const res = await apiServer.get("/funds/status").send({ disbursementId: "sgio" });
+    const res = await apiServer.get("/funds/status").send({ status: "completed" });
     expect(res.statusCode).toEqual(404);
   });
 });
+
+describe("GET /funds/:id with findOne()", () => {
+  beforeEach(async () => {
+    if (!(apiServer && apiServer.listen)) {
+      apiServer = supertest(app);
+    }
+  });
+  afterEach(async () => {
+    if (apiServer.close) {
+      await apiServer.close();
+    }
+  });
+  it("findOne() should be a function", () => {
+    const res = typeof fundsControllers.findOne;
+    expect(res).toEqual("function");
+  });
+  it("should fetch single fund info from the server", async () => {
+    const res = await apiServer.get("/funds/1");
+    expect(res.statusCode).toEqual(200);
+  });
+  it("should not fetch fund data for an invalid id", async () => {
+    const res = await apiServer.get("/funds/dafdsf");
+    expect(res.statusCode).toEqual(404);
+  });
+});
+
+
 

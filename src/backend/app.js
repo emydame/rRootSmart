@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-expressions */
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -9,7 +11,7 @@ app.use(bodyParser.json());
 
 const db = require("./config/db.config");  
 
-//Set CORS for all headers
+// Set CORS for all headers
 app.use(cors());
 
 //sync db
