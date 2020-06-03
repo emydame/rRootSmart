@@ -94,11 +94,10 @@ exports.create = (req, res) => {
           })
           .catch((error) => {
             status = true;
-            console.log(error);
           });
       }
     })
-    .catch((error) => console.log(error));
+    .catch((error) => error);
 
   Userpass.findOne({ where: { email: req.body.email } })
     .then((data) => {
