@@ -61,15 +61,13 @@ exports.create = (req, res) => {
           })
           .catch((error) => {
             status = true;
-            console.log(error);
           });
       }
     })
-    .catch((error) => console.log(error));
+    .catch((error) => error);
 
   Organization.findOne({ where: { email: req.body.companyEmail } })
     .then((data) => {
-      console.log(req.body.companyEmail);
       if (data) {
         // return result if data already exist
         error = "User already exist";
@@ -92,14 +90,11 @@ exports.create = (req, res) => {
         organization
           .save()
           .then((data) => {
-            console.log(organization);
             saved = "Data saved successfully";
-            console.log(data);
           })
           .catch((error) => {
             status = true;
             console.log(error);
-            
           });
       }
     })
