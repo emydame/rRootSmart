@@ -306,7 +306,7 @@ class Registration extends React.Component {
                     <Form.Label className="font-weight-bold">
                       BVN Number<sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Bank verification number" name="bvn" required />
+                    <Form.Control type="number" placeholder="Bank verification number" name="bvn" required />
                   </Form.Group>
                 </Col>
 

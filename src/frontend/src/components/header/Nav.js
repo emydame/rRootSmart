@@ -126,6 +126,7 @@ class Nav extends React.Component {
   closeLoginModal() {
     this.setState({ showLog: false });
   }
+
   async handleLogin(event) {
     event.preventDefault();
     const required = document.querySelectorAll(`input[required]`);
@@ -140,10 +141,11 @@ class Nav extends React.Component {
     const form = document.querySelector(`form[name="login"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
-      .post("http://localhost/login", formFields)
-      .then((data) => {
-        if (data.status === "success") {
-          switch (data.category) {
+      .post("http://localhost:4000/login", formFields)
+      .then(({ data }) => {
+        const { status, result } = data;
+        if (status === "success") {
+          switch (result.category) {
             case "admin":
               this.props.history.push("/admin");
               break;
@@ -163,7 +165,7 @@ class Nav extends React.Component {
         }
       })
       .catch((error) => console.log(error));
-    // this.setState({ redirect: "/sme" });
+    
   }
 
   showContactModal(event) {

@@ -1,3 +1,4 @@
+/* eslint no-console: "error" */
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable consistent-return */
@@ -68,6 +69,7 @@ exports.create = (req, res) => {
 
   Organization.findOne({ where: { email: req.body.companyEmail } })
     .then((data) => {
+      console.log(req.body.companyEmail);
       if (data) {
         // return result if data already exist
         error = "User already exist";
@@ -81,19 +83,23 @@ exports.create = (req, res) => {
           email: req.body.companyEmail,
           BVN: req.body.bvn,
           address: req.body.companyAddress,
-          dateIncorporated: req.body.dateIncorporated
+          dateIncorporated: req.body.dateIncorporated,
+          createdAt: today,
+          updatedAt: today
         });
 
         //Save organization
         organization
           .save()
           .then((data) => {
+            console.log(organization);
             saved = "Data saved successfully";
             console.log(data);
           })
-          .catch(() => {
-            console.log("Error saving org");
+          .catch((error) => {
             status = true;
+            console.log(error);
+            
           });
       }
     })
@@ -120,7 +126,8 @@ exports.create = (req, res) => {
               userId: userID,
               organizationId: orgId,
               email: req.body.email,
-              password: hash
+              password: hash,
+              category: req.body.userType
             });
 
             pass
