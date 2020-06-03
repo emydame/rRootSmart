@@ -1,7 +1,7 @@
 const db = require("../config/db.config");
 const Previlege = db.userPrevilege;
 
-// Post a User
+// Post User privileges
 exports.create = (req, res) => {
   if (!req.body) {
     return res.status(400).json({

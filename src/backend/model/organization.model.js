@@ -3,9 +3,10 @@ module.exports = (sequelize, DataTypes) => {
     "organizations",
     {
       organizationId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
       companyName: {
         type: DataTypes.STRING
@@ -14,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       RCNumber: {
-        type: DataTypes.STRING  
+        type: DataTypes.STRING
       },
       email: {
         type: DataTypes.STRING

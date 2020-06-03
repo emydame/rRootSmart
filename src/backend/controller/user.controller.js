@@ -1,8 +1,15 @@
+/* eslint-disable no-shadow */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const nodeMailer = require("nodemailer");
+
 const secret = "serete";
 const db = require("../config/db.config");
-const User = db.users;
+
+const User = db.user;
 const Userpass = db.userLogin;
 const Organization = db.userOrganization;
 
@@ -75,7 +82,7 @@ exports.create = (req, res) => {
           address: req.body.companyAddress,
           dateIncorporated: req.body.dateIncorporated
         });
-        
+
         //Save organization
         organization
           .save()
@@ -169,7 +176,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-//fine single user by id
+// fine single user by id
 exports.findOne = (req, res) => {
   User.findOne({ where: { userId: req.body.userId } })
     .then((user) => {

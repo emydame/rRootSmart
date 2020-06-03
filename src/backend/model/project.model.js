@@ -2,10 +2,15 @@ module.exports = (sequelize, DataTypes) => {
   const Project = sequelize.define(
     "projects",
     {
-      projectId: {
-        type: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true
+      },
+      projectId: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       projectCatId: {
         type: DataTypes.STRING

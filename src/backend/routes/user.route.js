@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 module.exports = (app) => {
   const users = require("../controller/user.controller.js");
 
@@ -7,6 +8,6 @@ module.exports = (app) => {
   // Retrieve all Users
   app.get("/users", users.findAll);
 
-  //find user by id
+  // find user by id
   app.get("/users/:id", users.findOne);
 };
