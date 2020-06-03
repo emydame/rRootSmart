@@ -3,7 +3,7 @@ const ProjectCategory = db.projectCategory;
 
 // Create projeect category
 exports.create = (req, res) => {
-  id = Math.floor(Math.random() * 10000) + 1;
+  let id = Math.floor(Math.random() * 10000) + 1;
   let request = {
     projectCatId: id,
     categoryName: req.body.categoryName,

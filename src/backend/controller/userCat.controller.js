@@ -4,7 +4,7 @@ const UserCategory = db.userCategory;
 // Post User category
 exports.create = (req, res) => {
   let today = new Date();
-  id = Math.floor(Math.random() * 10000) + 1;
+  let id = Math.floor(Math.random() * 10000) + 1;
 
   let requests = {
     userCatId: id,

@@ -3,7 +3,7 @@ const Project = db.project;
 
 exports.create = (req, res) => {
   let today = new Date();
-  id = Math.floor(Math.random() * 10000) + 1;
+  let id = Math.floor(Math.random() * 10000) + 1;
 
   let projects = {
     projectId: id,

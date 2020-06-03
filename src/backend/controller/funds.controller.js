@@ -7,7 +7,7 @@ const Fund = db.fund;
 
 // Invest funds
 exports.create = (req, res) => {
-  id = Math.floor(Math.random() * 10000) + 1;
+  let id = Math.floor(Math.random() * 10000) + 1;
   let requests = {
     fundId: id,
     organizationId: req.body.organizationId,
