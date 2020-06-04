@@ -49,7 +49,7 @@ class View extends React.Component {
   }
   onChange(e){
     const value =  e.target.value;
-    if (value.trim() === ''){
+    if (value.trim() === ""){
       this.setState({filteredProjects: this.state.projects, searchTerm: value});
     }else{
       this.setState({searchTerm: value});
