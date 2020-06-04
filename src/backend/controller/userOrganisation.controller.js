@@ -44,9 +44,15 @@ exports.create = (req, res) => {
             status: "success",
             data
           });
+        })
+        .catch((err) => {
+          return res.status(500).json({
+            status: "error",
+            message: err.message || "Unable to save organization details."
+          });
+        });
     }
   });
-    
 };
 
 // Retrieve all organizations
