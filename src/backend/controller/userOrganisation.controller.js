@@ -45,9 +45,9 @@ exports.create = (req, res) => {
             data
           });
         });
-    };
+    }
   });
-}
+};
 
 // Retrieve all organizations
 exports.findAll = (req, res) => {

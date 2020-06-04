@@ -34,10 +34,10 @@ class View extends React.Component {
 
     const query = this.state.searchTerm;
 
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let filteredProjects = prevState.projects;
-      if (query.trim() !== ''){
-        filteredProjects = prevState.projects.filter(element => {
+      if (query.trim() !== ""){
+        filteredProjects = prevState.projects.filter((element) => {
           return element.projectName.toLowerCase().includes(query.toLowerCase()) ||
           element.description.toLowerCase().includes(query.toLowerCase());
         });
@@ -57,13 +57,9 @@ class View extends React.Component {
     
   }
   async fetchData() {
-    try {
-      const data = await axios.get("https://eazsme-backend.herokuapp.com/projects/all");
-      const projects = data.data.data;  
-      this.setState({projects, filteredProjects: projects});
-    } catch (error) {
-      console.log(error.message);
-    }
+    const data = await axios.get("https://eazsme-backend.herokuapp.com/projects/all");
+    const projects = data.data.data;  
+    this.setState({projects, filteredProjects: projects});
   }
 
   render() {
