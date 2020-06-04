@@ -65,8 +65,8 @@ class View extends React.Component {
   render() {
     const data = this.state.filteredProjects;
     return (
-      <Card.Body>
-        <div className="sachBody">
+      <>
+      <div className="sachBody">
         <ul className="sach">
           <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" onClick={this.searchProjects} > Search</Button></li>
             <li><Form.Group controlId="searchId">
@@ -74,6 +74,7 @@ class View extends React.Component {
           </Form.Group></li>
           </ul>
         </div> 
+      <Card.Body>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -106,6 +107,7 @@ class View extends React.Component {
           </tbody>
         </Table>
       </Card.Body>
+      </>
     );
   }
 }
