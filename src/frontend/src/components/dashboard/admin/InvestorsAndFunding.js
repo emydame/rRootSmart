@@ -7,9 +7,9 @@ export default class InvestorsAndFunding extends Component {
   render() {
     return (
       <Card.Body>
-        <div className="invest-fund">
+        {/* <div className="invest-fund">
           <h2 style={{textAlign:"center"}}>Investors/Funding</h2>
-        </div>
+        </div> */}
         <div className="update" style={{textAlign:"center"}}>
           <h4> *** New Request *** </h4>
           <p>Kuda Micro finance just signed in as an investor and needs to be verified</p>

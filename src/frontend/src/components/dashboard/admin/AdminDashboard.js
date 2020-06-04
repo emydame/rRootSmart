@@ -163,6 +163,10 @@ class AdminDashboard extends React.Component {
           {/* Content elements are here */}
 
           <Content style={{ margin: "0 16px" }}>
+          <div className="content-title">
+              <h5>WELCOME TO YOUR SUPER DOPE DASHBOARD</h5>
+              <p>Be the BOSS</p>
+            </div>
             <Router history={this.props.history}>
               <Switch>
                 <Route path="/admin/investorsandfunding" component={InvestorsAndFunding} />
@@ -182,6 +186,7 @@ class AdminDashboard extends React.Component {
               </Switch>
             </Router>
           </Content>
+          
           {/* <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>

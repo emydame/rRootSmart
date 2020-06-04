@@ -117,7 +117,14 @@ class Registration extends React.Component {
                 </Col>
                 <Col>
                   <Form.Group controlId="positionHeld">
-                    <Form.Label className="font-weight-bold">
+                    <Form.Group controlId="phoneNumber">
+                      <Form.Label className="font-weight-bold">
+                        Phone Number <sup className="text-danger">*</sup>
+                      </Form.Label>
+                      <Form.Control type="text" placeholder="Enter phone number" required name="phoneNumber1" />
+                    </Form.Group>
+                  
+                    {/* <Form.Label className="font-weight-bold">
                       Position Held<sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control as="select" required name="type">
@@ -127,20 +134,12 @@ class Registration extends React.Component {
                       <option value="regulator">Manager</option>
                       <option value="regulator">Supervisor</option>
                       <option value="regulator">Junior Staff</option>
-                    </Form.Control>
+                    </Form.Control> */}
                   </Form.Group>
                 </Col>
               </Row>
 
               <Row>
-                <Col>
-                  <Form.Group controlId="phoneNumber">
-                    <Form.Label className="font-weight-bold">
-                      Phone Number <sup className="text-danger">*</sup>
-                    </Form.Label>
-                    <Form.Control type="text" placeholder="Enter Name of Organization" required name="phoneNumber1" />
-                  </Form.Group>
-                </Col>
                 <Col>
                   <Form.Group controlId="email">
                     <Form.Label className="font-weight-bold">
@@ -149,8 +148,6 @@ class Registration extends React.Component {
                     <Form.Control type="email" placeholder="Enter email" required name="email" />
                   </Form.Group>
                 </Col>
-              </Row>
-              <Row>
                 <Col>
                   <Form.Group controlId="address1">
                     <Form.Label className="font-weight-bold">
@@ -167,6 +164,9 @@ class Registration extends React.Component {
                     />
                   </Form.Group>
                 </Col>
+              </Row>
+              <Row>
+                
                 <Col>
                   <Form.Group controlId="state">
                     <Form.Label className="font-weight-bold">
@@ -218,11 +218,8 @@ class Registration extends React.Component {
                     </Form.Control>
                   </Form.Group>
                 </Col>
-              </Row>
-
-              <Row>
                 <Col md="6">
-                  <Form.Group controlId="lga">
+                  <Form.Group controlId="formBasicSelect3">
                     <Form.Label className="font-weight-bold">
                       LGA<sup className="text-danger">*</sup>
                     </Form.Label>
@@ -233,15 +230,6 @@ class Registration extends React.Component {
                       onChange={this.mapLGAToTown}
                       name="lga"
                     ></Form.Control>
-                  </Form.Group>
-                </Col>
-
-                <Col md="3">
-                  <Form.Group controlId="dataRegistered" class="form-group">
-                    <Form.Label className="font-weight-bold">
-                      Date Registered<sup className="text-danger">*</sup>
-                    </Form.Label>
-                    <Form.Control type="date" required name="dateRegistered" />
                   </Form.Group>
                 </Col>
               </Row>
@@ -259,13 +247,14 @@ class Registration extends React.Component {
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Form.Group controlId="companyId">
+                  <Form.Group controlId="formBasicCAC">
                     <Form.Label className="font-weight-bold">
-                      Company I.D<sup className="text-danger">*</sup>
+                      BVN Number<sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Enter Company ID" required name="companyId" />
+                    <Form.Control type="text" placeholder="Bank verification number" name="bvn" required />
                   </Form.Group>
                 </Col>
+              
               </Row>
               <Row>
                 <Col md="6">
@@ -274,38 +263,29 @@ class Registration extends React.Component {
                       User Category<sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control as="select" required name="userType">
-                      <option value="sme">Administrator</option>
                       <option value="investor">Investor</option>
                       <option value="regulator">Regulator</option>
                       <option value="regulator">SMEs</option>
                     </Form.Control>
                   </Form.Group>
                 </Col>
-                <Col md="3">
-                  <Form.Group controlId="rccNumber">
+                <Col md="6">
+                  <Form.Group controlId="formBasicText2">
                     <Form.Label className="font-weight-bold">
                       RCC Number<sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control type="text" placeholder="Enter RCC Number" required name="rccNumber" />
                   </Form.Group>
                 </Col>
-                <Col md="3" className="incorpDate">
-                  <Form.Group controlId="incorpDate">
-                    <Form.Label className="font-weight-bold">
-                      Incorporation Date<sup className="text-danger">*</sup>
-                    </Form.Label>
-                    <Form.Control type="date" required name="dateIncorporated" />
-                  </Form.Group>
-                </Col>
               </Row>
 
               <Row>
-                <Col>
-                  <Form.Group controlId="bvnNumber">
+              <Col>
+                  <Form.Group controlId="formBasicEmail2">
                     <Form.Label className="font-weight-bold">
-                      BVN Number<sup className="text-danger">*</sup>
+                      Company Email<sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control type="number" placeholder="Bank verification number" name="bvn" required />
+                    <Form.Control type="email" placeholder="Enter email" required name="companyEmail" />
                   </Form.Group>
                 </Col>
 
@@ -319,14 +299,14 @@ class Registration extends React.Component {
                 </Col>
               </Row>
               <Row>
-                <Col>
-                  <Form.Group controlId="companyAddress">
-                    <Form.Label className="font-weight-bold">
+                <Col md="6">
+                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Label className="font-weight-bold ">
                       Company Address<sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control
                       as="textarea"
-                      rows="2"
+                      rows="3"
                       cols=""
                       required
                       name="companyAddress"
@@ -335,14 +315,7 @@ class Registration extends React.Component {
                     />
                   </Form.Group>
                 </Col>
-                <Col>
-                  <Form.Group controlId="companyEmail">
-                    <Form.Label className="font-weight-bold">
-                      Company Email<sup className="text-danger">*</sup>
-                    </Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" required name="companyEmail" />
-                  </Form.Group>
-                </Col>
+                
               </Row>
 
               <hr></hr>
