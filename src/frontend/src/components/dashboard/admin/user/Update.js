@@ -39,7 +39,7 @@ class Update extends React.Component {
     // make a request to the backend and update here
     const { userID } = this.state;
     axios
-      .get("https://eazsme-backend.herokuapp.com//user/" + userID)
+      .get("http://localhost:4000//user/" + userID)
       .then((data) => this.setState({ data }))
       .catch((error) => console.log(error));
   }
@@ -63,17 +63,18 @@ class Update extends React.Component {
 
   submitUpdate(e) {
     e.preventDefault();
-    const form = document.querySelector(`form[name="update"]`)
-    const formFields = serialize(form, {hash: true});
-    axios.patch("http://localhost:400/update", formFields)
-    .then((data) => {
-      if(data.status === "success") {
-        this.setState({success: "Update was successful!"});
-      }else {
-        this.setState({error: "Error performing update"});
-      }
-    })
-    .catch((error) => console.log(error));
+    const form = document.querySelector(`form[name="update"]`);
+    const formFields = serialize(form, { hash: true });
+    axios
+      .patch("http://localhost:400/update", formFields)
+      .then((data) => {
+        if (data.status === "success") {
+          this.setState({ success: "Update was successful!" });
+        } else {
+          this.setState({ error: "Error performing update" });
+        }
+      })
+      .catch((error) => console.log(error));
   }
 
   render() {
@@ -81,16 +82,23 @@ class Update extends React.Component {
     const { fullName, description } = data;
     return (
       <Card.Body>
-         {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
         <Row>
           {/* <Col md="4">
             <Image src="holder.js/100px250" fluid />
           </Col> */}
           <Col md="12">
+            {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
+            <div className="content-text">
+              <h5>User Updating Form</h5>
+            </div>
             <Form name="update">
               <Form.Group controlId="fullName">
                 <Form.Label>Full Name</Form.Label>

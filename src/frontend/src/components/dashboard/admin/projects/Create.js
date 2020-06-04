@@ -75,13 +75,17 @@ class Create extends React.Component {
     const error = this.state.error;
     return (
       <Card.Body>
-        {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
-        <Row>
+                <Row>
           <Col>
+          {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
             <Form name="create-project">
               <Form.Group controlId="catId">
                 <Form.Label>Project ID:</Form.Label>
