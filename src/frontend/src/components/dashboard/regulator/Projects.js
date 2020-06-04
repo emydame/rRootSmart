@@ -80,6 +80,7 @@ import axios from "axios";
 //       ),
 //     },
 //   ];
+
   
 
 export default class Projects extends Component {
@@ -145,6 +146,7 @@ export default class Projects extends Component {
         <div className="update" style={{textAlign:"center"}}>
           <h4> *** Projects View *** </h4>         
         </div>
+        
         <div className="sachBody">
           <ul className="sach">
           <li><Button style={{float:"right",borderRadius:"20%"}} onClick={this.searchProjects}  variant="primary" type="submit" > Search</Button></li>
@@ -186,7 +188,9 @@ export default class Projects extends Component {
               );
             })}
           </tbody>
-        </table>
+        </table> 
+       //<Table columns={columns} dataSource={data} />
+
       </Card.Body>
     );
   }
