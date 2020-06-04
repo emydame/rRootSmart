@@ -8,42 +8,73 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import Search from "antd/lib/transfer/search";
 
 class View extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: []
+      projects: [],
+      filteredProjects: [],
+      searchTerm: ""
     };
 
     this.fetchData = this.fetchData.bind(this);
+    this.searchProjects = this.searchProjects.bind(this);
+    this.onChange = this.onChange.bind(this);
+
   }
 
   componentDidMount() {
     this.fetchData();
   }
+  searchProjects(e){
+    e.preventDefault();
 
+    const query = this.state.searchTerm;
+
+    this.setState(prevState => {
+      let filteredProjects = prevState.projects;
+      if (query.trim() !== ''){
+        filteredProjects = prevState.projects.filter(element => {
+          return element.projectName.toLowerCase().includes(query.toLowerCase()) ||
+          element.description.toLowerCase().includes(query.toLowerCase());
+        });
+      }
+      return {
+        filteredProjects
+      };
+    });
+  }
+  onChange(e){
+    const value =  e.target.value;
+    if (value.trim() === ''){
+      this.setState({filteredProjects: this.state.projects, searchTerm: value});
+    }else{
+      this.setState({searchTerm: value});
+    }
+    
+  }
   async fetchData() {
-    await axios
-      .get("https://eazsme-backend.herokuapp.com/projects/all")
-      .then((data) => {
-        if (data.status === "success") {
-          this.setState({ data: data.push(data) });
-        }
-      })
-      .catch((error) => console.log(error));
+    try {
+      const data = await axios.get("https://eazsme-backend.herokuapp.com/projects/all");
+      const projects = data.data.data;  
+      this.setState({projects, filteredProjects: projects});
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   render() {
-    const data = this.state.data;
+    const data = this.state.filteredProjects;
     return (
       <Card.Body>
         <div className="sachBody">
         <ul className="sach">
-          <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" > Search</Button></li>
+          <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" onClick={this.searchProjects} > Search</Button></li>
             <li><Form.Group controlId="searchId">
-            <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" />
+            <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
           </Form.Group></li>
           </ul>
         </div> 
@@ -61,17 +92,16 @@ class View extends React.Component {
           </thead>
           <tbody>
             {data.map((item, index, arr) => {
-              let count = arr.length;
               return (
-                <tr>
-                  <td key={index}>{item.projectId}</td>
-                  <td key={index}>{item.projectCatId}</td>
-                  <td key={index}>{item.projectName}</td>
-                  <td key={index}>{item.description}</td>
-                  <td key={index}>{item.createdBy}</td>
-                  <td key={index}>{item.dateStart}</td>
-                  <td key={index}>{item.dateEnd}</td>
-                  <td key={count++}>
+                <tr key={index}>
+                  <td>{item.projectId}</td>
+                  <td>{item.projectCatId}</td>
+                  <td>{item.projectName}</td>
+                  <td>{item.description}</td>
+                  <td>{item.createdBy}</td>
+                  <td>{item.dateStart}</td>
+                  <td>{item.dateEnd}</td>
+                  <td>
                     <Link to={`/view-project/${item.projectId}`}>View Details</Link>
                   </td>
                 </tr>
