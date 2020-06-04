@@ -189,8 +189,6 @@ export default class Projects extends Component {
             })}
           </tbody>
         </table> 
-       //<Table columns={columns} dataSource={data} />
-
       </Card.Body>
     );
   }
