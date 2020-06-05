@@ -8,9 +8,10 @@ class Footer extends React.Component {
   render() {
     return (
 
-          <footer class="footer">
-            <div class="container foot-text">
-            <div class="float-right">
+          <footer className="footer">
+            <div className="container foot-text">
+            <div className="float-right">
+              
             <a href="https://www.facebook.com/signup" target="_blank" className="footer-img"><img
                       src="https://res.cloudinary.com/lordefid/image/upload/v1590108539/facebook_dvbkhd.png"
                       /></a>
