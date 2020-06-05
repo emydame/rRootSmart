@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
@@ -15,7 +17,7 @@ import Projects from "./Projects";
 import Users from "./Users";
 import SMEs from "./SMEs";
 import Funds from "./Funds";
-import Projectcategories from "./Projectcategories";
+import Projectcategories from "../admin/category/View";
 import Create from "../general/Create";
 import Remove from "../general/Remove";
 import Update from "../general/Update";
@@ -103,7 +105,7 @@ class RegulatorDashboard extends React.Component {
         </Menu>
         </Sider>
         <Layout className="site-layout">
-          <nav class="navbar">
+          <nav className="navbar">
                 <Link className="dashboard-img" to="#">
                   <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
                 </Link>

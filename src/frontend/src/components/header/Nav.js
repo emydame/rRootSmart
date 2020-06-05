@@ -4,7 +4,7 @@
 /*eslint-env es6*/
 /* eslint no-console: "error" */
 import React from "react";
-import { Link, Redirect, BrowserRouter as Router, withRouter } from "react-router-dom";
+import { Link, BrowserRouter as Router, withRouter } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import serialize from "form-serialize";
 import "../../styles/modal.css";
@@ -86,7 +86,11 @@ class Nav extends React.Component {
           this.setState({ error: "Error signing up user" });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        /*console.log(error)*/
+        this.setState({ error: "Error signing up user" });
+        
+      });
   }
 
   mapStateToLGA(event) {
@@ -150,7 +154,10 @@ class Nav extends React.Component {
     await axios
       .post("http://localhost:4000/login", formFields)
       .then(({ data }) => {
+        console.log(data);
         const { status, result } = data;
+       
+       
         if (status === "success") {
           switch (result.category) {
             case "admin":
@@ -169,9 +176,17 @@ class Nav extends React.Component {
               window.alert("You must be a ghost");
               break;
           }
+        }else{
+          /*display invalid credentials*/
+          console.log(data);
+          this.setState({ error: "Invalid Credentials" });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error);
+        this.setState({ error: "Invalid Credentials" });
+      })
+      ;
+     
   }
 
   showContactModal(event) {
@@ -238,6 +253,8 @@ class Nav extends React.Component {
           closeModal={this.closeLoginModal}
           login={this.handleLogin}
           current={this.logFormText}
+          success={this.state.success}
+          error={this.state.error}
         />
         <Contact showModal={this.state.showContact} closeModal={this.closeContactModal} />
         <About showModal={this.state.showAbout} closeModal={this.closeAboutModal} />
