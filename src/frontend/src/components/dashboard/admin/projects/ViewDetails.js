@@ -28,7 +28,7 @@ class ViewDetails extends React.Component {
     await axios
       .get("https://localhost:4000/projects/" + projectId)
       .then(({ data }) => {
-        const { status } = data;
+        const status  = data.status;
         const projects = data.data;
         if (status === "success") {
           this.setState({ data: projects });
