@@ -11,10 +11,6 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import "../../styles/modal.css";
-import { Redirect } from "react-router";
-import { Link } from "react-router";
-import { DatePicker } from "antd";
-import moment from "moment";
 
 class Registration extends React.Component {
   constructor(props) {
@@ -41,7 +37,7 @@ class Registration extends React.Component {
   }
 
   mapStateToLGA(event) {
-        this.props.mapStateToLga(event);
+    this.props.mapStateToLga(event);
   }
 
   handleBlur(event) {
@@ -59,16 +55,9 @@ class Registration extends React.Component {
   render() {
     const success = this.props.success;
     const error = this.props.error;
-    if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />;
-    }
+
     return (
       <>
-        {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
         {/** Registration Modal */}
         <Modal
           size="xl"
@@ -84,6 +73,16 @@ class Registration extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body bsPrefix="modal-body">
+            {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
+
             <Form name="registration">
               <Form.Text className="text-danger h4 d-none" bsPrefix="form-text">
                 Fields mark * are required
