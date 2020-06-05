@@ -88,9 +88,10 @@ class View extends React.Component {
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-              <th>Category Id</th>
+             
               <th>Category Name</th>
               <th>Category Description</th>
+              <th>Category Creator</th>
                <th>Action</th>
             </tr>
           </thead>
