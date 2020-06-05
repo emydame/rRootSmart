@@ -41,7 +41,7 @@ class Update extends React.Component {
     e.preventDefault();
     const { categoryId } = this.props.match;
     await axios
-      .get("https://eazsme-backend.herokuapp.com/projects/category/" + categoryId)
+      .get("http://localhost:4000/projects/category/" + categoryId)
       .then((data) => {
         if (data.status === "success") {
           this.setState({ catID: data.projectCatId });

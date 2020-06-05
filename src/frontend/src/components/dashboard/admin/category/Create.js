@@ -35,8 +35,9 @@ class Create extends React.Component {
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
       .post(`http://localhost:4000/projects/category`, formFields)
-      .then((data) => {
-        if ((data.status = `success`)) {
+      .then(({ data }) => {
+        const { status } = data;
+        if (status === `success`) {
           this.setState({ success: `User Successfully created!` });
         } else {
           this.setState({ error: `Error creating User` });
@@ -62,11 +63,6 @@ class Create extends React.Component {
               </div>
             )}
             <Form name="create-category">
-              <Form.Group controlId="catId">
-                <Form.Label>Category ID:</Form.Label>
-                <Form.Control type="text" placeholder="Category ID" name="projectCatId" />
-              </Form.Group>
-
               <Form.Group controlId="catName">
                 <Form.Label>Category Name:</Form.Label>
                 <Form.Control type="text" placeholder="Category Name" name="categoryName" />
@@ -91,7 +87,7 @@ class Create extends React.Component {
                     bullist numlist outdent indent | help`
                   }}
                   onChange={this.handleEditorChange}
-                  name="catDescription"
+                  name="categoryDescription"
                 />
               </Form.Group>
 

@@ -14,7 +14,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
 
-class Create extends React.Component {
+class ViewFunds extends React.Component {
   constructor(props) {
     super(props);
 
@@ -165,4 +165,4 @@ class Create extends React.Component {
     );
   }
 }
-export default Create;
+export default ViewFunds;

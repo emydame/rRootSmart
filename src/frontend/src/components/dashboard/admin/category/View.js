@@ -6,6 +6,10 @@ import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Pagination from "react-bootstrap/Pagination";
+import PageItem from "react-bootstrap/PageItem";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class View extends React.Component {
   constructor(props) {
@@ -16,6 +20,7 @@ class View extends React.Component {
     };
 
     this.fetchData = this.fetchData.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
   }
 
   componentDidMount() {
@@ -24,10 +29,11 @@ class View extends React.Component {
 
   async fetchData() {
     await axios
-      .get("https://eazsme-backend.herokuapp.com/projects/category/")
-      .then((data) => {
-        if (data.status === "success") {
-          this.setState({ data: data.push(data) });
+      .get("http://localhost:4000/projects/category/")
+      .then(({ data }) => {
+        const { status, result } = data;
+        if (status === "success") {
+          this.setState({ data: data.push(result) });
         }
       })
       .catch((error) => console.log(error));
@@ -65,6 +71,23 @@ class View extends React.Component {
             })}
           </tbody>
         </Table>
+        <Pagination>
+          <Pagination.First />
+          <Pagination.Prev />
+          <Pagination.Item>{1}</Pagination.Item>
+          <Pagination.Ellipsis />
+
+          <Pagination.Item>{10}</Pagination.Item>
+          <Pagination.Item>{11}</Pagination.Item>
+          <Pagination.Item active>{12}</Pagination.Item>
+          <Pagination.Item>{13}</Pagination.Item>
+          <Pagination.Item disabled>{14}</Pagination.Item>
+
+          <Pagination.Ellipsis />
+          <Pagination.Item>{20}</Pagination.Item>
+          <Pagination.Next />
+          <Pagination.Last />
+        </Pagination>
       </Card.Body>
     );
   }
