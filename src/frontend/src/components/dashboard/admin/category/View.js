@@ -8,6 +8,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Pagination from "react-bootstrap/Pagination";
+
 
 class View extends React.Component {
   constructor(props) {
@@ -43,9 +45,8 @@ class View extends React.Component {
          if (data.data.status === "success") {
           const category = data.data; 
            this.setState(category);
-          }
-      }*/)
-      .catch((error) => console.log(error));
+          }*/
+      }).catch((error) => console.log(error));
   }
 
   searchCategory(e){
