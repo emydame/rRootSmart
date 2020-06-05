@@ -20,9 +20,12 @@ exports.findOne = (req, res) => {
     .then((data) => {
       // Check if login credentials exist
       if (!data) {
+        const result = {
+          message: " Invalid username or password"
+        };
         return res.status(401).json({
           status: "error",
-          message: " Invalid username or password"
+          result
         });
       }
 
@@ -30,15 +33,19 @@ exports.findOne = (req, res) => {
         .compare(req.body.password, data.password)
         .then((val) => {
           if (!val) {
-            return res.status(401).json({
-              status: "error",
+            const result = {
               message: " Invalid username or password"
+            };
+            return res.status(404).json({
+              status: "error",
+              result
             });
           } else {
             if (data.email === req.body.email) {
               const result = {
                 category: data.category,
-                email: data.email
+                email: data.email,
+                organization: data.Organization
               };
               return res.status(200).json({
                 status: "success",

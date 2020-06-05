@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Badge, Dropdown, Layout, Menu, Avatar, Modal, Button } from "antd";
+import { Badge, Dropdown, Layout, Menu, Avatar } from "antd";
 import { Switch, Link, Router, Route } from "react-router-dom";
 // import Project from "./Project";
 import Proposal from "./Proposal";

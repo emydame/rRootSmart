@@ -150,7 +150,10 @@ class Nav extends React.Component {
     await axios
       .post("http://localhost:4000/login", formFields)
       .then(({ data }) => {
+        console.log(data);
         const { status, result } = data;
+       
+       
         if (status === "success") {
           switch (result.category) {
             case "admin":
@@ -169,9 +172,17 @@ class Nav extends React.Component {
               window.alert("You must be a ghost");
               break;
           }
+        }else{
+          /*display invalid credentials*/
+          console.log(data);
+          this.setState({ error: "Invalid Credentials" });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {console.log(error);
+        this.setState({ error: "Invalid Credentials" });
+      })
+      ;
+     
   }
 
   showContactModal(event) {
@@ -238,6 +249,8 @@ class Nav extends React.Component {
           closeModal={this.closeLoginModal}
           login={this.handleLogin}
           current={this.logFormText}
+          success={this.state.success}
+          error={this.state.error}
         />
         <Contact showModal={this.state.showContact} closeModal={this.closeContactModal} />
         <About showModal={this.state.showAbout} closeModal={this.closeAboutModal} />

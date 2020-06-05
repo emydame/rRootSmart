@@ -29,6 +29,8 @@ class Login extends React.Component {
   }
 
   render() {
+    const success = this.props.success;
+    const error = this.props.error;
     return (
       <>
         {/*** Login Modal */}
@@ -44,12 +46,21 @@ class Login extends React.Component {
             <Row>
               <Col className="text-center pr-1">
                 <Modal.Title id="login" className="text-light">
-                  Login
+                  Login 
                 </Modal.Title>
               </Col>
             </Row>
           </Modal.Header>
           <Modal.Body bsPrefix="modal-body">
+          {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-lighter text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
             <Form name="login">
               <Form.Text className="text-danger h4 d-none" bsPrefix="form-text" ref={this.props.current}>
                 Fields mark * are required
