@@ -4,7 +4,7 @@
 /*eslint-env es6*/
 /* eslint no-console: "error" */
 import React from "react";
-import { Link, Redirect, BrowserRouter as Router, withRouter } from "react-router-dom";
+import { Link, BrowserRouter as Router, withRouter } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import serialize from "form-serialize";
 import "../../styles/modal.css";
@@ -86,7 +86,11 @@ class Nav extends React.Component {
           this.setState({ error: "Error signing up user" });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        /*console.log(error)*/
+        this.setState({ error: "Error signing up user" });
+        
+      });
   }
 
   mapStateToLGA(event) {

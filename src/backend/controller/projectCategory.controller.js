@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
   ProjectCategory.findAll()
     .then((result) => {
       return res.status(200).json({
-        status: "error",
+        status: "success",
         data: result
       });
     })
