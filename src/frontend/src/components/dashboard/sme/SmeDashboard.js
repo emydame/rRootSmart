@@ -16,9 +16,9 @@ import {
   ZoomOutOutlined,
   FileAddOutlined
 } from "@ant-design/icons";
-import Create from "./user/Create";
-import Remove from "./user/Remove";
-import Update from "./user/Update";
+import Create from "../general/Create";
+import Remove from "../general/Remove";
+import Update from "../general/Update";
 import ProfileDetails from "../sme/user/ProfileDetails";
 import EditProfile from "./user/EditProfile";
 
