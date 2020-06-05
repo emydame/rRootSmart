@@ -26,7 +26,7 @@ class Delete extends React.Component {
     const categoryId = this.props.match.categoryId;
 
     await axios.delete("http://localhost:4000/projects/category/" + categoryId).then(({ data }) => {
-      const { status } = data;
+      const  status  = data.status;
       if (status === "success") {
         this.setState({ success: "User successfully deactivated!" });
       } else {

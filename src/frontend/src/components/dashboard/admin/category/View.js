@@ -31,7 +31,8 @@ class View extends React.Component {
     await axios
       .get("http://localhost:4000/projects/category/")
       .then(({ data }) => {
-        const { status, result } = data;
+        const status = data.status;
+        const result  = data.result;
         if (status === "success") {
           this.setState({ data: data.push(result) });
         }

@@ -1,3 +1,5 @@
+/*eslint quotes: ["error", "backtick"]*/
+/*eslint-env es6*/
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
@@ -16,9 +18,9 @@ class View extends React.Component {
 
     this.state = {
       data: [],
-      searchData: "",
+      searchData: ``,
       foundData: [],
-      valueChange: ""
+      valueChange: ``
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -33,11 +35,11 @@ class View extends React.Component {
 
   fetchData() {
     axios
-      .get("http://localhost:4000/projects/all")
+      .get(`http://localhost:4000/projects/all`)
       .then(({ data }) => {
-        const { status } = data;
+        const  status  = data.status;
         const projects = data.data;
-        if (status === "success") {
+        if (status === `success`) {
           this.setState({ data: projects });
         }
       })
@@ -57,35 +59,35 @@ class View extends React.Component {
     const item = data.filter((item) => item.projectName.toLocaleLowerCase() === searchData.toLocaleLowerCase());
     this.setState({ foundData: item });
     if (!foundData) {
-      all.classList.remove("d-none");
-      one.classList.add("d-none");
+      all.classList.remove(`d-none`);
+      one.classList.add(`d-none`);
     } else {
-      one.classList.remove("d-none");
-      all.classList.add("d-none");
+      one.classList.remove(`d-none`);
+      all.classList.add(`d-none`);
     }
   }
 
   handleSearch(event) {
     event.preventDefault();
-    const { data } = this.state;
+    const  data  = this.state.data;
     const filterInput = data.filter((item) => item.projectName === event.target.value);
     this.setState({ valueChange: filterInput });
   }
   render() {
-    const { data } = this.state;
-    const { foundData } = this.state;
+    const  data  = this.state.data;
+    const  foundData  = this.state.foundData;
     return (
       <>
         <div className="sachBody">
           <ul className="sach">
             <li>
               <Button
-                style={{ float: "right", borderRadius: "5%", background: "orange" }}
+                style={{ float: `right`, borderRadius: `5%`, background: `orange` }}
                 variant="default"
                 type="submit"
                 onClick={this.search}
               >
-                {" "}
+                {` `}
                 Search
               </Button>
             </li>
@@ -93,7 +95,7 @@ class View extends React.Component {
               <Form.Group controlId="searchId">
                 <Form.Control
                   className="searchBar"
-                  style={{ width: "250px", float: "right", marginRight: "10px" }}
+                  style={{ width: `250px`, float: `right`, marginRight: `10px` }}
                   type="text"
                   placeholder="Enter project name to search"
                   name="search"
