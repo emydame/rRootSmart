@@ -19,6 +19,7 @@ import axios from "axios";
 class Nav extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showReg: false,
       showLog: false,
@@ -40,6 +41,7 @@ class Nav extends React.Component {
     this.confPassword = React.createRef();
     this.lga = React.createRef();
     this._state = React.createRef();
+    this.submitRegistration = this.submitRegistration.bind(this);
 
     this.showLoginModal = this.showLoginModal.bind(this);
     this.closeLoginModal = this.closeLoginModal.bind(this);
@@ -58,24 +60,27 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ showReg: true });
   }
+
   closeRegistrationModal() {
     this.setState({ showReg: false });
   }
+
   handleBlur(event) {
     event.preventDefault();
     if (this.state.password !== this.state.confirmPassword) {
       this.confPassword.current.classList.remove("d-none");
     }
   }
-  async submitRegistration(event) {
+
+  submitRegistration(event) {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
     const formFields = serialize(form, { hash: true });
-    await axios
+    axios
       .post("http://localhost:4000/register", formFields)
-      .then((data) => {
-        console.log(data);
-        if (data.status === "success") {
+      .then(({ data }) => {
+        const { status } = data;
+        if (status === "success") {
           this.setState({ success: "User successfully signed up!" });
         } else {
           this.setState({ error: "Error signing up user" });
@@ -114,6 +119,7 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ confirmPassword: event.target.value });
   }
+
   handlePasswordChange(event) {
     event.preventDefault();
     this.setState({ password: event.target.value });
@@ -123,6 +129,7 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ showLog: true });
   }
+
   closeLoginModal() {
     this.setState({ showLog: false });
   }
@@ -165,13 +172,13 @@ class Nav extends React.Component {
         }
       })
       .catch((error) => console.log(error));
-    
   }
 
   showContactModal(event) {
     event.preventDefault();
     this.setState({ showContact: true });
   }
+
   closeContactModal() {
     this.setState({ showContact: false });
   }
@@ -180,18 +187,13 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ showAbout: true });
   }
+
   closeAboutModal() {
     this.setState({ showAbout: false });
   }
 
   render() {
-    if (this.state.redirect) {
-      return (
-        <Router>
-          <Redirect to={this.state.redirect} />
-        </Router>
-      );
-    }
+    
     return (
       <Container className="navbar">
         <ul className="nav">
