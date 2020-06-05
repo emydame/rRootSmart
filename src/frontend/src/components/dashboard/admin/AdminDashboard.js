@@ -22,16 +22,23 @@ import {
 import ProfileDetails from "./user/ProfileDetails";
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
-import Create from "./user/Create";
-import Remove from "./user/Remove";
-import Update from "./user/Update";
+// import Create from "./user/Create";
+import Create from "../general/CreateUser";
+// import Remove from "./user/Remove";
+import Remove from "../general/Remove";
+// import Update from "./user/Update";
+import Update from "../general/Update";
 import EditProfile from "./user/EditProfile";
 import CreatCategory from "./category/Create";
 import ViewCategory from "./category/View";
 import DeleteCategory from "./category/Delete";
 import UpdateCategory from "./category/Update";
-import CreateProject from "./projects/Create";
-import ViewProject from "./projects/View";
+import ViewProject from "../general/View";
+import CreateProject from "../general/Create";
+// import CreateProject from "./projects/Create";
+// import ViewProject from "./projects/View";
+
+
 
 
 

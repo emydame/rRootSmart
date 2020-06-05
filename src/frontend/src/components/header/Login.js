@@ -58,7 +58,7 @@ class Login extends React.Component {
                 <Form.Label className="font-weight-bold">
                   Email address<sup className="text-danger">*</sup>
                 </Form.Label>
-                <Form.Control type="email" placeholder="Enter email" required name="email" />
+                <Form.Control type="email" placeholder="Enter email" name="email" required />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword1">
@@ -77,21 +77,17 @@ class Login extends React.Component {
                   ref={this.rememberMe}
                 />
               </Form.Group>
-              <Button variant="success" type="submit" className="btn-block" onClick={this.submitLogin}>
-                Submit
+              <Button variant="success" type="submit" className="btn-block" onClick={this.submitLogin} >
+                Login
               </Button>
             </Form>
           </Modal.Body>
           <Modal.Footer>
             <Row>
-              <Col md="1" className="mr-4">
-                <Button type="submit" variant="danger" onClick={this.closeLogin}>
-                  Cancel
-                </Button>
-              </Col>
+              
               <Col md="auto" className="ml-4 font-weight-bold">
                 Not a member?&nbsp;
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/header/Registration">Sign Up</Link>
                 &nbsp;&nbsp; Forget &nbsp;
                 <Link to="/recover-password">Password?</Link>
               </Col>

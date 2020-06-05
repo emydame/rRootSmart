@@ -16,9 +16,9 @@ import Users from "./Users";
 import SMEs from "./SMEs";
 import Funds from "./Funds";
 import Projectcategories from "./Projectcategories";
-import Create from "./user/Create";
-import Remove from "./user/Remove";
-import Update from "./user/Update";
+import Create from "../general/Create";
+import Remove from "../general/Remove";
+import Update from "../general/Update";
 import ProfileDetails from "./user/ProfileDetails";
 import EditProfile from "./user/EditProfile";
 
@@ -72,7 +72,7 @@ class RegulatorDashboard extends React.Component {
                 <Link to="/regulator/Projectcategories"> Project Categories</Link>
               </Menu.Item>
               <Menu.Item key="6">
-                <Link to="/regulator/Projects"> Projects List</Link>
+                <Link to="/regulator/Projects">View Projects</Link>
               </Menu.Item>
             </SubMenu>
               <Menu.Item key="2">

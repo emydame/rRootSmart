@@ -16,7 +16,6 @@ export default class SmeAndProjects extends Component {
           <p>Kuda Micro finance just signed in as an investor and needs to be verified</p>
         </div>
       <table class="table table-striped">
-        {/* dummy data to be replaced with real data */}
       <thead>
           <tr>
             <th>Action</th>

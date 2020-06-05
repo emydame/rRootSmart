@@ -17,7 +17,7 @@ class Content extends React.Component {
                      Minister of Information and Technology...</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        {/* <button type="button" class="btn btn-sm btn-outline-secondary">View</button> */}
                       </div>
                       <small class="text-muted" id="muted-text">9 mins</small>
                     </div>
@@ -31,7 +31,7 @@ class Content extends React.Component {
                     and <strong>99.9%</strong> monitored and completed projects. We are still counting..</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        {/* <button type="button" class="btn btn-sm btn-outline-secondary">View</button> */}
                       </div>
                       <small class="text-muted" id="muted-text">12 hrs ago</small>
                     </div>
@@ -48,7 +48,7 @@ class Content extends React.Component {
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        {/* <button type="button" class="btn btn-sm btn-outline-secondary">View</button> */}
                       </div>
                       <small class="text-muted" id="muted-text">9 days ago</small>
                     </div>
