@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Link,Router, Route,Switch } from "react-router-dom";
-import Registration from "../header/Registration";
+import { Link} from "react-router-dom";
+
 
 
 class Login extends React.Component {
