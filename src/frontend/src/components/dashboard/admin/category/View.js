@@ -18,6 +18,7 @@ class View extends React.Component {
     };
 
     this.fetchData = this.fetchData.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
     this.searchCategory = this.searchCategory.bind(this);
     this.onChange = this.onChange.bind(this);
   }
@@ -29,14 +30,21 @@ class View extends React.Component {
   
   async fetchData() {
     await axios
-      .get("https://eazsme-backend.herokuapp.com/projects/category")
+      .get("http://localhost:4000/projects/category/")
+      .then(({ data }) => {
+        const status = data.status;
+        const result  = data.result;
+        if (status === "success") {
+          this.setState({ data: data.push(result) });
+        }
+     /* .get("https://eazsme-backend.herokuapp.com/projects/category")
       .then((data) => {
             
          if (data.data.status === "success") {
           const category = data.data; 
            this.setState(category);
           }
-      })
+      }*/)
       .catch((error) => console.log(error));
   }
 
@@ -114,6 +122,23 @@ class View extends React.Component {
             })}
           </tbody>
         </Table>
+        <Pagination>
+          <Pagination.First />
+          <Pagination.Prev />
+          <Pagination.Item>{1}</Pagination.Item>
+          <Pagination.Ellipsis />
+
+          <Pagination.Item>{10}</Pagination.Item>
+          <Pagination.Item>{11}</Pagination.Item>
+          <Pagination.Item active>{12}</Pagination.Item>
+          <Pagination.Item>{13}</Pagination.Item>
+          <Pagination.Item disabled>{14}</Pagination.Item>
+
+          <Pagination.Ellipsis />
+          <Pagination.Item>{20}</Pagination.Item>
+          <Pagination.Next />
+          <Pagination.Last />
+        </Pagination>
       </Card.Body>
     );
   }
