@@ -29,6 +29,7 @@ import ProjectDetails from "./ProjectDetails";
 import EditProfile from "./user/EditProfile";
 import CreateProject from "./projects/Create";
 import ViewProject from "./projects/View";
+import Invest from "./invest";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -71,9 +72,10 @@ class InvestorDashboard extends React.Component {
               <Link to="/investor/SmeProposals">All Proposals</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="Investments">
-            <Menu.Item key="4"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
-              <Menu.Item key="5" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link>
-            </Menu.Item ></SubMenu>
+              <Menu.Item key="4"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
+              <Menu.Item key="13" icon={<UserSwitchOutlined />}><Link to="/investor/invest">Make Investments</Link></Menu.Item>
+              <Menu.Item key="5" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link></Menu.Item >
+            </SubMenu>
             <SubMenu key="sub2" icon={<UserOutlined />} title="User">
               <Menu.Item key="11" icon={<UserOutlined />}>
                 <Link to="/investor/AllUser">All Users</Link>
@@ -143,9 +145,10 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/ProfileDetails" component={ProfileDetails} />
                   <Route path="/investor/EditProfile" component={EditProfile} />
                   <Route path="/investor/create-project" component={CreateProject} />
-                <Route path="/investor/view-projects" component={ViewProject} />
-                <Route path="/investor/view-project/:projectId" component={ViewProject} />
+                  <Route path="/investor/view-projects" component={ViewProject} />
+                  <Route path="/investor/view-project/:projectId" component={ViewProject} />
                   <Route path="/investor/ProjectDetails" component={ProjectDetails} />
+                  <Route path="/investor/invest" component={Invest} />
                 </Switch>
               </Router>
             </div>
