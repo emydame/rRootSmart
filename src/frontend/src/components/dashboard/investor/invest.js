@@ -48,9 +48,9 @@ class Invest extends React.Component {
           // based on type of data is array
           for (let i = 0; i < data.length; i++) {
             const option = document.createElement(`option`);
-            option.innerText = data[i].categoryName;
-            option.name = data[i].categoryName;
-            option.value = data[i].fundCatId;
+            option.innerText = data[parseInt(i,10)].categoryName;
+            option.name = data[parseInt(i,10)].categoryName;
+            option.value = data[parseInt(i,10)].fundCatId;
             select.appendChild(option);
           }
         });
@@ -75,7 +75,7 @@ class Invest extends React.Component {
             success: `Investment Initiated!`, 
             error:``,
            });
-           setTimeout(()=>{
+           setTimeout(() => {
             window.location.reload();
            }, 1000);
         } else {
