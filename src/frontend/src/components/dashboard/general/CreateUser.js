@@ -58,7 +58,8 @@ class Create extends React.Component {
         ) : (
           <Form.Text className="text-bold text-danger">{error}</Form.Text>
         )}
-        <div className="content-text"><h5>Create a User and Assign Role</h5></div>
+        <div className="content-text"><p>Create a User and Assign Role</p></div>
+        <hr></hr>
         <Row>
           {/* <Col md="3" className="img-holder">
           <div class="text-center">
@@ -151,10 +152,9 @@ class Create extends React.Component {
                   }}
                   onChange={this.handleEditorChange}
                   name="description"
-                />
-                <hr></hr>
+                /><br></br>
 
-<h5 className="form-section-text">Create Login Details</h5>
+<p className="content-text">Create Login Details</p>
 <hr></hr>
 <Row>
   <Col md="12">

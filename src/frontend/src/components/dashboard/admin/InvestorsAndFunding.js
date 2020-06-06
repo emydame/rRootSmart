@@ -11,7 +11,7 @@ export default class InvestorsAndFunding extends Component {
           <h2 style={{textAlign:"center"}}>Investors/Funding</h2>
         </div> */}
         <div className="update" style={{textAlign:"center"}}>
-          <h4> Available Investments</h4>
+          <p> Available Investments</p>
               </div>
         <table class="table table-striped">
           {/* dummy data to be replaced with real data */}

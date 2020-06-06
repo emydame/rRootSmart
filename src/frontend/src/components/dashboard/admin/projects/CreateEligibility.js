@@ -60,7 +60,7 @@ render() {
         ) : (
           <Form.Text className="text-bold text-danger">{error}</Form.Text>
         )}
-        <div className="content-text"><h5>Add Eligibility Criteria to Projects</h5></div>
+        <div className="content-text"><p>Add Eligibility Criteria to Projects</p></div>
         <Row>
           
           <Col md="12">

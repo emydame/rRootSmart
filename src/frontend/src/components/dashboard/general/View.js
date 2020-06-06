@@ -66,19 +66,8 @@ class View extends React.Component {
     const data = this.state.filteredProjects;
     return (
       <Card.Body>
-<<<<<<< HEAD
         {/* 8w>
         </div>  */}
-=======
-        <div className="sachBody">
-        <ul className="sach">
-          <li><Button style={{float:"right",borderRadius:"5%",background:"orange"}}  variant="defualt" type="submit" onClick={this.searchProjects} > Search</Button></li>
-            <li><Form.Group controlId="searchId">
-            <Form.Control className="searchBar" style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px" }} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
-          </Form.Group></li>
-          </ul>
-        </div> 
->>>>>>> 8f5b8c0dca1b5acb70c996aa1c817475a989a90d
         {/* <Table striped bordered hover size="sm"> */}
         <table class="table table-striped">
           <thead>
