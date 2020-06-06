@@ -211,10 +211,14 @@ ul.pagination {
 }
 
 .content-text,
-p  {
+h6 {
   color: #3d6cb9;
   font-size: 16px;
   margin-bottom: 20px;
+}
+
+.page-item.active .page-link {
+  background-color: #3d6cb9;
 }
 
 .img-holder {

@@ -9,11 +9,11 @@ export default class SmeAndProjects extends Component {
     return (
       <Card.Body>
       <div className="sme-project">
-        <p style={{textAlign:"center"}}>SMEs Projects</p>
+        <strong style={{textAlign:"center"}}>SMEs Projects</strong>
       </div>
       <div className="update" style={{textAlign:"center"}}>
-          <p> List of Funds Related Projects </p>
-         
+          <em> List of Funds Related Projects </em>
+        
         </div>
       <table class="table table-striped">
       <thead>

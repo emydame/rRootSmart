@@ -58,7 +58,7 @@ class Create extends React.Component {
         ) : (
           <Form.Text className="text-bold text-danger">{error}</Form.Text>
         )}
-        <div className="content-text"><p>Create a User and Assign Role</p></div>
+        <div className="content-text"><strong>Create a User and Assign Role</strong></div>
         <hr></hr>
         <Row>
           {/* <Col md="3" className="img-holder">
@@ -154,7 +154,7 @@ class Create extends React.Component {
                   name="description"
                 /><br></br>
 
-<p className="content-text">Create Login Details</p>
+<h6 className="content-text">Create Login Details</h6>
 <hr></hr>
 <Row>
   <Col md="12">
