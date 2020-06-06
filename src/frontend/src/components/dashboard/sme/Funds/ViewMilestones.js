@@ -38,14 +38,12 @@ class ViewMilestones extends React.Component {
   
     handleClick(e) {
       e.preventDefault();
-      const form = document.querySelector(`form[name="create-eligibility"]`);
-      const formFields = serialize(form, { hash: true }); // Make api call with form
-      console.log(formFields);
+     
       axios
-        .post("http://localhost:4000/create-user", formFields)
+        .post("http://localhost:4000/create-user")
         .then((data) => {
           if ((data.status === "success")) {
-            this.setState({ success: "Projects Loaded!" });
+          
             this.setState({ data: data });
           } else {
             this.setState({ error: "Error Loading project field" });

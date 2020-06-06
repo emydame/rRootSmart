@@ -35,11 +35,10 @@ class CreateEligibility extends React.Component {
   
     handleClick(e) {
       e.preventDefault();
-      const form = document.querySelector(`form[name="create-user"]`);
-      const formFields = serialize(form, { hash: true }); // Make api call with form
-      console.log(formFields);
+      // Make api call with form
+      
       axios
-        .post("http://localhost:4000/create-user", formFields)
+        .post("http://localhost:4000/create-eligibility")
         .then((data) => {
           if ((data.status === "success")) {
             this.setState({ success: "User Successfully created!" });
