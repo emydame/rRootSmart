@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 
@@ -35,7 +36,7 @@ import DeleteCategory from "./category/Delete";
 import UpdateCategory from "./category/Update";
 import ViewProject from "../general/View";
 import CreateProject from "../general/Create";
-// import CreateProject from "./projects/Create";
+import CreateEligibility from "./projects/CreateEligibility";
 // import ViewProject from "./projects/View";
 
 
@@ -120,25 +121,28 @@ class AdminDashboard extends React.Component {
                 <Link to="/admin/create-project">Create Project</Link>
               </Menu.Item>
               <Menu.Item key="4" icon={<ProjectOutlined />}>
+                <Link to="/admin/projects/CreateEligibility">Create Eligibility</Link>
+              </Menu.Item>
+              <Menu.Item key="5" icon={<ProjectOutlined />}>
                 <Link to="/admin/view-projects">View Projects</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub3" icon={<UserOutlined />} title="User">
-              <Menu.Item key="5" icon={<UserAddOutlined />}>
+              <Menu.Item key="6" icon={<UserAddOutlined />}>
                 <Link to="/admin/create-user">Create</Link>
               </Menu.Item>
-              <Menu.Item key="6" icon={<UserOutlined />}>
+              <Menu.Item key="7" icon={<UserOutlined />}>
                 <Link to="/admin/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="7" icon={<UserDeleteOutlined />}>
+              <Menu.Item key="8" icon={<UserDeleteOutlined />}>
                 <Link to="/admin/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub4" icon={<fundOutlined />} title="Funds">
-            <Menu.Item key="8" icon={<AppstoreOutlined />}>
+            <Menu.Item key="9" icon={<AppstoreOutlined />}>
               <Link to="/admin/smeandprojects"> SMEs Projects</Link>
             </Menu.Item>
-            <Menu.Item key="9" icon={<DollarCircleOutlined />}>
+            <Menu.Item key="10" icon={<DollarCircleOutlined />}>
               <Link to="/admin/investorsandfunding">Investors Funding</Link>
             </Menu.Item>
               </SubMenu>    
@@ -197,6 +201,8 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/view-project/:projectId" component={ViewProject} />
                 <Route path="/admin/ProfileDetails" component={ProfileDetails} />
                 <Route path="/admin/EditProfile" component={EditProfile} />
+                <Route path="/admin/projects/CreateEligibility" component={CreateEligibility} />
+                
               </Switch>
             </Router>
           </Content>

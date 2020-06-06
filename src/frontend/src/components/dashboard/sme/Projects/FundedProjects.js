@@ -78,6 +78,7 @@ class View extends React.Component {
     const  foundData  = this.state.foundData;
     return (
       <>
+      <br></br>
         <div className="sachBody">
           <ul className="sach">
             <li>
@@ -107,6 +108,7 @@ class View extends React.Component {
           </ul>
         </div>
         <Card.Body>
+          <h4>Click on Apply to beging a New Application</h4>
           <Table striped bordered hover size="sm" className="d-none" name="one">
             <thead>
               <tr>
