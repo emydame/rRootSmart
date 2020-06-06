@@ -70,9 +70,6 @@ class InvestorDashboard extends React.Component {
             <Menu.Item key="1" icon={<RiseOutlined />}>
               <Link to="/investor/ProfileDetails">Profile Details</Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<PieChartOutlined />}>
-              <Link to="/investor/SmeProposals">All Proposals</Link>
-            </Menu.Item>
             <SubMenu key="sub2" icon={<UserOutlined />} title="Users">
               <Menu.Item key="2" icon={<UserOutlined />}>
                 <Link to="/investor/AllUser">All Users</Link>
