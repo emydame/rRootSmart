@@ -53,7 +53,18 @@ const { SubMenu } = Menu;
 
 class InvestorDashboard extends React.Component {
   state = {
-    collapsed: false
+    collapsed: false,
+    user: {
+      organizationId: 48589,
+      firstName: "kachi1",
+      lastName: "kachi2",
+      otherName: "kachi3",
+      email: "kachi@kachi.com",
+      phoneNumber: 8474849,
+      role: 1,
+      privilege: 1,
+      dateCreated: "2014-090-03"
+    }
   };
 
   onCollapse = (collapsed) => {
@@ -144,7 +155,7 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/view-projects" component={ViewProject} />
                   <Route path="/investor/view-project/:projectId" component={ViewProject} />
                   <Route path="/investor/ProjectDetails" component={ProjectDetails} />
-                  <Route path="/investor/invest" component={Invest} />
+                  <Route path="/investor/invest" render={(props)=> <Invest {...props} user={this.state.user } />} />
                 </Switch>
               </Router>
             </div>

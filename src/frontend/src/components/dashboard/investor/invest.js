@@ -15,7 +15,7 @@ import axios from "axios";
 class Invest extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       categories: [],
       success: ``,
@@ -64,9 +64,13 @@ class Invest extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
+
     const form = document.querySelector(`form[name="create-investment"]`);
     const formFields = serialize(form, { hash: true });
+    
     formFields.status = `investment initiated`;
+    formFields.organizationId = this.props.user.organizationId;
+    
     axios
       .post(`https://eazsme-backend.herokuapp.com//invest`, formFields)
       .then((data) => {

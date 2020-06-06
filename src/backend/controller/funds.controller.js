@@ -68,7 +68,7 @@ exports.findAll = (req, res) => {
 };
 
 // Get funds by organisation
-exports.findOne = (req, res) => {
+exports.findInvestmentsByOrganization = (req, res) => {
   Fund.findAll({ where: { organizationId: req.body.organizationId } })
     .then((data) => {
       if (!data) {
