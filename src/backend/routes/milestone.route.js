@@ -5,8 +5,8 @@ module.exports = (app) => {
   app.post("/milestones", milestone.create);
 
   // Retrieve all milestones
-  app.get("/milestone/all", milestone.findAll);
+  app.get("/milestones/all", milestone.findAll);
 
   // Retrieve milestone by name
-  app.get("/milestone/name", milestone.findOne);
+  app.get("/milestones/name", milestone.findOne);
 };
