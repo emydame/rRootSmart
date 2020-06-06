@@ -4,12 +4,11 @@
 import React from "react";
 import { Upload, message, Button } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import reqwest from "reqwest";
 // import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+
 
 
 function getBase64(img, callback) {
