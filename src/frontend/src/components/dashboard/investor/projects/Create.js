@@ -70,7 +70,7 @@ class Create extends React.Component {
     const formFields = serialize(form, { hash: true });
     formFields.description = this.state.description;
     axios
-      .post(`https://eazsme-backend.herokuapp.com//projects`, formFields)
+      .post(`https://eazsme-backend.herokuapp.com/projects`, formFields)
       .then((data) => {
         if (data.data.status === `success`) {
           this.setState({ 

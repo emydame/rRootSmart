@@ -11,5 +11,5 @@ module.exports = (app) => {
   app.get("/funds/status", fund.findOne);
 
   // Retrieve all funds donated by investor
-  app.get("/funds/:id", fund.findOne);
+  app.get("/funds/:id", fund.findInvestmentsByOrganization);
 };
