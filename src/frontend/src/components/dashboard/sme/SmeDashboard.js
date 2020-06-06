@@ -26,6 +26,7 @@ import FundedProjects from "../sme/Projects/FundedProjects";
 import InvestmentProject from "../sme/Projects/InvestmentProject";
 import Milestones from "../sme/Projects/Milestones";
 import NewApplication from "../sme/Funds/NewApplication";
+import ViewMilestones from "../sme/Funds/ViewMilestones";
 import CreateMilestones from "./Projects/Milestones";
 
 
@@ -98,7 +99,7 @@ class SmeDashboard extends React.Component {
               <Link to="/sme/Projects/InvestmentProject">View Projects</Link>
             </Menu.Item>
              <Menu.Item key="6" icon={<ZoomOutOutlined />}>
-              <Link to="/sme/Projects/ViewMilestones"> View Milestones</Link>
+              <Link to="/sme/Funds/ViewMilestones"> View Milestones</Link>
             </Menu.Item>
             
             </SubMenu>
@@ -143,6 +144,7 @@ class SmeDashboard extends React.Component {
                 {/* <Route path="/sme/projects" component={Project} /> */}
                 <Route path="/sme/Projects/FundedProjects" component={FundedProjects} />
                 <Route path="/sme/Funds/NewApplication" component={NewApplication} />
+                <Route path="/sme/Funds/ViewMilestones" component={ViewMilestones} />
                 <Route path="/sme/Projects/Milestones" component={CreateMilestones} />
                 <Route path="/sme/Funds/proposal" component={Proposal} />
                 <Route path="/sme/create-user" component={Create} />

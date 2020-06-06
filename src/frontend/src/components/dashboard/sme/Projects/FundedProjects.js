@@ -78,8 +78,9 @@ class View extends React.Component {
     const  foundData  = this.state.foundData;
     return (
       <>
+      <br></br>
         <div className="sachBody">
-          <ul className="sach">
+          <ul className="sach sme">
             <li>
               <Button
                 style={{ float: `right`, borderRadius: `5%`, background: `orange` }}
@@ -95,7 +96,7 @@ class View extends React.Component {
               <Form.Group controlId="searchId">
                 <Form.Control
                   className="searchBar"
-                  style={{ width: `250px`, float: `right`, marginRight: `10px` }}
+                  style={{ width: `250px`, float: `right`, marginRight: `10px`,marginBottom:`15px` }}
                   type="text"
                   placeholder="Enter project name to search"
                   name="search"
@@ -107,6 +108,7 @@ class View extends React.Component {
           </ul>
         </div>
         <Card.Body>
+          <h4>Click on Apply to beging a New Application</h4>
           <Table striped bordered hover size="sm" className="d-none" name="one">
             <thead>
               <tr>
