@@ -50,9 +50,9 @@ class Create extends React.Component {
           for (let i = 0; i < data.length; i++) {
             const option = document.createElement(`option`);
         
-            option.innerText = data[i].categoryName;
-            option.name = data[i].categoryName;
-            option.value = data[i].projectCatId;
+            option.innerText = data[parseInt(i, 10)].categoryName;
+            option.name = data[parseInt(i, 10)].categoryName;
+            option.value = data[parseInt(i, 10)].projectCatId;
             select.appendChild(option);
           }
         });
@@ -77,7 +77,7 @@ class Create extends React.Component {
             success: `User Successfully created!`, 
             error:``,
            });
-           setTimeout(()=>{
+           setTimeout(() => {
             window.location.reload();
            }, 1000);
         } else {
