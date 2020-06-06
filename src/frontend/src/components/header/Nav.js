@@ -155,8 +155,7 @@ class Nav extends React.Component {
       .post("http://localhost:4000/login", formFields)
       .then(({ data }) => {
         console.log(data);
-        const { status, result } = data;
-       
+        const { status, result } = data;      
        
         if (status === "success") {
           switch (result.category) {

@@ -46,6 +46,11 @@ import CreateProject from "../general/Create";
 
 const menu = (
   <Menu id="dropdown-menu">
+    <Menu.Item className="menu-icon" icon={<fundOutlined />}>
+      <a target="_blank" rel="noopener noreferrer" href="#">
+        Fund Application
+      </a>
+    </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Profile
@@ -76,7 +81,7 @@ const menu = (
   </Menu>
 );
 
-const { Header, Content, Footer, Sider } = Layout;
+const {  Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class AdminDashboard extends React.Component {
@@ -102,39 +107,42 @@ class AdminDashboard extends React.Component {
           <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/admin/ProfileDetails">Profile Details</Link>
             </Menu.Item>
-            <Menu.Item key="1" icon={<AppstoreOutlined />}>
-              <Link to="/admin/smeandprojects"> SMEs/Projects</Link>
-            </Menu.Item>
-            <Menu.Item key="2" icon={<DollarCircleOutlined />}>
-              <Link to="/admin/investorsandfunding">Investors/Funding</Link>
-            </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="4" icon={<UserAddOutlined />}>
-                <Link to="/admin/create-user">Create</Link>
-              </Menu.Item>
-              <Menu.Item key="5" icon={<UserOutlined />}>
-                <Link to="/admin/update-user">Update</Link>
-              </Menu.Item>
-              <Menu.Item key="6" icon={<UserDeleteOutlined />}>
-                <Link to="/admin/deactivate-user">Deactivate</Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub3" icon={<SwitcherOutlined />} title="Category">
-              <Menu.Item key="7" icon={<SwitcherOutlined />}>
+            <SubMenu key="sub1" icon={<SwitcherOutlined />} title="Category">
+              <Menu.Item key="1" icon={<SwitcherOutlined />}>
                 <Link to="/admin/create-category">Create Category</Link>
               </Menu.Item>
-              <Menu.Item key="8" icon={<SwitcherOutlined />}>
+              <Menu.Item key="2" icon={<SwitcherOutlined />}>
                 <Link to="/admin/view-category">View Category</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub4" icon={<ProjectOutlined />} title="Projects">
-              <Menu.Item key="9" icon={<ProjectOutlined />}>
+            <SubMenu key="sub2" icon={<ProjectOutlined />} title="Projects">
+              <Menu.Item key="3" icon={<ProjectOutlined />}>
                 <Link to="/admin/create-project">Create Project</Link>
               </Menu.Item>
-              <Menu.Item key="10" icon={<ProjectOutlined />}>
+              <Menu.Item key="4" icon={<ProjectOutlined />}>
                 <Link to="/admin/view-projects">View Projects</Link>
               </Menu.Item>
             </SubMenu>
+            <SubMenu key="sub3" icon={<UserOutlined />} title="User">
+              <Menu.Item key="5" icon={<UserAddOutlined />}>
+                <Link to="/admin/create-user">Create</Link>
+              </Menu.Item>
+              <Menu.Item key="6" icon={<UserOutlined />}>
+                <Link to="/admin/update-user">Update</Link>
+              </Menu.Item>
+              <Menu.Item key="7" icon={<UserDeleteOutlined />}>
+                <Link to="/admin/deactivate-user">Deactivate</Link>
+              </Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub4" icon={<fundOutlined />} title="Funds">
+            <Menu.Item key="8" icon={<AppstoreOutlined />}>
+              <Link to="/admin/smeandprojects"> SMEs Projects</Link>
+            </Menu.Item>
+            <Menu.Item key="9" icon={<DollarCircleOutlined />}>
+              <Link to="/admin/investorsandfunding">Investors Funding</Link>
+            </Menu.Item>
+              </SubMenu>    
+                       
             <Menu.Item key="3" icon={<LogoutOutlined />}>
               {" "}
               Log Out
@@ -171,8 +179,7 @@ class AdminDashboard extends React.Component {
 
           <Content style={{ margin: "0 16px" }}>
           <div className="content-title">
-              <h5>WELCOME TO YOUR SUPER DOPE DASHBOARD</h5>
-              <p>Be the BOSS</p>
+            
             </div>
             <Router history={this.props.history}>
               <Switch>
