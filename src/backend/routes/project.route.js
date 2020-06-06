@@ -11,5 +11,5 @@ module.exports = (app) => {
   app.get("/project/:id", project.findOne);
 
   // Get all projects created by an SME for funds application.
-  app.get("/project/investorAll", project.findAllSMEProject);
+  //app.get("/project/investorAll", project.findAllSMEProject);
 };
