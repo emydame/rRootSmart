@@ -83,7 +83,7 @@ class Create extends React.Component {
         <Row>
           <Col>
             <Form name="create-project">
-              <Form.Group controlId="catId">
+             {/** <Form.Group controlId="catId">
                 <Form.Label>Project ID:</Form.Label>
                 <Form.Control type="text" placeholder="Project ID" name="projectId" />
               </Form.Group>

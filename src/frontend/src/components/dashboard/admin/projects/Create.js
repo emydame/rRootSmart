@@ -96,10 +96,10 @@ class Create extends React.Component {
               </div>
             )}
             <Form name="create-project">
-              <Form.Group controlId="catId">
+            {/**   <Form.Group controlId="catId">
                 <Form.Label>Project ID:</Form.Label>
                 <Form.Control type="text" placeholder="Project ID" name="projectId" />
-              </Form.Group>
+            </Form.Group>*/}
 
               {/** Make a request for all the project category and populate select  store value in redux state*/}
               <Form.Group controlId="projectCatId">
