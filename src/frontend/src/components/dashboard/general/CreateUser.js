@@ -40,7 +40,7 @@ class Create extends React.Component {
     axios
       .post("http://localhost:4000/create-user", formFields)
       .then((data) => {
-        if ((data.status = "success")) {
+        if ((data.status === "success")) {
           this.setState({ success: "User Successfully created!" });
         } else {
           this.setState({ error: "Error creating User" });
@@ -93,14 +93,12 @@ class Create extends React.Component {
                       <input type="phone" class="form-control" id="inputPhone" name="userPhone" />
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="inputTeam">Assign Team</label>
+                      <label for="inputTeam">Assign Project to Supervise</label>
                       <select id="inputState" class="form-control" name="userTeam">
                         <option selected>Choose...</option>
-                        <option>Team 1</option>
-                        <option>Team 2</option>
-                        <option>Team 3</option>
-                        <option>Team 4</option>
-                        <option>Team5</option>
+                        <option>Project 1</option>
+                        <option>Project 2</option>
+                        
                       </select>
                     </div>
                   </div>
@@ -154,6 +152,62 @@ class Create extends React.Component {
                   onChange={this.handleEditorChange}
                   name="description"
                 />
+                <hr></hr>
+
+<h5 className="form-section-text">Create Login Details</h5>
+<hr></hr>
+<Row>
+  <Col md="12">
+    
+    <Form.Group controlId="username">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Username for Login"
+                  name="userName"
+                 
+                />
+    </Form.Group>
+  </Col>
+  
+</Row>
+<Row>
+  <Col>
+    <Form.Group controlId="password1">
+      <Form.Text className="text-warning font-weight-bold">
+        Password including numbers, special characters is advised
+      </Form.Text>
+      <Form.Label className="font-weight-bold">
+        Password<sup className="text-danger">*</sup>
+      </Form.Label>
+      <Form.Control
+        type="password"
+        placeholder="Password"
+        name="password"
+        onChange={this.handlePasswordChange}
+        required
+      />
+    </Form.Group>
+  </Col>
+  <Col>
+    <Form.Group controlId="password2">
+      <Form.Text className="text-warning font-weight-bold">
+        Password including numbers, special characters is advised
+      </Form.Text>
+      <Form.Label className="font-weight-bold">
+        Confirm Password<sup className="text-danger">*</sup>
+      </Form.Label>
+      <Form.Control
+        type="password"
+        placeholder="Confirm Password"
+        name="confirmPassword"
+        onChange={this.handlePasswordChange}
+        required
+      />
+    </Form.Group>
+  </Col>
+</Row>
+<br></br>
               </Form.Group>
                   <div class="form-group">
                     <div class="form-check">

@@ -14,17 +14,14 @@ import Image from "react-bootstrap/Image";
 import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import Table from "react-bootstrap/Table";
 
-class ViewMilestones extends React.Component {
+
+class CreateEligibility extends React.Component {
     constructor(props) {
       super(props);
-     
   
       this.state = {
         description: "",
-        data: [],
         success: "",
         error: ""
       };
@@ -38,33 +35,32 @@ class ViewMilestones extends React.Component {
   
     handleClick(e) {
       e.preventDefault();
-     
+      // Make api call with form
+      
       axios
-        .post("http://localhost:4000/create-user")
+        .post("http://localhost:4000/create-eligibility")
         .then((data) => {
           if ((data.status === "success")) {
-            this.setState({ success: "Projects Loaded!" });
-           
+        this.setState({ success: "User Successfully created!" });
+              /*  this.setState({ data: data});*/
           } else {
-            this.setState({ error: "Error Loading project field" });
+            this.setState({ error: "Error creating User" });
           }
         })
         .catch((error) => console.log(error));
     }
 
 render() {
-    const data = this.state.data;
     const success= this.state.success;
     const error= this.state.error;
-    return ( 
-           
+    return (
       <Card.Body>
         {success ? (
           <Form.Text className="text-bold text-success">{success}</Form.Text>
         ) : (
           <Form.Text className="text-bold text-danger">{error}</Form.Text>
         )}
-        <div className="content-text"><h5>Project Milestones</h5></div>
+        <div className="content-text"><h5>Add Eligibility Criteria to Projects</h5></div>
         <Row>
           
           <Col md="12">
@@ -82,40 +78,31 @@ render() {
                       </select>
                     </div>
           </div>
-          
+          <Form.Label>Criteria details</Form.Label>
+                <Editor
+                  apiKey="oym93hgea69gv4o5cjoxfc1baobo49f82d4ah9j66v3n955r"
+                  initialValue={this.state.description}
+                  init={{
+                    height: 200,
+                    menubar: false,
+                    plugins: [
+                      "advlist autolink lists link image",
+                      "charmap print preview anchor help",
+                      "searchreplace visualblocks code",
+                      "insertdatetime media table paste wordcount"
+                    ],
+                    toolbar:
+                      "undo redo | formatselect | bold italic | \
+                    alignleft aligncenter alignright | \
+                    bullist numlist outdent indent | help"
+                  }}
+                  onChange={this.handleEditorChange}
+                  name="description"
+                />
                  <br></br>
-                 <Table striped bordered hover size="sm">
-          <thead>
-            <tr>
-              
-              <th>Milestone Name</th>
-              <th>Description</th>
-              <th>State Date</th>
-              <th>End Date</th>
-              <th>Progress</th>
-              <th>Status</th>
-              <th>Update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((item, index, arr) => {
-              return (
-                <tr key={index}>
-                  
-                  <td>{item.milestoneName}</td>
-                  <td>{item.description}</td>
-                  <td>{item.startdate}</td>
-                  <td>{item.enddate}</td>
-                  <td>{item.Progress}</td>
-                  <td>{item.Status}</td>
-                  <td>
-                    <Link to={`/view-project/${item.projectId}`}>Update</Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+                  <Button variant="primary" type="submit" onClick={this.handleClick}>
+                  Create Criteria
+              </Button>
             </form>
           </Col>
         </Row>
@@ -123,4 +110,4 @@ render() {
     );
   }
 }
-export default ViewMilestones;
+export default CreateEligibility;

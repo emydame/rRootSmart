@@ -22,11 +22,11 @@ exports.create = (req, res) => {
       message: "Please fill all project input fields"
     });
   } else {
-    Project.findOne({ where: { projectId: req.body.projectId } }).then((result) => {
+    Project.findOne({ where: { projectId: id } }).then((result) => {
       if (result) {
         return res.status(400).json({
           status: "error",
-          message: "Project already exist with this Id " + req.body.projectId
+          message: "Project already exist with this Id " + id
         });
       } else {
         // Add project

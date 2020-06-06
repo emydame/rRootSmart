@@ -13,3 +13,4 @@ module.exports = (app) => {
   // Get all projects created by an SME for funds application.
   //app.get("/project/investorAll", project.findAllSMEProject);
 };
+
