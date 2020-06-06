@@ -37,9 +37,9 @@ class View extends React.Component {
         const  status  = data.status;
         const results = data.data;
         //console.log(projects)
-        if (status === `success`) {
+        if (status === "success") {
           this.setState({ projects: results });    
-          console.log(this.state.projects)
+          console.log(this.state.projects);
         }
       })
       .catch((error) => console.log(error));
