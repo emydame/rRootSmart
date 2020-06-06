@@ -6,9 +6,9 @@ import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Pagination from "react-bootstrap/Pagination";
 
 
 class View extends React.Component {
@@ -20,33 +20,12 @@ class View extends React.Component {
     };
 
     this.fetchData = this.fetchData.bind(this);
-    this.handlePagination = this.handlePagination.bind(this);
-    this.searchCategory = this.searchCategory.bind(this);
-    this.onChange = this.onChange.bind(this);
+   
+    /*this.handlePagination = this.handlePagination.bind(this);*/
   }
 
   componentDidMount() {
     this.fetchData();
-  }
-  
-  
-  async fetchData() {
-    await axios
-      .get("http://localhost:4000/projects/category/")
-      .then(({ data }) => {
-        const status = data.status;
-        const result  = data.result;
-        if (status === "success") {
-          this.setState({ data: data.push(result) });
-        }
-     /* .get("https://eazsme-backend.herokuapp.com/projects/category")
-      .then((data) => {
-            
-         if (data.data.status === "success") {
-          const category = data.data; 
-           this.setState(category);
-          }*/
-      }).catch((error) => console.log(error));
   }
 
   searchCategory(e){
@@ -55,40 +34,42 @@ class View extends React.Component {
     const query = this.state.searchTerm;
 
     this.setState((prevState) => {
-    
-      let filteredCategory = prevState.data;
+      let filteredCategories = prevState.projectcategories;
       if (query.trim() !== ""){
-        filteredCategory = prevState.data.filter((element) => {
+        filteredCategories = prevState.projectcategories.filter((element) => {
           return element.categoryName.toLowerCase().includes(query.toLowerCase()) ||
           element.categoryDescription.toLowerCase().includes(query.toLowerCase());
         });
       }
       return {
-        filteredCategory
-       
+        filteredCategories
       };
     });
   }
-  onChange(e){
-    const value =  e.target.value;
-    if (value.trim() === ""){
-      this.setState({filteredCategory: this.state.data, searchTerm: value});
-    }else{
-      this.setState({searchTerm: value});
-    }
-    
+
+  async fetchData() {
+    await axios
+      .get("http://localhost:4000/projects/category/")
+      .then(({ data }) => {
+        const status = data.status;
+        const result  = data.data;
+        console.log("result"+data);
+        if (status === "success") {
+          this.setState({ data: result });
+        }
+      })
+      .catch((error) => console.log(error));
   }
-  
+
   render() {
     const data = this.state.data;
-    
     return (
       <Card.Body>
-   <div className="sachBody">
+  <div className="sachBody">
           <ul className="sach">
           <li><Button style={{float:"right",borderRadius:"20%"}} onClick={this.searchCategory}  variant="primary" type="submit" > Search</Button></li>
             <li><Form.Group controlId="searchId">
-                <Form.Control onChange={this.onChange} style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter category name to search" name="search" />
+                <Form.Control onChange={this.onChange} style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter Category name to search" name="search" />
                 </Form.Group>
             </li>
           </ul>
@@ -97,26 +78,25 @@ class View extends React.Component {
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-             
+              <th>Category Id</th>
               <th>Category Name</th>
               <th>Category Description</th>
-              <th>Category Creator</th>
-               <th>Action</th>
+              <th>Created By</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index, arr) => {
               let count = arr.length;
-              console.log(item);
-              console.log(index);
               return (
                 <tr>
+                  <td key={index}>{item.projectCatId}</td>
                   <td key={index}>{item.categoryName}</td>
                   <td key={index}>{item.categoryDescription}</td>
                   <td key={index}>{item.createdBy}</td>
                   <td key={count++}>
-                    <Link to={`/delete/${item.id}`}>Delete</Link>|
-                    <Link to={`/update/${item.od}`}>Update</Link>
+                    <Link to={`/delete/${item.projectCatId}`}>Delete</Link>|
+                    <Link to={`/update/${item.projectCatId}`}>Update</Link>
                   </td>
                 </tr>
               );
