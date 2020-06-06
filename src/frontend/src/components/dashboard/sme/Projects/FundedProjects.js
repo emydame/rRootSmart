@@ -78,8 +78,9 @@ class View extends React.Component {
     const  foundData  = this.state.foundData;
     return (
       <>
+      <br></br>
         <div className="sachBody">
-          <ul className="sach">
+          <ul className="sach sme">
             <li>
               <Button
                 style={{ float: `right`, borderRadius: `5%`, background: `orange` }}
@@ -95,7 +96,7 @@ class View extends React.Component {
               <Form.Group controlId="searchId">
                 <Form.Control
                   className="searchBar"
-                  style={{ width: `250px`, float: `right`, marginRight: `10px`, marginBottom:`15px` }}
+                  style={{ width: `250px`, float: `right`, marginRight: `10px`,marginBottom:`15px` }}
                   type="text"
                   placeholder="Enter project name to search"
                   name="search"
@@ -107,6 +108,7 @@ class View extends React.Component {
           </ul>
         </div>
         <Card.Body>
+          <h4>Click on Apply to beging a New Application</h4>
           <Table striped bordered hover size="sm" className="d-none" name="one">
             <thead>
               <tr>
@@ -144,14 +146,10 @@ class View extends React.Component {
           <Table striped bordered hover size="sm" name="all">
             <thead>
               <tr>
-                <th>Project Id</th>
-                <th>Category Id</th>
                 <th>Project Name</th>
-                <th>Project Description</th>
-                <th>Created By</th>
-                <th>Date Started</th>
-                <th>Date Ended</th>
-                <th>Date Created</th>
+                <th>Project Description</th> 
+                <th>View</th> 
+                <th>Action</th>                
               </tr>
             </thead>
             <tbody>
@@ -159,16 +157,13 @@ class View extends React.Component {
                 let count = arr.length;
                 return (
                   <tr>
-                    <td key={index}>{item.projectId}</td>
-                    <td key={index}>{item.projectCatId}</td>
                     <td key={index}>{item.projectName}</td>
                     <td key={index}>{item.description}</td>
-                    <td key={index}>{item.createdBy}</td>
-                    <td key={index}>{item.dateStart}</td>
-                    <td key={index}>{item.dateEnd}</td>
-                    <td key={index}>{item.dateCreated}</td>
                     <td key={count++}>
                       <Link to={`/view-project/${item.projectId}`}>View Details</Link>
+                    </td>
+                    <td key={count++}>
+                      <Link to={`/view-project/${item.projectId}`}>Apply</Link>
                     </td>
                   </tr>
                 );

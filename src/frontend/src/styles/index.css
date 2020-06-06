@@ -73,7 +73,7 @@ h3 {
 /********* Modal Styles ***************/
 
 div.modal-header {
-  background-color: #f90;
+  background-color: #3d6cb9;
 }
 
 div.modal-body,
@@ -343,6 +343,11 @@ h3 {
 
 .sachBody {
   margin-bottom: 60px;
+}
+
+.sachBody .sme {
+  margin-right: 20px;
+  margin-top: 40px;
 }
 
 .sach li {

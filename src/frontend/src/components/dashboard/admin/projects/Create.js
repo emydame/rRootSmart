@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-console */
 /* eslint-disable no-multi-str */
 /*eslint quotes: ["error", "backtick"]*/
@@ -34,8 +35,15 @@ class Create extends React.Component {
 
   async getCategory() {
     await axios
-      .get(`https://eazsme-backend.herokuapp.com/projects/category/`)
-      .then((data) => this.setState(data))
+      .get(`https://localhost:4000/projects/category/`)
+      .then(({ data }) => {
+        const {status} = data;
+        const cats = data.data;
+        if(status === "success") {
+          this.setState({data: data.push(cats)});
+        }
+        
+      })
       .catch((error) => console.log(error));
 
     const select = this.categorySelect.current;
@@ -59,9 +67,10 @@ class Create extends React.Component {
     const form = document.querySelector(`form[name="create-project"]`);
     const formFields = serialize(form, { hash: true });
     await axios
-      .post(`https://eazsme-backend.herokuapp.com/projects`, formFields)
-      .then((data) => {
-        if ((data.status === `success`)) {
+      .post(`http://localhost:4000/projects`, formFields)
+      .then(({data}) => {
+        const {status} = data;
+        if (status === `success`) {
           this.setState({ success: `User Successfully created!` });
         } else {
           this.setState({ error: `Error creating User` });
@@ -75,18 +84,22 @@ class Create extends React.Component {
     const error = this.state.error;
     return (
       <Card.Body>
-        {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
         <Row>
           <Col>
+            {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
             <Form name="create-project">
-              <Form.Group controlId="catId">
+            {/**   <Form.Group controlId="catId">
                 <Form.Label>Project ID:</Form.Label>
                 <Form.Control type="text" placeholder="Project ID" name="projectId" />
-              </Form.Group>
+            </Form.Group>*/}
 
               {/** Make a request for all the project category and populate select  store value in redux state*/}
               <Form.Group controlId="projectCatId">
@@ -113,8 +126,7 @@ class Create extends React.Component {
                       `searchreplace visualblocks code`,
                       `insertdatetime media table paste wordcount`
                     ],
-                    toolbar:
-                      `undo redo | formatselect | bold italic | \
+                    toolbar: `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
                     bullist numlist outdent indent | help`
                   }}
@@ -136,6 +148,11 @@ class Create extends React.Component {
               <Form.Group controlId="dateEnded">
                 <Form.Label>Date Ended:</Form.Label>
                 <Form.Control type="date" placeholder="Date ended" name="dateEnded" />
+              </Form.Group>
+
+              <Form.Group controlId="dateCreated">
+                <Form.Label>Date Created:</Form.Label>
+                <Form.Control type="date" placeholder="Date ended" name="dateCreated" />
               </Form.Group>
 
               <Button variant="primary" type="submit" onClick={this.handleClick}>

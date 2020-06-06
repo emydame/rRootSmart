@@ -34,9 +34,10 @@ class Create extends React.Component {
     const form = document.querySelector(`form[name="create-category"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
-      .post(`https://eazsme-backend.herokuapp.com/projects/category`, formFields)
-      .then((data) => {
-        if ((data.status = `success`)) {
+      .post(`http://localhost:4000/projects/category`, formFields)
+      .then(({ data }) => {
+        const { status } = data;
+        if (status === `success`) {
           this.setState({ success: `User Successfully created!` });
         } else {
           this.setState({ error: `Error creating User` });
@@ -50,19 +51,18 @@ class Create extends React.Component {
     const error = this.state.error;
     return (
       <Card.Body>
-        {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
         <Row>
           <Col>
+            {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
             <Form name="create-category">
-              <Form.Group controlId="catId">
-                <Form.Label>Category ID:</Form.Label>
-                <Form.Control type="text" placeholder="Category ID" name="projectCatId" />
-              </Form.Group>
-
               <Form.Group controlId="catName">
                 <Form.Label>Category Name:</Form.Label>
                 <Form.Control type="text" placeholder="Category Name" name="categoryName" />
@@ -82,13 +82,12 @@ class Create extends React.Component {
                       `searchreplace visualblocks code`,
                       `insertdatetime media table paste wordcount`
                     ],
-                    toolbar:
-                      `undo redo | formatselect | bold italic | \
+                    toolbar: `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
                     bullist numlist outdent indent | help`
                   }}
                   onChange={this.handleEditorChange}
-                  name="catDescription"
+                  name="categoryDescription"
                 />
               </Form.Group>
 

@@ -25,8 +25,9 @@ class Delete extends React.Component {
   async deactivate() {
     const categoryId = this.props.match.categoryId;
 
-    await axios.delete("https://eazsme-backend.herokuapp.com/projects/category/" + categoryId).then((data) => {
-      if (data.status === "success") {
+    await axios.delete("http://localhost:4000/projects/category/" + categoryId).then(({ data }) => {
+      const  status  = data.status;
+      if (status === "success") {
         this.setState({ success: "User successfully deactivated!" });
       } else {
         this.setState({ error: "Error deactivatiing user" });
@@ -36,13 +37,17 @@ class Delete extends React.Component {
 
   render() {
     const success = this.state.success;
-    const error  = this.state.error;
+    const error = this.state.error;
     return (
       <Card.Body>
         {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
+          <div className="text-bold text-success">
+            <h5>{success}</h5>
+          </div>
         ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
+          <div className="text-bold text-success">
+            <h5>{error}</h5>
+          </div>
         )}
       </Card.Body>
     );

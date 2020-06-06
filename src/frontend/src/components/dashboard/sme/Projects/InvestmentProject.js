@@ -57,7 +57,7 @@ class View extends React.Component {
     
   }
   async fetchData() {
-    const data = await axios.get("https://eazsme-backend.herokuapp.com/projects/all");
+    const data = await axios.get("https://eazsme-backend.herokuapp.com/project/investorAll");
     const projects = data.data.data;  
     this.setState({projects, filteredProjects: projects});
   }
@@ -67,10 +67,10 @@ class View extends React.Component {
     return (
       <>
       <div className="sachBody">
-        <ul className="sach">
-          <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" onClick={this.searchProjects} > Search</Button></li>
+        <ul className="sach sme">
+          <li><Button style={{float:"right",borderRadius:"5%",background:"orange"}}  variant="default" type="submit" onClick={this.searchProjects} > Search</Button></li>
             <li><Form.Group controlId="searchId">
-            <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
+            <Form.Control className="searchBar" style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px"}} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
           </Form.Group></li>
           </ul>
         </div> 
@@ -78,21 +78,20 @@ class View extends React.Component {
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-              <th>Project Id</th>
-              <th>Category Id</th>
+              
               <th>Project Name</th>
               <th>Project Description</th>
               <th>Created By</th>
               <th>Date Started</th>
               <th>Date Ended</th>
+              <th>Apply</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index, arr) => {
               return (
                 <tr key={index}>
-                  <td>{item.projectId}</td>
-                  <td>{item.projectCatId}</td>
+                  
                   <td>{item.projectName}</td>
                   <td>{item.description}</td>
                   <td>{item.createdBy}</td>

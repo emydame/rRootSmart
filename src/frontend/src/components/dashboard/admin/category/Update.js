@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
@@ -40,7 +41,7 @@ class Update extends React.Component {
     e.preventDefault();
     const { categoryId } = this.props.match;
     await axios
-      .get("https://eazsme-backend.herokuapp.com/projects/category/" + categoryId)
+      .get("http://localhost:4000/projects/category/" + categoryId)
       .then((data) => {
         if (data.status === "success") {
           this.setState({ catID: data.projectCatId });
@@ -52,11 +53,11 @@ class Update extends React.Component {
 
   async submitUpdate(e) {
     e.preventDefault();
-    const form = document.querySelector("form[name=\"update\"]");
+    const form = document.querySelector(`form[name="update"]`);
     const formFields = serialize(form, { hash: true });
     const { catID } = this.state;
     await axios
-      .patch("https://eazsme-backend.herokuapp.com/projects/category/" + catID, formFields)
+      .patch("http://localhost:4000/projects/category/" + catID, formFields)
       .then((data) => {
         if (data.status === "success") {
           this.setState({ success: "Update was successful!" });
@@ -78,9 +79,13 @@ class Update extends React.Component {
     return (
       <Card.Body>
         {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
+          <div className="text-bold text-success">
+            <h5>{success}</h5>
+          </div>
         ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
+          <div className="text-bold text-success">
+            <h5>{error}</h5>
+          </div>
         )}
         <Row>
           <Col>

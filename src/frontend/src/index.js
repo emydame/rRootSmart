@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "./components/App";
 import { Provider } from "react-redux";
-import createHistory from "history/createBrowserHistory";
+import history from "./history";
 import { Switch, Route, Router } from "react-router-dom";
 import store from "./redux/configurations/store";
 import Dashboards from "./components/dashboard/Dashboard";
 
-const history = createHistory();
+/*const history = createHistory();*/
 const stores = store();
 
 ReactDOM.render(

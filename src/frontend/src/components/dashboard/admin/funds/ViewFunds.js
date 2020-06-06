@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-console */
 /* eslint-disable no-multi-str */
 /*eslint quotes: ["error", "backtick"]*/
@@ -13,75 +14,66 @@ import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
 
-class Create extends React.Component {
+class ViewFunds extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      categories: [],
+      category: [],
       success: ``,
       error: ``,
-      description: ``
+      data: []
     };
-
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.categorySelect = React.createRef();
-    this.getCategory = this.getCategory.bind(this);
   }
 
   componentDidMount() {
     this.getCategory();
   }
 
-  getCategory() {
-    axios
-      .get(`https://eazsme-backend.herokuapp.com/projects/category/`)
-      .then((data) => {
-        const categories = data.data.data;
-  
-        this.setState({categories}, () => {
-          const select = this.categorySelect.current;
-
-          const { categories } = this.state;
-          const data = categories;
-
-          // based on type of data is array
-          for (let i = 0; i < data.length; i++) {
-            const option = document.createElement(`option`);
+  async getCategory() {
+    await axios
+      .get(`https://localhost:4000/projects/category/`)
+      .then(({ data }) => {
+        const {status} = data;
+        const cats = data.data;
+        if(status === "success") {
+          this.setState({data: data.push(cats)});
+        }
         
-            option.innerText = data[parseInt(i, 10)].categoryName;
-            option.name = data[parseInt(i, 10)].categoryName;
-            option.value = data[parseInt(i, 10)].projectCatId;
-            select.appendChild(option);
-          }
-        });
       })
       .catch((error) => console.log(error));
+
+    const select = this.categorySelect.current;
+
+    const { data } = this.state;
+    // based on type of data is array
+    for (let i = 0; i < data.length; i++) {
+      const option = document.createElement(`option`);
+      option.name = data[parseInt(i)].categoryName;
+      option.value = data[parseInt(i)].categoryName;
+      select.appendChild(option);
+    }
   }
 
-  handleEditorChange(content, editor) {
-    this.setState({ description: content });
+  handleEditorChange(e) {
+    this.setState({ description: e.target.getContent() });
   }
 
-  handleClick(e) {
+  async handleClick(e) {
     e.preventDefault();
     const form = document.querySelector(`form[name="create-project"]`);
     const formFields = serialize(form, { hash: true });
-    formFields.description = this.state.description;
-    axios
-      .post(`https://eazsme-backend.herokuapp.com/projects`, formFields)
-      .then((data) => {
-        if (data.data.status === `success`) {
-          this.setState({ 
-            success: `User Successfully created!`, 
-            error:``,
-           });
-           setTimeout(() => {
-            window.location.reload();
-           }, 1000);
+    await axios
+      .post(`http://localhost:4000/projects`, formFields)
+      .then(({data}) => {
+        const {status} = data;
+        if (status === `success`) {
+          this.setState({ success: `User Successfully created!` });
         } else {
-          this.setState({ error: `Error creating User`, success: `` });
+          this.setState({ error: `Error creating User` });
         }
       })
       .catch((error) => console.log(error));
@@ -94,6 +86,15 @@ class Create extends React.Component {
       <Card.Body>
         <Row>
           <Col>
+            {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
             <Form name="create-project">
               <Form.Group controlId="catId">
                 <Form.Label>Project ID:</Form.Label>
@@ -103,7 +104,7 @@ class Create extends React.Component {
               {/** Make a request for all the project category and populate select  store value in redux state*/}
               <Form.Group controlId="projectCatId">
                 <Form.Label>Category Type:</Form.Label>
-                <Form.Control as="select" ref={this.categorySelect} name="projectCatId"></Form.Control>
+                <Form.Control as="select" ref={this.categorySelect} name="categoryCatId"></Form.Control>
               </Form.Group>
 
               <Form.Group controlId="projectName">
@@ -125,14 +126,12 @@ class Create extends React.Component {
                       `searchreplace visualblocks code`,
                       `insertdatetime media table paste wordcount`
                     ],
-                    toolbar:
-                      `undo redo | formatselect | bold italic | \
+                    toolbar: `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
                     bullist numlist outdent indent | help`
                   }}
-                  onEditorChange={this.handleEditorChange}
-                  name="description"
-                  outputFormat='text'
+                  onChange={this.handleEditorChange}
+                  name="catDescription"
                 />
               </Form.Group>
 
@@ -143,12 +142,17 @@ class Create extends React.Component {
 
               <Form.Group controlId="dateStarted">
                 <Form.Label>Date Started:</Form.Label>
-                <Form.Control type="date" placeholder="Date started" name="dateStart" />
+                <Form.Control type="date" placeholder="Date started" name="dateStarted" />
               </Form.Group>
 
               <Form.Group controlId="dateEnded">
                 <Form.Label>Date Ended:</Form.Label>
-                <Form.Control type="date" placeholder="Date ended" name="dateEnd" />
+                <Form.Control type="date" placeholder="Date ended" name="dateEnded" />
+              </Form.Group>
+
+              <Form.Group controlId="dateCreated">
+                <Form.Label>Date Created:</Form.Label>
+                <Form.Control type="date" placeholder="Date ended" name="dateCreated" />
               </Form.Group>
 
               <Button variant="primary" type="submit" onClick={this.handleClick}>
@@ -157,15 +161,8 @@ class Create extends React.Component {
             </Form>
           </Col>
         </Row>
-        <Row>
-          {success ? (
-            <div className="text-bold text-success">{success}</div>
-          ) : (
-            <div className="text-bold text-danger">{error}</div>
-          )}
-        </Row>
       </Card.Body>
     );
   }
 }
-export default Create;
+export default ViewFunds;

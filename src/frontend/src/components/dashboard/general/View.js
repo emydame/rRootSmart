@@ -65,37 +65,40 @@ class View extends React.Component {
   render() {
     const data = this.state.filteredProjects;
     return (
-      <>
-      <div className="sachBody">
+      <Card.Body>
+        <div className="sachBody">
         <ul className="sach">
-          <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" onClick={this.searchProjects} > Search</Button></li>
+          <li><Button style={{float:"right",borderRadius:"5%",background:"orange"}}  variant="defualt" type="submit" onClick={this.searchProjects} > Search</Button></li>
             <li><Form.Group controlId="searchId">
-            <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
+            <Form.Control className="searchBar" style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px" }} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
           </Form.Group></li>
           </ul>
         </div> 
-      <Card.Body>
-        <Table striped bordered hover size="sm">
+        {/* <Table striped bordered hover size="sm"> */}
+        <table class="table table-striped">
           <thead>
             <tr>
-              <th>Project Id</th>
-              <th>Category Id</th>
+              {/* <th>Project Id</th>
+              <th>Category Id</th> */}
               <th>Project Name</th>
+              {/* <th>Category</th> */}
               <th>Project Description</th>
-              <th>Created By</th>
+              {/* <th>Created By</th> */}
               <th>Date Started</th>
               <th>Date Ended</th>
+              <th>Details</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index, arr) => {
               return (
                 <tr key={index}>
-                  <td>{item.projectId}</td>
-                  <td>{item.projectCatId}</td>
+                  {/* <td>{item.projectId}</td>
+                  <td>{item.projectCatId}</td> */}
                   <td>{item.projectName}</td>
+                  {/* <td>{item.category}</td> */}
                   <td>{item.description}</td>
-                  <td>{item.createdBy}</td>
+                  {/* <td>{item.createdBy}</td> */}
                   <td>{item.dateStart}</td>
                   <td>{item.dateEnd}</td>
                   <td>
@@ -105,9 +108,8 @@ class View extends React.Component {
               );
             })}
           </tbody>
-        </Table>
+        </table>
       </Card.Body>
-      </>
     );
   }
 }

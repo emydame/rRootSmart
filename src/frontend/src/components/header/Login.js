@@ -4,7 +4,9 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,6 +31,8 @@ class Login extends React.Component {
   }
 
   render() {
+    const success = this.props.success;
+    const error = this.props.error;
     return (
       <>
         {/*** Login Modal */}
@@ -44,12 +48,21 @@ class Login extends React.Component {
             <Row>
               <Col className="text-center pr-1">
                 <Modal.Title id="login" className="text-light">
-                  Login
+                  Login 
                 </Modal.Title>
               </Col>
             </Row>
           </Modal.Header>
           <Modal.Body bsPrefix="modal-body">
+          {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-lighter text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
             <Form name="login">
               <Form.Text className="text-danger h4 d-none" bsPrefix="form-text" ref={this.props.current}>
                 Fields mark * are required
@@ -58,7 +71,7 @@ class Login extends React.Component {
                 <Form.Label className="font-weight-bold">
                   Email address<sup className="text-danger">*</sup>
                 </Form.Label>
-                <Form.Control type="email" placeholder="Enter email" required name="email" />
+                <Form.Control type="email" placeholder="Enter email" name="email" required />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword1">
@@ -77,25 +90,21 @@ class Login extends React.Component {
                   ref={this.rememberMe}
                 />
               </Form.Group>
-              <Button variant="success" type="submit" className="btn-block" onClick={this.submitLogin}>
-                Submit
+              <Button variant="success" type="submit" className="btn-block" onClick={this.submitLogin} >
+                Login
               </Button>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Row>
-              <Col md="1" className="mr-4">
-                <Button type="submit" variant="danger" onClick={this.closeLogin}>
-                  Cancel
-                </Button>
-              </Col>
+            <Row>              
               <Col md="auto" className="ml-4 font-weight-bold">
                 Not a member?&nbsp;
-                <Link to="/signup">Sign Up</Link>
+                <Link to="../header/Registration">Sign Up</Link>                
                 &nbsp;&nbsp; Forget &nbsp;
                 <Link to="/recover-password">Password?</Link>
               </Col>
             </Row>
+            
           </Modal.Footer>
         </Modal>
       </>

@@ -1,10 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Badge, Dropdown, Layout, Menu, Avatar, Modal, Button } from "antd";
+import { Badge, Dropdown, Layout, Menu, Avatar } from "antd";
 import { Switch, Link, Router, Route } from "react-router-dom";
 // import Project from "./Project";
-import Proposal from "./Proposal";
+import Proposal from "./Funds/Proposal";
 import {
   RiseOutlined,
   UsergroupAddOutlined,
@@ -16,11 +17,18 @@ import {
   ZoomOutOutlined,
   FileAddOutlined
 } from "@ant-design/icons";
-import Create from "./user/Create";
-import Remove from "./user/Remove";
-import Update from "./user/Update";
+import Create from "../general/CreateUser";
+import Remove from "../general/Remove";
+import Update from "../general/Update";
 import ProfileDetails from "../sme/user/ProfileDetails";
 import EditProfile from "./user/EditProfile";
+import FundedProjects from "../sme/Projects/FundedProjects";
+import InvestmentProject from "../sme/Projects/InvestmentProject";
+import Milestones from "../sme/Projects/Milestones";
+import NewApplication from "../sme/Funds/NewApplication";
+import ViewMilestones from "../sme/Funds/ViewMilestones";
+import CreateMilestones from "./Projects/Milestones";
+
 
 
 const menu = (
@@ -75,24 +83,40 @@ class SmeDashboard extends React.Component {
           <Menu.Item key="1" icon={<RiseOutlined />}>
               <Link to="/sme/ProfileDetails">Profile Details</Link>
             </Menu.Item>
-            <Menu.Item key="1" icon={<ZoomOutOutlined />}>
-              <Link to="/sme/projects">View Projects</Link>
-            </Menu.Item>
-            
-            <Menu.Item key="2" icon={<FileAddOutlined />}>
-              <Link to="/sme/proposal">Create Proposal</Link>
-            </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="4" icon={<UserOutlined />}>
+              <Menu.Item key="2" icon={<UserOutlined />}>
                 <Link to="/sme/create-user">Create</Link>
               </Menu.Item>
-              <Menu.Item key="5" icon={<UserOutlined />}>
+              <Menu.Item key="3" icon={<UserOutlined />}>
                 <Link to="/sme/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="6" icon={<UserOutlined />}>
+              <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/sme/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
+            <SubMenu key="sub2" icon={<UserOutlined />} title="Projects">
+            <Menu.Item key="5" icon={<ZoomOutOutlined />}>
+              <Link to="/sme/Projects/InvestmentProject">View Projects</Link>
+            </Menu.Item>
+             <Menu.Item key="6" icon={<ZoomOutOutlined />}>
+              <Link to="/sme/Funds/ViewMilestones"> View Milestones</Link>
+            </Menu.Item>
+            
+            </SubMenu>
+            <SubMenu key="3" icon={<UserOutlined />} title="Funds">
+            <Menu.Item key="8" icon={<ZoomOutOutlined />}>
+              <Link to="/sme/Projects/FundedProjects">Create Application</Link>
+              </Menu.Item>
+              <Menu.Item key="6" icon={<ZoomOutOutlined />}>
+              <Link to="/sme/Projects/Milestones">Create Milestones</Link>
+            </Menu.Item>
+              <Menu.Item key="9" icon={<FileAddOutlined />}>
+              <Link to="/sme/Funds/proposal">Existing Applications</Link>
+            </Menu.Item>
+            </SubMenu>
+            
+           
+          
             <Menu.Item key="4" icon={<LogoutOutlined />}>
               {" "}
               Log Out
@@ -118,12 +142,18 @@ class SmeDashboard extends React.Component {
             <Router history={this.props.history}>
               <Switch>
                 {/* <Route path="/sme/projects" component={Project} /> */}
-                <Route path="/sme/proposal" component={Proposal} />
+                <Route path="/sme/Projects/FundedProjects" component={FundedProjects} />
+                <Route path="/sme/Funds/NewApplication" component={NewApplication} />
+                <Route path="/sme/Funds/ViewMilestones" component={ViewMilestones} />
+                <Route path="/sme/Projects/Milestones" component={CreateMilestones} />
+                <Route path="/sme/Funds/proposal" component={Proposal} />
                 <Route path="/sme/create-user" component={Create} />
                 <Route path="/sme/update-user" component={Update} />
                 <Route path="/sme/deactivate-user" component={Remove} />
                 <Route path="/sme/ProfileDetails" component={ProfileDetails} />
                 <Route path="/sme/EditProfile" component={EditProfile} />
+                <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />
+                <Route path="/sme/Projects/Milestones" component={Milestones} />
               </Switch>
             </Router>
           </Content>

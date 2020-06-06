@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 
@@ -21,15 +22,16 @@ import { Switch, Router, Route } from "react-router-dom";
 import { BellFilled, UserAddOutlined, UserSwitchOutlined, RiseOutlined } from "@ant-design/icons";
 import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import AllUsers from "./user/AllUsers";
-import Create from "./user/Create";
-import Remove from "./user/Remove";
-import Update from "./user/Update";
+import Create from "../general/Create";
+import Remove from "../general/Remove";
+import Update from "../general/Update";
 import ProfileDetails from "./user/ProfileDetails";
 import ProjectDetails from "./ProjectDetails";
 import EditProfile from "./user/EditProfile";
-import CreateProject from "./projects/Create";
-import ViewProject from "./projects/View";
+
 import Invest from "./invest";
+import ViewProject from "../general/View";
+import CreateProject from "../general/Create";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -76,32 +78,34 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="13" icon={<UserSwitchOutlined />}><Link to="/investor/invest">Make Investments</Link></Menu.Item>
               <Menu.Item key="5" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link></Menu.Item >
             </SubMenu>
-            <SubMenu key="sub2" icon={<UserOutlined />} title="User">
-              <Menu.Item key="11" icon={<UserOutlined />}>
+            <SubMenu key="sub2" icon={<UserOutlined />} title="Users">
+              <Menu.Item key="2" icon={<UserOutlined />}>
                 <Link to="/investor/AllUser">All Users</Link>
               </Menu.Item>
-              <Menu.Item key="6" icon={<UserOutlined />}>
+              <Menu.Item key="3" icon={<UserOutlined />}>
                 <Link to="/investor/create-user">Create</Link>
               </Menu.Item>
-              <Menu.Item key="7" icon={<UserOutlined />}>
+              <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/investor/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="8" icon={<UserOutlined />}>
+              <Menu.Item key="5" icon={<UserOutlined />}>
                 <Link to="/investor/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub3" icon={<TeamOutlined />} title="Team">
-              <Menu.Item key="9">Team 1</Menu.Item>
-              <Menu.Item key="10">Team 2</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub4" icon={<ProjectOutlined />} title="Projects">
-              <Menu.Item key="9" icon={<ProjectOutlined />}>
-                <Link to="/investor/create-project">Create Project</Link>
-              </Menu.Item>
-              <Menu.Item key="10" icon={<ProjectOutlined />}>
-                <Link to="/investor/view-projects">View Projects</Link>
-              </Menu.Item>
-            </SubMenu>
+            <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />View Projects</Link></Menu.Item>
+
+            <SubMenu key="sub3" icon={<UserOutlined />} title="Investments">
+            <Menu.Item key="6"><Link to="#"><RiseOutlined />Invest</Link></Menu.Item>
+            <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
+              <Menu.Item key="7" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link>
+            </Menu.Item >
+              <Menu.Item key="8" icon={<PieChartOutlined />}>
+              <Link to="/investor/SmeProposals">All Proposals</Link>
+            </Menu.Item>              
+            </SubMenu>        
+            
+           
+         
             <Menu.Item key="3" icon={<LogoutOutlined/>}> Log Out</Menu.Item>
           </Menu>
         </Sider>
@@ -124,8 +128,8 @@ class InvestorDashboard extends React.Component {
             {/* Content Elements are here */}
           <Content style={{ margin: "0 16px" }}>
             <div className="content-title">
-              <h5>WELCOME TO YOUR INVESTMENT DASHBOARD</h5>
-              <p>Here you can view and manage all your investments</p>
+              {/* <h5>WELCOME TO YOUR INVESTMENT DASHBOARD</h5>
+              <p>Here you can view and manage all your investments</p>*/}
             </div>
             
             {/* <Breadcrumb style={{ margin: "16px 0" }}>

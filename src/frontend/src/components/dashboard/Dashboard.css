@@ -196,14 +196,25 @@ ul.pagination {
   margin-bottom: 25px;
 }
 
+.sachBody {
+  margin-top: -20px;
+  margin-bottom: 60px;
+}
+
 .content-title,
 h5  {
   text-align: center;
   color: #3d6cb9;
 }
+
 .img-holder {
   border: 1px solid #fff;
   background: #fff;
+}
+
+.form-control.searchBar {
+  border: 1px solid #c7dff1;
+  border-radius: 5px;
 }
 
 .stripped {

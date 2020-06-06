@@ -4,7 +4,7 @@
 /*eslint-env es6*/
 /* eslint no-console: "error" */
 import React from "react";
-import { Link, Redirect, BrowserRouter as Router, withRouter } from "react-router-dom";
+import { Link, BrowserRouter as Router, withRouter } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import serialize from "form-serialize";
 import "../../styles/modal.css";
@@ -19,6 +19,7 @@ import axios from "axios";
 class Nav extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showReg: false,
       showLog: false,
@@ -40,6 +41,7 @@ class Nav extends React.Component {
     this.confPassword = React.createRef();
     this.lga = React.createRef();
     this._state = React.createRef();
+    this.submitRegistration = this.submitRegistration.bind(this);
 
     this.showLoginModal = this.showLoginModal.bind(this);
     this.closeLoginModal = this.closeLoginModal.bind(this);
@@ -58,30 +60,37 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ showReg: true });
   }
+
   closeRegistrationModal() {
     this.setState({ showReg: false });
   }
+
   handleBlur(event) {
     event.preventDefault();
     if (this.state.password !== this.state.confirmPassword) {
       this.confPassword.current.classList.remove("d-none");
     }
   }
-  async submitRegistration(event) {
+
+  submitRegistration(event) {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
     const formFields = serialize(form, { hash: true });
-    await axios
+    axios
       .post("http://localhost:4000/register", formFields)
-      .then((data) => {
-        console.log(data);
-        if (data.status === "success") {
+      .then(({ data }) => {
+        const { status } = data;
+        if (status === "success") {
           this.setState({ success: "User successfully signed up!" });
         } else {
           this.setState({ error: "Error signing up user" });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        /*console.log(error)*/
+        this.setState({ error: "Error signing up user" });
+        
+      });
   }
 
   mapStateToLGA(event) {
@@ -114,6 +123,7 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ confirmPassword: event.target.value });
   }
+
   handlePasswordChange(event) {
     event.preventDefault();
     this.setState({ password: event.target.value });
@@ -123,6 +133,7 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ showLog: true });
   }
+
   closeLoginModal() {
     this.setState({ showLog: false });
   }
@@ -143,7 +154,9 @@ class Nav extends React.Component {
     await axios
       .post("http://localhost:4000/login", formFields)
       .then(({ data }) => {
-        const { status, result } = data;
+        console.log(data);
+        const { status, result } = data;      
+       
         if (status === "success") {
           switch (result.category) {
             case "admin":
@@ -162,16 +175,24 @@ class Nav extends React.Component {
               window.alert("You must be a ghost");
               break;
           }
+        }else{
+          /*display invalid credentials*/
+          console.log(data);
+          this.setState({ error: "Invalid Credentials" });
         }
       })
-      .catch((error) => console.log(error));
-    
+      .catch((error) => {console.log(error);
+        this.setState({ error: "Invalid Credentials" });
+      })
+      ;
+     
   }
 
   showContactModal(event) {
     event.preventDefault();
     this.setState({ showContact: true });
   }
+
   closeContactModal() {
     this.setState({ showContact: false });
   }
@@ -180,18 +201,13 @@ class Nav extends React.Component {
     event.preventDefault();
     this.setState({ showAbout: true });
   }
+
   closeAboutModal() {
     this.setState({ showAbout: false });
   }
 
   render() {
-    if (this.state.redirect) {
-      return (
-        <Router>
-          <Redirect to={this.state.redirect} />
-        </Router>
-      );
-    }
+    
     return (
       <Container className="navbar">
         <ul className="nav">
@@ -236,6 +252,8 @@ class Nav extends React.Component {
           closeModal={this.closeLoginModal}
           login={this.handleLogin}
           current={this.logFormText}
+          success={this.state.success}
+          error={this.state.error}
         />
         <Contact showModal={this.state.showContact} closeModal={this.closeContactModal} />
         <About showModal={this.state.showAbout} closeModal={this.closeAboutModal} />

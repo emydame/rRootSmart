@@ -56,10 +56,10 @@ class Header extends React.Component {
                   <Link className="nav-link" to="#"></Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link disabled" to="#" tabindex="-1" aria-disabled="true"></Link>
+                  <Link className="nav-link disabled" to="#" tabIndex="-1" aria-disabled="true"></Link>
                 </li>
               </ul>
-              <div class="mt-2 mt-md-0 navi-links">
+              <div className="mt-2 mt-md-0 navi-links">
                 <Nav />
               </div>
             </div>

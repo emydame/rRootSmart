@@ -62,7 +62,7 @@ const columns = [
         dataIndex: "Email",
         key: "Email",
       },
-     {
+      {
       title: "Action",
       key: "action",
       render: (text, record) => (
@@ -84,14 +84,13 @@ export default class Investors extends Component {
             <h4> *** Investors View *** </h4>         
           </div>
           <div className="sachBody">
-            <ul className="sach">
-              <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" > Search</Button></li>
-              <li><Form.Group controlId="searchId">
-                  <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter Company name" name="search" />
-                  </Form.Group>
-              </li>
+        <ul className="sach">
+          <li><Button style={{float:"right",borderRadius:"5%",background:"orange"}}  variant="default" type="submit" > Search</Button></li>
+            <li><Form.Group controlId="searchId">
+            <Form.Control className="searchBar" style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px" }} type="text" placeholder="Enter project name to search" name="search" />
+          </Form.Group></li>
           </ul>
-        </div>
+        </div> 
           <Table columns={columns} dataSource={data} />
         </Card.Body>
       );
