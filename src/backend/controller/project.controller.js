@@ -13,6 +13,7 @@ exports.create = (req, res) => {
     createdBy: req.body.createdBy,
     dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
+    fund: req.body.fund,
     dateCreated: today
   };
   if (!req.body) {
