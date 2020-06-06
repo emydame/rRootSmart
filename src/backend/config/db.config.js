@@ -36,6 +36,7 @@ db.ngState = require("../model/states.model")(sequelize, Sequelize);
 db.lga = require("../model/lga.model")(sequelize, Sequelize);
 db.role = require("../model/role.model")(sequelize, Sequelize);
 db.payment = require("../model/payment.model")(sequelize, Sequelize);
+db.milestone = require("../model/milestone.model")(sequelize, Sequelize);
 
 // Table Associations
 

@@ -1,40 +1,52 @@
 module.exports = (sequelize, DataTypes) => {
-    const Milestone = sequelize.define(
-      "milestone",
-      {
-        id: {
-          type: DataTypes.INTEGER,
-          autoIncrement: true,
-          allowNull: false,
-          primaryKey: true
-        },
-        name: {
-          type: DataTypes.STRING,
-          allowNull: false
-        },
-        description: {
-          type: DataTypes.STRING
-        },
-        startDate: {
-          type: DataTypes.STRING
-        },
-        endDate: {
-          type: DataTypes.STRING
-        },
-        progress: {
-            type: DataTypes.STRING
-          },
-        status: {
-          type: DataTypes.STRING
-        },
-        update: {
-          type: DataTypes.STRING
-        }
+  const Milestone = sequelize.define(
+    "milestone",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
       },
-      {
-        timestamps: false
+      milestoneId: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      applicationId: {
+        type: DataTypes.STRING
+      },
+      description: {
+        type: DataTypes.STRING
+      },
+      startDate: {
+        type: DataTypes.STRING
+      },
+      endDate: {
+        type: DataTypes.STRING
+      },
+      progress: {
+        type: DataTypes.STRING
+      },
+      status: {
+        type: DataTypes.STRING
+      },
+      update: {
+        type: DataTypes.STRING
+      },
+      confirmedBy: {
+        type: DataTypes.STRING
+      },
+      dateConfirmed: {
+        type: DataTypes.DATE
       }
-    );
-    return Milestone;
-  };
-  
+    },
+    {
+      timestamps: false
+    }
+  );
+  return Milestone;
+};
