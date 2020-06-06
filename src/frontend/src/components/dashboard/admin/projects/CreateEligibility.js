@@ -41,7 +41,8 @@ class CreateEligibility extends React.Component {
         .post("http://localhost:4000/create-eligibility")
         .then((data) => {
           if ((data.status === "success")) {
-            this.setState({ success: "User Successfully created!" });
+           /* this.setState({ success: "User Successfully created!" });*/
+            this.setState({ data: data});
           } else {
             this.setState({ error: "Error creating User" });
           }
@@ -50,7 +51,8 @@ class CreateEligibility extends React.Component {
     }
 
 render() {
-    const { success, error } = this.state;
+    const success= this.state.success;
+    const error= this.state.error;
     return (
       <Card.Body>
         {success ? (

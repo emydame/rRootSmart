@@ -43,8 +43,8 @@ class ViewMilestones extends React.Component {
         .post("http://localhost:4000/create-user")
         .then((data) => {
           if ((data.status === "success")) {
-          
-            this.setState({ data: data });
+            this.setState({ success: "Projects Loaded!" });
+           
           } else {
             this.setState({ error: "Error Loading project field" });
           }
@@ -54,7 +54,8 @@ class ViewMilestones extends React.Component {
 
 render() {
     const data = this.state.data;
-    const { success, error } = this.state;
+    const success= this.state.success;
+    const error= this.state.error;
     return ( 
            
       <Card.Body>
