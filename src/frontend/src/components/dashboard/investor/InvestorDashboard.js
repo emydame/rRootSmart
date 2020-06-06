@@ -73,11 +73,6 @@ class InvestorDashboard extends React.Component {
             <Menu.Item key="2" icon={<PieChartOutlined />}>
               <Link to="/investor/SmeProposals">All Proposals</Link>
             </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="Investments">
-              <Menu.Item key="4"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
-              <Menu.Item key="13" icon={<UserSwitchOutlined />}><Link to="/investor/invest">Make Investments</Link></Menu.Item>
-              <Menu.Item key="5" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link></Menu.Item >
-            </SubMenu>
             <SubMenu key="sub2" icon={<UserOutlined />} title="Users">
               <Menu.Item key="2" icon={<UserOutlined />}>
                 <Link to="/investor/AllUser">All Users</Link>
@@ -95,7 +90,7 @@ class InvestorDashboard extends React.Component {
             <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />View Projects</Link></Menu.Item>
 
             <SubMenu key="sub3" icon={<UserOutlined />} title="Investments">
-            <Menu.Item key="6"><Link to="#"><RiseOutlined />Invest</Link></Menu.Item>
+            <Menu.Item key="13" icon={<UserSwitchOutlined />}><Link to="/investor/invest">Invest</Link></Menu.Item>
             <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
               <Menu.Item key="7" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link>
             </Menu.Item >
