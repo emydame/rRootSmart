@@ -80,7 +80,7 @@ class View extends React.Component {
       <>
       <br></br>
         <div className="sachBody">
-          <ul className="sach">
+          <ul className="sach sme">
             <li>
               <Button
                 style={{ float: `right`, borderRadius: `5%`, background: `orange` }}
@@ -96,7 +96,7 @@ class View extends React.Component {
               <Form.Group controlId="searchId">
                 <Form.Control
                   className="searchBar"
-                  style={{ width: `250px`, float: `right`, marginRight: `10px` }}
+                  style={{ width: `250px`, float: `right`, marginRight: `10px`,marginBottom:`15px` }}
                   type="text"
                   placeholder="Enter project name to search"
                   name="search"

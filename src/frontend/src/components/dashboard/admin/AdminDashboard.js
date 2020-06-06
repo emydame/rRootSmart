@@ -23,11 +23,8 @@ import {
 import ProfileDetails from "./user/ProfileDetails";
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
-// import Create from "./user/Create";
 import Create from "../general/CreateUser";
-// import Remove from "./user/Remove";
 import Remove from "../general/Remove";
-// import Update from "./user/Update";
 import Update from "../general/Update";
 import EditProfile from "./user/EditProfile";
 import CreatCategory from "./category/Create";

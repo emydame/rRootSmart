@@ -149,9 +149,9 @@ export default class Projects extends Component {
         
         <div className="sachBody">
           <ul className="sach">
-          <li><Button style={{float:"right",borderRadius:"20%"}} onClick={this.searchProjects}  variant="primary" type="submit" > Search</Button></li>
+          <li><Button style={{float:"right",borderRadius:"5%", background:"orange"}} onClick={this.searchProjects}  variant="default" type="submit" > Search</Button></li>
             <li><Form.Group controlId="searchId">
-                <Form.Control onChange={this.onChange} style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" />
+                <Form.Control className="searchBar" onChange={this.onChange} style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px" }} type="text" placeholder="Enter project name to search" name="search" />
                 </Form.Group>
             </li>
           </ul>

@@ -95,7 +95,7 @@ class View extends React.Component {
               <Form.Group controlId="searchId">
                 <Form.Control
                   className="searchBar"
-                  style={{ width: `250px`, float: `right`, marginRight: `10px` }}
+                  style={{ width: `250px`, float: `right`, marginRight: `10px`, marginBottom:`15px` }}
                   type="text"
                   placeholder="Enter project name to search"
                   name="search"

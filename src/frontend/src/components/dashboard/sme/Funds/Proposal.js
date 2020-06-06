@@ -68,10 +68,10 @@ class View extends React.Component {
       <>
       <br></br>
       <div className="sachBody">
-        <ul className="sach">
-          <li><Button style={{float:"right",borderRadius:"20%"}}  variant="primary" type="submit" onClick={this.searchProjects} > Search</Button></li>
+        <ul className="sach sme">
+          <li><Button style={{float:"right",borderRadius:"5%", background:"orange"}}  variant="default" type="submit" onClick={this.searchProjects} > Search</Button></li>
             <li><Form.Group controlId="searchId">
-            <Form.Control style={{ width:"250px", float:"right",marginRight:"10px",border:"solid blue" }} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
+            <Form.Control className="searchBar" style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px" }} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
           </Form.Group></li>
           </ul>
         </div> 
