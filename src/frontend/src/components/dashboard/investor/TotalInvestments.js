@@ -26,8 +26,8 @@ class TotalInvestments extends React.Component {
     this.setState({investments});
   }
   sumInvestments(arr){
-    return arr.reduce((acc, investment)=>{
-      return acc + parseInt(investment.amount, 10)
+    return arr.reduce((acc, investment) => {
+      return acc + parseInt(investment.amount, 10);
     },0);
   }
   render() {
