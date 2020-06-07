@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 4000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const db = require("./config/db.config");  
+const db = require("./config/db.config");
 
 // Set CORS for all headers
 const whitelist = ["http://localhost:3000", "https://eazsme-frontend.herokuapp.com/"];
@@ -26,7 +26,6 @@ app.use(cors(corsOptionsDelegate));
 
 //sync db
 db.sequelize.sync({ force: false }).then(() => {});
-
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);

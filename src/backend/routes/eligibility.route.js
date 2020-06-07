@@ -1,9 +1,7 @@
 module.exports = (app) => {
-    const eligibility = require("../controller/eligibility.controller");
-  
-    app.post("/eligibilty", eligibility.create);
-  
-    app.get("/eligibilty/find", eligibility.findOne);
-  
-  };
-  
+  const eligibility = require("../controller/eligibility.controller");
+
+  app.post("/eligibility", eligibility.create);
+
+  app.get("/eligibility/find", eligibility.findOne);
+};

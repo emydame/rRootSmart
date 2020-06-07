@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       eligibilityCreteria: {
         type: DataTypes.STRING
       }
-    }, 
+    },
     {
       timestamps: false
     }
