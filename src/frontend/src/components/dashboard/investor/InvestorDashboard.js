@@ -9,12 +9,12 @@ import InvestmentHistory from "./InvestmentHistory";
 import { Badge, Dropdown, Layout, Menu } from "antd";
 import { FileDoneOutlined } from "@ant-design/icons";
 import {
-  CaretDownFilled,
+  WalletOutlined,
   UsergroupAddOutlined,
-  SettingOutlined,
+  AuditOutlined,
   LogoutOutlined,
-  ReconciliationOutlined,
-  ProjectOutlined
+  ProfileOutlined,
+  PoundOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Avatar } from "antd";
@@ -78,7 +78,7 @@ class InvestorDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<RiseOutlined />}>
+            <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/investor/ProfileDetails">Profile Details</Link>
             </Menu.Item>
             <SubMenu key="sub2" icon={<UserOutlined />} title="Users">
@@ -95,20 +95,23 @@ class InvestorDashboard extends React.Component {
                 <Link to="/investor/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
-            <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />View Projects</Link></Menu.Item>
+            <Menu.Item key="6" icon={<PieChartOutlined />}>
+              <Link to="/investor/InvestmentHistory">View Projects</Link>
+            </Menu.Item>
 
-            <SubMenu key="sub3" icon={<UserOutlined />} title="Investments">
-            <Menu.Item key="13" icon={<UserSwitchOutlined />}><Link to="/investor/invest">Invest</Link></Menu.Item>
-            <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
-              <Menu.Item key="7" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link>
+            <SubMenu key="sub3" icon={<WalletOutlined />} title="Investments">
+            <Menu.Item key="7" icon={<WalletOutlined />}>
+              <Link to="#">Invest</Link>
+            </Menu.Item>
+            <Menu.Item key="8"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
+              <Menu.Item key="9" icon={<PoundOutlined />}>
+                <Link to="/investor/TotalInvestments">Amount</Link>
             </Menu.Item >
-              <Menu.Item key="8" icon={<PieChartOutlined />}>
+              <Menu.Item key="10" icon={<AuditOutlined />}>
               <Link to="/investor/SmeProposals">All Proposals</Link>
             </Menu.Item>              
             </SubMenu>        
-            
-           
-         
+
             <Menu.Item key="3" icon={<LogoutOutlined/>}> Log Out</Menu.Item>
           </Menu>
         </Sider>
@@ -155,7 +158,7 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/view-projects" component={ViewProject} />
                   <Route path="/investor/view-project/:projectId" component={ViewProject} />
                   <Route path="/investor/ProjectDetails" component={ProjectDetails} />
-                  <Route path="/investor/invest" render={(props)=> <Invest {...props} user={this.state.user } />} />
+                  <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user } />} />
                 </Switch>
               </Router>
             </div>
