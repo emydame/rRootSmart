@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       projectName: {
         type: DataTypes.STRING
       },
-      eligibilityCretaria: {
+      eligibilityCreteria: {
         type: DataTypes.STRING
       }
-    },
+    }, 
     {
       timestamps: false
     }
