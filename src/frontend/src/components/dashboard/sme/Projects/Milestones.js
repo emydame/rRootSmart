@@ -33,7 +33,7 @@ class CreateMilestone extends React.Component {
       e.preventDefault();
       // Make api call with form
       axios
-        .post("http://localhost:4000/create-eligibility")
+        .post("http://localhost:4000/eligibility")
         .then((data) => {
           if ((data.status === "success")) {
         this.setState({ success: "User Successfully created!" });

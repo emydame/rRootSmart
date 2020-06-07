@@ -35,7 +35,7 @@ require("./routes/privilege.route")(app);
 require("./routes/funds.route")(app);
 require("./routes/fundCategory.route")(app);
 require("./routes/fundApplication.route")(app);
-require("./routes/fundDisbursment.route")(app);
+require("./routes/fundDisbursment.route")(app);  
 require("./routes/project.route")(app);
 require("./routes/projectCategory.route")(app);
 require("./routes/projectProposal.route")(app);

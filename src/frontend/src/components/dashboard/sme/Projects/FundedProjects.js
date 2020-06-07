@@ -160,15 +160,15 @@ class View extends React.Component {
             <tbody>
               {data.map((item, index, arr) => {
                 let count = arr.length;
-                return (
+                return (  
                   <tr>
                     <td key={index}>{item.projectName}</td>
-                    <td key={index}>{item.description}</td>
+                    <td key={index}>{item.description}</td> 
                     <td key={count++}>
                       <Link to={`/view-project/${item.projectId}`}>View Details</Link>
                     </td>
                     <td key={count++}>
-                      <Link to={`/view-project/${item.projectId}`}>Apply</Link>
+                      <Link to={`/sme/Funds/NewApplication/${item.projectId}`}>Apply</Link>
                     </td>
                   </tr>
                 );

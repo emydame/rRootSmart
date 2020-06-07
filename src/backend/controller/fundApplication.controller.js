@@ -9,9 +9,11 @@ exports.create = (req, res) => {
     applicationId: appId,
     organizationId: req.body.organizationId,
     fundId: req.body.fundId,
-    fundCatId: req.body.fundCatId,
-    status: req.body.status,
-    applicationDate: date
+    projectName: req.body.projectName,
+    dateStart: date,
+    dateEnd: req.body.dateEnd,
+    description: req.body.description,
+    filePath: req.file.path
   };
   if (!req.body) {
     return res.status(400).json({

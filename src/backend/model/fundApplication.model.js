@@ -18,14 +18,21 @@ module.exports = (sequelize, DataTypes) => {
       fundId: {
         type: DataTypes.STRING
       },
-      fundCatId: {
+
+      projectName: {
         type: DataTypes.STRING
       },
-      status: {
-        type: DataTypes.STRING
-      },
-      applicationDate: {
+      dateStart: {
         type: DataTypes.DATE
+      },
+      dateEnd: {
+        type: DataTypes.DATE
+      },
+      description: {
+        type: DataTypes.STRING
+      },
+      filePath: {
+        type: DataTypes.STRING
       }
     },
     {
