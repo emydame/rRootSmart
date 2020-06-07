@@ -20,7 +20,7 @@ exports.create = (req, res) => {
       if (data) {
         return res.status(400).json({
           status: "error",
-          message: "Application already Submit"
+          message: "Record Already exist"
         });
       } else {
         // create new user instance
