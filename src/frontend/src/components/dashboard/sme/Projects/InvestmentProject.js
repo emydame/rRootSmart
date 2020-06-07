@@ -30,7 +30,6 @@ class View extends React.Component {
   }
 
   fetchData() {
-    
     axios
       .get("http://localhost:4000/projects/all")
       .then(({ data }) => {
@@ -38,24 +37,21 @@ class View extends React.Component {
         const results = data.data;
 
         if (status === "success") {
-           
-          let newResults =  results.filter(function(items) {
-            return items.dateStart <= items.dateEnd 
-            
+          let newResults = results.filter(function (items) {
+            return items.dateStart <= items.dateEnd;
           });
-          //console.log(newResults)
-          this.setState({projects : newResults})
-          //console.log(this.state.projects)
+          
+          this.setState({ projects: newResults });
+          
         }
       })
       .catch((error) => console.log(error));
   }
-  
- 
+
   searchProjects(e) {
     e.preventDefault();
 
-    const query = this.state.searchTerm; 
+    const query = this.state.searchTerm;
 
     this.setState((prevState) => {
       let filteredProjects = prevState.projects;
@@ -83,9 +79,7 @@ class View extends React.Component {
 
   render() {
     const data = this.state.projects;
-    let filterData = data.map((obj)=>{
-
-    })
+    let filterData = data.map((obj) => {});
     return (
       <>
         <div className="sachBody">
@@ -118,14 +112,13 @@ class View extends React.Component {
         <Card.Body>
           <Table striped bordered hover size="sm">
             <thead>
-              <tr >
+              <tr>
                 <th>Project Name</th>
                 <th>Project Description</th>
                 <th>Created By</th>
                 <th>Date Started</th>
                 <th>Date Ended</th>
                 <th>Fund</th>
-                <th>Apply</th>
               </tr>
             </thead>
             <tbody>
