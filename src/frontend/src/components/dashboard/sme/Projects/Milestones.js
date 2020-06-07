@@ -108,7 +108,7 @@ render() {
             </form>
           </Col>
         </Row>
-      </Card.Body>
+      </Card.Body>  
     );
   }
 }

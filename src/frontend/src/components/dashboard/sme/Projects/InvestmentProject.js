@@ -30,24 +30,32 @@ class View extends React.Component {
   }
 
   fetchData() {
+    
     axios
       .get("http://localhost:4000/projects/all")
       .then(({ data }) => {
         const status = data.status;
         const results = data.data;
-        //console.log(projects)
+
         if (status === "success") {
-          this.setState({ projects: results });
-          console.log(this.state.projects);
+           
+          let newResults =  results.filter(function(items) {
+            return items.dateStart <= items.dateEnd 
+            
+          });
+          //console.log(newResults)
+          this.setState({projects : newResults})
+          //console.log(this.state.projects)
         }
       })
       .catch((error) => console.log(error));
   }
-
+  
+ 
   searchProjects(e) {
     e.preventDefault();
 
-    const query = this.state.searchTerm;
+    const query = this.state.searchTerm; 
 
     this.setState((prevState) => {
       let filteredProjects = prevState.projects;
@@ -75,6 +83,9 @@ class View extends React.Component {
 
   render() {
     const data = this.state.projects;
+    let filterData = data.map((obj)=>{
+
+    })
     return (
       <>
         <div className="sachBody">
@@ -107,7 +118,7 @@ class View extends React.Component {
         <Card.Body>
           <Table striped bordered hover size="sm">
             <thead>
-              <tr>
+              <tr >
                 <th>Project Name</th>
                 <th>Project Description</th>
                 <th>Created By</th>
@@ -118,7 +129,7 @@ class View extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {data.map((item, index, arr) => {
+              {data.map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>{item.projectName}</td>
@@ -127,9 +138,6 @@ class View extends React.Component {
                     <td>{item.dateStart}</td>
                     <td>{item.dateEnd}</td>
                     <td>{item.fund}</td>
-                    <td>
-                      <Link to={`/view-project/${item.projectId}`}>View Details</Link>
-                    </td>
                   </tr>
                 );
               })}
