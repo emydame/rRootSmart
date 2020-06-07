@@ -1,37 +1,40 @@
 const db = require("../config/db.config");
-const Project = db.project;
+const Milestone = db.milestone;
 
+// Create milestone
 exports.create = (req, res) => {
-  let today = new Date();
-  let id = Math.floor(Math.random() * 10000) + 1;
-
-  let projects = {
-    projectId: id,
-    projectCatId: req.body.projectCatId,
-    projectName: req.body.projectName,
+  let id = Math.floor(Math.random() * 100000) + 1;
+  let requests = {
+    milestoneId: id,
+    applicationId: req.body.applicationId,
+    name: req.body.name,
     description: req.body.description,
-    createdBy: req.body.createdBy,
-    dateStart: req.body.dateStart,
-    dateEnd: req.body.dateEnd,
-    fund: req.body.fund,
-    dateCreated: today
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    progress: req.body.progress,
+    status: req.body.status,
+    update: req.body.update
   };
   if (!req.body) {
     return res.status(400).json({
       status: "error",
-      message: "Please fill all project input fields"
+      message: "Please fill all input fields"
     });
   } else {
-    Project.findOne({ where: { projectId: id } }).then((result) => {
+    //Check if milestone already exist
+    Milestone.findOne({ 
+        where: 
+        {name: req.body.name } })
+        .then((result) => {
       if (result) {
         return res.status(400).json({
           status: "error",
-          message: "Project already exist with this Id " + id
+          message: "Milestone already exist with this Id "
         });
       } else {
-        // Add project
-        const project = new Project(projects);
-        project
+        // Add milestone
+        const milestone = new Milestone(requests);
+        milestone
           .save()
           .then((data) => {
             return res.status(200).json({
@@ -40,9 +43,10 @@ exports.create = (req, res) => {
             });
           })
           .catch((err) => {
+              //console.log(err)
             return res.status(500).json({
               status: "error",
-              message: err.message || "Not saved"
+              message: err.message || "Not saved"               
             });
           });
       }
@@ -50,9 +54,9 @@ exports.create = (req, res) => {
   }
 };
 
-// Get all projects
+// Get all Milestones
 exports.findAll = (req, res) => {
-  Project.findAll()
+  Milestone.findAll()
     .then((result) => {
       return res.status(200).json({
         status: "success",
@@ -62,19 +66,19 @@ exports.findAll = (req, res) => {
     .catch((err) => {
       return res.status(500).json({
         status: "error",
-        message: err.message || "Something wrong while retrieving Proposals."
+        message: err.message
       });
     });
 };
 
-// Get single Project using  parameter
+// Get milestone by milestone name
 exports.findOne = (req, res) => {
-  Project.findOne({ where: { projectId: req.body.projectId } })
+  Milestone.findAll({ where: { name: req.body.name } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({
           status: "error",
-          message: " Project not found"
+          message: " Milestone not found"
         });
       } else {
         return res.status(200).json({
@@ -86,7 +90,7 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       return res.status(500).json({
         status: "error",
-        message: err.message || "Some error occurred while retrieving Project."
+        message: err.message
       });
     });
 };

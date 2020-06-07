@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Project = sequelize.define(
-    "projects",
+  const Milestone = sequelize.define(
+    "milestone",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -8,32 +8,39 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true
       },
-      projectId: {
+      milestoneId: {
+        type: DataTypes.STRING,
+        
+      },
+      name: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      projectCatId: {
-        type: DataTypes.STRING
-      },
-      projectName: {
+      applicationId: {
         type: DataTypes.STRING
       },
       description: {
         type: DataTypes.STRING
       },
-      createdBy: {
+      startDate: {
         type: DataTypes.STRING
       },
-      dateStart: {
+      endDate: {
         type: DataTypes.STRING
       },
-      dateEnd: {
+      progress: {
         type: DataTypes.STRING
       },
-      fund: {
+      status: {
         type: DataTypes.STRING
       },
-      dateCreated: {
+      update: {
+        type: DataTypes.STRING
+      },
+      confirmedBy: {
+        type: DataTypes.STRING
+      },
+      dateConfirmed: {
         type: DataTypes.DATE
       }
     },
@@ -41,5 +48,5 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false
     }
   );
-  return Project;
+  return Milestone;
 };
