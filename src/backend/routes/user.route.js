@@ -10,4 +10,9 @@ module.exports = (app) => {
 
   // find user by id
   app.get("/users/:id", users.findOne);
+
+// Create a new organization's user
+app.post("/organizationUser", users.orgUser);
+
+  
 };

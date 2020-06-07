@@ -53,6 +53,7 @@ exports.create = (req, res) => {
           role: userRole,
           privilege: userPrivilege,
           dateCreated: today
+         
         });
         user
           .save()
@@ -199,3 +200,134 @@ exports.findOne = (req, res) => {
       });
     });
 };
+
+
+// fine single user by id
+exports.orgUser = (req, res) => {
+
+  let today = new Date();
+  let userPrivilege = "Level 1"; 
+  let userID = Math.floor(Math.random() * 100000) + 1;
+  let loginID = Math.floor(Math.random() * 10000) + 1;
+
+  //Check empty request
+  if (!req.body) {
+    return res.status(204).json({
+      status: "error",
+      message: "User details cannot be empty"
+    });
+  }
+
+  //Check if user already exist
+  let orgId =req.body.organizationId;
+  let error = "";
+  let status = false;
+  let saved = "";
+  User.findOne({ where: { email: req.body.email } })
+    .then((data) => {
+      if (data) {
+        // return result if data already exist
+        error = "User already exist";
+        return;
+      } else {
+        // Create new instance of  user
+        const user = new User({
+          userId: userID,
+          organizationId:orgId,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          phoneNumber: req.body.phoneNumber,
+          role: userRole,
+          dateCreated: today
+         
+        });
+        user
+          .save()
+          .then((data) => {
+            saved = "Data saved successfully";
+          })
+          .catch((error) => {
+            status = true;
+          });
+      }
+    })
+    .catch((error) => error);
+Userpass.findOne({ where: { email: req.body.email } })
+    .then((data) => {
+      if (data) {
+        // return result if data already exist
+        error = "User already exist";
+        return;
+      } else {      
+       
+         //get category from organization
+    let category="";
+    Organization.findOne({ where: { organizationId: orgId } })
+    .then((data) => {
+      if (data) {
+        // return result if data already exist
+         category=data.category;
+         console.log(category);
+
+ bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(req.body.password, salt, (err, hash) => {
+            // Now we can store the password hash in db.
+            if (err) {
+              return res.status(401).json({
+                status: "error",
+                message: "Unauthorized user"
+              });
+            }
+            const pass = new Userpass({
+              loginId: loginID,
+              userId: userID,
+              organizationId: orgId,
+              email: req.body.email,
+              password: hash,
+              category: req.body.userType
+            });
+
+            pass
+              .save()
+              .then((data) => {
+                saved = "Data saved successfully";
+              })
+              .catch((error) => {
+                status = true;
+              });
+          });
+        });
+      }
+       
+      } )
+    }
+  })
+    .catch((error) => error);
+
+  if (status) {
+    return res.status(500).json({
+      status: "error",
+      message: error
+    });
+  } else{
+
+    const data = {
+      category: req.body.userType,
+      organizationId: orgId,
+      userId: userID,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      otherName: req.body.otherName,
+      email: req.body.email
+    };
+    return res.status(200).json({
+      status: "success",
+      data,
+      message: saved
+    });
+  }
+
+    
+  
+    };
