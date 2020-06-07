@@ -28,6 +28,8 @@ import Update from "../general/Update";
 import ProfileDetails from "./user/ProfileDetails";
 import ProjectDetails from "./ProjectDetails";
 import EditProfile from "./user/EditProfile";
+
+import Invest from "./invest";
 import ViewProject from "../general/View";
 import CreateProject from "../general/Create";
 
@@ -51,7 +53,18 @@ const { SubMenu } = Menu;
 
 class InvestorDashboard extends React.Component {
   state = {
-    collapsed: false
+    collapsed: false,
+    user: {
+      organizationId: 48589,
+      firstName: "kachi1",
+      lastName: "kachi2",
+      otherName: "kachi3",
+      email: "kachi@kachi.com",
+      phoneNumber: 8474849,
+      role: 1,
+      privilege: 1,
+      dateCreated: "2014-090-03"
+    }
   };
 
   onCollapse = (collapsed) => {
@@ -85,7 +98,7 @@ class InvestorDashboard extends React.Component {
             <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />View Projects</Link></Menu.Item>
 
             <SubMenu key="sub3" icon={<UserOutlined />} title="Investments">
-            <Menu.Item key="6"><Link to="#"><RiseOutlined />Invest</Link></Menu.Item>
+            <Menu.Item key="13" icon={<UserSwitchOutlined />}><Link to="/investor/invest">Invest</Link></Menu.Item>
             <Menu.Item key="6"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
               <Menu.Item key="7" icon={<UserSwitchOutlined />}><Link to="/investor/TotalInvestments">Amount</Link>
             </Menu.Item >
@@ -139,9 +152,10 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/ProfileDetails" component={ProfileDetails} />
                   <Route path="/investor/EditProfile" component={EditProfile} />
                   <Route path="/investor/create-project" component={CreateProject} />
-                <Route path="/investor/view-projects" component={ViewProject} />
-                <Route path="/investor/view-project/:projectId" component={ViewProject} />
+                  <Route path="/investor/view-projects" component={ViewProject} />
+                  <Route path="/investor/view-project/:projectId" component={ViewProject} />
                   <Route path="/investor/ProjectDetails" component={ProjectDetails} />
+                  <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user } />} />
                 </Switch>
               </Router>
             </div>

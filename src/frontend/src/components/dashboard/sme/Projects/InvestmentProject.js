@@ -29,6 +29,22 @@ class View extends React.Component {
   componentDidMount() {
     this.fetchData();
   }
+  
+  fetchData() {
+    axios
+      .get("http://localhost:4000/projects/all") 
+      .then(({ data }) => {
+        const  status  = data.status;
+        const results = data.data;
+        //console.log(projects)
+        if (status === "success") {
+          this.setState({ projects: results });    
+          console.log(this.state.projects);
+        }
+      })
+      .catch((error) => console.log(error));
+  }
+
   searchProjects(e){
     e.preventDefault();
 
@@ -44,7 +60,7 @@ class View extends React.Component {
       }
       return {
         filteredProjects
-      };
+      };  
     });
   }
   onChange(e){
@@ -56,14 +72,9 @@ class View extends React.Component {
     }
     
   }
-  async fetchData() {
-    const data = await axios.get("https://eazsme-backend.herokuapp.com/project/investorAll");
-    const projects = data.data.data;  
-    this.setState({projects, filteredProjects: projects});
-  }
-
+  
   render() {
-    const data = this.state.filteredProjects;
+    const data = this.state.projects;
     return (
       <>
       <div className="sachBody">
@@ -73,17 +84,17 @@ class View extends React.Component {
             <Form.Control className="searchBar" style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px"}} type="text" placeholder="Enter project name to search" name="search" onChange={this.onChange} />
           </Form.Group></li>
           </ul>
-        </div> 
+        </div>      
       <Card.Body>
         <Table striped bordered hover size="sm">
           <thead>
-            <tr>
-              
+            <tr>              
               <th>Project Name</th>
               <th>Project Description</th>
               <th>Created By</th>
               <th>Date Started</th>
               <th>Date Ended</th>
+              <th>Fund</th>
               <th>Apply</th>
             </tr>
           </thead>
@@ -97,6 +108,7 @@ class View extends React.Component {
                   <td>{item.createdBy}</td>
                   <td>{item.dateStart}</td>
                   <td>{item.dateEnd}</td>
+                  <td>{item.fund}</td>
                   <td>
                     <Link to={`/view-project/${item.projectId}`}>View Details</Link>
                   </td>

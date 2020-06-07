@@ -22,11 +22,11 @@ exports.create = (req, res) => {
       message: "Please fill all funds input fields"
     });
   } else {
-    Fund.findOne({ where: { fundId: req.body.fundId } }).then((result) => {
+    Fund.findOne({ where: { fundId: id } }).then((result) => {
       if (result) {
         return res.status(400).json({
           status: "error",
-          message: "Fund already exist with this Id " + req.body.fundIdId
+          message: "Fund already exist with this Id " + id
         });
       } else {
         // Add Fund
@@ -68,7 +68,7 @@ exports.findAll = (req, res) => {
 };
 
 // Get funds by organisation
-exports.findOne = (req, res) => {
+exports.findInvestmentsByOrganization = (req, res) => {
   Fund.findAll({ where: { organizationId: req.body.organizationId } })
     .then((data) => {
       if (!data) {

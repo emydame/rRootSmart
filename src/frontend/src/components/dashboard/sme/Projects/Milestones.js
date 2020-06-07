@@ -14,12 +14,10 @@ import Image from "react-bootstrap/Image";
 import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
-
 const dateFormat = "YYYY/MM/DD";
 class CreateMilestone extends React.Component {
     constructor(props) {
       super(props);
-  
       this.state = {
         description: "",
         success: "",
@@ -28,15 +26,12 @@ class CreateMilestone extends React.Component {
       this.handleEditorChange = this.handleEditorChange.bind(this);
       this.handleClick = this.handleClick.bind(this);
     }
-  
     handleEditorChange(e) {
       this.setState({ description: e.target.getContent() });
     }
-  
     handleClick(e) {
       e.preventDefault();
       // Make api call with form
-      
       axios
         .post("http://localhost:4000/create-eligibility")
         .then((data) => {
@@ -49,7 +44,6 @@ class CreateMilestone extends React.Component {
         })
         .catch((error) => console.log(error));
     }
-
 render() {
     const success= this.state.success;
     const error= this.state.error;
@@ -74,7 +68,6 @@ render() {
                         <option>Maize Farming</option>
                         <option>Project 1</option>
                         <option>Project 2</option>
-                        
                       </select>
                     </div>
           </div>
