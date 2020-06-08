@@ -101,7 +101,7 @@ class InvestorDashboard extends React.Component {
 
             <SubMenu key="sub3" icon={<WalletOutlined />} title="Investments">
             <Menu.Item key="7" icon={<WalletOutlined />}>
-              <Link to="#">Invest</Link>
+              <Link to="/investor/invest">Invest</Link>
             </Menu.Item>
             <Menu.Item key="8"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
               <Menu.Item key="9" icon={<PoundOutlined />}>
