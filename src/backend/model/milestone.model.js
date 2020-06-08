@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       milestoneId: {
         type: DataTypes.STRING
       },
-      name: {
+      projectName: {
         type: DataTypes.STRING,
         allowNull: false
       },

@@ -3,14 +3,14 @@ const FundApplication = db.fundApplication;
 
 // Post a application
 exports.create = (req, res) => {
-  let date = new Date();  
+  //let date = new Date();  
   const appId = Math.floor(Math.random() * 10000) + 1;
   let requests = {
     applicationId: appId,
     organizationId: req.body.organizationId,
     fundId: req.body.fundId,
     projectName: req.body.projectName,
-    dateStart: date,
+    dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
     description: req.body.description,
     filePath: req.file.path
@@ -56,7 +56,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   FundApplication.findAll()
     .then((result) => {
-      return res.status(200).json({
+      return res.status(200).json({  
         status: "success",
         data: result
       });

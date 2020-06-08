@@ -7,13 +7,11 @@ exports.create = (req, res) => {
   let requests = {
     milestoneId: id,
     applicationId: req.body.applicationId,
-    name: req.body.name,
+    projectName: req.body.projectName,
     description: req.body.description,
     startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    progress: req.body.progress,
-    status: req.body.status,
-    update: req.body.update
+    endDate: req.body.endDate
+    
   };
   if (!req.body) {
     return res.status(400).json({
@@ -24,10 +22,10 @@ exports.create = (req, res) => {
     //Check if milestone already exist
     Milestone.findOne({ 
         where: 
-        {name: req.body.name } })
+        {projectName: req.body.projectName } })
         .then((result) => {
       if (result) {
-        return res.status(400).json({
+        return res.status(400).json({  
           status: "error",
           message: "Milestone already exist with this Id "
         });

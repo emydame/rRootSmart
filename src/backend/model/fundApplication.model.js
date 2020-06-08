@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING
       },
-      filePath: {
+      proposals: {
         type: DataTypes.STRING
       }
     },
