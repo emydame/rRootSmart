@@ -67,8 +67,7 @@ class ViewMilestones extends React.Component {
       axios
         .post("http://localhost:4000/milestones/id", formFields)
         .then(({ data }) => {
-          const { status } = data;
-          if (data.status === "success") {
+            if (data.status === "success") {
             this.setState({ success: "Milestone successfully updated!" });
           } else {
             this.setState({ error: "Error Updating Milestone" });

@@ -259,7 +259,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
         return res.status(401).json({
           status : "error",
           message : "User already exist"
-        })
+        });
       } else {
         // Create new instance of  user
         const user = new User({

@@ -66,7 +66,7 @@ axios
    
     axios.put("http://localhost:4000/updateOrguser", formFields)
     .then((data) => {
-      console.log(formFields);
+     
       if(data.status === "success") {
         this.setState({success: "Update was successful!"});
       }else {
