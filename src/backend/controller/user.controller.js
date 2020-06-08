@@ -15,13 +15,14 @@ const User = db.user;
 const Userpass = db.userLogin;
 const Organization = db.userOrganization;
 
+
 exports.create = (req, res) => {
   let today = new Date();
-  let userRole = "Admin";
+    let userRole = "Admin";
   let userPrivilege = "Level 1";
   let orgId = Math.floor(Math.random() * 10000) + 1;
-  let userID = Math.floor(Math.random() * 100000) + 1;
-  let loginID = Math.floor(Math.random() * 10000) + 1;
+ let loginID = Math.floor(Math.random() * 10000) + 1;
+let userID = Math.floor(Math.random() * 100000) + 1;
 
   //Check empty request
   if (!req.body) {
@@ -201,15 +202,12 @@ exports.findOne = (req, res) => {
     });
 };
 
-
-// fine single user by id
-exports.orgUser = (req, res) => {
-
+// create organization's sub-user endpoint
+exports.create = (req, res) => {
   let today = new Date();
-  let userPrivilege = "Level 1"; 
-  let userID = Math.floor(Math.random() * 100000) + 1;
-  let loginID = Math.floor(Math.random() * 10000) + 1;
-
+let loginID = Math.floor(Math.random() * 10000) + 1;
+let userID = Math.floor(Math.random() * 100000) + 1;
+  let userPrivilege = "Level 2";
   //Check empty request
   if (!req.body) {
     return res.status(204).json({
@@ -217,117 +215,101 @@ exports.orgUser = (req, res) => {
       message: "User details cannot be empty"
     });
   }
-
-  //Check if user already exist
-  let orgId =req.body.organizationId;
-  let error = "";
-  let status = false;
-  let saved = "";
   User.findOne({ where: { email: req.body.email } })
     .then((data) => {
       if (data) {
         // return result if data already exist
-        error = "User already exist";
-        return;
+        return res.status(401).json({
+          status : "error",
+          message : "User already exist"
+        })
       } else {
         // Create new instance of  user
         const user = new User({
           userId: userID,
-          organizationId:orgId,
+          organizationId: req.body.organizationId, //organization id comes from request body
           firstName: req.body.firstName,
           lastName: req.body.lastName,
+          otherName: req.body.otherName,
           email: req.body.email,
           phoneNumber: req.body.phoneNumber,
-          role: userRole,
+          role:req.body.role,
+          privilege: userPrivilege,
           dateCreated: today
-         
         });
         user
           .save()
           .then((data) => {
-            saved = "Data saved successfully";
+            // save login creadentials if user details is successfully saved
+            if (data) {
+              const pass = new Userpass({
+                loginId: loginID,
+                userId: userID,
+                organizationId: req.body.organizationId,
+                email: req.body.companyEmail,
+                password: req.body.password,
+                category: req.body.category
+              });
+              // Encode password
+              bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(pass.password, salt, (err, hash) => {
+                  if (err) {
+                    return res.status(400).json({
+                      status: "error",
+                      message: err.message
+                    });
+                  }
+                  pass.password = hash;
+                  pass.saltSecret = salt;
+                  pass
+                    .save()
+                    .then((result) => {
+                      /**
+                       * if details is successfully saved then returnd the data object
+                       * which will be use to route users to their organizations
+                       */
+                      if (result) {
+                        let data = {
+                          userId: userID,
+                          organizationId: req.body.organizationId,
+                          companyName: req.body.companyName,
+                          email: req.body.companyEmail,
+                          role: req.body.role,
+                          privilege: userPrivilege
+                        };
+                        return res.status(200).json({
+                          status : "success",
+                          response : data
+                        });
+                      }
+                    })
+                    .catch((err) => {
+                      return res.status(500).json({
+                        status: "error",
+                        message: err.message
+                      });
+                    });
+                });
+              });
+            } else {
+              return res.status(400).json({
+                status: "error",
+                message: "Not saved"
+              });
+            }
           })
-          .catch((error) => {
-            status = true;
+          .catch((err) =>{
+            return res.status(500).json({
+              status : "error",
+              message : err.message
+            })
           });
       }
     })
-    .catch((error) => error);
-Userpass.findOne({ where: { email: req.body.email } })
-    .then((data) => {
-      if (data) {
-        // return result if data already exist
-        error = "User already exist";
-        return;
-      } else {      
-       
-         //get category from organization
-    let category="";
-    Organization.findOne({ where: { organizationId: orgId } })
-    .then((data) => {
-      if (data) {
-        // return result if data already exist
-         category=data.category;
-         console.log(category);
-
- bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(req.body.password, salt, (err, hash) => {
-            // Now we can store the password hash in db.
-            if (err) {
-              return res.status(401).json({
-                status: "error",
-                message: "Unauthorized user"
-              });
-            }
-            const pass = new Userpass({
-              loginId: loginID,
-              userId: userID,
-              organizationId: orgId,
-              email: req.body.email,
-              password: hash,
-              category: req.body.userType
-            });
-
-            pass
-              .save()
-              .then((data) => {
-                saved = "Data saved successfully";
-              })
-              .catch((error) => {
-                status = true;
-              });
-          });
-        });
-      }
-       
-      } )
-    }
-  })
-    .catch((error) => error);
-
-  if (status) {
-    return res.status(500).json({
-      status: "error",
-      message: error
+    .catch((err) => {
+      return res.status(500).json({
+        status : "error",
+        message : err.message
+      })
     });
-  } else{
-
-    const data = {
-      category: req.body.userType,
-      organizationId: orgId,
-      userId: userID,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      otherName: req.body.otherName,
-      email: req.body.email
-    };
-    return res.status(200).json({
-      status: "success",
-      data,
-      message: saved
-    });
-  }
-
-    
-  
-    };
+};
