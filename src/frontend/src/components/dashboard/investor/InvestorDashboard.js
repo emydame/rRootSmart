@@ -147,7 +147,7 @@ class InvestorDashboard extends React.Component {
                 <Switch>
                   <Route path="/investor/SmeProposals" component={SmeProposals} />
                   <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
-                  <Route path="/investor/TotalInvestments" component={TotalInvestments} />
+                  <Route path="/investor/TotalInvestments" render={(props) => <TotalInvestments {...props} user={this.state.user } />} />
                   <Route path="/investor/AllUsers" component={AllUsers} />
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
