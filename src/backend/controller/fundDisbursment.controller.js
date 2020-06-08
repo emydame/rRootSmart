@@ -1,5 +1,3 @@
-const sequelize = require("sequelize");
-
 const db = require("../config/db.config");
 const Disbursement = db.fundDisbursment;
 
@@ -100,23 +98,22 @@ exports.findOne = (req, res) => {
 };
 
 // Get fund disbursement by organizationId
-exports.findByOrganizationId = async (req, res) => {
-  try {
-    const disbursments = await db.sequelize.query(
-      `SELECT * FROM disbursements d INNER JOIN funds f 
-      ON f.fundId = d.fundId
-      INNER JOIN projects p ON p.projectId = d.projectId 
-      WHERE  d.organization = ${req.params.organizationId}`, { raw: true });
-
-    return res.status(200).json({
-      status: "success",
-      message: "Fund disbursement data retrieved successfully",
-      data: disbursments[0]
+exports.findByOrganizationId = (req, res) => {
+  db.sequelize.query(
+    `SELECT * FROM disbursements d INNER JOIN funds f 
+    ON f.fundId = d.fundId
+    INNER JOIN projects p ON p.projectId = d.projectId 
+    WHERE  d.organization = ${req.params.organizationId}`, { raw: true })
+    .then((result) => {
+      return res.status(200).json({
+        status: "success",
+        message: "Fund disbursement data retrieved successfully",
+        data: result[0]
+      });
+    }).catch((error) => {
+      return res.status(200).json({
+        status: "success",
+        message: error.message || "Invalid organization id",
+      });
     });
-  } catch (error) {
-    return res.status(400).json({
-      status: "error",
-      message: error.message || " Record not found"
-    });
-  }
 };
