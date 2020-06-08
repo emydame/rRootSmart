@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import axios from "axios";
-import { Modal } from 'antd';
+import { Modal } from "antd";
 const dateFormat = "YYYY/MM/DD";
 
 

@@ -111,11 +111,12 @@ exports.updateMilestone = (req, res) => {
           ).then(() => {
           res.status(200).json({
           status: "success",
-          data: data
-          })    })
+          message: data
+          });  
+         });
 
         
-      }
+      };
     })
     .catch((err) => {
       return res.status(500).json({

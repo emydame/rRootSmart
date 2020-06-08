@@ -61,9 +61,9 @@ axios
 
   submitUpdate(e) {
     e.preventDefault();
-    const form = document.querySelector(`form[name="update"]`)
+    const form = document.querySelector("form[name=update]")
     const formFields = serialize(form, {hash: true});
-    console.log(formFields);
+   
     axios.put(`http://localhost:4000/updateOrguser`, formFields)
     .then((data) => {
       console.log(formFields);
