@@ -110,9 +110,14 @@ export default class Projects extends Component {
     this.setState((prevState) => {
       let filteredProjects = prevState.projects;
       if (query.trim() !== ""){
+       
         filteredProjects = prevState.projects.filter((element) => {
-          return element.projectName.toLowerCase().includes(query.toLowerCase()) ||
-          element.description.toLowerCase().includes(query.toLowerCase());
+          
+          const description = element.description || "";
+          const projectName =  element.projectName || "";
+
+          return description.toLowerCase().includes(query.toLowerCase()) ||
+          projectName.toLowerCase().includes(query.toLowerCase());
         });
       }
       return {
@@ -141,10 +146,10 @@ export default class Projects extends Component {
     return (
       <Card.Body>
         <div className="invest-fund">
-          <h2 style={{textAlign:"center"}}>Funded Projects</h2>
+          <h5 className="update" style={{textAlign:"center"}}>Funded Projects</h5>
         </div>
         <div className="update" style={{textAlign:"center"}}>
-          <h4> *** Projects View *** </h4>         
+          <h5> *** Projects View *** </h5>         
         </div>
         
         <div className="sachBody">

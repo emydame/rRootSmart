@@ -41,7 +41,7 @@ class CreateEligibility extends React.Component {
         .post("http://localhost:4000/create-eligibility")
         .then((data) => {
           if ((data.status === "success")) {
-        this.setState({ success: "User Successfully created!" });
+        this.setState({ success: "Eligibility Successfully created!" });
               /*  this.setState({ data: data});*/
           } else {
             this.setState({ error: "Error creating User" });
@@ -60,7 +60,7 @@ render() {
         ) : (
           <Form.Text className="text-bold text-danger">{error}</Form.Text>
         )}
-        <div className="content-text"><h5>Add Eligibility Criteria to Projects</h5></div>
+        <div className="content-text"><h6>Add Eligibility Criteria to Projects</h6></div>
         <Row>
           
           <Col md="12">
