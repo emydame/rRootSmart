@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
 import axios from "axios";
 import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
@@ -14,7 +13,7 @@ class Update extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullName: "",
+      email: "",
       description: "",
       userID: "",
       data: {},
@@ -36,8 +35,9 @@ class Update extends React.Component {
   update() {
     // make a request to the backend and update here
     const { userID } = this.state;
+    console.log(this.state);
     axios
-      .get("https://eazsme-backend.herokuapp.com//user/" + userID)
+      .get("http://localhost:4000/user/" + userID)
       .then((data) => this.setState({ data }))
       .catch((error) => console.log(error));
   }
@@ -51,7 +51,7 @@ class Update extends React.Component {
   varifyPassword(event) {
     event.preventDefault();
     const value = event.target.value;
-    // axios.get("http://localhost:4000")  make a request for a password and use it to verify password
+    // axios.get("http://localhost:4000")  https://eazsme-backend.herokuapp.com//user/ make a request for a password and use it to verify password
   }
 
   handleEditorChange(e) {
@@ -76,7 +76,7 @@ class Update extends React.Component {
 
   render() {
     const { data, success, error } = this.state;
-    const { fullName, description } = data;
+    const { email, description } = data;
     return (
       <Card.Body>
          {success ? (
@@ -90,13 +90,13 @@ class Update extends React.Component {
           </Col> */}
           <Col md="12">
             <Form name="update">
-              <Form.Group controlId="fullName">
-                <Form.Label>Full Name</Form.Label>
+              <Form.Group controlId="email">
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Full name"
-                  name="fullName"
-                  defaultValue={fullName}
+                  placeholder="Email"
+                  name="email"
+                  defaultValue={email}
                   onChange={this.getUserID}
                 />
               </Form.Group>
