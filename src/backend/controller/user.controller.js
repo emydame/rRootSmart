@@ -179,7 +179,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// fine single user by id
+// find single user by id
 exports.findOne = (req, res) => {
   User.findOne({ where: { userId: req.body.userId } })
     .then((user) => {
@@ -202,8 +202,44 @@ exports.findOne = (req, res) => {
     });
 };
 
+// fine single user details by id
+exports.updateOne = (req, res) => {
+  Userpass.findOne({ where: { email: req.body.email } })
+    .then((userpass) => {
+      //get user details from req and save changes    
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          // Now we can store the password hash in db.
+          if (err) {
+            return res.status(401).json({
+              status: "error",
+              message: "Unauthorized user"
+            });
+          }
+                 Userpass.update({ password: hash},
+          { where: { id:userpass.id } }
+          ).then(() => {
+          res.status(200).json({
+          status: "success",
+          data: userpass
+          })    })
+.catch((err) => {
+
+return res.status(500).json({
+status: "error",
+message: err.message
+});
+});  
+            });
+      })
+
+
+  
+})
+};
+
 // create organization's sub-user endpoint
-exports.create = (req, res) => {
+exports.userOrganization = (req, res) => {
   let today = new Date();
 let loginID = Math.floor(Math.random() * 10000) + 1;
 let userID = Math.floor(Math.random() * 100000) + 1;
@@ -242,32 +278,27 @@ let userID = Math.floor(Math.random() * 100000) + 1;
           .then((data) => {
             // save login creadentials if user details is successfully saved
             if (data) {
-              const pass = new Userpass({
-                loginId: loginID,
-                userId: userID,
-                organizationId: req.body.organizationId,
-                email: req.body.companyEmail,
-                password: req.body.password,
-                category: req.body.category
-              });
-              // Encode password
               bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(pass.password, salt, (err, hash) => {
+                bcrypt.hash(req.body.password, salt, (err, hash) => {
+                  // Now we can store the password hash in db.
                   if (err) {
-                    return res.status(400).json({
+                    return res.status(401).json({
                       status: "error",
-                      message: err.message
+                      message: "Unauthorized user"
                     });
                   }
-                  pass.password = hash;
-                  pass.saltSecret = salt;
+                  const pass = new Userpass({
+                    loginId: loginID,
+                    userId: userID,
+                    organizationId: req.body.organizationId,
+                    email: req.body.email,
+                    password: hash,
+                    category: req.body.category
+                  });
+      
                   pass
                     .save()
                     .then((result) => {
-                      /**
-                       * if details is successfully saved then returnd the data object
-                       * which will be use to route users to their organizations
-                       */
                       if (result) {
                         let data = {
                           userId: userID,
@@ -291,7 +322,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
                     });
                 });
               });
-            } else {
+            }  else {
               return res.status(400).json({
                 status: "error",
                 message: "Not saved"

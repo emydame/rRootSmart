@@ -12,7 +12,10 @@ module.exports = (app) => {
   app.get("/users/:id", users.findOne);
 
 // Create a new organization's user
-app.post("/organizationUser", users.create);
+app.post("/organizationUser", users.userOrganization);
+
+// update an organization's user
+app.put("/updateOrguser", users.updateOne);
 
   
 };
