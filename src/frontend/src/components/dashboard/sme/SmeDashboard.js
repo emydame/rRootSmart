@@ -73,49 +73,9 @@ class SmeDashboard extends React.Component {
       collapsed: false
     };
 
-    this.showMilestoneModal = this.showMilestoneModal.bind(this);
-    this.closeMilestoneModal = this.closeMilestoneModal.bind(this);
-    this.handleMilestoneUpdate = this.handleMilestoneUpdate.bind(this);
+     
+  }
     
-  }
-  showMilestoneModal(event) {      
-    event.preventDefault();
-    this.setState({ showUpdate: true });
-  }
-
-  
-  closeMilestoneModal() {
-    this.setState({ showUpdate: false });
-  }
- 
-  handleMilestoneUpdate(event) {
-    event.preventDefault();
-    const form = document.querySelector(`form[name="registration"]`);
-    const formFields = serialize(form, { hash: true });
-  
-    axios
-      .post("http://localhost:4000/milestones/id", formFields)
-      .then(({ data }) => {
-              if (data.status === "success") {
-          this.setState({ success: "Milestone successfully updated!" });
-        } else {
-          this.setState({ error: "Error Updating Milestone" });
-        }
-      })
-      .catch((error) => {
-        /*console.log(error)*/
-        this.setState({ error: "Error Updating Milestone" });
-        
-      });
-    }
-
-  onCollapse = (collapsed) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  };
-
-  
-  
 
   render() {
     return (
