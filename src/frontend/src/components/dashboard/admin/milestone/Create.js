@@ -24,57 +24,24 @@ class Create extends React.Component {
       error: ``,
       data: []
     };
-    this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.categorySelect = React.createRef();
-    this.getCategory = this.getCategory.bind(this);
   }
 
-  componentDidMount() {
-    this.getCategory();
-  }
-
-  async getCategory() {
-    await axios
-      .get(`https://localhost:4000/projects/category/`)
-      .then(({ data }) => {
-        const {status} = data;
-        const cats = data.data;
-        if(status === "success") {
-          this.setState({data: data.push(cats)});
-        }
-        
-      })
-      .catch((error) => console.log(error));
-
-    const select = this.categorySelect.current;
-
-    const { data } = this.state;
-    // based on type of data is array
-    for (let i = 0; i < data.length; i++) {
-      const option = document.createElement(`option`);
-      option.name = data[parseInt(i)].categoryName;
-      option.value = data[parseInt(i)].categoryName;
-      select.appendChild(option);
-    }
-  }
-
-  handleEditorChange(e) {
-    this.setState({ description: e.target.getContent() });
-  }
+  componentDidMount() {}
 
   async handleClick(e) {
     e.preventDefault();
-    const form = document.querySelector(`form[name="create-project"]`);
+    const form = document.querySelector(`form[name="milestone"]`);
     const formFields = serialize(form, { hash: true });
     await axios
-      .post(`http://localhost:4000/projects`, formFields)
-      .then(({data}) => {
-        const {status} = data;
+      .post(`http://localhost:4000/milestones`, formFields)
+      .then(({ data }) => {
+        const { status } = data;
+        const { message } = data;
         if (status === `success`) {
           this.setState({ success: `User Successfully created!` });
         } else {
-          this.setState({ error: `Error creating User` });
+          this.setState({ error: message });
         }
       })
       .catch((error) => console.log(error));
@@ -96,21 +63,15 @@ class Create extends React.Component {
                 <h5>{error}</h5>
               </div>
             )}
-            <Form name="create-project">
-            {/**   <Form.Group controlId="catId">
-                <Form.Label>Project ID:</Form.Label>
-                <Form.Control type="text" placeholder="Project ID" name="projectId" />
-            </Form.Group>*/}
-
-              {/** Make a request for all the project category and populate select  store value in redux state*/}
-              <Form.Group controlId="projectCatId">
-                <Form.Label>Category Type:</Form.Label>
-                <Form.Control as="select" ref={this.categorySelect} name="categoryCatId"></Form.Control>
+            <Form name="milestone">
+              <Form.Group controlId="applicationId">
+                <Form.Label>Application ID:</Form.Label>
+                <Form.Control type="text" name="applicationId" placeholder="Application ID" />
               </Form.Group>
 
-              <Form.Group controlId="projectName">
-                <Form.Label>Project Name:</Form.Label>
-                <Form.Control type="text" placeholder="Project Name" name="projectName" />
+              <Form.Group controlId="name">
+                <Form.Label>Application Name:</Form.Label>
+                <Form.Control type="text" placeholder="Application Name" name="name" />
               </Form.Group>
 
               <Form.Group>
@@ -131,19 +92,18 @@ class Create extends React.Component {
                     alignleft aligncenter alignright | \
                     bullist numlist outdent indent | help`
                   }}
-                  onChange={this.handleEditorChange}
-                  name="catDescription"
+                  name="description"
                 />
               </Form.Group>
 
-              <Form.Group controlId="createdBy">
-                <Form.Label>Created By:</Form.Label>
-                <Form.Control type="text" placeholder="Created by" name="createdBy" />
+              <Form.Group controlId="startDate">
+                <Form.Label>Start Date:</Form.Label>
+                <Form.Control type="date" placeholder="Start Date" name="startDate" />
               </Form.Group>
 
-              <Form.Group controlId="dateStarted">
-                <Form.Label>Date Started:</Form.Label>
-                <Form.Control type="date" placeholder="Date started" name="dateStarted" />
+              <Form.Group controlId="endDate">
+                <Form.Label>End Date:</Form.Label>
+                <Form.Control type="date" placeholder="End Date" name="endDate" />
               </Form.Group>
 
               <Form.Group controlId="dateEnded">
@@ -151,13 +111,29 @@ class Create extends React.Component {
                 <Form.Control type="date" placeholder="Date ended" name="dateEnded" />
               </Form.Group>
 
-              <Form.Group controlId="dateCreated">
-                <Form.Label>Date Created:</Form.Label>
-                <Form.Control type="date" placeholder="Date ended" name="dateCreated" />
+              <Form.Group controlId="progress">
+                <Form.Label>Progress:</Form.Label>
+                <Form.Control type="text" placeholder="Progress" name="progress" />
+              </Form.Group>
+
+              <Form.Group controlId="progress">
+                <Form.Label>Progress:</Form.Label>
+                <Form.Control type="text" placeholder="Progress" name="progress" />
+              </Form.Group>
+
+              <Form.Group controlId="status">
+                <Form.Label>Status:</Form.Label>
+                <Form.Control as="select" name="status">
+                  <option>::select</option>
+                  <option value="pending">Pending</option>
+                  <option value="inProgress">In Progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="closed">Closed</option>
+                </Form.Control>
               </Form.Group>
 
               <Button variant="primary" type="submit" onClick={this.handleClick}>
-                Create Project
+                Create Milestone
               </Button>
             </Form>
           </Col>

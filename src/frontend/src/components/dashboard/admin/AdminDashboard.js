@@ -34,13 +34,11 @@ import UpdateCategory from "./category/Update";
 import ViewProject from "../general/View";
 import CreateProject from "../general/Create";
 import CreateEligibility from "./projects/CreateEligibility";
+import CreateMilestone from "./milestone/Create";
+import ViewMilestone from "./milestone/View";
+import UpdateMilestone from "./milestone/Update";
+import DeleteMilestone from "./milestone/Delete";
 // import ViewProject from "./projects/View";
-
-
-
-
-
-
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -65,13 +63,12 @@ const menu = (
       </a>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
-
       <a target="_blank" rel="noopener noreferrer" href="#">
         Settings
       </a>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
-    { " " }
+      {" "}
       <a target="_blank" rel="noopener noreferrer" href="#">
         Logout
       </a>
@@ -79,7 +76,7 @@ const menu = (
   </Menu>
 );
 
-const {  Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class AdminDashboard extends React.Component {
@@ -102,7 +99,7 @@ class AdminDashboard extends React.Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<ProfileOutlined />}>
+            <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/admin/ProfileDetails">Profile Details</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<SwitcherOutlined />} title="Category">
@@ -124,6 +121,7 @@ class AdminDashboard extends React.Component {
                 <Link to="/admin/view-projects">View Projects</Link>
               </Menu.Item>
             </SubMenu>
+
             <SubMenu key="sub3" icon={<UserOutlined />} title="User">
               <Menu.Item key="6" icon={<UserAddOutlined />}>
                 <Link to="/admin/create-user">Create</Link>
@@ -135,15 +133,25 @@ class AdminDashboard extends React.Component {
                 <Link to="/admin/deactivate-user">Deactivate</Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="sub4" icon={<fundOutlined />} title="Funds">
+
+            <SubMenu key="sub4" icon={<fundOutlined />} title="milestone">
             <Menu.Item key="9" icon={<AppstoreOutlined />}>
-              <Link to="/admin/smeandprojects"> SMEs Projects</Link>
+              <Link to="/admin/create-milestone"> Create Milestone</Link>
             </Menu.Item>
             <Menu.Item key="10" icon={<DollarCircleOutlined />}>
-              <Link to="/admin/investorsandfunding">Investors Funding</Link>
+              <Link to="/admin/view-milestone">View Milestone</Link>
             </Menu.Item>
-              </SubMenu>    
-                       
+              </SubMenu>  
+
+            <SubMenu key="sub4" icon={<fundOutlined />} title="Funds">
+              <Menu.Item key="9" icon={<AppstoreOutlined />}>
+                <Link to="/admin/smeandprojects"> SMEs Projects</Link>
+              </Menu.Item>
+              <Menu.Item key="10" icon={<DollarCircleOutlined />}>
+                <Link to="/admin/investorsandfunding">Investors Funding</Link>
+              </Menu.Item>
+            </SubMenu>
+
             <Menu.Item key="3" icon={<LogoutOutlined />}>
               {" "}
               Log Out
@@ -179,9 +187,7 @@ class AdminDashboard extends React.Component {
           {/* Content elements are here */}
 
           <Content style={{ margin: "0 16px" }}>
-          <div className="content-title">
-            
-            </div>
+            <div className="content-title"></div>
             <Router history={this.props.history}>
               <Switch>
                 <Route path="/admin/investorsandfunding" component={InvestorsAndFunding} />
@@ -199,11 +205,14 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/ProfileDetails" component={ProfileDetails} />
                 <Route path="/admin/EditProfile" component={EditProfile} />
                 <Route path="/admin/projects/CreateEligibility" component={CreateEligibility} />
-                
+                <Route path="/admin/view-milestone" component={ViewMilestone} />
+                <Route path="/admin/create-milestone" component={CreateMilestone} />
+                <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
+                <Route path="/admin/delete-milestone/:milestoneId" component={DeleteMilestone} />
               </Switch>
             </Router>
           </Content>
-          
+
           {/* <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
