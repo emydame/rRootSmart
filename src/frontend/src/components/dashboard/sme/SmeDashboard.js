@@ -90,7 +90,7 @@ class SmeDashboard extends React.Component {
  
   handleMilestoneUpdate(event) {
     event.preventDefault();
-    const form = document.querySelector(`form[name="registration"]`);
+    const form = document.querySelector("form[name=registration]");
     const formFields = serialize(form, { hash: true });
   
     axios

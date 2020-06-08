@@ -113,10 +113,8 @@ exports.updateMilestone = (req, res) => {
           status: "success",
           message: data
           });  
-         });
-
-        
-      };
+         });        
+      }
     })
     .catch((err) => {
       return res.status(500).json({

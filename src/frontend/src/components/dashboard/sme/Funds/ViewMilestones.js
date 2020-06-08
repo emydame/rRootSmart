@@ -61,7 +61,7 @@ class ViewMilestones extends React.Component {
   
     handleMilestoneUpdate(event) {
       event.preventDefault();
-      const form = document.querySelector(`form[name="updateMilestone"]`);
+      const form = document.querySelector("form[name=updateMilestone]");
       const formFields = serialize(form, { hash: true });
     
       axios

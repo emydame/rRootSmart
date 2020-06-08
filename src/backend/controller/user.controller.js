@@ -222,8 +222,9 @@ exports.updateOne = (req, res) => {
           res.status(200).json({
           status: "success",
           data: userpass
-          })    })
-.catch((err) => {
+          }) ;   
+        })
+      .catch((err) => {
 
 return res.status(500).json({
 status: "error",
@@ -231,11 +232,11 @@ message: err.message
 });
 });  
             });
-      })
+      });
 
 
   
-})
+});
 };
 
 // create organization's sub-user endpoint

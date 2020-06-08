@@ -64,7 +64,7 @@ axios
     const form = document.querySelector("form[name=update]")
     const formFields = serialize(form, {hash: true});
    
-    axios.put(`http://localhost:4000/updateOrguser`, formFields)
+    axios.put("http://localhost:4000/updateOrguser", formFields)
     .then((data) => {
       console.log(formFields);
       if(data.status === "success") {
