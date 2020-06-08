@@ -334,7 +334,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
             return res.status(500).json({
               status : "error",
               message : err.message
-            })
+            });
           });
       }
     })
