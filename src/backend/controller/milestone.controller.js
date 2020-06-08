@@ -9,8 +9,8 @@ exports.create = (req, res) => {
     applicationId: req.body.applicationId,
     projectName: req.body.projectName,
     description: req.body.description,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate
+    dateStart: req.body.dateStart,
+    dateEnd: req.body.dateEnd
     
   };
   if (!req.body) {
