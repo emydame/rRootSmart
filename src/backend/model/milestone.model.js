@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       milestoneId: {
         type: DataTypes.STRING
       },
-      projectName: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     {
-      timestamps: false
+      timestamps: false   
     }
   );
   return Milestone;

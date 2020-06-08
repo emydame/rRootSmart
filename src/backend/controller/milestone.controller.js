@@ -7,10 +7,10 @@ exports.create = (req, res) => {
   let requests = {
     milestoneId: id,
     applicationId: req.body.applicationId,
-    projectName: req.body.projectName,
+    name: req.body.name,
     description: req.body.description,
-    dateStart: req.body.dateStart,
-    dateEnd: req.body.dateEnd
+    startDate: req.body.startDate,
+    endDate: req.body.endDate
     
   };
   if (!req.body) {
