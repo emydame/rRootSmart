@@ -106,16 +106,6 @@ class Create extends React.Component {
                 <Form.Control type="date" placeholder="End Date" name="endDate" />
               </Form.Group>
 
-              <Form.Group controlId="dateEnded">
-                <Form.Label>Date Ended:</Form.Label>
-                <Form.Control type="date" placeholder="Date ended" name="dateEnded" />
-              </Form.Group>
-
-              <Form.Group controlId="progress">
-                <Form.Label>Progress:</Form.Label>
-                <Form.Control type="text" placeholder="Progress" name="progress" />
-              </Form.Group>
-
               <Form.Group controlId="progress">
                 <Form.Label>Progress:</Form.Label>
                 <Form.Control type="text" placeholder="Progress" name="progress" />
