@@ -112,10 +112,13 @@ class SmeDashboard extends React.Component {
             </Menu.Item>
               <Menu.Item key="9" icon={<FileAddOutlined />}>
               <Link to="/sme/Funds/proposal">Existing Applications</Link>
-            </Menu.Item>
+            </Menu.Item>            
+             
             </SubMenu>
             
-           
+            <Menu.Item key="10" icon={<FileAddOutlined />}>
+              <Link to="/sme/Funds/NewApplication">New Applications</Link>
+            </Menu.Item>
           
             <Menu.Item key="4" icon={<LogoutOutlined />}>
               {" "}
