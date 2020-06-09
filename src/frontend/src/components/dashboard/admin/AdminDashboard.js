@@ -39,6 +39,7 @@ import CreateMilestone from "./milestone/Create";
 import ViewMilestone from "./milestone/View";
 import UpdateMilestone from "./milestone/Update";
 import DeleteMilestone from "./milestone/Delete";
+import {connect} from "react-redux";
 // import ViewProject from "./projects/View";
 
 const menu = (
@@ -95,6 +96,7 @@ class AdminDashboard extends React.Component {
   };
 
   render() {
+    // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
@@ -227,5 +229,9 @@ class AdminDashboard extends React.Component {
     );
   }
 }
-
-export default AdminDashboard;
+const mapStateToProps = (state) => ({
+  companyName: state.admin.companyName,
+  category: state.admin.category,
+  userId: state.admin.userId
+});
+export default connect(mapStateToProps)(AdminDashboard);
