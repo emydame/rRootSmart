@@ -11,7 +11,7 @@ module.exports = (app) => {
   app.get("/project/:id", project.findOne);
 
   // Get active project
-  app.get("/project/active", project.active);
+  app.get("/projects/active", project.active);
 
   // Get all projects created by an SME for funds application.
   //app.get("/project/investorAll", project.findAllSMEProject);

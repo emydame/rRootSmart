@@ -22,13 +22,12 @@ import { Switch, Router, Route } from "react-router-dom";
 import { BellFilled, UserAddOutlined, UserSwitchOutlined, RiseOutlined } from "@ant-design/icons";
 import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import AllUsers from "./user/AllUsers";
-import Create from "../general/Create";
+import Create from "../general/CreateUser";
 import Remove from "../general/Remove";
 import Update from "../general/Update";
 import ProfileDetails from "./user/ProfileDetails";
 import ProjectDetails from "./ProjectDetails";
 import EditProfile from "./user/EditProfile";
-
 import Invest from "./invest";
 import ViewProject from "../general/View";
 import CreateProject from "../general/Create";
@@ -91,12 +90,10 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/investor/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="5" icon={<UserOutlined />}>
-                <Link to="/investor/deactivate-user">Deactivate</Link>
-              </Menu.Item>
+             
             </SubMenu>
             <Menu.Item key="6" icon={<PieChartOutlined />}>
-              <Link to="/investor/InvestmentHistory">View Projects</Link>
+              <Link to="/investor/view-projects">View Projects</Link>
             </Menu.Item>
 
             <SubMenu key="sub3" icon={<WalletOutlined />} title="Investments">
@@ -151,7 +148,7 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/AllUsers" component={AllUsers} />
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
-                  <Route path="/investor/deactivate-user" component={Remove} />
+                  {/**<Route path="/investor/deactivate-user" component={Remove} />*/}
                   <Route path="/investor/ProfileDetails" component={ProfileDetails} />
                   <Route path="/investor/EditProfile" component={EditProfile} />
                   <Route path="/investor/create-project" component={CreateProject} />

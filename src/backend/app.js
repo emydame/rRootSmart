@@ -25,7 +25,7 @@ const corsOptionsDelegate = (req, callback) => {
 app.use(cors(corsOptionsDelegate));
 
 //sync db
-db.sequelize.sync({ force: false }).then(() => {});
+db.sequelize.sync({ force: true }).then(() => {});
 
 
 require("./routes/user.route")(app);
@@ -44,6 +44,7 @@ require("./routes/states.route")(app);
 require("./routes/lga.route")(app);
 require("./routes/role.route")(app);
 require("./routes/milestone.route")(app);
+require("./routes/eligibility.route")(app);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => {

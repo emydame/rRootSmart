@@ -12,7 +12,10 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      success: "",
+      error: "",
+    };
     this.closeLogin = this.closeLogin.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.submitLogin = this.submitLogin.bind(this);

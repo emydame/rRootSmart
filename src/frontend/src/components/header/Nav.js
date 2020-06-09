@@ -63,6 +63,8 @@ class Nav extends React.Component {
 
   closeRegistrationModal() {
     this.setState({ showReg: false });
+    this.setState({ success: "" });
+    this.setState({ error: "" });
   }
 
   handleBlur(event) {
