@@ -15,6 +15,9 @@ import Registration from "./Registration";
 import "../../styles/modal.css";
 import mapStateToLocals from "./stateToLocals";
 import axios from "axios";
+import { connect } from "react-redux";
+import { smeAction, adminAction, regulatorAction, investorAction } from "../../redux/actionCreators";
+import { bindActionCreators } from "redux";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -28,8 +31,10 @@ class Nav extends React.Component {
       Password: "",
       confirmPassword: "",
       redirect: null,
-      success: "",
-      error: ""
+      loginSuccess: "",
+      loginError: "",
+      signupSuccess: "",
+      signupError: ""
     };
 
     this.showRegistrationModal = this.showRegistrationModal.bind(this);
@@ -82,15 +87,14 @@ class Nav extends React.Component {
       .then(({ data }) => {
         const { status } = data;
         if (status === "success") {
-          this.setState({ success: "User successfully signed up!" });
+          this.setState({ signupSuccess: "User successfully signed up!" });
         } else {
-          this.setState({ error: "Error signing up user" });
+          this.setState({ signupError: "Error signing up user" });
         }
       })
       .catch((error) => {
         /*console.log(error)*/
-        this.setState({ error: "Error signing up user" });
-        
+        console.error(error);
       });
   }
 
@@ -155,38 +159,59 @@ class Nav extends React.Component {
     await axios
       .post("http://localhost:4000/login", formFields)
       .then(({ data }) => {
-        console.log(data);
-        const { status, result } = data;      
-       
+        const { status, result } = data;
+        const sme = this.props.sme;
+        const investor = this.props.investor;
+        const regulator = this.props.regulator;
+        const admin = this.props.admin;
+        const user = {};
+
         if (status === "success") {
           switch (result.category) {
             case "admin":
+              user.companyName = result.companyName;
+              user.userId = result.email;
+              user.category = result.category;
+              admin(user);
+              localStorage.setItem("user", user);
               this.props.history.push("/admin");
               break;
             case "sme":
+              user.companyName = result.companyName;
+              user.userId = result.email;
+              user.category = result.category;
+              sme(user);
+              localStorage.setItem("user", user);
               this.props.history.push("/sme");
               break;
             case "investor":
+              user.companyName = result.companyName;
+              user.userId = result.email;
+              user.category = result.category;
+              investor(user);
+              localStorage.setItem("user", user);
               this.props.history.push("/investor");
               break;
             case "regulator":
+              user.companyName = result.companyName;
+              user.userId = result.email;
+              user.category = result.category;
+              regulator(user);
+              localStorage.setItem("user", user);
               this.props.history.push("/regulator");
               break;
             default:
               window.alert("You must be a ghost");
               break;
           }
-        }else{
+        } else {
           /*display invalid credentials*/
-          console.log(data);
-          this.setState({ error: "Invalid Credentials" });
+          this.setState({ loginError: "Invalid Credentials" });
         }
       })
-      .catch((error) => {console.log(error);
-        this.setState({ error: "Invalid Credentials" });
-      })
-      ;
-     
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   showContactModal(event) {
@@ -208,7 +233,6 @@ class Nav extends React.Component {
   }
 
   render() {
-    
     return (
       <Container className="navbar">
         <ul className="nav">
@@ -245,16 +269,16 @@ class Nav extends React.Component {
           handleBlur={this.handleBlur}
           handleConfirmPasswordChange={this.handleConfirmPasswordChange}
           handlePasswordChange={this.handlePasswordChange}
-          success={this.state.success}
-          error={this.state.error}
+          success={this.state.signupSuccess}
+          error={this.state.signupError}
         />
         <Login
           showModal={this.state.showLog}
           closeModal={this.closeLoginModal}
           login={this.handleLogin}
           current={this.logFormText}
-          success={this.state.success}
-          error={this.state.error}
+          success={this.state.loginSuccess}
+          error={this.state.loginError}
         />
         <Contact showModal={this.state.showContact} closeModal={this.closeContactModal} />
         <About showModal={this.state.showAbout} closeModal={this.closeAboutModal} />
@@ -263,4 +287,16 @@ class Nav extends React.Component {
   }
 }
 
-export default withRouter(Nav);
+const mapDispatchToProps = (dispatch) => ({
+  ...bindActionCreators(
+    {
+      sme: (data) => smeAction(data),
+      investor: (data) => investorAction(data),
+      regulator: (data) => regulatorAction(data),
+      admin: (data) => adminAction(data)
+    },
+    dispatch
+  )
+});
+
+export default withRouter(connect(null, mapDispatchToProps)(Nav));

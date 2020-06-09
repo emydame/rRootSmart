@@ -123,7 +123,8 @@ let userID = Math.floor(Math.random() * 100000) + 1;
               organizationId: orgId,
               email: req.body.email,
               password: hash,
-              category: req.body.userType
+              category: req.body.userType,
+              companyName: req.body.companyName 
             });
 
             pass
