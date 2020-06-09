@@ -68,12 +68,19 @@ class View extends React.Component {
       <Card.Body>
         {/* 8w>
         </div>  */}
+        <div className="sachBody">
+          <ul className="sach">
+          <li><Button style={{float:"right",borderRadius:"5%", background:"orange"}} onClick={this.searchProjects}  variant="default" type="submit" > Search</Button></li>
+            <li><Form.Group controlId="searchId">
+                <Form.Control className="searchBar" onChange={this.onChange} style={{ width:"250px", float:"right",marginRight:"10px",marginBottom:"15px" }} type="text" placeholder="Enter project name to search" name="search" />
+                </Form.Group>
+            </li>
+          </ul>
+      </div>
         {/* <Table striped bordered hover size="sm"> */}
         <table class="table table-striped">
           <thead>
             <tr>
-              {/* <th>Project Id</th>
-              <th>Category Id</th> */}
               <th>Project Name</th>
               {/* <th>Category</th> */}
               <th>Project Description</th>
