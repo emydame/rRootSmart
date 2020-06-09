@@ -21,7 +21,7 @@ class SmeProposals extends React.Component {
     this.fetchData();
   }
   async fetchData() {
-    const url = `https://eazsme-backend.herokuapp.com/project/investorAll`;
+    const url = "https://eazsme-backend.herokuapp.com/project/investorAll";
     
     const data = await axios.get(url);
     const projectproposals = data.data.data;
