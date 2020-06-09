@@ -130,9 +130,9 @@ class AdminDashboard extends React.Component {
               <Menu.Item key="7" icon={<UserOutlined />}>
                 <Link to="/admin/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="8" icon={<UserDeleteOutlined />}>
+            {/*  <Menu.Item key="8" icon={<UserDeleteOutlined />}>
                 <Link to="/admin/deactivate-user">Deactivate</Link>
-              </Menu.Item>
+              </Menu.Item>*/}
             </SubMenu>
 
             <SubMenu key="sub4" icon={<fundOutlined />} title="milestone">
