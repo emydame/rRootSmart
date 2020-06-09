@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import axios from "axios";
 import { Modal } from "antd";
+import "../../../../styles/modal.css";
 const dateFormat = "YYYY/MM/DD";
 
 class UpdateMilestone extends React.Component {

@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING
       },
-      proposals: {
+      proposals: {   
         type: DataTypes.STRING
       }
     },
