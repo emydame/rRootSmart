@@ -14,6 +14,8 @@ exports.create = (req, res) => {
     dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
     fund: req.body.fund,
+    organizationId: req.body.organizationId,
+    status: 'not started',
     dateCreated: today
   };
   if (!req.body) {
