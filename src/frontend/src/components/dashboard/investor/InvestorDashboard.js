@@ -110,6 +110,7 @@ class InvestorDashboard extends React.Component {
                   History
                 </Link>
               </Menu.Item>
+
               <Menu.Item key="9" icon={<PoundOutlined />}>
                 <Link to="/investor/TotalInvestments">Amount</Link>
               </Menu.Item>
@@ -164,11 +165,9 @@ class InvestorDashboard extends React.Component {
               <Router history={this.props.history}>
                 <Switch>
                   <Route path="/investor/SmeProposals" component={SmeProposals} />
-                  <Route path="/investor/InvestmentHistory" component={InvestmentHistory} />
-                  <Route
-                    path="/investor/TotalInvestments"
-                    render={(props) => <TotalInvestments {...props} user={this.state.user} />}
-                  />
+
+                  <Route path="/investor/InvestmentHistory"render={(props) => <InvestmentHistory {...props} user={this.state.user } />} />
+                  <Route path="/investor/TotalInvestments" render={(props) => <TotalInvestments {...props} user={this.state.user } />} />
                   <Route path="/investor/AllUsers" component={AllUsers} />
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
