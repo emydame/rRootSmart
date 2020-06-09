@@ -31,12 +31,12 @@ class Nav extends React.Component {
       Password: "",
       confirmPassword: "",
       redirect: null,
+
       loginSuccess: "",
       loginError: "",
       signupSuccess: "",
       signupError: ""
     };
-
     this.showRegistrationModal = this.showRegistrationModal.bind(this);
     this.closeRegistrationModal = this.closeRegistrationModal.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
