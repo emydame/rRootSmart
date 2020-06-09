@@ -47,7 +47,7 @@ class CreateApplication extends React.Component {
   handleEditorChange = (e) => {
     this.setState({ description: e.target.getContent() });
   };
- 
+
   submitForm = (e) => {
     e.preventDefault();
 
@@ -58,17 +58,26 @@ class CreateApplication extends React.Component {
     fd.append("description", this.state.description);
     fd.append("proposals", this.state.proposals, this.state.proposals.name);
 
-    axios.post("http://localhost:4000/fund/apply", fd).then((data) => {
-      // then print response status
-      if (data.status === "success") {
-        this.setState({ success: "Application Successfully created!" });
-      } else {
-        this.setState({ error: "Error creating Application" });
-      }
-     
-    })
-    .catch((error) => console.log(error));
-
+    axios
+      .post("http://localhost:4000/fund/apply", fd)
+      .then((res) => {
+        let response = res.data;      
+        // then print response status
+        if (response.status === "success") {
+          this.setState({
+            success: "Application Successfully created!",
+            //Clear input fields
+            description: "",
+            projectName: "",
+            dateStart: "",
+            dateEnd: "",
+            proposals: null
+          });
+        } else {
+          this.setState({ error: "Error creating Application" });
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   render() {
