@@ -1,9 +1,9 @@
 /* eslint-disable quotes */
-/* eslint-disable no-console */
+
 /* eslint-disable no-multi-str */
 /*eslint quotes: ["error", "backtick"]*/
 /*eslint-env es6*/
-/* eslint no-console: "error" */
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -19,7 +19,7 @@ class Create extends React.Component {
     super(props);
 
     this.state = {
-      category: [],
+      categories: [],
       success: ``,
       error: ``,
       data: []
@@ -32,31 +32,31 @@ class Create extends React.Component {
 
   componentDidMount() {
     this.getCategory();
-  }
+     }
 
-  async getCategory() {
-    await axios
-      .get(`https://localhost:4000/projects/category/`)
-      .then(({ data }) => {
-        const {status} = data;
-        const cats = data.data;
-        if(status === "success") {
-          this.setState({data: data.push(cats)});
-        }
-        
+  getCategory() {
+    axios
+      .get(`http://localhost:4000/projects/category`)
+      .then((data) => {
+        const categories = data.data.data;
+  
+        this.setState({categories}, () => {
+          const select = this.categorySelect.current;
+
+          const { categories } = this.state;
+          const data = categories;
+console.log(data);
+          // based on type of data is array
+          for (let i = 0; i < data.length; i++) {
+            const option = document.createElement(`option`);
+            option.innerText = data[parseInt(i,10)].categoryName;
+            option.name = data[parseInt(i,10)].categoryName;
+            option.value = data[parseInt(i,10)].projectCatId;
+            select.appendChild(option);
+          }
+        });
       })
       .catch((error) => console.log(error));
-
-    const select = this.categorySelect.current;
-
-    const { data } = this.state;
-    // based on type of data is array
-    for (let i = 0; i < data.length; i++) {
-      const option = document.createElement(`option`);
-      option.name = data[parseInt(i)].categoryName;
-      option.value = data[parseInt(i)].categoryName;
-      select.appendChild(option);
-    }
   }
 
   handleEditorChange(e) {
@@ -105,7 +105,7 @@ class Create extends React.Component {
               {/** Make a request for all the project category and populate select  store value in redux state*/}
               <Form.Group controlId="projectCatId">
                 <Form.Label>Category Type:</Form.Label>
-                <Form.Control as="select" ref={this.categorySelect} name="categoryCatId"></Form.Control>
+                <Form.Control as="select" ref={this.categorySelect} name="projectCatId"></Form.Control>
               </Form.Group>
 
               <Form.Group controlId="projectName">
