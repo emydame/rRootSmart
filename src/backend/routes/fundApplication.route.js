@@ -9,12 +9,12 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage: storage });
-
+// const upload = multer({ storage: storage });
+//, upload.single("proposals")
 module.exports = (app) => {
   const fundApplication = require("../controller/fundApplication.controller");
 
-  app.post("/fund/apply", upload.single("proposals"), fundApplication.create);
+  app.post("/fund/apply", fundApplication.create);
 
   app.get("/fund/applications/all", fundApplication.findAll);
 
