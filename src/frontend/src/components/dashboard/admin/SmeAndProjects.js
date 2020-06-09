@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
+
 
 
 export default class SmeAndProjects extends Component {
@@ -14,13 +13,15 @@ export default class SmeAndProjects extends Component {
       data: [],
       searchData: ``,
       foundData: [],
-      valueChange: ``
+      valueChange: ``,
+      success: "",
+      error: ""
     };
 
     this.fetchData = this.fetchData.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.search = this.search.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
+    //this.search = this.search.bind(this);
+    //this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +32,7 @@ export default class SmeAndProjects extends Component {
     axios
       .get(`http://localhost:4000/fund/applications/all`)
       .then(({ data }) => {
+        console.log(data);
         const  status  = data.status;
         const projects = data.data;
         if (status === `success`) {
