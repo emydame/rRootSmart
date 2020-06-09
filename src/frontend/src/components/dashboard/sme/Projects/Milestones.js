@@ -123,6 +123,7 @@ class CreateMilestone extends React.Component {
               </div>
               <Form.Label>Description</Form.Label>
               <Editor
+                controlId="description"
                 apiKey="oym93hgea69gv4o5cjoxfc1baobo49f82d4ah9j66v3n955r"
                 name="description"
                 value={description}

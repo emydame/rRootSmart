@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import UpdateMilestone from "../Funds/UpdateMilestone"
 
 class View extends React.Component {
   constructor(props) {
@@ -20,15 +21,26 @@ class View extends React.Component {
       data: [],
       searchData: ``,
       foundData: [],
-      valueChange: ``
+      valueChange: ``,
+      showUpdateMilestone : false
     };
 
     this.fetchData = this.fetchData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.showUpdateMilestoneModal = this.showUpdateMilestoneModal.bind(this);
+    this.closeUpdateMilestoneModal = this.closeUpdateMilestoneModal.bind(this);
   }
 
+  showUpdateMilestoneModal(event) {
+    event.preventDefault();
+    this.setState({ showUpdateMilestone: true });
+  }
+
+  closeUpdateMilestoneModal() {
+    this.setState({ showUpdateMilestone: false });
+  }
   componentDidMount() {
     this.fetchData();
   }
@@ -141,7 +153,7 @@ class View extends React.Component {
                     <td key={index}>{item.dateEnd}</td>
                     <td key={index}>{item.dateCreated}</td>
                     <td key={count++}>
-                      <Link to={`/view-project/${item.projectId}`}>View Details</Link>
+                      <Link to={`/view-project/${item.projectId}`}  >View Details</Link>
                     </td>
                   </tr>
                 );
@@ -165,7 +177,7 @@ class View extends React.Component {
                     <td key={index}>{item.projectName}</td>
                     <td key={index}>{item.description}</td> 
                     <td key={count++}>
-                      <Link to={`/view-project/${item.projectId}`}>View Details</Link>
+                      <Link to="" onClick = {this.showUpdateMilestoneModal}>View Details</Link>
                     </td>
                     <td key={count++}>
                       <Link to={`/sme/Funds/NewApplication/${item.projectId}`}>Apply</Link>
@@ -176,6 +188,7 @@ class View extends React.Component {
             </tbody>
           </Table>
         </Card.Body>
+        <UpdateMilestone />
       </>
     );
   }

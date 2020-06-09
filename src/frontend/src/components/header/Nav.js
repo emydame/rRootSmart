@@ -30,7 +30,7 @@ class Nav extends React.Component {
       redirect: null,
       success: "",
       error: ""
-    };
+    };  
 
     this.showRegistrationModal = this.showRegistrationModal.bind(this);
     this.closeRegistrationModal = this.closeRegistrationModal.bind(this);

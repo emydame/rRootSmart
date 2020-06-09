@@ -8,10 +8,9 @@ exports.create = (req, res) => {
     milestoneId: id,
     applicationId: req.body.applicationId,
     name: req.body.name,
-    description: req.body.description,
     startDate: req.body.startDate,
-    endDate: req.body.endDate
-    
+    endDate: req.body.endDate,
+    description: req.body.description
   };
   if (!req.body) {
     return res.status(400).json({
