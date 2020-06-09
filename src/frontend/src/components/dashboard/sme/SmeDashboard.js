@@ -4,7 +4,8 @@
 import React from "react";
 import { Badge, Dropdown, Layout, Menu, Avatar } from "antd";
 import { Switch, Link, Router, Route } from "react-router-dom";
-// import Project from "./Project";
+import serialize from "form-serialize";
+import axios from "axios";
 import Proposal from "./Funds/Proposal";
 import {
   ProfileOutlined,
@@ -32,6 +33,9 @@ import NewApplication from "../sme/Funds/NewApplication";
 import ViewMilestones from "../sme/Funds/ViewMilestones";
 import CreateMilestones from "./Projects/Milestones";
 import { connect } from "react-redux";
+import UpdateMilestone from "./Funds/UpdateMilestone";
+import { withRouter } from "react-router-dom";
+
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -69,12 +73,38 @@ class SmeDashboard extends React.Component {
     this.state = {
       collapsed: false
     };
+
+     
   }
+ 
+  handleMilestoneUpdate(event) {
+    event.preventDefault();
+    const form = document.querySelector("form[name=registration]");
+    const formFields = serialize(form, { hash: true });
+  
+    axios
+      .post("http://localhost:4000/milestones/id", formFields)
+      .then(({ data }) => {
+              if (data.status === "success") {
+          this.setState({ success: "Milestone successfully updated!" });
+        } else {
+          this.setState({ error: "Error Updating Milestone" });
+        }
+      })
+      .catch((error) => {
+        /*console.log(error)*/
+        this.setState({ error: "Error Updating Milestone" });
+        
+      });
+    }
 
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
   };
+
+  
+  
 
   render() {
     // use localStorage.getItem("user") to get the user object
@@ -113,10 +143,12 @@ class SmeDashboard extends React.Component {
                 <Link to="/sme/Projects/Milestones">Create Milestones</Link>
               </Menu.Item>
               <Menu.Item key="9" icon={<FileAddOutlined />}>
-                <Link to="/sme/Funds/proposal">Existing Applications</Link>
-              </Menu.Item>
-            </SubMenu>
 
+              <Link to="/sme/Funds/proposal">Existing Applications</Link>
+            </Menu.Item>            
+             
+            </SubMenu>
+                    
             <Menu.Item key="4" icon={<LogoutOutlined />}>
               {" "}
               Log Out
@@ -153,6 +185,7 @@ class SmeDashboard extends React.Component {
                 {/* <Route path="/sme/projects" component={Project} /> */}
                 <Route path="/sme/Projects/FundedProjects" component={FundedProjects} />
                 <Route path="/sme/Funds/NewApplication" component={NewApplication} />
+                <Route path="/sme/Funds/UpdateMilestone" component={UpdateMilestone} />
                 <Route path="/sme/Funds/ViewMilestones" component={ViewMilestones} />
                 <Route path="/sme/Projects/Milestones" component={CreateMilestones} />
                 <Route path="/sme/Funds/proposal" component={Proposal} />
@@ -167,6 +200,7 @@ class SmeDashboard extends React.Component {
             </Router>
           </Content>
         </Layout>
+        
       </Layout>
     );
   }
@@ -178,4 +212,4 @@ const mapStateToProps = (state) => ({
   userId: state.sme.userId
 });
 
-export default connect(mapStateToProps)(SmeDashboard);
+export default connect(mapStateToProps)(SmeDashb
