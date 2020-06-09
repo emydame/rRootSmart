@@ -96,8 +96,7 @@ class CreateMilestone extends React.Component {
                   </select>
                 </div>
               </div>
-              <div class="form-row">
-                
+              <div class="form-row">               
                 <div class="form-group col-md-6" controlId="startDate">
                   <label for="startDate">Start Date</label>
                   <input type = "date"
@@ -126,7 +125,7 @@ class CreateMilestone extends React.Component {
                 controlId="description"
                 apiKey="oym93hgea69gv4o5cjoxfc1baobo49f82d4ah9j66v3n955r"
                 name="description"
-                value={description}
+                
                 init={{
                   height: 200,
                   menubar: false,

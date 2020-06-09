@@ -13,7 +13,8 @@ import Image from "react-bootstrap/Image";
 import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
-let projectName = "";
+
+//let projectName = "";
 const dateFormat = "YYYY/MM/DD";
 class CreateApplication extends React.Component {
   constructor(props) {
@@ -21,33 +22,58 @@ class CreateApplication extends React.Component {
     this.state = {
       description: "",
       projectName: "",
+      dateStart: "",
+      dateEnd: "",
+      proposals: null,
       success: "",
       error: ""
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmitForm = this.submitForm.bind(this);
+    this.selectedFileHandler = this.selectedFileHandler.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  handleEditorChange(e) {
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  selectedFileHandler = (e) => {
+    this.setState({
+      proposals: e.target.files[0]
+    });
+  };
+
+  handleEditorChange = (e) => {
     this.setState({ description: e.target.getContent() });
-  }
-  handleClick(e) {
+  };
+ 
+  submitForm = (e) => {
     e.preventDefault();
-    // Make api call with form
-    axios
-      .post("http://localhost:4000/fund/apply")
-      .then((data) => {
-        if (data.status === "success") {
-          this.setState({ success: "Application Successfully created!" });
-          /*  this.setState({ data: data});*/
-        } else {
-          this.setState({ error: "Error creating Application" });
-        }
-      })
-      .catch((error) => console.log(error));
-  }
+
+    const fd = new FormData();
+    fd.append("projectName", this.state.projectName);
+    fd.append("dateStart", this.state.dateStart);
+    fd.append("dateEnd", this.state.dateEnd);
+    fd.append("description", this.state.description);
+    fd.append("proposals", this.state.proposals, this.state.proposals.name);
+
+    axios.post("http://localhost:4000/fund/apply", fd).then((data) => {
+      // then print response status
+      if (data.status === "success") {
+        this.setState({ success: "Application Successfully created!" });
+      } else {
+        this.setState({ error: "Error creating Application" });
+      }
+     
+    })
+    .catch((error) => console.log(error));
+
+  };
+
   render() {
-    const success = this.state.success;
-    const error = this.state.error;
+    const { projectName, dateStart, dateEnd, success, error } = this.state;
+
     return (
       <Card.Body>
         {success ? (
@@ -69,15 +95,40 @@ class CreateApplication extends React.Component {
                 </div>
               </div>
               <div class="form-row" controlId="ProposalName">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-8">
                   <label for="ProposalName">Name of Project</label>
-                  <input type="text" class="form-control" id="ProposalName" name="ProposalName" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ProposalName"
+                    name="projectName"
+                    value={projectName}
+                    onChange={this.handleChange}
+                  />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="startDate">Start Date</label>
-                  <DatePicker id="startDate" defaultValue={moment("2020/01/01", dateFormat)} format={dateFormat} />
-                  <label for="endDate">End Date</label>
-                  <DatePicker id="endDate" defaultValue={moment("2020/01/01", dateFormat)} format={dateFormat} />
+                  <label for="startDate">Start Date </label>
+                  <input
+                    type="date"
+                    id="dateStart"
+                    name="dateStart"
+                    value={dateStart}
+                    // defaultValue={moment("2020/01/01", dateFormat)}
+                    // format={dateFormat}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="endDate">End Date </label>
+                  <input
+                    type="date"
+                    id="dateEnd"
+                    name="dateEnd"
+                    value={dateEnd}
+                    // defaultValue={moment("2020/01/01", dateFormat)}
+                    // format={dateFormat}
+                    onChange={this.handleChange}
+                  />
                 </div>
               </div>
               <Form.Label>Brief description of Project</Form.Label>
@@ -101,18 +152,22 @@ class CreateApplication extends React.Component {
                     alignleft aligncenter alignright | \
                     bullist numlist outdent indent | help"
                 }}
-                
-                
               />
               <br></br>
               <div class="form-row" controlId="fileUpload">
                 <div class="form-group col-md-12">
                   <label for="fileUpload">Upload Project Proposal</label>
-                  <input type="file" class="form-control" id="fileUpload" name="fileUpload" />
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="fileUpload"
+                    name="proposals"
+                    onChange={this.selectedFileHandler}
+                  />
                 </div>
               </div>
               <br></br>
-              <Button variant="primary" type="submit" onClick={this.handleClick}>
+              <Button variant="primary" type="submit" onClick={this.handleSubmitForm}>
                 Create Application
               </Button>
             </form>
