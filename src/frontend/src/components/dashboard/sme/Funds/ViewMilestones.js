@@ -76,8 +76,9 @@ class ViewMilestones extends React.Component {
   }
 
   render() {
-    const { data, success, error } = this.state;
-    
+    const  success = this.state.success;
+    const  error = this.state.success;
+    const data = this.state.data;
     return (
       <Card.Body>
         {success ? (

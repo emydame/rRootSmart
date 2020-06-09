@@ -16,14 +16,13 @@ import serialize from "form-serialize";
 import axios from "axios";
 const dateFormat = "YYYY/MM/DD";
 
-
 class CreateMilestone extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       description: "",
       name: "",
-      startDate : null,
+      startDate: null,
       endDate: "",
       success: "",
       error: ""
@@ -31,17 +30,17 @@ class CreateMilestone extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  
-  handleChange = (e) =>{
+
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleClick= (e) => {
+  handleClick = (e) => {
     e.preventDefault();
-   
+
     const fd = {
       name: this.state.name,
-      startDate : this.state.startDate,
+      startDate: this.state.startDate,
       endDate: this.state.endDate,
       description: this.state.description
     };
@@ -55,16 +54,16 @@ class CreateMilestone extends React.Component {
             success: "User Successfully created!",
             projectName: ""
           });
-         
         } else {
           this.setState({ error: "Error creating User" });
         }
       })
       .catch((error) => console.log(error));
-  }
+  };
   render() {
-    const {description, name, startDate, endDate, success, error } = this.state
-
+    //const { description, name, startDate, endDate, success, error } = this.state;
+    const success = this.state.success;
+    const error = this.state.error;
     return (
       <Card.Body>
         {success ? (
@@ -81,13 +80,11 @@ class CreateMilestone extends React.Component {
               <div class="form-row" controlId="applicationId">
                 <div class="form-group col-md-12">
                   <label for="inputTeam">Select Application</label>
-                  <select
-                    id="inputState"
-                    class="form-control"
-                    value={name}
-                    onChange={this.handleChange}
-                    name="name"
-                  >
+                  <select id="inputState"
+                     class="form-control"
+                      value={this.state.name} 
+                      onChange={this.handleChange} 
+                      name="name">
                     <option selected>Choose...</option>
                     <option>Fertilizer Distribution</option>
                     <option>Maize Farming</option>
@@ -96,13 +93,14 @@ class CreateMilestone extends React.Component {
                   </select>
                 </div>
               </div>
-              <div class="form-row">               
+              <div class="form-row">
                 <div class="form-group col-md-6" controlId="startDate">
                   <label for="startDate">Start Date</label>
-                  <input type = "date"
+                  <input
+                    type="date"
                     id="startDate"
                     //defaultValue={moment("2020/01/01", dateFormat)}
-                    value={startDate}  
+                    value={this.state.startDate}
                     name="startDate"
                     //format={dateFormat}
                     onChange={this.handleChange}
@@ -110,12 +108,13 @@ class CreateMilestone extends React.Component {
                 </div>
                 <div class="form-group col-md-6" controlId="endDate">
                   <label for="endDate">End Date</label>
-                  <input type = "date"
+                  <input
+                    type="date"
                     id="endDate"
-                    value={endDate}
+                    value={this.state.endDate}
                     name="endDate"
                     //format={dateFormat}
-                    //defaultValue={moment("2020/01/01", dateFormat)}                   
+                    //defaultValue={moment("2020/01/01", dateFormat)}
                     onChange={this.handleChange}
                   />
                 </div>
@@ -125,7 +124,6 @@ class CreateMilestone extends React.Component {
                 controlId="description"
                 apiKey="oym93hgea69gv4o5cjoxfc1baobo49f82d4ah9j66v3n955r"
                 name="description"
-                
                 init={{
                   height: 200,
                   menubar: false,

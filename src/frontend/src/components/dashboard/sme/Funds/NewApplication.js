@@ -61,7 +61,7 @@ class CreateApplication extends React.Component {
     axios
       .post("http://localhost:4000/fund/apply", fd)
       .then((res) => {
-        let response = res.data;      
+        let response = res.data;
         // then print response status
         if (response.status === "success") {
           this.setState({
@@ -81,8 +81,9 @@ class CreateApplication extends React.Component {
   };
 
   render() {
-    const { projectName, dateStart, dateEnd, success, error } = this.state;
-
+    //const { projectName, dateStart, dateEnd, success, error } = this.state;
+    const success = this.state.success;
+    const error = this.state.error;
     return (
       <Card.Body>
         {success ? (
@@ -99,7 +100,7 @@ class CreateApplication extends React.Component {
               <div class="form-row" controlId="ProjectId">
                 <div class="form-group col-md-12">
                   <label for="inputTeam">
-                    Project name: <h4>{projectName}</h4>
+                    Project name: <h4>{this.state.projectName}</h4>
                   </label>
                 </div>
               </div>
@@ -111,7 +112,7 @@ class CreateApplication extends React.Component {
                     class="form-control"
                     id="ProposalName"
                     name="projectName"
-                    value={projectName}
+                    value={this.state.projectName}
                     onChange={this.handleChange}
                   />
                 </div>
@@ -121,7 +122,7 @@ class CreateApplication extends React.Component {
                     type="date"
                     id="dateStart"
                     name="dateStart"
-                    value={dateStart}
+                    value={this.state.dateStart}
                     // defaultValue={moment("2020/01/01", dateFormat)}
                     // format={dateFormat}
                     onChange={this.handleChange}
@@ -133,7 +134,7 @@ class CreateApplication extends React.Component {
                     type="date"
                     id="dateEnd"
                     name="dateEnd"
-                    value={dateEnd}
+                    value={this.state.dateEnd}
                     // defaultValue={moment("2020/01/01", dateFormat)}
                     // format={dateFormat}
                     onChange={this.handleChange}
