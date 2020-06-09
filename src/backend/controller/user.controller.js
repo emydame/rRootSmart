@@ -121,7 +121,8 @@ exports.create = (req, res) => {
               organizationId: orgId,
               email: req.body.email,
               password: hash,
-              category: req.body.userType
+              category: req.body.userType,
+              companyName: req.body.companyName 
             });
 
             pass

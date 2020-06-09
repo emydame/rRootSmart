@@ -31,8 +31,7 @@ import Milestones from "../sme/Projects/Milestones";
 import NewApplication from "../sme/Funds/NewApplication";
 import ViewMilestones from "../sme/Funds/ViewMilestones";
 import CreateMilestones from "./Projects/Milestones";
-
-
+import { connect } from "react-redux";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -78,12 +77,13 @@ class SmeDashboard extends React.Component {
   };
 
   render() {
+    // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "64px" }}>
           <div className="logo"></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<ProfileOutlined />}>
+            <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/sme/ProfileDetails">Profile Details</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
@@ -98,28 +98,25 @@ class SmeDashboard extends React.Component {
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<PieChartOutlined />} title="Projects">
-            <Menu.Item key="5" icon={<ZoomOutOutlined />}>
-              <Link to="/sme/Projects/InvestmentProject">View Projects</Link>
-            </Menu.Item>
-             <Menu.Item key="6" icon={<ZoomOutOutlined />}>
-              <Link to="/sme/Funds/ViewMilestones"> View Milestones</Link>
-            </Menu.Item>
-            
+              <Menu.Item key="5" icon={<ZoomOutOutlined />}>
+                <Link to="/sme/Projects/InvestmentProject">View Projects</Link>
+              </Menu.Item>
+              <Menu.Item key="6" icon={<ZoomOutOutlined />}>
+                <Link to="/sme/Funds/ViewMilestones"> View Milestones</Link>
+              </Menu.Item>
             </SubMenu>
             <SubMenu key="3" icon={<WalletOutlined />} title="Funds">
-            <Menu.Item key="8" icon={<PlusCircleOutlined />}>
-              <Link to="/sme/Projects/FundedProjects">Create Application</Link>
+              <Menu.Item key="8" icon={<PlusCircleOutlined />}>
+                <Link to="/sme/Projects/FundedProjects">Create Application</Link>
               </Menu.Item>
               <Menu.Item key="6" icon={<PlusCircleOutlined />}>
-              <Link to="/sme/Projects/Milestones">Create Milestones</Link>
-            </Menu.Item>
+                <Link to="/sme/Projects/Milestones">Create Milestones</Link>
+              </Menu.Item>
               <Menu.Item key="9" icon={<FileAddOutlined />}>
-              <Link to="/sme/Funds/proposal">Existing Applications</Link>
-            </Menu.Item>
+                <Link to="/sme/Funds/proposal">Existing Applications</Link>
+              </Menu.Item>
             </SubMenu>
-            
-           
-          
+
             <Menu.Item key="4" icon={<LogoutOutlined />}>
               {" "}
               Log Out
@@ -128,19 +125,28 @@ class SmeDashboard extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <nav class="navbar">
-                <Link className="dashboard-img" to="#">
-                  <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
-                </Link>
-                <div>
-                  <Badge className="badge-item" count={5}>
-                    <a href="#" className="example" />
-                  </Badge>
-                    <BellFilled className="notificationBell" />
-                  </div>
-                <Dropdown overlay={menu}>
-                  <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" className="ant-dropdown-link" onClick={(e) => e.preventDefault()} />
-                </Dropdown>
-            </nav>
+            <Link className="dashboard-img" to="#">
+              <img
+                src={
+                  "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
+                }
+                alt="logo"
+              />
+            </Link>
+            <div>
+              <Badge className="badge-item" count={5}>
+                <a href="#" className="example" />
+              </Badge>
+              <BellFilled className="notificationBell" />
+            </div>
+            <Dropdown overlay={menu}>
+              <Avatar
+                src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg"
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              />
+            </Dropdown>
+          </nav>
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>
@@ -166,4 +172,10 @@ class SmeDashboard extends React.Component {
   }
 }
 
-export default SmeDashboard;
+const mapStateToProps = (state) => ({
+  companyName: state.sme.companyName,
+  category: state.sme.category,
+  userId: state.sme.userId
+});
+
+export default connect(mapStateToProps)(SmeDashboard);
