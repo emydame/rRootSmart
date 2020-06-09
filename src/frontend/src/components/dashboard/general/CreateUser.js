@@ -1,6 +1,5 @@
 /* eslint-disable no-multi-str */
-/* eslint-disable no-console */
-/* eslint no-console: "error" */
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -9,8 +8,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { DatePicker } from "antd";
 import moment from "moment";
-import Image from "react-bootstrap/Image";
-import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
 
@@ -22,7 +19,7 @@ class Create extends React.Component {
     this.state = {
       category: "investor",
       userId: "",
-      organizationId: "4553",
+      organizationId: "874",
       success: "",
       error: ""
     };
@@ -38,6 +35,9 @@ class Create extends React.Component {
     e.preventDefault();
     const form = document.querySelector(`form[name="create-user"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
+    formFields.organizationId=this.state.organizationId;
+    formFields.category=this.state.category;
+
     console.log(formFields);
     axios
       .post("http://localhost:4000/organizationUser", formFields)
@@ -45,11 +45,17 @@ class Create extends React.Component {
         
         if ((data.data.status === "success")) {
           this.setState({ success: "User Successfully created!" });
-        } else {
+        } else 
+        if ((data.data.status === "exist")) {
+          this.setState({ success: "User already exist!" });
+        }else
+        {
           this.setState({ error: "Error creating User" });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        this.setState({ error: "Error creating User" });
+      });
   }
 
   render() {
@@ -58,16 +64,21 @@ class Create extends React.Component {
     const error = this.state.error;
     return (
       <Card.Body>
-        {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
+      
         <div className="content-text"><strong>Create a User and Assign Role</strong></div>
         <hr></hr>
         <Row>
-         
+      
           <Col md="12">
+          {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
           <form name="create-user" id="createUser">
                   <div class="form-row" controlId="firstName">
                     <div class="form-group col-md-6">

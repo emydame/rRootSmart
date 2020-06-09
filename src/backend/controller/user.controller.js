@@ -257,7 +257,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
       if (data) {
         // return result if data already exist
         return res.status(401).json({
-          status : "error",
+          status : "exist",
           message : "User already exist"
         });
       } else {
