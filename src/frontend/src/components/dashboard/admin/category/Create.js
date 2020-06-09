@@ -34,7 +34,7 @@ class Create extends React.Component {
     const form = document.querySelector(`form[name="create-category"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
-      .post(`http://localhost:4000/projects/category`, formFields)
+      .post(`https://eazsme-backend.herokuapp.com/projects/category`, formFields)
       .then(({ data }) => {
         const { status } = data;
         if (status === `success`) {

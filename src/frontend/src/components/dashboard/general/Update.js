@@ -37,7 +37,7 @@ class Update extends React.Component {
     const { email } = this.state;
     
 axios
-      .get("http://localhost:4000/updateOrguser" + email)
+      .get("https://eazsme-backend.herokuapp.com/updateOrguser" + email)
       .then((data) => this.setState({ data }))
       .catch((error) => console.log(error));
   } */    
@@ -51,7 +51,7 @@ axios
   varifyPassword(event) {
     event.preventDefault();
     const value = event.target.value;
-    // axios.get("http://localhost:4000")  https://eazsme-backend.herokuapp.com//user/ make a request for a password and use it to verify password
+    // axios.get("https://eazsme-backend.herokuapp.com")  https://eazsme-backend.herokuapp.com//user/ make a request for a password and use it to verify password
   }
 
   handleEditorChange(e) {
@@ -64,7 +64,7 @@ axios
     const form = document.querySelector("form[name=update]")
     const formFields = serialize(form, {hash: true});
    
-    axios.put("http://localhost:4000/updateOrguser", formFields)
+    axios.put("https://eazsme-backend.herokuapp.com/updateOrguser", formFields)
     .then((data) => {
      
       if(data.status === "success") {
