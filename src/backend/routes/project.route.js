@@ -10,6 +10,9 @@ module.exports = (app) => {
   // Get single project
   app.get("/project/:id", project.findOne);
 
+  // Get active project
+  app.get("/project/active", project.active);
+
   // Get all projects created by an SME for funds application.
   //app.get("/project/investorAll", project.findAllSMEProject);
 };
