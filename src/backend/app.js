@@ -2,6 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -45,7 +46,7 @@ require("./routes/role.route")(app);
 require("./routes/milestone.route")(app);
 require("./routes/eligibility.route")(app);
 
-
+app.use(express.static(path.join(__dirname, 'uploads'))); 
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => {
