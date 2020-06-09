@@ -4,7 +4,7 @@ const FundApplication = db.fundApplication;
 // Post a application
 exports.create = (req, res) => {
   //let date = new Date();  
-  const appId = Math.floor(Math.random() * 10000) + 1;
+  const appId = Math.floor(Math.random() * 100000) + 1;
   let requests = {
     applicationId: appId,
     organizationId: req.body.organizationId,
@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
     description: req.body.description,
-    filePath: req.file.path
+    proposals: req.file.path
   };
   if (!req.body) {
     return res.status(400).json({
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
     });
   } else {
     FundApplication.findOne({
-      where: { applicationId: req.body.applicationId }
+      where: { applicationId: appId }
     }).then((data) => {
       if (data) {
         return res.status(400).json({

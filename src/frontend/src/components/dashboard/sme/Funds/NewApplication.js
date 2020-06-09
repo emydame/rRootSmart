@@ -82,8 +82,11 @@ class CreateApplication extends React.Component {
               </div>
               <Form.Label>Brief description of Project</Form.Label>
               <Editor
+                controlId="decription"
+                name="description"
                 apiKey="oym93hgea69gv4o5cjoxfc1baobo49f82d4ah9j66v3n955r"
                 initialValue={this.state.description}
+                onChange={this.handleEditorChange}
                 init={{
                   height: 200,
                   menubar: false,
@@ -98,8 +101,8 @@ class CreateApplication extends React.Component {
                     alignleft aligncenter alignright | \
                     bullist numlist outdent indent | help"
                 }}
-                onChange={this.handleEditorChange}
-                name="description"
+                
+                
               />
               <br></br>
               <div class="form-row" controlId="fileUpload">
