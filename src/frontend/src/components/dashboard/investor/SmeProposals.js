@@ -23,7 +23,7 @@ class SmeProposals extends React.Component {
       projectproposals = JSON.parse(localStorage.getItem("proposals"));
      }
     
-    localStorage.setItem("proposals", JSON.stringify(projectproposals))
+    localStorage.setItem("proposals", JSON.stringify(projectproposals));
     this.setState({projectproposals});
   }
   render() {

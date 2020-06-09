@@ -37,7 +37,7 @@ class FundDetails extends React.Component {
     this.setState({project});
   }
     render() {
-      const date = new Date(`%{this.state.fund.dateInitiated}`).toLocaleDateString();
+      const date = new Date(`${this.state.fund.dateInitiated}`).toLocaleDateString();
     return (
       <>
       <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">

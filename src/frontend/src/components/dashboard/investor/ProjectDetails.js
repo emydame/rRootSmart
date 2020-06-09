@@ -39,10 +39,10 @@ class ProjectDetails extends React.Component {
     }
     
     const projects = projectproposals.filter(
-      (project)=> project.projectId === this.props.match.params.id
+      (project) => project.projectId === this.props.match.params.id
     );
 
-    localStorage.setItem("proposals", JSON.stringify(projectproposals))
+    localStorage.setItem("proposals", JSON.stringify(projectproposals));
     this.setState({project: projects[0]});
   }
  
