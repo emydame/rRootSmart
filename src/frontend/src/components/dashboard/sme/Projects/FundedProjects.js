@@ -8,10 +8,12 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import Modal from "react-modal";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import UpdateMilestone from "../Funds/UpdateMilestone";
+import EligibilityCreteria from "./viewEligibility";
+//import UpdateMilestone from "../Funds/UpdateMilestone";
 
 class View extends React.Component {
   constructor(props) {
@@ -22,25 +24,27 @@ class View extends React.Component {
       searchData: ``,
       foundData: [],
       valueChange: ``,
-      showUpdateMilestone: false
+      showEligibility: false
     };
 
     this.fetchData = this.fetchData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.showUpdateMilestoneModal = this.showUpdateMilestoneModal.bind(this);
-    this.closeUpdateMilestoneModal = this.closeUpdateMilestoneModal.bind(this);
+
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    
   }
 
-  showUpdateMilestoneModal(event) {
-    event.preventDefault();
-    this.setState({ showUpdateMilestone: true });
-  }
+  showModal = () => {
+    this.setState({ showEligibility: true });
+  };
 
-  closeUpdateMilestoneModal() {
-    this.setState({ showUpdateMilestone: false });
-  }
+  hideModal = () => {
+    this.setState({ showEligibility: false });
+  };
+  
   componentDidMount() {
     this.fetchData();
   }
@@ -143,7 +147,7 @@ class View extends React.Component {
                     <td key={index}>{item.projectName}</td>
                     <td key={index}>{item.description}</td>
                     <td key={count++}>
-                      <Link to="" onClick={this.showUpdateMilestoneModal}>
+                      <Link to="" onClick={this.showModal} >
                         View Details
                       </Link>
                     </td>
@@ -155,7 +159,7 @@ class View extends React.Component {
               })}
             </tbody>
           </Table>
-          <UpdateMilestone />
+          <EligibilityCreteria />
         </Card.Body>
       </>
     );

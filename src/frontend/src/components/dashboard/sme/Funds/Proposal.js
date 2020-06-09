@@ -8,7 +8,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-
+  
 class View extends React.Component {
   constructor(props) {
     super(props);

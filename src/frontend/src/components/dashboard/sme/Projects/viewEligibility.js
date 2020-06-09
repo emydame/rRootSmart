@@ -3,26 +3,22 @@ import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Redirect } from "react-router";
-import "../../styles/modal.css";
+import "../../../../styles/modal.css";
 
-class About extends React.Component {
+class EligibilityCreteria extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       redirect: null
+     //show : false
     };
-    this.handleAbout = this.handleAbout.bind(this);
-    this.closeAbout = this.closeAbout.bind(this);
+    
+    
   }
 
-  handleAbout() {
-    this.setState({ about: true });
-  }
-
-  closeAbout() {
-    this.props.closeModal();
-  }
+  
+  
 
   render() {
     if (this.state.redirect) {
@@ -33,8 +29,8 @@ class About extends React.Component {
         {/*** About Modal */}
         <Modal
           size="lg"
-          show={this.props.showModal}
-          onHide={this.closeAbout}
+          // show={this.props.showModal}
+          // onHide={this.closeEligibilty}
           dialogClassName="modal-90w"
           aria-labelledby="login"
           bsPrefix="modal"
@@ -85,49 +81,6 @@ class About extends React.Component {
                 make investement funds accessible to SMEs and the utilization of the funds monitored and regulated.
               </p>
               <hr></hr>
-              <Row>
-                <Col className="dev-frame">
-                  <figure>
-                    <img src={"./Emilia.png"} alt="" />
-                    <figcaption>Emilia Anochirionye; Technical Team Lead</figcaption>
-                    <a href="#" target="_blank">
-                      View Portfolio
-                    </a>
-                  </figure>
-                </Col>
-                <Col className="dev-frame">
-                  <figure>
-                    <img
-                      src={
-                        "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_200,w_200/v1567112037/220190826_163351912_r9yfcl.jpg"
-                      }
-                      alt=""
-                    />
-                    <figcaption>Agba Fidelis; UI/UX Designer, Frontend Web Developer</figcaption>
-                    <a href="https://aboutfidelis.netlify.app" target="_blank">
-                      View Portfolio
-                    </a>
-                  </figure>
-                </Col>
-                <Col className="dev-frame">
-                  <figure>
-                    <img src={"./vic.png"} alt="" />
-                    <figcaption>Victor Yohanna; Backend Developer</figcaption>
-                    <a href="#" target="_blank">
-                      View Portfolio
-                    </a>
-                  </figure>
-                </Col>
-                <Col className="dev-frame">
-                  <figure>
-                    <img src={"./Emilia.png"} alt="" />
-                    <figcaption>Emilia Anochirionye; Technical Team Lead</figcaption>
-                    <a href="#" target="_blank">
-                      View Portfolio
-                    </a>
-                  </figure>
-                </Col>
-              </Row>
             </div>
           </Modal.Body>
         </Modal>
@@ -136,4 +89,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default EligibilityCreteria;
