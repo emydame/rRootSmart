@@ -87,7 +87,7 @@ class View extends React.Component {
     }
   }
 
-  handleSearch(event) {
+  handleSearch(event) {   
     event.preventDefault();
     const data = this.state.data;
     const filterInput = data.filter((item) => item.projectName === event.target.value);
