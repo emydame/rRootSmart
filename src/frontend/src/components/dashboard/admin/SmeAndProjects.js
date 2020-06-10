@@ -40,7 +40,7 @@ export default class SmeAndProjects extends Component {
       console.log(data);
       const  status  = data.status;
       const projects = data.data;
-      if (status === `success`) {
+      if (status === "success") {
         this.setState({ success: "Fund Application Approved"});
         
       }
