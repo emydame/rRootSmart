@@ -7,7 +7,7 @@ const EligibilityCreteria = db.eligibility;
     let id = Math.floor(Math.random() * 10000) + 1;
   
     let criteria = {
-      projectId: id,
+      id: id,
       projectId: req.body.projectId,
       projectName: req.body.projectName,
       eligibilityCreteria: req.body.eligibilityCreteria,

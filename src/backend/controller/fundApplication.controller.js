@@ -106,7 +106,7 @@ exports.updateOne = (req, res) => {
           ).then(() => {
           res.status(200).json({
           status: "success",
-          data: data
+          message: data
           }) ;   
         }).catch((err) => {
 
@@ -115,7 +115,7 @@ exports.updateOne = (req, res) => {
           message: err.message
           });
     
-        })
+        });
        
       }
     })
