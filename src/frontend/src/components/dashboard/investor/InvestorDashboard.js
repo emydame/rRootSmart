@@ -100,7 +100,7 @@ class InvestorDashboard extends React.Component {
 
             <SubMenu key="sub3" icon={<WalletOutlined />} title="Investments">
               <Menu.Item key="7" icon={<WalletOutlined />}>
-                <Link to="#">Invest</Link>
+                <Link to="/investor/invest">Invest</Link>
               </Menu.Item>
               <Menu.Item key="8">
                 <Link to="/investor/InvestmentHistory">
@@ -191,5 +191,7 @@ const mapStateToProps = (state) => ({
   companyName: state.investor.companyName,
   category: state.investor.category,
   userId: state.investor.userId
+  
 });
+console.log(mapStateToProps);
 export default connect(mapStateToProps)(InvestorDashboard);
