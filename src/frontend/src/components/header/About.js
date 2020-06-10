@@ -106,7 +106,7 @@ class About extends React.Component {
                 </Col>
                 <Col className="dev-frame">                   
                 <figure>
-                  <img src={"./Abdul.jpg"} alt=""/>
+                  <img style={{width:"200px", height:"200px"}} src={"./Abdul.jpg"} alt=""/>
                 <figcaption>Abdulhafiz Ibrahim;
                    Frontend Developer
                 </figcaption>
