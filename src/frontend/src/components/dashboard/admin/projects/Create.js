@@ -1,5 +1,6 @@
 /* eslint-disable quotes */
-
+/* eslint-disable no-console */
+/* eslint no-console: "error" */
 /* eslint-disable no-multi-str */
 /*eslint quotes: ["error", "backtick"]*/
 /*eslint-env es6*/
