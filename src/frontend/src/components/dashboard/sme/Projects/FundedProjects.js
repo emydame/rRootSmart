@@ -8,12 +8,9 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import Modal from "react-modal";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import EligibilityCreteria from "./viewEligibility";
-//import UpdateMilestone from "../Funds/UpdateMilestone";
 
 class View extends React.Component {
   constructor(props) {
@@ -23,28 +20,15 @@ class View extends React.Component {
       data: [],
       searchData: ``,
       foundData: [],
-      valueChange: ``,
-      showEligibility: false
+      valueChange: ``
     };
 
     this.fetchData = this.fetchData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
-    
   }
 
-  showModal = () => {
-    this.setState({ showEligibility: true });
-  };
-
-  hideModal = () => {
-    this.setState({ showEligibility: false });
-  };
-  
   componentDidMount() {
     this.fetchData();
   }
@@ -57,7 +41,7 @@ class View extends React.Component {
         const projects = data.data;
 
         if (status === `success`) {
-          let newResults = projects.filter( (items) => {
+          let newResults = projects.filter((items) => {
             return items.fund === `Funded`;
           });
           this.setState({ data: newResults });
@@ -87,7 +71,7 @@ class View extends React.Component {
     }
   }
 
-  handleSearch(event) {   
+  handleSearch(event) {
     event.preventDefault();
     const data = this.state.data;
     const filterInput = data.filter((item) => item.projectName === event.target.value);
@@ -147,9 +131,7 @@ class View extends React.Component {
                     <td key={index}>{item.projectName}</td>
                     <td key={index}>{item.description}</td>
                     <td key={count++}>
-                      <Link to="" onClick={this.showModal} >
-                        View Details
-                      </Link>
+                      <Link to="">View Details</Link>
                     </td>
                     <td key={count++}>
                       <Link to={`/sme/Funds/NewApplication/${item.projectId}`}>Apply</Link>
@@ -159,7 +141,6 @@ class View extends React.Component {
               })}
             </tbody>
           </Table>
-          <EligibilityCreteria />
         </Card.Body>
       </>
     );
