@@ -132,25 +132,22 @@ class AdminDashboard extends React.Component {
               <Menu.Item key="7" icon={<UserOutlined />}>
                 <Link to="/admin/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="8" icon={<UserDeleteOutlined />}>
+            {/*  <Menu.Item key="8" icon={<UserDeleteOutlined />}>
                 <Link to="/admin/deactivate-user">Deactivate</Link>
               </Menu.Item>
-            </SubMenu>
-
-            <SubMenu key="sub4" icon={<fundOutlined />} title="milestone">
               <Menu.Item key="9" icon={<AppstoreOutlined />}>
-                <Link to="/admin/create-milestone"> Create Milestone</Link>
-              </Menu.Item>
-              <Menu.Item key="10" icon={<DollarCircleOutlined />}>
-                <Link to="/admin/view-milestone">View Milestone</Link>
-              </Menu.Item>
+              <Link to="/admin/create-milestone"> Create Milestone</Link>
+            </Menu.Item>*/
+              }
             </SubMenu>
-
-            <SubMenu key="sub4" icon={<fundOutlined />} title="Funds">
-              <Menu.Item key="9" icon={<AppstoreOutlined />}>
+            <SubMenu key="sub5" icon={<fundOutlined />} title="Funds">
+              <Menu.Item key="11" icon={<AppstoreOutlined />}>
                 <Link to="/admin/smeandprojects"> SMEs Projects</Link>
               </Menu.Item>
-              <Menu.Item key="10" icon={<DollarCircleOutlined />}>
+              <Menu.Item key="12" icon={<DollarCircleOutlined />}>
+                <Link to="/admin/view-milestone">View Milestone</Link>
+              </Menu.Item>
+              <Menu.Item key="13" icon={<DollarCircleOutlined />}>
                 <Link to="/admin/investorsandfunding">Investors Funding</Link>
               </Menu.Item>
             </SubMenu>
@@ -196,7 +193,10 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/smeandprojects" component={SmeAndProjects} />
                 <Route path="/admin/create-user" component={Create} />
                 <Route path="/admin/update-user" component={Update} />
-                <Route path="/admin/deactivate-user" component={Remove} />
+               {/**  <Route path="/admin/deactivate-user" component={Remove} />
+                * <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
+                * 
+               */}
                 <Route path="/admin/create-category" component={CreatCategory} />
                 <Route path="/admin/view-category" component={ViewCategory} />
                 <Route path="/admin/delete-category/:categoryId" component={DeleteCategory} />
@@ -209,7 +209,7 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/projects/CreateEligibility" component={CreateEligibility} />
                 <Route path="/admin/view-milestone" component={ViewMilestone} />
                 <Route path="/admin/create-milestone" component={CreateMilestone} />
-                <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
+                
                 <Route path="/admin/delete-milestone/:milestoneId" component={DeleteMilestone} />
               </Switch>
             </Router>

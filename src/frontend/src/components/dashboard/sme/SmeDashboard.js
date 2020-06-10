@@ -83,7 +83,7 @@ class SmeDashboard extends React.Component {
     const formFields = serialize(form, { hash: true });
   
     axios
-      .post("http://localhost:4000/milestones/id", formFields)
+      .post("https://eazsme-backend.herokuapp.com/milestones/id", formFields)
       .then(({ data }) => {
               if (data.status === "success") {
           this.setState({ success: "Milestone successfully updated!" });
@@ -123,9 +123,9 @@ class SmeDashboard extends React.Component {
               <Menu.Item key="3" icon={<UserOutlined />}>
                 <Link to="/sme/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="4" icon={<UserOutlined />}>
+             {/*} <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/sme/deactivate-user">Deactivate</Link>
-              </Menu.Item>
+    </Menu.Item>*/}
             </SubMenu>
             <SubMenu key="sub2" icon={<PieChartOutlined />} title="Projects">
               <Menu.Item key="5" icon={<ZoomOutOutlined />}>
@@ -191,7 +191,7 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/Funds/proposal" component={Proposal} />
                 <Route path="/sme/create-user" component={Create} />
                 <Route path="/sme/update-user" component={Update} />
-                <Route path="/sme/deactivate-user" component={Remove} />
+               {/*<Route path="/sme/deactivate-user" component={Remove} />*/}
                 <Route path="/sme/ProfileDetails" component={ProfileDetails} />
                 <Route path="/sme/EditProfile" component={EditProfile} />
                 <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />

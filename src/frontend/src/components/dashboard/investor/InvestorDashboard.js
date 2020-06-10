@@ -22,16 +22,18 @@ import { Switch, Router, Route } from "react-router-dom";
 import { BellFilled, UserAddOutlined, UserSwitchOutlined, RiseOutlined } from "@ant-design/icons";
 import { BarChartOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import AllUsers from "./user/AllUsers";
-import Create from "../general/Create";
+import Create from "../general/CreateUser";
 import Remove from "../general/Remove";
 import Update from "../general/Update";
 import ProfileDetails from "./user/ProfileDetails";
 import ProjectDetails from "./ProjectDetails";
+import FundDetails from "./FundDetails";
 import EditProfile from "./user/EditProfile";
 import { connect } from "react-redux";
 import Invest from "./invest";
 import ViewProject from "../general/View";
 import CreateProject from "../general/Create";
+import axios from "axios";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -52,21 +54,38 @@ const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class InvestorDashboard extends React.Component {
-  state = {
-    collapsed: false,
-    user: {
-      organizationId: 48589,
-      firstName: "kachi1",
-      lastName: "kachi2",
-      otherName: "kachi3",
-      email: "kachi@kachi.com",
-      phoneNumber: 8474849,
-      role: 1,
-      privilege: 1,
-      dateCreated: "2014-090-03"
-    }
-  };
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      collapsed: false,
+      user: {
+        organizationId: 48589,
+        firstName: "kachi1",
+        lastName: "kachi2",
+        otherName: "kachi3",
+        email: "kachi@kachi.com",
+        phoneNumber: 8474849,
+        role: 1,
+        privilege: 1,
+        dateCreated: "2014-090-03"
+      },
+      projectproposals: []
+    };
+    this.fetchData = this.fetchData.bind(this);
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
+  async fetchData() {
+    const url = "https://eazsme-backend.herokuapp.com/project/investorAll";
+    
+    const data = await axios.get(url);
 
+    const projectproposals = data.data.data;
+
+    this.setState({projectproposals});
+  }
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
@@ -92,17 +111,15 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/investor/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="5" icon={<UserOutlined />}>
-                <Link to="/investor/deactivate-user">Deactivate</Link>
-              </Menu.Item>
+             
             </SubMenu>
             <Menu.Item key="6" icon={<PieChartOutlined />}>
-              <Link to="/investor/InvestmentHistory">View Projects</Link>
+              <Link to="/investor/view-projects">View Projects</Link>
             </Menu.Item>
 
             <SubMenu key="sub3" icon={<WalletOutlined />} title="Investments">
               <Menu.Item key="7" icon={<WalletOutlined />}>
-                <Link to="#">Invest</Link>
+                <Link to="/investor/invest">Invest</Link>
               </Menu.Item>
               <Menu.Item key="8">
                 <Link to="/investor/InvestmentHistory">
@@ -164,20 +181,21 @@ class InvestorDashboard extends React.Component {
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
               <Router history={this.props.history}>
                 <Switch>
-                  <Route path="/investor/SmeProposals" component={SmeProposals} />
+                  <Route path="/investor/SmeProposals" render={(props) => <SmeProposals {...props} projectproposals={this.state.projectproposals } />}/>
 
-                  <Route path="/investor/InvestmentHistory"render={(props) => <InvestmentHistory {...props} user={this.state.user } />} />
+                  <Route path="/investor/InvestmentHistory" render={(props) => <InvestmentHistory {...props} user={this.state.user } />} />
                   <Route path="/investor/TotalInvestments" render={(props) => <TotalInvestments {...props} user={this.state.user } />} />
                   <Route path="/investor/AllUsers" component={AllUsers} />
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
-                  <Route path="/investor/deactivate-user" component={Remove} />
+                  {/**<Route path="/investor/deactivate-user" component={Remove} />*/}
                   <Route path="/investor/ProfileDetails" component={ProfileDetails} />
                   <Route path="/investor/EditProfile" component={EditProfile} />
                   <Route path="/investor/create-project" component={CreateProject} />
                   <Route path="/investor/view-projects" component={ViewProject} />
                   <Route path="/investor/view-project/:projectId" component={ViewProject} />
-                  <Route path="/investor/ProjectDetails" component={ProjectDetails} />
+                  <Route path="/investor/ProjectDetails/:id" render={(props) => <ProjectDetails {...props} projectproposals={this.state.projectproposals } />} />
+                  <Route path="/investor/FundDetails/:id" component={FundDetails} />
                   <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />
                 </Switch>
               </Router>
@@ -193,5 +211,7 @@ const mapStateToProps = (state) => ({
   companyName: state.investor.companyName,
   category: state.investor.category,
   userId: state.investor.userId
+  
 });
+console.log(mapStateToProps);
 export default connect(mapStateToProps)(InvestorDashboard);
