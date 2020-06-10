@@ -212,4 +212,4 @@ const mapStateToProps = (state) => ({
   userId: state.sme.userId
 });
 
-export default connect(mapStateToProps)(SmeDashboard)
+export default connect(mapStateToProps)(SmeDashboard);
