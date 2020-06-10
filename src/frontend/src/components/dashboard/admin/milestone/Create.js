@@ -122,7 +122,7 @@ class Create extends React.Component {
                 </Form.Control>
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={this.handleClick}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                 Create Milestone
               </Button>
             </Form>

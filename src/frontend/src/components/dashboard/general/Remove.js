@@ -56,7 +56,7 @@ class Remove extends React.Component {
                 <Form.Control type="text" placeholder="Enter user name" name="fullName" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={this.deactivate}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.deactivate}>
                 Deactivate User
               </Button>
             </Form>

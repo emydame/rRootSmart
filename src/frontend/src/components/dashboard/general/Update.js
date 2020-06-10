@@ -123,7 +123,7 @@ axios
                 <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={this.submitUpdate}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.submitUpdate}>
                 Update User
               </Button>
             </Form>
