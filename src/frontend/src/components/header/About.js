@@ -130,6 +130,26 @@ class About extends React.Component {
                     </a>
                   </figure>
                 </Col>
+                <Col className="dev-frame">                   
+                <figure>
+                  <img style={{width:"200px", height:"200px"}} src={"./Abdul.jpg"} alt=""/>
+                <figcaption>Abdulhafiz Ibrahim;
+                  Frontend Web Developer
+                </figcaption>
+                <a href="#" target="_blank">View Portfolio</a> 
+              </figure>
+                                    
+                </Col> 
+                <Col className="dev-frame">                   
+                <figure>
+                  <img src={"./Emilia.png"} alt=""/>
+                <figcaption>Emilia Anochirionye;
+                   Technical Team Lead
+                </figcaption>
+                <a href="#" target="_blank">View Portfolio</a>
+              </figure>                      
+                </Col> 
+              
               </Row>
             </div>
           </Modal.Body>

@@ -213,7 +213,7 @@ class Create extends React.Component {
                       </label>
                     </div>
                   </div>
-                  <Button variant="primary" type="submit" onClick={this.handleClick}>
+                  <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                   Create User
               </Button>
             </form>

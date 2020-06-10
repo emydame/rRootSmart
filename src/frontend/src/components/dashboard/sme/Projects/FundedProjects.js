@@ -47,7 +47,7 @@ class View extends React.Component {
 
   fetchData() {
     axios
-      .get(`http://localhost:4000/projects/all`)
+      .get(`https://eazsme-backend.herokuapp.com/projects/all`)
       .then(({ data }) => {
         const status = data.status;
         const projects = data.data;

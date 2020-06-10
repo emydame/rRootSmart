@@ -29,7 +29,7 @@ class Remove extends React.Component {
     const form = document.querySelector(`form[name="deactivate"]`);
     const formFields = serialize(form, {hash: true});
 
-    await axios.post("http://localhost:4000/deactivate-user", formFields)
+    await axios.post("https://eazsme-backend.herokuapp.com/deactivate-user", formFields)
     .then((data) => {
       if(data.status === "success") {
         this.setState({success: "User successfully deactivated!"});
@@ -65,7 +65,7 @@ class Remove extends React.Component {
                 <Form.Control type="text" placeholder="Enter user name" name="email" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={this.deactivate}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.deactivate}>
                 Deactivate User
               </Button>
             </Form>

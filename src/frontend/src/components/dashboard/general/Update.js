@@ -34,7 +34,12 @@ class Update extends React.Component {
   componentDidMount() {
     // this.update();
   }
-    
+  submitUpdate(){   
+axios
+      .get("https://eazsme-backend.herokuapp.com/updateOrguser" + email)
+      .then((data) => this.setState({ data }))
+      .catch((error) => console.log(error));
+  }     
 
   getUserID(event) {
     event.preventDefault();
@@ -45,7 +50,7 @@ class Update extends React.Component {
   varifyPassword(event) {
     event.preventDefault();
     const value = event.target.value;
-    // axios.get("http://localhost:4000")  https://eazsme-backend.herokuapp.com//user/ make a request for a password and use it to verify password
+    // axios.get("https://eazsme-backend.herokuapp.com")  https://eazsme-backend.herokuapp.com//user/ make a request for a password and use it to verify password
   }
 
   handleEditorChange(e) {
@@ -126,7 +131,7 @@ class Update extends React.Component {
                 <Form.Control type="password" placeholder="Confirm Password" name="confirmPassword" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={this.submitUpdate}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.submitUpdate}>
                 Update User
               </Button>
             </Form>

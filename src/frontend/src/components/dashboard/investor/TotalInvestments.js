@@ -62,7 +62,7 @@ class TotalInvestments extends React.Component {
                   <td>{item.dateInitiated}</td>
                   <td>{item.amount}</td>
                   <td>
-                    <Link to={`/update-investment/${item.fundId}`}>update payment details</Link>
+                    <Link to={`FundDetails/${item.fundId}`}>update payment details</Link>
                   </td>
                 </tr>
               );

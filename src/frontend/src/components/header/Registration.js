@@ -78,7 +78,7 @@ class Registration extends React.Component {
                 <h5>{success}</h5>
               </div>
             ) : (
-              <div className="text-bold text-success">
+              <div className="text-bold text-danger">
                 <h5>{error}</h5>
               </div>
             )}

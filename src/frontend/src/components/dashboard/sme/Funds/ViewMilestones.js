@@ -74,7 +74,7 @@ class ViewMilestones extends React.Component {
 
   async fetchData() {
     await axios
-      .get("http://localhost:4000/milestones/all")
+      .get("https://eazsme-backend.herokuapp.com/milestones/all")
       .then(({ data }) => {
         const status = data.status;
         const result = data.data;
@@ -91,7 +91,7 @@ class ViewMilestones extends React.Component {
     const formFields = serialize(form, { hash: true });
 
     axios
-      .post("http://localhost:4000/milestones/id", formFields)
+      .post("https://eazsme-backend.herokuapp.com/milestones/id", formFields)
       .then(({ data }) => {
         if (data.status === "success") {
           this.setState({ success: "Milestone successfully updated!" });
