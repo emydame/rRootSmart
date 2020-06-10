@@ -61,7 +61,7 @@ class InvesmentHistory extends React.Component {
                   <td>{index+1}</td>
                   <td>{item.disbursedTo}</td>
                   <td>{item.projectName}</td>
-                  <td>{item.amount}</td>
+                  <td>{item.fund}</td>
                   <td>{item.status}</td>
                   <td>
                     <Link to={`/milestones/${item.applicationId}`}>more details <svg class="bi bi-box-arrow-up-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
