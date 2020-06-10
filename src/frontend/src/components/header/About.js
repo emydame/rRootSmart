@@ -108,7 +108,7 @@ class About extends React.Component {
                 <figure>
                   <img style={{width:"200px", height:"200px"}} src={"./Abdul.jpg"} alt=""/>
                 <figcaption>Abdulhafiz Ibrahim;
-                   Frontend Developer
+                  Frontend Web Developer
                 </figcaption>
                 <a href="#" target="_blank">View Portfolio</a> 
               </figure>
