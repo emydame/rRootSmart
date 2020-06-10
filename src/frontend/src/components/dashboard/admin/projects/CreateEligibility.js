@@ -77,10 +77,10 @@ class CreateEligibility extends React.Component {
       console.log(formFields);
      
      axios
-        .post("http://localhost:4000/eligibility")
+        .post("http://localhost:4000/eligibility", formFields)
         .then((data) => {
         
-          if ((data.status === "success")) {
+          if ((data.data.status === "success")) {
         this.setState({ success: "Eligibility Successfully created!" });
             
           } else {
@@ -105,10 +105,14 @@ render() {
           
           <Col md="12">
           {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
           <form name="create-eligibility" id="createEligibility">
              <Form.Group controlId="projectId">
                 <Form.Label>Select Project:</Form.Label>
