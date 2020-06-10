@@ -68,7 +68,7 @@ class Create extends React.Component {
     const form = document.querySelector(`form[name="create-project"]`);
     const formFields = serialize(form, { hash: true });
     await axios
-      .post(`http://localhost:4000/projects`, formFields)
+      .post(`https://eazsme-backend.herokuapp.com/projects`, formFields)
       .then(({data}) => {
         const {status} = data;
         if (status === `success`) {

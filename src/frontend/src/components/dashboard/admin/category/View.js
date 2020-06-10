@@ -49,7 +49,7 @@ class View extends React.Component {
 
   async fetchData() {
     await axios
-      .get("http://localhost:4000/projects/category/")
+      .get("https://eazsme-backend.herokuapp.com/projects/category/")
       .then(({ data }) => {
         const status = data.status;
         const result  = data.data;
