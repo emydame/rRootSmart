@@ -34,7 +34,7 @@ class Create extends React.Component {
 
   async getCategory() {
     await axios
-      .get(`https://eazsme-backend.herokuapp.com/projects/category/`)
+      .get(`http://localhost:4000/projects/category/`)
       .then((data) => {
 
         const categories = data.data.data;

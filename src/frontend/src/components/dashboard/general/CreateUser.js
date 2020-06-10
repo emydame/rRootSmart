@@ -10,6 +10,7 @@ import { DatePicker } from "antd";
 import moment from "moment";
 import serialize from "form-serialize";
 import axios from "axios";
+import { connect } from "react-redux";
 
 const dateFormat = "YYYY/MM/DD";
 class Create extends React.Component {
@@ -19,12 +20,20 @@ class Create extends React.Component {
     this.state = {
       category: "investor",
       userId: "",
-      organizationId: "874",
+      organizationId: "",
       success: "",
       error: ""
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+   
+  componentDidMount(){
+     const smeObj = JSON.parse(localStorage.getItem("userObj"));
+    if (smeObj) {
+      this.setState(() => ({ smeObj }));
+      console.log(smeObj);
+    }
   }
 
   handleEditorChange(e) {
@@ -35,11 +44,10 @@ class Create extends React.Component {
     e.preventDefault();
     const form = document.querySelector(`form[name="create-user"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
-    formFields.organizationId=this.state.organizationId;
-    formFields.category=this.state.category;
+    formFields.category=this.state.smeObj.category;
+    formFields.organizationId=this.state.smeObj.organizationId;
 
-    console.log(formFields);
-    axios
+       axios
       .post("http://localhost:4000/organizationUser", formFields)
       .then((data) => {
         

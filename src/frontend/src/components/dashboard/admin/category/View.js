@@ -46,10 +46,10 @@ class View extends React.Component {
       };
     });
   }
-
+  //https://eazsme-backend.herokuapp.com/projects/category/
   async fetchData() {
     await axios
-      .get("https://eazsme-backend.herokuapp.com/projects/category/")
+      .get("http://localhost:4000/projects/category/")
       .then(({ data }) => {
         const status = data.status;
         const result  = data.data;
@@ -81,7 +81,8 @@ class View extends React.Component {
               <th>Category Name</th>
               <th>Category Description</th>
               <th>Created By</th>
-              <th>Action</th>
+              <th>Update</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -89,14 +90,16 @@ class View extends React.Component {
               let count = arr.length;
               return (
                 <tr>
-                  <td key={index}>{item.projectCatId}</td>
+                  {/*<td key={index}>{item.projectCatId}</td>*/}
                   <td key={index}>{item.categoryName}</td>
                   <td key={index}>{item.categoryDescription}</td>
                   <td key={index}>{item.createdBy}</td>
                   <td key={count++}>
-                    <Link to={`/delete/${item.projectCatId}`}>Delete</Link>|
                     <Link to={`/update/${item.projectCatId}`}>Update</Link>
                   </td>
+                  <td key={count++}>
+                    <Link to={`/delete/${item.projectCatId}`}>Delete</Link>|
+                   </td>
                 </tr>
               );
             })}
