@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint no-console: "error" */
+
 import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import axios from "axios";

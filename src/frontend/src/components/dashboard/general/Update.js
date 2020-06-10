@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint no-console: "error" */
 /* eslint-disable no-multi-str */
 import React from "react";
 import Card from "react-bootstrap/Card";
