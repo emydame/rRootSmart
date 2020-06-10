@@ -1,3 +1,7 @@
+:root {
+  --primary: #3d6cb9;
+}
+
 .header {
   padding: 0;
   color: white;
@@ -253,7 +257,8 @@ div > select.form-control {
 }
 
 .user-btn {
-  background-color: #3d6cb9;
+  background-color: var(--primary);
+  border-color: #3d6cb9;
 }
 
 .user-btn:hover {
@@ -265,7 +270,7 @@ div > select.form-control {
   margin: 20px;
   padding: 20px;
   color: #fff;
-  font-size: 18px;
+  font-size: 18px;  
 }
 
 .profile-title-text {

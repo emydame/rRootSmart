@@ -141,7 +141,7 @@ class CreateMilestone extends React.Component {
                 onChange={this.handleChange}
               />
               <br></br>
-              <Button variant="primary" type="submit" onClick={this.handleClick}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                 Create Milestone
               </Button>
             </form>

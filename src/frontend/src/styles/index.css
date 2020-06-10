@@ -123,9 +123,9 @@ div.ml-4,
   color: #f90;
 }
 
-/* div > input:invalid {
+div > input:invalid {
   box-shadow: none;
-} */
+}
 
 label.form-label,
 label {

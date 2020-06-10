@@ -96,7 +96,7 @@ class Create extends React.Component {
                 <Form.Control type="text" placeholder="Created By:" name="createdBy" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={this.handleClick}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                 Create Category
               </Button>
             </Form>

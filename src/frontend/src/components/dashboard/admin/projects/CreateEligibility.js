@@ -100,7 +100,7 @@ render() {
                   name="description"
                 />
                  <br></br>
-                  <Button variant="primary" type="submit" onClick={this.handleClick}>
+                  <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                   Create Criteria
               </Button>
             </form>
