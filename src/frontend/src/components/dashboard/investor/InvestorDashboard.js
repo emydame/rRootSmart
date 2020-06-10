@@ -28,7 +28,7 @@ import Update from "../general/Update";
 import ProfileDetails from "./user/ProfileDetails";
 import ProjectDetails from "./ProjectDetails";
 import EditProfile from "./user/EditProfile";
-
+import { connect } from "react-redux";
 import Invest from "./invest";
 import ViewProject from "../general/View";
 import CreateProject from "../general/Create";
@@ -36,7 +36,7 @@ import CreateProject from "../general/Create";
 const menu = (
   <Menu id="dropdown-menu">
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-    <Link to="/investor/AllUsers">Profile</Link>
+      <Link to="/investor/AllUsers">Profile</Link>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
       <Link to="/investor/AllUsers">Manage Users</Link>
@@ -73,6 +73,7 @@ class InvestorDashboard extends React.Component {
   };
 
   render() {
+    // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
@@ -100,44 +101,62 @@ class InvestorDashboard extends React.Component {
             </Menu.Item>
 
             <SubMenu key="sub3" icon={<WalletOutlined />} title="Investments">
-            <Menu.Item key="7" icon={<WalletOutlined />}>
-              <Link to="/investor/invest">Invest</Link>
-            </Menu.Item>
-            <Menu.Item key="8"><Link to="/investor/InvestmentHistory"><RiseOutlined />History</Link></Menu.Item>
+              <Menu.Item key="7" icon={<WalletOutlined />}>
+                <Link to="#">Invest</Link>
+              </Menu.Item>
+              <Menu.Item key="8">
+                <Link to="/investor/InvestmentHistory">
+                  <RiseOutlined />
+                  History
+                </Link>
+              </Menu.Item>
+
               <Menu.Item key="9" icon={<PoundOutlined />}>
                 <Link to="/investor/TotalInvestments">Amount</Link>
-            </Menu.Item >
+              </Menu.Item>
               <Menu.Item key="10" icon={<AuditOutlined />}>
-              <Link to="/investor/SmeProposals">All Proposals</Link>
-            </Menu.Item>              
-            </SubMenu>        
+                <Link to="/investor/SmeProposals">All Proposals</Link>
+              </Menu.Item>
+            </SubMenu>
 
-            <Menu.Item key="3" icon={<LogoutOutlined/>}> Log Out</Menu.Item>
+            <Menu.Item key="3" icon={<LogoutOutlined />}>
+              {" "}
+              Log Out
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <nav class="navbar">
-                <Link className="dashboard-img" to="#">
-                  <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
-                </Link>
-                <div>
-                  <Badge className="badge-item" count={5}>
-                    <a href="#" className="example" />
-                  </Badge>
-                    <BellFilled className="notificationBell" />
-                  </div>
-                <Dropdown overlay={menu}>
-                  <Avatar src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg" className="ant-dropdown-link" onClick={(e) => e.preventDefault()} />
-                </Dropdown>
-            </nav>
+            <Link className="dashboard-img" to="#">
+              <img
+                src={
+                  "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
+                }
+                alt="logo"
+              />
+            </Link>
+            <div>
+              <Badge className="badge-item" count={5}>
+                <a href="#" className="example" />
+              </Badge>
+              <BellFilled className="notificationBell" />
+            </div>
+            <Dropdown overlay={menu}>
+              <Avatar
+                src="https://res.cloudinary.com/lordefid/image/upload/v1567112037/220190826_163351912_r9yfcl.jpg"
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              />
+            </Dropdown>
+          </nav>
 
-            {/* Content Elements are here */}
+          {/* Content Elements are here */}
           <Content style={{ margin: "0 16px" }}>
             <div className="content-title">
               {/* <h5>WELCOME TO YOUR INVESTMENT DASHBOARD</h5>
               <p>Here you can view and manage all your investments</p>*/}
             </div>
-            
+
             {/* <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
@@ -146,6 +165,7 @@ class InvestorDashboard extends React.Component {
               <Router history={this.props.history}>
                 <Switch>
                   <Route path="/investor/SmeProposals" component={SmeProposals} />
+
                   <Route path="/investor/InvestmentHistory"render={(props) => <InvestmentHistory {...props} user={this.state.user } />} />
                   <Route path="/investor/TotalInvestments" render={(props) => <TotalInvestments {...props} user={this.state.user } />} />
                   <Route path="/investor/AllUsers" component={AllUsers} />
@@ -158,7 +178,7 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/view-projects" component={ViewProject} />
                   <Route path="/investor/view-project/:projectId" component={ViewProject} />
                   <Route path="/investor/ProjectDetails" component={ProjectDetails} />
-                  <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user } />} />
+                  <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />
                 </Switch>
               </Router>
             </div>
@@ -169,5 +189,9 @@ class InvestorDashboard extends React.Component {
     );
   }
 }
-
-export default InvestorDashboard;
+const mapStateToProps = (state) => ({
+  companyName: state.investor.companyName,
+  category: state.investor.category,
+  userId: state.investor.userId
+});
+export default connect(mapStateToProps)(InvestorDashboard);
