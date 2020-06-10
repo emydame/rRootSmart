@@ -34,12 +34,13 @@ class Update extends React.Component {
   componentDidMount() {
     // this.update();
   }
-  submitUpdate(){   
+  
+ /* submitUpdate(){   
 axios
       .get("https://eazsme-backend.herokuapp.com/updateOrguser" + email)
       .then((data) => this.setState({ data }))
       .catch((error) => console.log(error));
-  }     
+  } */  
 
   getUserID(event) {
     event.preventDefault();
