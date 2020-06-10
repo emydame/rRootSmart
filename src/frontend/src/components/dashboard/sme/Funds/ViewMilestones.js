@@ -49,7 +49,7 @@ class ViewMilestones extends React.Component {
 
   getActiveProjects() {
     axios
-      .get(`http://localhost:4000/projects/all`)
+      .get("http://localhost:4000/projects/all")
       .then((data) => {
       
         const projects = data.data.data;    
@@ -61,7 +61,7 @@ class ViewMilestones extends React.Component {
 
           // based on type of data is array
           for (let i = 0; i < data.length; i++) {
-            const option = document.createElement(`option`);
+            const option = document.createElement("option");
             option.innerText = data[parseInt(i,10)].projectName;
             option.name = data[parseInt(i,10)].projectName;
             option.value = data[parseInt(i,10)].projectId;

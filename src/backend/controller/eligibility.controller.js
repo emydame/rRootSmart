@@ -4,10 +4,10 @@ const EligibilityCreteria = db.eligibility;
 // Post  Eligibility Creteria
   exports.create = (req, res) => {
     let today = new Date();
-    let id = Math.floor(Math.random() * 10000) + 1;
+    let eligibilityid = Math.floor(Math.random() * 10000) + 1;
   
     let criteria = {
-      projectId: id,
+      id: eligibilityid,
       projectId: req.body.projectId,
       projectName: req.body.projectName,
       eligibilityCreteria: req.body.eligibilityCreteria,

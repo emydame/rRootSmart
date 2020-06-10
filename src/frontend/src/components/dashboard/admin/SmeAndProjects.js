@@ -1,3 +1,4 @@
+/* eslint-disable react/no-direct-mutation-state */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 
@@ -14,10 +15,10 @@ export default class SmeAndProjects extends Component {
 
     this.state = {
       data: [],
-      id: ``,
-      searchData: ``,
+      id: "",
+      searchData: "",
       foundData: [],
-      valueChange: ``,
+      valueChange: "",
       success: "",
       error: ""
     };
@@ -39,7 +40,7 @@ export default class SmeAndProjects extends Component {
       console.log(data);
       const  status  = data.status;
       const projects = data.data;
-      if (status === `success`) {
+      if (status === "success") {
         this.setState({ success: "Fund Application Approved"});
         
       }
@@ -49,12 +50,12 @@ export default class SmeAndProjects extends Component {
 
   fetchData() {
     axios
-      .get(`http://localhost:4000/fund/applications/all`)
+      .get("http://localhost:4000/fund/applications/all")
       .then(({ data }) => {
         console.log(data);
         const  status  = data.status;
         const projects = data.data;
-        if (status === `success`) {
+        if (status === "success") {
           this.setState({ data: projects });
           
         }

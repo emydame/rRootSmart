@@ -63,16 +63,10 @@ class CreateApplication extends React.Component {
   submitForm = (e) => {
     e.preventDefault();
 
-   {/* const fd = new FormData();
-    fd.append("projectName", this.state.projectName);
-    fd.append("dateStart", this.state.dateStart);
-    fd.append("dateEnd", this.state.dateEnd);
-    fd.append("description", this.state.description);
-   fd.append("proposals", this.state.proposals, this.state.proposals.name);*/}
-
-    const form = document.querySelector(`form[name="create-fundApplication"]`);
+    
+    const form = document.querySelector("form[name=create-fundApplication]");
     const formFields = serialize(form, { hash: true });   
-    formFields.status = `Applied`;
+    formFields.status = "Applied";
     formFields.proposals =this.state.proposals.name;
     formFields.organizationId = this.state.userObj.organizationId;
     console.log(formFields);
@@ -84,8 +78,8 @@ class CreateApplication extends React.Component {
         // then print response status
         if (response.status === "success") {
           this.setState({ 
-            success: `Application Created!`, 
-            error:``,
+            success: "Application Created!", 
+            error:"",
            });
         } else {
           this.setState({ error: "Error creating Application" });

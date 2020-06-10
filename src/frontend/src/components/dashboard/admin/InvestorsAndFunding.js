@@ -15,9 +15,9 @@ export default class InvestorsAndFunding extends Component {
 
     this.state = {
       data: [],
-      searchData: ``,
+      searchData: "",
       foundData: [],
-      valueChange: ``,
+      valueChange: "",
       success: "",
       error: ""
     };
@@ -32,11 +32,11 @@ export default class InvestorsAndFunding extends Component {
 
   fetchData() {
     axios
-      .get(`http://localhost:4000/funds/all`)
+      .get("http://localhost:4000/funds/all")
       .then(({ data }) => {
               const  status  = data.status;
         const projects = data.data;
-        if (status === `success`) {
+        if (status === "success") {
           this.setState({ data: projects });          
         }
       })
@@ -44,11 +44,11 @@ export default class InvestorsAndFunding extends Component {
   }
   approveFunds() {
     axios
-      .put(`http://localhost:4000/funds/update`)
+      .put("http://localhost:4000/funds/update")
       .then(({ data }) => {
               const  status  = data.status;
         
-        if (status === `success`) {
+        if (status === "success") {
           this.setState({ success: "Investment Approved" });          
         }else{
           this.setState({ error: "Error Approving Investment" }); 

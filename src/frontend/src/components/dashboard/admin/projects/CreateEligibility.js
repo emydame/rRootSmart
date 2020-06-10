@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-str */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
@@ -46,7 +47,7 @@ class CreateEligibility extends React.Component {
   
     getActiveProjects() {
       axios
-        .get(`http://localhost:4000/projects/all`)
+        .get("http://localhost:4000/projects/all")
         .then((data) => {
         
           const projects = data.data.data;    
@@ -58,7 +59,7 @@ class CreateEligibility extends React.Component {
   
             // based on type of data is array
             for (let i = 0; i < data.length; i++) {
-              const option = document.createElement(`option`);
+              const option = document.createElement("option");
               option.innerText = data[parseInt(i,10)].projectName;
               option.name = data[parseInt(i,10)].projectName;
               option.value = data[parseInt(i,10)].projectId;
@@ -72,7 +73,8 @@ class CreateEligibility extends React.Component {
     handleClick(e) {
       e.preventDefault();
       // Make api call with form
-      const form = document.querySelector(`form[name="create-eligibility"]`);
+   
+      const form = document.querySelector("form[name=create-eligibility]");
       const formFields = serialize(form, { hash: true });
       formFields.eligibilityCreteria=this.state.eligibilityCreteria;
       formFields.projectName=this.state.projectName;
@@ -133,15 +135,15 @@ render() {
                     height: 200,
                     menubar: false,
                     plugins: [
-                      `advlist autolink lists link image`,
-                      `charmap print preview anchor help`,
-                      `searchreplace visualblocks code`,
-                      `insertdatetime media table paste wordcount`
+                      "advlist autolink lists link image",
+                      "charmap print preview anchor help",
+                      "searchreplace visualblocks code",
+                      "insertdatetime media table paste wordcount"
                     ],
                     toolbar:
-                      `undo redo | formatselect | bold italic | \
+                      "undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
-                    bullist numlist outdent indent | help`
+                    bullist numlist outdent indent | help"
                   }}
                   name="eligibilityCreteria"
                   onChange={this.handleEditorChange}
