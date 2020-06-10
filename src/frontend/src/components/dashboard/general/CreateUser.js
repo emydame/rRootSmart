@@ -40,7 +40,7 @@ class Create extends React.Component {
     const formFields = serialize(form, { hash: true }); // Make api call with form
     console.log(formFields);
     axios
-      .post("http://localhost:4000/organizationUser", formFields)
+      .post("https://eazsme-backend.herokuapp.com/organizationUser", formFields)
       .then((data) => {
         
         if ((data.data.status === "success")) {
@@ -192,7 +192,7 @@ class Create extends React.Component {
                       </label>
                     </div>
                   </div>
-                  <Button variant="primary" type="submit" onClick={this.handleClick}>
+                  <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                   Create User
               </Button>
             </form>

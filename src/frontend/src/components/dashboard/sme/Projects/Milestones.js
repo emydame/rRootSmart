@@ -46,7 +46,7 @@ class CreateMilestone extends React.Component {
     };
     // Make api call with form
     axios
-      .post("http://localhost:4000/milestones", fd)
+      .post("https://eazsme-backend.herokuapp.com/milestones", fd)
       .then((data) => {
         console.log(data);
         if (data.status === "success") {
@@ -141,7 +141,7 @@ class CreateMilestone extends React.Component {
                 onChange={this.handleChange}
               />
               <br></br>
-              <Button variant="primary" type="submit" onClick={this.handleClick}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                 Create Milestone
               </Button>
             </form>

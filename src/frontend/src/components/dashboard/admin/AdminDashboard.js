@@ -141,16 +141,16 @@ class AdminDashboard extends React.Component {
               <Menu.Item key="9" icon={<AppstoreOutlined />}>
                 <Link to="/admin/create-milestone"> Create Milestone</Link>
               </Menu.Item>
-              <Menu.Item key="10" icon={<DollarCircleOutlined />}>
+              <Menu.Item key="11" icon={<DollarCircleOutlined />}>
                 <Link to="/admin/view-milestone">View Milestone</Link>
               </Menu.Item>
             </SubMenu>
 
-            <SubMenu key="sub4" icon={<fundOutlined />} title="Funds">
-              <Menu.Item key="9" icon={<AppstoreOutlined />}>
+            <SubMenu key="sub5" icon={<fundOutlined />} title="Funds">
+              <Menu.Item key="10" icon={<AppstoreOutlined />}>
                 <Link to="/admin/smeandprojects"> SMEs Projects</Link>
               </Menu.Item>
-              <Menu.Item key="10" icon={<DollarCircleOutlined />}>
+              <Menu.Item key="12" icon={<DollarCircleOutlined />}>
                 <Link to="/admin/investorsandfunding">Investors Funding</Link>
               </Menu.Item>
             </SubMenu>

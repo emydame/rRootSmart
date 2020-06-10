@@ -138,7 +138,7 @@ class Create extends React.Component {
                 <Form.Control type="date" placeholder="Date ended" name="dateEnded" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={this.handleClick}>
+              <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                 Create Project
               </Button>
             </Form>
