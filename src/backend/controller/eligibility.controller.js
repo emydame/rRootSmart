@@ -2,37 +2,41 @@ const db = require("../config/db.config");
 const EligibilityCreteria = db.eligibility;
 
 // Post  Eligibility Creteria
-exports.create = (req, res) => {
+  exports.create = (req, res) => {
+    let today = new Date();
     let id = Math.floor(Math.random() * 10000) + 1;
-  let requests = {
-    projectId: req.body.projectId,
-    projectName: req.body.projectName,
-    eligibilityCreteria: req.body.eligibilityCreteria
-  };
-  if (!req.body) {
-    return res.status(400).json({
-      status: "error",
-      message: "Fields cannot be empty"
-    });
-  } 
-  // create new eligibility instance
-  const eligibilityCreteria = new EligibilityCreteria(requests);
-  eligibilityCreteria
-    .save()
-    .then((data) => {
-      return res.status(200).json({
-        status: "success",
-        response : data
-      });
-    })
-    .catch((err) => {
-      return res.status(500).json({
-        status: "error",
-        message: err.message
-      });
-    });
+  
+    let criteria = {
+      projectId: id,
+      projectId: req.body.projectId,
+      projectName: req.body.projectName,
+      eligibilityCreteria: req.body.eligibilityCreteria,
       
-  };
+    };
+    if (!req.body) {
+      return res.status(400).json({
+        status: "error",
+        message: "Please fill all project input fields"
+      });
+    }  else {
+          // Add project
+          const eligibilityCreteria = new EligibilityCreteria(criteria);
+          eligibilityCreteria
+            .save()
+            .then((data) => {
+              return res.status(200).json({
+                status: "success",
+                data
+              });
+            })
+            .catch((err) => {
+              return res.status(500).json({
+                status: "error",
+                message: err.message || "Not saved"
+              });
+            });
+        }
+      };
 
 
 exports.findOne = (req, res) => {
