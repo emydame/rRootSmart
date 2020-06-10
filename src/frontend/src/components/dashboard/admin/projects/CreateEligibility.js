@@ -73,7 +73,8 @@ class CreateEligibility extends React.Component {
     handleClick(e) {
       e.preventDefault();
       // Make api call with form
-      const form = document.querySelector(`form[name="create-eligibility"]`);
+   
+      const form = document.querySelector("form[name=create-eligibility]");
       const formFields = serialize(form, { hash: true });
       formFields.eligibilityCreteria=this.state.eligibilityCreteria;
       formFields.projectName=this.state.projectName;

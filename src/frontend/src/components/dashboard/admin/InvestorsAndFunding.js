@@ -44,7 +44,7 @@ export default class InvestorsAndFunding extends Component {
   }
   approveFunds() {
     axios
-      .put(`http://localhost:4000/funds/update`)
+      .put("http://localhost:4000/funds/update")
       .then(({ data }) => {
               const  status  = data.status;
         
