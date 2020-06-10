@@ -95,8 +95,7 @@ class Nav extends React.Component {
         }
       })
       .catch((error) => {
-        /*console.log(error)*/
-        console.error(error);
+            console.error(error);
       });
   }
 
@@ -169,37 +168,51 @@ class Nav extends React.Component {
         const user = {};
 
         if (status === "success") {
+          localStorage.clear();
           switch (result.category) {
             case "admin":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+              
               admin(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("adminObj", JSON.stringify (user));
+              localStorage.setItem("userObj", JSON.stringify (user));
               this.props.history.push("/admin");
+             
               break;
             case "sme":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+
               sme(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("userObj", JSON.stringify (user));
+              localStorage.setItem("smeObj", JSON.stringify (user));
               this.props.history.push("/sme");
               break;
             case "investor":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+
               investor(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("investorObj", JSON.stringify (user));
+              localStorage.setItem("userObj", JSON.stringify (user));
               this.props.history.push("/investor");
               break;
             case "regulator":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+
               regulator(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("regulatorObj", JSON.stringify (user));
+              localStorage.setItem("userObj", JSON.stringify (user));
               this.props.history.push("/regulator");
               break;
             default:

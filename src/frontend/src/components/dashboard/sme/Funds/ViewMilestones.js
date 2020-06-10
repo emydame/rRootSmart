@@ -18,6 +18,7 @@ class ViewMilestones extends React.Component {
     super(props);
 
     this.state = {
+      projects: [],
       description: "",
       data: [],
       success: "",
@@ -28,10 +29,13 @@ class ViewMilestones extends React.Component {
     this.showMilestoneModal = this.showMilestoneModal.bind(this);
     this.closeMilestoneModal = this.closeMilestoneModal.bind(this);
     this.handleMilestoneUpdate = this.handleMilestoneUpdate.bind(this);
+    this.getActiveProjects = this.getActiveProjects.bind(this);
+    this.projectSelect=React.createRef();
   }
 
   componentDidMount() {
     this.fetchData();
+    this.getActiveProjects();
   }
   showMilestoneModal(event) {
     event.preventDefault();
@@ -40,6 +44,32 @@ class ViewMilestones extends React.Component {
 
   closeMilestoneModal() {
     this.setState({ showUpdate: false });
+  }
+
+
+  getActiveProjects() {
+    axios
+      .get(`http://localhost:4000/projects/all`)
+      .then((data) => {
+      
+        const projects = data.data.data;    
+        this.setState({projects}, () => {
+          const select = this.projectSelect.current;
+
+          const { projects } = this.state;
+          const data = projects;
+
+          // based on type of data is array
+          for (let i = 0; i < data.length; i++) {
+            const option = document.createElement(`option`);
+            option.innerText = data[parseInt(i,10)].projectName;
+            option.name = data[parseInt(i,10)].projectName;
+            option.value = data[parseInt(i,10)].projectId;
+            select.appendChild(option);
+          }
+        });
+      })
+      .catch((error) => console.log(error));
   }
 
   async fetchData() {
@@ -81,29 +111,29 @@ class ViewMilestones extends React.Component {
     const data = this.state.data;
     return (
       <Card.Body>
-        {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
+       
         <div className="content-text">
           <h5>Project Milestones</h5>
         </div>
         <Row>
           <Col md="12">
-            <form name="viewMilestone" id="viewMilestone">
-              <div class="form-row" controlId="ProjectId">
-                <div class="form-group col-md-12">
-                  <label for="ProjectId">Select Project</label>
-                  <select id="ProjectId" class="form-control" name="ProjectId">
-                    <option selected>Choose...</option>
-                    <option>Fertilizer Distribution</option>
-                    <option>Maize Farming</option>
-                    <option>Project 1</option>
-                    <option>Project 2</option>
-                  </select>
-                </div>
+          {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
               </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
+            <form name="viewMilestone" id="viewMilestone">
+            <Form.Group controlId="projectId">
+                <Form.Label>Select Project:</Form.Label>
+                <Form.Control as="select" ref={this.projectSelect} name="projectId" 
+                 onChange={(e) => this.setState({projectName: e.target.value})}>>
+                                    </Form.Control>
+
+              </Form.Group>
 
               <br></br>
               <Table striped bordered hover size="sm">

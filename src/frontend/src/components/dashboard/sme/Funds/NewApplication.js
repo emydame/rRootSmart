@@ -34,6 +34,15 @@ class CreateApplication extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount(){
+    const userObj = JSON.parse(localStorage.getItem("userObj"));
+   if (userObj) {
+     this.setState(() => ({ userObj }));
+     console.log(userObj);
+   }
+ }
+
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -41,7 +50,9 @@ class CreateApplication extends React.Component {
   selectedFileHandler = (e) => {
     this.setState({
       proposals: e.target.files[0]
+     
     });
+    console.log( e.target.files[0]);
   };
 
   handleEditorChange = (e) => {
@@ -51,28 +62,30 @@ class CreateApplication extends React.Component {
   submitForm = (e) => {
     e.preventDefault();
 
-    const fd = new FormData();
+   {/* const fd = new FormData();
     fd.append("projectName", this.state.projectName);
     fd.append("dateStart", this.state.dateStart);
     fd.append("dateEnd", this.state.dateEnd);
     fd.append("description", this.state.description);
-    fd.append("proposals", this.state.proposals, this.state.proposals.name);
+   fd.append("proposals", this.state.proposals, this.state.proposals.name);*/}
 
+    const form = document.querySelector(`form[name="create-fundApplication"]`);
+    const formFields = serialize(form, { hash: true });   
+    formFields.status = `Applied`;
+    formFields.proposals =this.state.proposals.name;
+    formFields.organizationId = this.state.userObj.organizationId;
+    console.log(formFields);
     axios
-      .post("http://localhost:4000/fund/apply", fd)
+      .post("http://localhost:4000/fund/apply", formFields)
       .then((res) => {
         let response = res.data;
+        console.log(response.status);
         // then print response status
         if (response.status === "success") {
-          this.setState({
-            success: "Application Successfully created!",
-            //Clear input fields
-            description: "",
-            projectName: "",
-            dateStart: "",
-            dateEnd: "",
-            proposals: null
-          });
+          this.setState({ 
+            success: `Application Created!`, 
+            error:``,
+           });
         } else {
           this.setState({ error: "Error creating Application" });
         }

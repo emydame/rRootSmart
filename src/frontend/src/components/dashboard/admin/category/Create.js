@@ -2,6 +2,8 @@
 /*eslint quotes: ["error", "backtick"]*/
 /*eslint-env es6*/
 /* eslint-disable no-console */
+/* eslint no-console: "error" */
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
