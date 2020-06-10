@@ -21,6 +21,7 @@ class CreateApplication extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      organizationId: "7241",
       description: "",
       projectName: "",
       dateStart: "",
@@ -28,6 +29,7 @@ class CreateApplication extends React.Component {
       proposals: null,
       success: "",
       error: ""
+      
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleSubmitForm = this.submitForm.bind(this);
@@ -60,18 +62,24 @@ class CreateApplication extends React.Component {
     this.setState({ description: e.target.getContent() });
   };
 
+  /**
+   * Note; Organization Id is suppose to be retrieved from login details
+   * A random number is set as organization id just for demonstration purpose
+   */
+
   submitForm = (e) => {
     e.preventDefault();
 
-    
-    const form = document.querySelector("form[name=create-fundApplication]");
-    const formFields = serialize(form, { hash: true });   
-    formFields.status = "Applied";
-    formFields.proposals =this.state.proposals.name;
-    formFields.organizationId = this.state.userObj.organizationId;
-    console.log(formFields);
+    const fd = new FormData();
+    fd.append("organizationId", this.state.organizationId);
+    fd.append("projectName", this.state.projectName);
+    fd.append("dateStart", this.state.dateStart);
+    fd.append("dateEnd", this.state.dateEnd);
+    fd.append("description", this.state.description);
+    fd.append("proposals", this.state.proposals, this.state.proposals.name);
+
     axios
-      .post("http://localhost:4000/fund/apply", formFields)
+      .post("http://localhost:4000/fund/apply", fd)
       .then((res) => {
         let response = res.data;
         console.log(response.status);
@@ -160,7 +168,6 @@ class CreateApplication extends React.Component {
                   height: 200,
                   menubar: false,
                   plugins: [
-                    "advlist autolink lists link image",
                     "charmap print preview anchor help",
                     "searchreplace visualblocks code",
                     "insertdatetime media table paste wordcount"

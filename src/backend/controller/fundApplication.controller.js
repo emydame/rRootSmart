@@ -5,7 +5,7 @@ const FundApplication = db.fundApplication;
 exports.create = (req, res) => {
   //let date = new Date();  
   const appId = Math.floor(Math.random() * 100000) + 1;
-  let requests = {
+  let requests = {  
     applicationId: appId,
     organizationId: req.body.organizationId,
     fundId: req.body.fundId,
@@ -75,7 +75,7 @@ exports.findAll = (req, res) => {
  * This will filter all funds applied by user with application status
  */
 exports.findOne = (req, res) => {
-  FundApplication.findAll({ where: { userId: req.body.userId } })
+  FundApplication.findAll({ where: { userId: req.body.organizationId } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({

@@ -147,7 +147,7 @@ console.log(data);
                 <Form.Control type="date" placeholder="Date started" name="dateStarted" />
               </Form.Group>
 
-              <Form.Group controlId="dateEnded">
+              <Form.Group controlId="dateEnded">  
                 <Form.Label>Date Ended:</Form.Label>
                 <Form.Control type="date" placeholder="Date ended" name="dateEnded" />
               </Form.Group>

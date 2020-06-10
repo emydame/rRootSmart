@@ -117,7 +117,7 @@ exports.findAllSMEProject = (req, res) => {
     LEFT JOIN organizations o ON o.organizationId = p.organizationId 
     WHERE o.category = 1
     `, { raw: true })
-    .then((result) => {
+    .then((result) => {  
       return res.status(200).json({
         status: "success",
         message: "Projectproposals retrieved successfull",

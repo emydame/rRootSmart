@@ -11,7 +11,6 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import UpdateMilestone from "../Funds/UpdateMilestone";
 
 class View extends React.Component {
   constructor(props) {
@@ -21,26 +20,15 @@ class View extends React.Component {
       data: [],
       searchData: ``,
       foundData: [],
-      valueChange: ``,
-      showUpdateMilestone: false
+      valueChange: ``
     };
 
     this.fetchData = this.fetchData.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.search = this.search.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.showUpdateMilestoneModal = this.showUpdateMilestoneModal.bind(this);
-    this.closeUpdateMilestoneModal = this.closeUpdateMilestoneModal.bind(this);
   }
 
-  showUpdateMilestoneModal(event) {
-    event.preventDefault();
-    this.setState({ showUpdateMilestone: true });
-  }
-
-  closeUpdateMilestoneModal() {
-    this.setState({ showUpdateMilestone: false });
-  }
   componentDidMount() {
     this.fetchData();
   }
@@ -53,7 +41,7 @@ class View extends React.Component {
         const projects = data.data;
         console.log(data);
         if (status === `success`) {
-          let newResults = projects.filter( (items) => {
+          let newResults = projects.filter((items) => {
             return items.fund === `Funded`;
           });
           this.setState({ data: newResults });
@@ -144,9 +132,7 @@ class View extends React.Component {
                     <td key={index}>{item.projectName}</td>
                     <td key={index}>{item.description}</td>
                     <td key={count++}>
-                      <Link to="" onClick={this.showUpdateMilestoneModal}>
-                        View Details
-                      </Link>
+                      <Link to="">View Details</Link>
                     </td>
                     <td key={count++}>
                       <Link to={`/sme/Funds/NewApplication/${item.projectId}`}>Apply</Link>
@@ -156,7 +142,6 @@ class View extends React.Component {
               })}
             </tbody>
           </Table>
-          <UpdateMilestone />
         </Card.Body>
       </>
     );

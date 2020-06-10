@@ -114,8 +114,8 @@ class About extends React.Component {
                 </Col>
                 <Col className="dev-frame">
                   <figure>
-                    <img src={"./Emilia.png"} alt="" />
-                    <figcaption>Emilia Anochirionye; Technical Team Lead</figcaption>
+                    <img src={"./vic.png"} alt="" />
+                    <figcaption>Victor Yohanna; Backend Developer</figcaption>
                     <a href="#" target="_blank">
                       View Portfolio
                     </a>
