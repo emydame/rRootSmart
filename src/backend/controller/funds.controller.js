@@ -1,7 +1,7 @@
 const db = require("../config/db.config");
 
 const Project = db.project;
-const Fund = db.fund
+const Fund = db.fund;
 
 /**
  * This API will keep track of all funds recieved from
@@ -56,7 +56,7 @@ exports.create = async (req, res) => {
                   status: "error",
                   message: "An error occurred while trying to update project status"
                 });
-              })
+              });
             });
 
             return res.status(200).json({
