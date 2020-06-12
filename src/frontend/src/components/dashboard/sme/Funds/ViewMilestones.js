@@ -74,7 +74,7 @@ class ViewMilestones extends React.Component {
 
   async fetchData() {
     await axios
-      .get("https://eazsme-backend.herokuapp.com/milestones/all")
+      .get("http://localhost:4000/milestones/all")
       .then(({ data }) => {
         const status = data.status;
         const result = data.data;
@@ -159,13 +159,10 @@ class ViewMilestones extends React.Component {
                         <td>{item.Progress}</td>
                         <td>{item.Status}</td>
                         <td>
-                          {/*<Link onClick={this.showMilestoneModal} to={`/view-project/${item.projectId}`}>Update</Link>*/}
-                          <Router>
-                            <Link onClick={this.showMilestoneModal} to="/sme/Funds/UpdateMilestone">
-                              {" "}
-                              Update{" "}
-                            </Link>
-                          </Router>
+                          <Link onClick={this.showMilestoneModal} to="">
+                            {" "}
+                            Update{" "}
+                          </Link>
                         </td>
                       </tr>
                     );
