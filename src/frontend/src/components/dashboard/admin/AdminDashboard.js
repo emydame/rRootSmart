@@ -44,14 +44,14 @@ import {connect} from "react-redux";
 
 const menu = (
   <Menu id="dropdown-menu">
-    <Menu.Item className="menu-icon" icon={<fundOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Fund Application
-      </a>
-    </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Profile
+      </a>
+    </Menu.Item>
+    <Menu.Item className="menu-icon" icon={<WalletOutlined />}>
+      <a target="_blank" rel="noopener noreferrer" href="#">
+        Fund Application
       </a>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
@@ -140,7 +140,7 @@ class AdminDashboard extends React.Component {
             </Menu.Item>*/
               }
             </SubMenu>
-            <SubMenu key="sub5" icon={<fundOutlined />} title="Funds">
+            <SubMenu key="sub5" icon={<WalletOutlined />} title="Funds">
               <Menu.Item key="11" icon={<AppstoreOutlined />}>
                 <Link to="/admin/smeandprojects"> SMEs Projects</Link>
               </Menu.Item>
@@ -193,7 +193,7 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/smeandprojects" component={SmeAndProjects} />
                 <Route path="/admin/create-user" component={Create} />
                 <Route path="/admin/update-user" component={Update} />
-               {/**  <Route path="/admin/deactivate-user" component={Remove} />
+              {/**  <Route path="/admin/deactivate-user" component={Remove} />
                 * <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
                 * 
                */}

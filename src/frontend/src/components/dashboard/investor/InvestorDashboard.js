@@ -14,7 +14,8 @@ import {
   AuditOutlined,
   LogoutOutlined,
   ProfileOutlined,
-  PoundOutlined
+  PoundOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Avatar } from "antd";
@@ -46,6 +47,17 @@ const menu = (
     <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Review Reports
+      </a>
+    </Menu.Item>
+    <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
+      <a target="_blank" rel="noopener noreferrer" href="#">
+        Settings
+      </a>
+    </Menu.Item>
+    <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
+      {" "}
+      <a target="_blank" rel="noopener noreferrer" href="#">
+        Logout
       </a>
     </Menu.Item>
   </Menu>
