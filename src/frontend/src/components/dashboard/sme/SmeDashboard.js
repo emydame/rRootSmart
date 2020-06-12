@@ -146,7 +146,7 @@ class SmeDashboard extends React.Component {
 
               <Link to="/sme/Funds/proposal">Existing Applications</Link>
             </Menu.Item>            
-             
+            
             </SubMenu>
                     
             <Menu.Item key="4" icon={<LogoutOutlined />}>
@@ -191,7 +191,7 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/Funds/proposal" component={Proposal} />
                 <Route path="/sme/create-user" component={Create} />
                 <Route path="/sme/update-user" component={Update} />
-               {/*<Route path="/sme/deactivate-user" component={Remove} />*/}
+                {/*<Route path="/sme/deactivate-user" component={Remove} />*/}
                 <Route path="/sme/ProfileDetails" component={ProfileDetails} />
                 <Route path="/sme/EditProfile" component={EditProfile} />
                 <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />
