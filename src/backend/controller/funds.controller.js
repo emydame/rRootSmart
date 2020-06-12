@@ -33,28 +33,32 @@ exports.create = async (req, res) => {
           message: "Fund already exist with this Id " + id
         });
       } else {
-
-        // update project status
-        let message = "fund created but project status has not been updated";
-
-        Project.findOne({ where : { projectId } }).then((project) => {
-          if (project){
-            project.status = "funding initiated";
-            project.save();
-            message = "fund created and project status updated";
-          }
-        }).catch((error) => {
-          return res.status(500).json({
-            status: "error",
-            message: error.message
-          })
-        });
-
+        db.sequelize.transaction().then((transaction) => {
+        
         // Add Fund
         const fund = new Fund(requests);
         fund
           .save()
           .then((data) => {
+
+            // update project status
+            let message = "fund created but project status has not been updated";
+          
+            Project.findOne({ where : { projectId } }).then((project) => {
+              if (project){
+                project.status = "funding initiated";
+                project.save();
+                message = "fund created and project status updated";
+              }
+            }).catch((error) => {
+              transaction.rollback().then(() => {
+                return res.status(500).json({
+                  status: "error",
+                  message: "An error occurred while trying to update project status"
+                });
+              })
+            });
+
             return res.status(200).json({
               status: "success",
               message,
@@ -62,11 +66,14 @@ exports.create = async (req, res) => {
             });
           })
           .catch((err) => {
-            return res.status(500).json({
-              status: "error",
-              message: err.message || "Not saved"
-            });
+            transaction.rollback().then(() => {
+              return res.status(500).json({
+                status: "error",
+                message: err.message || "An error occurred while trying to create funding"
+              });
+            })
           });
+        });
       }
     });
   }
