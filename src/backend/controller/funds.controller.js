@@ -11,7 +11,9 @@ const Fund = db.fund;
 // Invest funds
 exports.create = async (req, res) => {
   let id = Math.floor(Math.random() * 10000) + 1;
+
   const projectId =  req.body.projectId;
+  
   let requests = {
     fundId: id,
     organizationId: req.body.organizationId,
@@ -20,6 +22,7 @@ exports.create = async (req, res) => {
     status: req.body.status,
     dateInitiated: req.body.dateInitiated
   };
+  
   if (!req.body) {
     return res.status(400).json({
       status: "error",
