@@ -100,6 +100,24 @@ exports.findAll = (req, res) => {
     });
 };
 
+
+// get investment details by id
+exports.findFundById = (req, res) => {
+  Fund.findOne({ where: { fundId: req.params.id } })
+    .then((fund) => {
+        res.status(200).json({
+        status: "success",
+        data: fund
+        });   
+      })
+    .catch((err) => {
+        return res.status(500).json({
+        status: "error",
+          message: err.message
+        });
+      }); 
+};
+
 // Get funds by organisation
 exports.findInvestmentsByOrganization = (req, res) => {
     db.sequelize.query(
@@ -120,6 +138,8 @@ exports.findInvestmentsByOrganization = (req, res) => {
         });
       });
 };
+
+
 
 // Get funds by status
 exports.findOne = (req, res) => {
@@ -147,19 +167,17 @@ exports.findOne = (req, res) => {
 
 // update investment status
 exports.updateStatus = (req, res) => {
-  Fund.findOne({ where: { id: req.body.id } })
+  Fund.findOne({ where: { fundId: req.body.id } })
     .then((fund) => {
-      //get user details from req and save changes    
-      fund.update({ status: req.body.status},
-        { where: { id:fund.id } }
-        ).then(() => {
+      //get user details from req and save changes 
+      fund.status = req.body.status;   
+      fund.save().then(() => {
         res.status(200).json({
         status: "success",
-        data: fund
+        message: "fund status have been update"
         }) ;   
       })
     .catch((err) => {
-
         return res.status(500).json({
         status: "error",
           message: err.message
