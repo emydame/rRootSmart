@@ -19,13 +19,43 @@ iframe {
 .ant-layout-sider {
   position: relative;
   min-width: 0;
-  background: #f90;
+  background: #3d6cb9;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
+.logo {
+  color: #f90;
+  margin: 2%;
+  padding: 6%;
+  text-align: center;
+}
+
+.cat-title {
+  padding: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.bgSm {
+  background: #8a7967;
+}
+
+.bgIn {
+  background-color: #c1d82f;
+}
+
+.bgRe {
+  background-color: #49c0b6;
+}
+
+.bgAd {
+  background-color: #000;
+}
+
 .ant-layout-sider-trigger {
-  background: #3d6cb9;
+  background: #315ea7;
 }
 
 .ant-layout-sider-children {
@@ -113,16 +143,6 @@ span.anticon-bell {
   background-color: #f90;
 }
 
-.dropDown-btn {
-  border: none;
-  background: #f90;
-}
-
-a.ant-dropdown-trigger {
-  margin-left: -20px;
-  color: #3d6cb9;
-}
-
 .table-dark {
   color: #000;
   background-color: #dfeaf3;
@@ -174,31 +194,6 @@ ul.pagination {
   margin: 20px;
   color: #3d6cb9;
 }
-
-.investHistory-btn {
-  padding: 6px 15px;
-  color: #fff;
-  background: #3d6cb9;
-  border-radius: 15px;
-  margin-right: 5px;
-}
-
-.invest-Title {
-  margin-top: -8px;
-  margin-bottom: 15px;
-  font-size: 14px;
-  color: #3d6cb9;
-  font-weight: 600;
-}
-
-/* .btn-allUsers {
-  border-inline-end-color: none;
-  padding: 0 10px;
-  background-color: #3d6cb9;
-  border: none;
-  border-radius: 15px;
-  color: #fff;
-} */
 
 .full {
   margin-top: 25px;

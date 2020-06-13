@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint no-console: "error" */
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -40,20 +43,26 @@ class Remove extends React.Component {
     const { success, error } = this.state;
     return (
       <Card.Body>
-        {success ? (
-          <Form.Text className="text-bold text-success">{success}</Form.Text>
-        ) : (
-          <Form.Text className="text-bold text-danger">{error}</Form.Text>
-        )}
+        
         <Row>
           {/* <Col md="4">
             <Image src="holder.js/100px250" fluid />
           </Col> */}
           <Col md="12">
+
+          {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
             <Form name="deactivate">
-              <Form.Group controlId="fullName">
+              <Form.Group controlId="email">
                 <Form.Label>Full Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter user name" name="fullName" />
+                <Form.Control type="text" placeholder="Enter user name" name="email" />
               </Form.Group>
 
               <Button className="user-btn" variant="primary" type="submit" onClick={this.deactivate}>

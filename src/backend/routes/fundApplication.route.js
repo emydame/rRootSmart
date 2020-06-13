@@ -19,4 +19,7 @@ module.exports = (app) => {
   app.get("/fund/applications/all", fundApplication.findAll);
 
   app.get("/fund/application/:id", fundApplication.findOne);
+
+ //app.put("/fund/update", fundApplication.updateOne);
+  
 };

@@ -39,12 +39,13 @@ class View extends React.Component {
       .then(({ data }) => {
         const status = data.status;
         const projects = data.data;
-
+        console.log(data);
         if (status === `success`) {
           let newResults = projects.filter((items) => {
             return items.fund === `Funded`;
           });
           this.setState({ data: newResults });
+          console.log(newResults);
         }
       })
       .catch((error) => console.log(error));

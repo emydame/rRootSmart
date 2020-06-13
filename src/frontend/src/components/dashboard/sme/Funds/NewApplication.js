@@ -1,3 +1,4 @@
+
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
@@ -36,6 +37,15 @@ class CreateApplication extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount(){
+    const userObj = JSON.parse(localStorage.getItem("userObj"));
+   if (userObj) {
+     this.setState(() => ({ userObj }));
+     console.log(userObj);
+   }
+ }
+
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -43,7 +53,9 @@ class CreateApplication extends React.Component {
   selectedFileHandler = (e) => {
     this.setState({
       proposals: e.target.files[0]
+     
     });
+    console.log( e.target.files[0]);
   };
 
   handleEditorChange = (e) => {
@@ -67,20 +79,16 @@ class CreateApplication extends React.Component {
     fd.append("proposals", this.state.proposals, this.state.proposals.name);
 
     axios
-      .post("https://eazsme-backend.herokuapp.com/fund/apply", fd)
+      .post("http://localhost:4000/fund/apply", fd)
       .then((res) => {
         let response = res.data;
+        console.log(response.status);
         // then print response status
         if (response.status === "success") {
-          this.setState({
-            success: "Application Successfully created!",
-            //Clear input fields
-            description: "",
-            projectName: "",
-            dateStart: "",
-            dateEnd: "",
-            proposals: null
-          });
+          this.setState({ 
+            success: "Application Created!", 
+            error:"",
+           });
         } else {
           this.setState({ error: "Error creating Application" });
         }
@@ -160,7 +168,6 @@ class CreateApplication extends React.Component {
                   height: 200,
                   menubar: false,
                   plugins: [
-                    "advlist autolink lists link image",
                     "charmap print preview anchor help",
                     "searchreplace visualblocks code",
                     "insertdatetime media table paste wordcount"
