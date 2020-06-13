@@ -1,3 +1,4 @@
+
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
@@ -20,6 +21,7 @@ class CreateApplication extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      organizationId: "7241",
       description: "",
       projectName: "",
       dateStart: "",
@@ -27,12 +29,22 @@ class CreateApplication extends React.Component {
       proposals: null,
       success: "",
       error: ""
+      
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleSubmitForm = this.submitForm.bind(this);
     this.selectedFileHandler = this.selectedFileHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+
+  componentDidMount(){
+    const userObj = JSON.parse(localStorage.getItem("userObj"));
+   if (userObj) {
+     this.setState(() => ({ userObj }));
+     console.log(userObj);
+   }
+ }
+
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -41,17 +53,25 @@ class CreateApplication extends React.Component {
   selectedFileHandler = (e) => {
     this.setState({
       proposals: e.target.files[0]
+     
     });
+    console.log( e.target.files[0]);
   };
 
   handleEditorChange = (e) => {
     this.setState({ description: e.target.getContent() });
   };
 
+  /**
+   * Note; Organization Id is suppose to be retrieved from login details
+   * A random number is set as organization id just for demonstration purpose
+   */
+
   submitForm = (e) => {
     e.preventDefault();
 
     const fd = new FormData();
+    fd.append("organizationId", this.state.organizationId);
     fd.append("projectName", this.state.projectName);
     fd.append("dateStart", this.state.dateStart);
     fd.append("dateEnd", this.state.dateEnd);
@@ -62,17 +82,13 @@ class CreateApplication extends React.Component {
       .post("http://localhost:4000/fund/apply", fd)
       .then((res) => {
         let response = res.data;
+        console.log(response.status);
         // then print response status
         if (response.status === "success") {
-          this.setState({
-            success: "Application Successfully created!",
-            //Clear input fields
-            description: "",
-            projectName: "",
-            dateStart: "",
-            dateEnd: "",
-            proposals: null
-          });
+          this.setState({ 
+            success: "Application Created!", 
+            error:"",
+           });
         } else {
           this.setState({ error: "Error creating Application" });
         }
@@ -152,7 +168,6 @@ class CreateApplication extends React.Component {
                   height: 200,
                   menubar: false,
                   plugins: [
-                    "advlist autolink lists link image",
                     "charmap print preview anchor help",
                     "searchreplace visualblocks code",
                     "insertdatetime media table paste wordcount"

@@ -8,7 +8,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-
+  
 class View extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +56,7 @@ class View extends React.Component {
     }
   }
   async fetchData() {
-    const data = await axios.get("http://localhost:4000/fund/application/:id");
+    const data = await axios.get("https://eazsme-backend.herokuapp.com/fund/application/:id");
     const projects = data.data.data;
     this.setState({ projects, filteredProjects: projects });
   }

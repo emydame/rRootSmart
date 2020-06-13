@@ -83,7 +83,7 @@ class SmeDashboard extends React.Component {
     const formFields = serialize(form, { hash: true });
   
     axios
-      .post("http://localhost:4000/milestones/id", formFields)
+      .post("https://eazsme-backend.herokuapp.com/milestones/id", formFields)
       .then(({ data }) => {
               if (data.status === "success") {
           this.setState({ success: "Milestone successfully updated!" });
@@ -110,8 +110,15 @@ class SmeDashboard extends React.Component {
     // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "64px" }}>
-          <div className="logo"></div>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+        <div className="logo"> <Link className="dashboard-img" to="#">
+              <img
+                src={
+                  "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
+                }
+                alt="logo"
+              />
+            </Link></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/sme/ProfileDetails">Profile Details</Link>
@@ -123,9 +130,9 @@ class SmeDashboard extends React.Component {
               <Menu.Item key="3" icon={<UserOutlined />}>
                 <Link to="/sme/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="4" icon={<UserOutlined />}>
+             {/*} <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/sme/deactivate-user">Deactivate</Link>
-              </Menu.Item>
+    </Menu.Item>*/}
             </SubMenu>
             <SubMenu key="sub2" icon={<PieChartOutlined />} title="Projects">
               <Menu.Item key="5" icon={<ZoomOutOutlined />}>
@@ -146,7 +153,7 @@ class SmeDashboard extends React.Component {
 
               <Link to="/sme/Funds/proposal">Existing Applications</Link>
             </Menu.Item>            
-             
+            
             </SubMenu>
                     
             <Menu.Item key="4" icon={<LogoutOutlined />}>
@@ -157,14 +164,15 @@ class SmeDashboard extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <nav class="navbar">
-            <Link className="dashboard-img" to="#">
+            <div className="cat-title bgSm">SME HOME</div>
+            {/* <Link className="dashboard-img" to="#">
               <img
                 src={
                   "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
                 }
                 alt="logo"
               />
-            </Link>
+            </Link> */}
             <div>
               <Badge className="badge-item" count={5}>
                 <a href="#" className="example" />
@@ -191,7 +199,7 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/Funds/proposal" component={Proposal} />
                 <Route path="/sme/create-user" component={Create} />
                 <Route path="/sme/update-user" component={Update} />
-                <Route path="/sme/deactivate-user" component={Remove} />
+                {/*<Route path="/sme/deactivate-user" component={Remove} />*/}
                 <Route path="/sme/ProfileDetails" component={ProfileDetails} />
                 <Route path="/sme/EditProfile" component={EditProfile} />
                 <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />

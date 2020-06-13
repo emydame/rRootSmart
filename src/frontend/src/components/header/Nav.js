@@ -68,6 +68,8 @@ class Nav extends React.Component {
 
   closeRegistrationModal() {
     this.setState({ showReg: false });
+    this.setState({ success: "" });
+    this.setState({ error: "" });
   }
 
   handleBlur(event) {
@@ -83,7 +85,7 @@ class Nav extends React.Component {
     const formFields = serialize(form, { hash: true });
     console.log(formFields);
     axios
-      .post("http://localhost:4000/register", formFields)
+      .post("https://eazsme-backend.herokuapp.com/register", formFields)
       .then(({ data }) => {
         const { status } = data;
         if (status === "success") {
@@ -93,8 +95,7 @@ class Nav extends React.Component {
         }
       })
       .catch((error) => {
-        /*console.log(error)*/
-        console.error(error);
+            console.error(error);
       });
   }
 
@@ -157,7 +158,7 @@ class Nav extends React.Component {
     const form = document.querySelector(`form[name="login"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
-      .post("http://localhost:4000/login", formFields)
+      .post("https://eazsme-backend.herokuapp.com/login", formFields)
       .then(({ data }) => {
         const { status, result } = data;
         const sme = this.props.sme;
@@ -167,37 +168,51 @@ class Nav extends React.Component {
         const user = {};
 
         if (status === "success") {
+          localStorage.clear();
           switch (result.category) {
             case "admin":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+              
               admin(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("adminObj", JSON.stringify (user));
+              localStorage.setItem("userObj", JSON.stringify (user));
               this.props.history.push("/admin");
+             
               break;
             case "sme":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+
               sme(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("userObj", JSON.stringify (user));
+              localStorage.setItem("smeObj", JSON.stringify (user));
               this.props.history.push("/sme");
               break;
             case "investor":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+
               investor(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("investorObj", JSON.stringify (user));
+              localStorage.setItem("userObj", JSON.stringify (user));
               this.props.history.push("/investor");
               break;
             case "regulator":
               user.companyName = result.companyName;
               user.userId = result.email;
               user.category = result.category;
+              user.organizationId=result.organizationId;
+
               regulator(user);
-              localStorage.setItem("user", user);
+              localStorage.setItem("regulatorObj", JSON.stringify (user));
+              localStorage.setItem("userObj", JSON.stringify (user));
               this.props.history.push("/regulator");
               break;
             default:

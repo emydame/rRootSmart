@@ -44,14 +44,14 @@ import {connect} from "react-redux";
 
 const menu = (
   <Menu id="dropdown-menu">
-    <Menu.Item className="menu-icon" icon={<fundOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Fund Application
-      </a>
-    </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UserOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Profile
+      </a>
+    </Menu.Item>
+    <Menu.Item className="menu-icon" icon={<WalletOutlined />}>
+      <a target="_blank" rel="noopener noreferrer" href="#">
+        Fund Application
       </a>
     </Menu.Item>
     <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
@@ -99,8 +99,15 @@ class AdminDashboard extends React.Component {
     // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
-          <div className="logo"></div>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+        <div className="logo"><Link className="dashboard-img" to="#">
+              <img
+                src={
+                  "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
+                }
+                alt="logo"
+              />
+            </Link></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/admin/ProfileDetails">Profile Details</Link>
@@ -132,25 +139,22 @@ class AdminDashboard extends React.Component {
               <Menu.Item key="7" icon={<UserOutlined />}>
                 <Link to="/admin/update-user">Update</Link>
               </Menu.Item>
-              <Menu.Item key="8" icon={<UserDeleteOutlined />}>
+            {/*  <Menu.Item key="8" icon={<UserDeleteOutlined />}>
                 <Link to="/admin/deactivate-user">Deactivate</Link>
               </Menu.Item>
-            </SubMenu>
-
-            <SubMenu key="sub4" icon={<fundOutlined />} title="milestone">
               <Menu.Item key="9" icon={<AppstoreOutlined />}>
-                <Link to="/admin/create-milestone"> Create Milestone</Link>
-              </Menu.Item>
-              <Menu.Item key="10" icon={<DollarCircleOutlined />}>
-                <Link to="/admin/view-milestone">View Milestone</Link>
-              </Menu.Item>
+              <Link to="/admin/create-milestone"> Create Milestone</Link>
+            </Menu.Item>*/
+              }
             </SubMenu>
-
-            <SubMenu key="sub4" icon={<fundOutlined />} title="Funds">
-              <Menu.Item key="9" icon={<AppstoreOutlined />}>
+            <SubMenu key="sub5" icon={<WalletOutlined />} title="Funds">
+              <Menu.Item key="11" icon={<AppstoreOutlined />}>
                 <Link to="/admin/smeandprojects"> SMEs Projects</Link>
               </Menu.Item>
-              <Menu.Item key="10" icon={<DollarCircleOutlined />}>
+              <Menu.Item key="12" icon={<DollarCircleOutlined />}>
+                <Link to="/admin/view-milestone">View Milestone</Link>
+              </Menu.Item>
+              <Menu.Item key="13" icon={<DollarCircleOutlined />}>
                 <Link to="/admin/investorsandfunding">Investors Funding</Link>
               </Menu.Item>
             </SubMenu>
@@ -163,14 +167,15 @@ class AdminDashboard extends React.Component {
         <Layout className="site-layout">
           {/* <Header className="site-layout-background header"> */}
           <nav class="navbar">
-            <Link className="dashboard-img" to="#">
+          <div className="cat-title bgAd">ADMIN HOME</div>
+            {/* <Link className="dashboard-img" to="#">
               <img
                 src={
                   "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
                 }
                 alt="logo"
               />
-            </Link>
+            </Link> */}
             <div>
               <Badge className="badge-item" count={5}>
                 <a href="#" className="example" />
@@ -196,7 +201,10 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/smeandprojects" component={SmeAndProjects} />
                 <Route path="/admin/create-user" component={Create} />
                 <Route path="/admin/update-user" component={Update} />
-                <Route path="/admin/deactivate-user" component={Remove} />
+              {/**  <Route path="/admin/deactivate-user" component={Remove} />
+                * <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
+                * 
+               */}
                 <Route path="/admin/create-category" component={CreatCategory} />
                 <Route path="/admin/view-category" component={ViewCategory} />
                 <Route path="/admin/delete-category/:categoryId" component={DeleteCategory} />
@@ -209,7 +217,7 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/projects/CreateEligibility" component={CreateEligibility} />
                 <Route path="/admin/view-milestone" component={ViewMilestone} />
                 <Route path="/admin/create-milestone" component={CreateMilestone} />
-                <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
+                
                 <Route path="/admin/delete-milestone/:milestoneId" component={DeleteMilestone} />
               </Switch>
             </Router>
