@@ -52,7 +52,7 @@ class InvesmentHistory extends React.Component {
             <th scope="col">#</th>
             <th scope="col">SME Name</th>
             <th scope="col">Project Name</th>
-            <th scope="col">Amount Invested</th>
+            <th scope="col">Amount Disbursed</th>
             <th scope="col">status</th>
             <th scope="col"></th>
           </tr>
