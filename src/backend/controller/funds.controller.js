@@ -17,6 +17,7 @@ exports.create = async (req, res) => {
   let requests = {
     fundId: id,
     organizationId: req.body.organizationId,
+    projectId: req.body.projectId,
     fundCatId: req.body.fundCatId,
     amount: req.body.amount,
     status: req.body.status,
@@ -101,26 +102,23 @@ exports.findAll = (req, res) => {
 
 // Get funds by organisation
 exports.findInvestmentsByOrganization = (req, res) => {
-  Fund.findAll({ where: { organizationId: req.params.id } })
-    .then((data) => {
-      if (!data) {
-        return res.status(400).json({
-          status: "error",
-          message: " Fund not found"
-        });
-      } else {
+    db.sequelize.query(
+      `SELECT p.projectName, f.dateInitiated, f.amount, p.description, f.fundId, f.status FROM funds f
+      LEFT JOIN projects  p ON f.projectId = p.projectId 
+      WHERE f.organizationId = ${req.params.id} 
+      `, { raw: true })
+      .then((result) => {   
         return res.status(200).json({
           status: "success",
-          data
+          message: "Fund detatils retrieved successfully",
+          data: result[0]
         });
-      }
-    })
-    .catch((err) => {
-      return res.status(500).json({
-        status: "error",
-        message: err.message || "Some error occurred while retrieving Funds."
+      }).catch((error) => {
+        return res.status(400).json({
+          status: "error",
+          message: error.message || "Some error occurred while retrieving Funds.",
+        });
       });
-    });
 };
 
 // Get funds by status
