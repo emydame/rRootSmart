@@ -14,7 +14,8 @@ import {
   AuditOutlined,
   LogoutOutlined,
   ProfileOutlined,
-  PoundOutlined
+  PoundOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Avatar } from "antd";
@@ -46,6 +47,17 @@ const menu = (
     <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
       <a target="_blank" rel="noopener noreferrer" href="#">
         Review Reports
+      </a>
+    </Menu.Item>
+    <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
+      <a target="_blank" rel="noopener noreferrer" href="#">
+        Settings
+      </a>
+    </Menu.Item>
+    <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
+      {" "}
+      <a target="_blank" rel="noopener noreferrer" href="#">
+        Logout
       </a>
     </Menu.Item>
   </Menu>
@@ -95,8 +107,15 @@ class InvestorDashboard extends React.Component {
     // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{ paddingTop: "63px" }}>
-          <div className="logo" />
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <div className="logo"><Link className="dashboard-img" to="#">
+              <img
+                src={
+                  "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
+                }
+                alt="logo"
+              />
+            </Link></div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/investor/ProfileDetails">Profile Details</Link>
@@ -111,7 +130,7 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/investor/update-user">Update</Link>
               </Menu.Item>
-             
+            
             </SubMenu>
             <Menu.Item key="6" icon={<PieChartOutlined />}>
               <Link to="/investor/view-projects">View Projects</Link>
@@ -144,15 +163,17 @@ class InvestorDashboard extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <nav class="navbar">
-            <Link className="dashboard-img" to="#">
+          <div className="cat-title bgIn">INVESTOR HOME</div>
+            {/* <Link className="dashboard-img" to="#">
               <img
                 src={
                   "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
                 }
                 alt="logo"
               />
-            </Link>
+            </Link> */}
             <div>
+              
               <Badge className="badge-item" count={5}>
                 <a href="#" className="example" />
               </Badge>

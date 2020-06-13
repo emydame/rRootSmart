@@ -19,11 +19,10 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id'
         }
       },
-     
+      
       projectName: {
         type: DataTypes.STRING
       },
-      description: {
         type: DataTypes.STRING
       },
       createdBy: {
@@ -41,9 +40,9 @@ module.exports = (sequelize, DataTypes) => {
       dateCreated: {
         type: DataTypes.DATE
       },
-       status: {
-         type: DataTypes.STRING
-       }
+      status: {
+        type: DataTypes.STRING
+      }
     },
     {
       timestamps: false
