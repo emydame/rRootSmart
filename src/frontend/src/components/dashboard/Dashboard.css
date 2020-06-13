@@ -24,6 +24,36 @@ iframe {
   transition: all 0.2s;
 }
 
+.logo {
+  color: #f90;
+  margin: 2%;
+  padding: 6%;
+  text-align: center;
+}
+
+.cat-title {
+  padding: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.bgSm {
+  background: #8a7967;
+}
+
+.bgIn {
+  background-color: #c1d82f;
+}
+
+.bgRe {
+  background-color: #49c0b6;
+}
+
+.bgAd {
+  background-color: #000;
+}
+
 .ant-layout-sider-trigger {
   background: #315ea7;
 }
