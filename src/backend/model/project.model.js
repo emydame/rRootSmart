@@ -13,12 +13,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       projectCatId: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER,
+        references: {         
+          model: 'projectcategories',
+          key: 'id'
+        }
       },
-      // organizationId: {
-      //   type: DataTypes.STRING,
-      //   allowNull: true
-      // },
+     
       projectName: {
         type: DataTypes.STRING
       },
@@ -40,13 +41,24 @@ module.exports = (sequelize, DataTypes) => {
       dateCreated: {
         type: DataTypes.DATE
       },
-      // status: {
-      //   type: DataTypes.STRING
-      // }
+       status: {
+         type: DataTypes.STRING
+       }
     },
     {
       timestamps: false
     }
+
   );
+
+
+  Project.associate = function(models) {
+    Project.belongsTo(models.projectCategory, {foreignKey: 'id', as: 'category'})
+  };
+
+  
+  ProjectCategory.associate = function(models) {
+    ProjectCategory.hasMany(models.project, {as: 'project'}, {foreignKey: 'id'})
+  }
   return Project;
 };
