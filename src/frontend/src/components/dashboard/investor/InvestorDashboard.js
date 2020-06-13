@@ -90,7 +90,7 @@ class InvestorDashboard extends React.Component {
     this.fetchData();
   }
   async fetchData() {
-    const url = "https://eazsme-backend.herokuapp.com/project/investorAll";
+    const url = "http://localhost:4000/project/investorAll";
     
     const data = await axios.get(url);
 

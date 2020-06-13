@@ -22,8 +22,7 @@ class InvesmentHistory extends React.Component {
     this.fetchData();
   }
   async fetchData() {
-    //const url = `https://eazsme-backend.herokuapp.com/disbursements/${this.props.user.organizationId}`;
-    const url = `http://localhost:4000/funds/disbursements/${this.props.user.organizationId}`;
+    const url = `https://eazsme-backend.herokuapp.com/disbursements/${this.props.user.organizationId}`;
     
     const data = await axios.get(url);
     const disbursements = data.data.data;
