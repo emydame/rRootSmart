@@ -162,7 +162,7 @@ class InvestorDashboard extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <nav class="navbar">
+          <nav class="navbar inv-header">
           <div className="cat-title bgIn">INVESTOR HOME</div>
             {/* <Link className="dashboard-img" to="#">
               <img

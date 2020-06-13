@@ -74,9 +74,8 @@ class SmeDashboard extends React.Component {
       collapsed: false
     };
 
-     
   }
- 
+
   handleMilestoneUpdate(event) {
     event.preventDefault();
     const form = document.querySelector("form[name=registration]");
@@ -110,7 +109,7 @@ class SmeDashboard extends React.Component {
     // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+        <Sider className="sme-sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
         <div className="logo"> <Link className="dashboard-img" to="#">
               <img
                 src={
@@ -119,18 +118,18 @@ class SmeDashboard extends React.Component {
                 alt="logo"
               />
             </Link></div>
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<ProfileOutlined />}>
+          <Menu className="sme-menu" theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+            <Menu.Item className="sme-menu" key="1" icon={<ProfileOutlined />}>
               <Link to="/sme/ProfileDetails">Profile Details</Link>
             </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+            <SubMenu className="sme-submenu" key="sub1" icon={<UserOutlined />} title="User">
               <Menu.Item key="2" icon={<UserOutlined />}>
                 <Link to="/sme/create-user">Create</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<UserOutlined />}>
                 <Link to="/sme/update-user">Update</Link>
               </Menu.Item>
-             {/*} <Menu.Item key="4" icon={<UserOutlined />}>
+            {/*} <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/sme/deactivate-user">Deactivate</Link>
     </Menu.Item>*/}
             </SubMenu>
@@ -163,7 +162,7 @@ class SmeDashboard extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <nav class="navbar">
+          <nav class="navbar sme-header">
             <div className="cat-title bgSm">SME HOME</div>
             {/* <Link className="dashboard-img" to="#">
               <img
