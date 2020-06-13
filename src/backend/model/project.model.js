@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       projectCatId: {
         type: DataTypes.STRING
       },
-      // organizationId: {
-      //   type: DataTypes.STRING,
-      //   allowNull: true
-      // },
+      organizationId: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
       projectName: {
         type: DataTypes.STRING
       },
@@ -40,9 +40,9 @@ module.exports = (sequelize, DataTypes) => {
       dateCreated: {
         type: DataTypes.DATE
       },
-      // status: {
-      //   type: DataTypes.STRING
-      // }
+      status: {
+        type: DataTypes.STRING
+      }
     },
     {
       timestamps: false

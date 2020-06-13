@@ -1,13 +1,19 @@
 const db = require("../config/db.config");
+
+const Project = db.project;
 const Fund = db.fund;
+
 /**
  * This API will keep track of all funds recieved from
  * investors
  */ 
 
 // Invest funds
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   let id = Math.floor(Math.random() * 10000) + 1;
+
+  const projectId =  req.body.projectId;
+  
   let requests = {
     fundId: id,
     organizationId: req.body.organizationId,
@@ -16,6 +22,7 @@ exports.create = (req, res) => {
     status: req.body.status,
     dateInitiated: req.body.dateInitiated
   };
+  
   if (!req.body) {
     return res.status(400).json({
       status: "error",
@@ -29,22 +36,47 @@ exports.create = (req, res) => {
           message: "Fund already exist with this Id " + id
         });
       } else {
+        db.sequelize.transaction().then((transaction) => {
+        
         // Add Fund
         const fund = new Fund(requests);
         fund
           .save()
           .then((data) => {
+
+            // update project status
+            let message = "fund created but project status has not been updated";
+          
+            Project.findOne({ where : { projectId } }).then((project) => {
+              if (project){
+                project.status = "funding initiated";
+                project.save();
+                message = "fund created and project status updated";
+              }
+            }).catch((error) => {
+              transaction.rollback().then(() => {
+                return res.status(500).json({
+                  status: "error",
+                  message: "An error occurred while trying to update project status"
+                });
+              });
+            });
+
             return res.status(200).json({
               status: "success",
+              message,
               data
             });
           })
           .catch((err) => {
-            return res.status(500).json({
-              status: "error",
-              message: err.message || "Not saved"
-            });
+            transaction.rollback().then(() => {
+              return res.status(500).json({
+                status: "error",
+                message: err.message || "An error occurred while trying to create funding"
+              });
+            })
           });
+        });
       }
     });
   }
