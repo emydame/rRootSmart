@@ -8,13 +8,13 @@ iframe {
   height: 100%;
 }
 
-.ant-layout-header {
+/* .ant-layout-header {
   height: 64px;
   padding: 0 50px;
   color: #fff;
   line-height: 64px;
   background: #f90;
-}
+} */
 
 .ant-layout-sider {
   position: relative;
@@ -36,22 +36,6 @@ iframe {
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
-}
-
-.bgSm {
-  background: #8a7967;
-}
-
-.bgIn {
-  background-color: #c1d82f;
-}
-
-.bgRe {
-  background-color: #49c0b6;
-}
-
-.bgAd {
-  background-color: #000;
 }
 
 .ant-layout-sider-trigger {
@@ -77,9 +61,49 @@ iframe {
   background-color: #3d6cb9;
 }
 
-.user-greeting {
-  position: absolute;
-  color: #000;
+.admin-sider {
+  background: #000;
+}
+
+.sme-sider {
+  background: #49c0b6;
+}
+
+.reg-sider {
+  background: #0abf53;
+}
+
+.ant-menu.sme-menu {
+  background-color: #49c0b6;
+}
+
+.ant-menu.reg-menu {
+  background: #0abf53;
+}
+
+nav.navbar {
+  background: #f90;
+  padding: 8px 40px;
+}
+
+nav.inv-header {
+  background: #3d6cb9;
+  padding: 8px 40px;
+}
+
+nav.admin-header {
+  background: #000;
+  padding: 8px 40px;
+}
+
+nav.sme-header {
+  background: #49c0b6;
+  padding: 8px 40px;
+}
+
+nav.reg-header {
+  background: #0abf53;
+  padding: 8px 40px;
 }
 
 .dashboard-img > img {
@@ -134,7 +158,7 @@ iframe {
 
 span.anticon-bell {
   font-size: 20px;
-  color: #3d6cb9;
+  color: #fff;
 }
 
 #dropdown-menu {
@@ -165,11 +189,6 @@ span.anticon-bell {
     display: block;
     overflow: auto;
   }
-}
-
-nav.navbar {
-  background: #f90;
-  padding: 8px 40px;
 }
 
 .table-btn {

@@ -99,7 +99,7 @@ class AdminDashboard extends React.Component {
     // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+        <Sider className="admin-sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
         <div className="logo"><Link className="dashboard-img" to="#">
               <img
                 src={
@@ -139,13 +139,6 @@ class AdminDashboard extends React.Component {
               <Menu.Item key="7" icon={<UserOutlined />}>
                 <Link to="/admin/update-user">Update</Link>
               </Menu.Item>
-            {/*  <Menu.Item key="8" icon={<UserDeleteOutlined />}>
-                <Link to="/admin/deactivate-user">Deactivate</Link>
-              </Menu.Item>
-              <Menu.Item key="9" icon={<AppstoreOutlined />}>
-              <Link to="/admin/create-milestone"> Create Milestone</Link>
-            </Menu.Item>*/
-              }
             </SubMenu>
             <SubMenu key="sub5" icon={<WalletOutlined />} title="Funds">
               <Menu.Item key="11" icon={<AppstoreOutlined />}>
@@ -166,7 +159,7 @@ class AdminDashboard extends React.Component {
         </Sider>
         <Layout className="site-layout">
           {/* <Header className="site-layout-background header"> */}
-          <nav class="navbar">
+          <nav class="navbar admin-header">
           <div className="cat-title bgAd">ADMIN HOME</div>
             {/* <Link className="dashboard-img" to="#">
               <img
