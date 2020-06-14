@@ -39,4 +39,6 @@ db.payment = require("../model/payment.model")(sequelize, Sequelize);
 db.milestone = require("../model/milestone.model")(sequelize, Sequelize);
 db.eligibility = require("../model/eligibility.model")(sequelize, Sequelize);
 
+//db.project.belongsTo(db.projectCategory)
+
 module.exports = db;
