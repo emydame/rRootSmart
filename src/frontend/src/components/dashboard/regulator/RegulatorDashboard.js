@@ -67,12 +67,12 @@ class RegulatorDashboard extends React.Component {
     // use localStorage.getItem("user") to get the user object
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+        <Sider className="reg-sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
         <div className="logo"><Link className="dashboard-img" to="#">
                   <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
                 </Link></div>          
           <br />
-          <Menu
+          <Menu className="reg-menu"
             theme="dark"
             onClick={this.handleClick}
             defaultOpenKeys={["sub1"]}
@@ -120,7 +120,7 @@ class RegulatorDashboard extends React.Component {
         </Menu>
         </Sider>
         <Layout className="site-layout">
-          <nav className="navbar">
+          <nav className="navbar reg-header">
           <div className="cat-title bgRe">REGULATOR HOME</div>
                 {/* <Link className="dashboard-img" to="#">
                   <img src={"https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"} alt="logo" />
