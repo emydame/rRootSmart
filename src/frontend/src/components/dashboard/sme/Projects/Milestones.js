@@ -78,7 +78,7 @@ class CreateMilestone extends React.Component {
     };
     // Make api call with form
     axios
-      .post("https://eazsme-backend.herokuapp.com/milestones", fd)
+      .post("http://localhost:4000/milestones", fd)
       .then((data) => {
         console.log(data);
         if (data.status === "success") {
