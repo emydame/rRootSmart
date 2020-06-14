@@ -27,7 +27,7 @@ exports.create = (req, res) => {
           message: "Details already exist"
         });
       } else {
-        // Add project
+        // Add payments
         const refund = new Refund(payment);
         refund
           .save()
@@ -46,4 +46,45 @@ exports.create = (req, res) => {
       }
     });
   }
+};
+
+// Get all payments
+exports.findAll = (req, res) => {
+  Refund.findAll()
+    .then((result) => {
+      return res.status(200).json({
+        status: "success",
+        data: result
+      });
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        status: "error",
+        message: err.message
+      });
+    });
+};
+
+// Get payment by ID
+exports.findOne = (req, res) => {
+  Refund.findOne({ where: { companyName: req.body.companyName || req.params.id } })
+    .then((data) => {
+      if (!data) {
+        return res.status(400).json({
+          status: "error",
+          message: " Payment details not found"
+        });
+      } else {
+        return res.status(200).json({
+          status: "success",
+          data
+        });
+      }
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        status: "error",
+        message: err.message
+      });
+    });
 };
