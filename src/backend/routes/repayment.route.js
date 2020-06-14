@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 module.exports = (app) => {
-  const refund = require("../controller/repayment.controller.js");
+  const refund = require("../controller/repayment.controller");
 
   // Create a new
   app.post("/refund", refund.create);
@@ -9,5 +9,5 @@ module.exports = (app) => {
   app.get("/refund/all", refund.findAll);
 
   // find  by id
-  app.get("/refund/:id", refund.findOne);
+  app.get("/refund/company", refund.findOne);
 };

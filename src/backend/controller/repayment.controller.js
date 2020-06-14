@@ -20,7 +20,7 @@ exports.create = (req, res) => {
       message: "Please fill all details"
     });
   } else {
-    Repay.findOne({ where: { repaymentId: id } }).then((result) => {
+    Refund.findOne({ where: { repaymentId: id } }).then((result) => {
       if (result) {
         return res.status(400).json({
           status: "error",
@@ -65,9 +65,9 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Get payment by ID
+// Get payment by company name
 exports.findOne = (req, res) => {
-  Refund.findOne({ where: { companyName: req.body.companyName || req.params.id } })
+  Refund.findAll({ where: { companyName: req.body.companyName } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({
