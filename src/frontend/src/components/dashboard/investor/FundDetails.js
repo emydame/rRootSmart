@@ -45,27 +45,27 @@ class FundDetails extends React.Component {
     const form = document.querySelector("form[name='update-payment']");
     const formFields = serialize(form, { hash: true });
     
-    formFields.status = `payment_details_submitted`;
+    formFields.status = "payment_details_submitted";
     formFields.organizationId = this.props.user.organizationId;
     formFields.fundId = this.state.fund.fundId;
 
     axios
-      .post(`http://localhost:4000/payments`, formFields)
+      .post("http://localhost:4000/payments", formFields)
       .then((data) => {
-        if (data.data.status === `success`) {
+        if (data.data.status === "success") {
           this.setState({ 
-            success: `Investment Initiated!`, 
-            error:``,
+            success: "Investment Initiated!", 
+            error:"",
            });
            setTimeout(() => {
             window.location.reload();
            }, 1000);
         } else {
-          this.setState({ error: `Error updating payment details`, success: `` });
+          this.setState({ error: "Error updating payment details", success: "" });
         }
       })
       .catch((error) => {
-        this.setState({ error: error.message, success: `` });
+        this.setState({ error: error.message, success: "" });
       });
 
   }

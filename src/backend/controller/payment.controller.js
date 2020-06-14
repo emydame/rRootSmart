@@ -49,7 +49,7 @@ exports.create = (req, res) => {
                     data
                   });
                 });
-              })
+              });
             })
             .catch((err) => {
               transaction.rollBack();
