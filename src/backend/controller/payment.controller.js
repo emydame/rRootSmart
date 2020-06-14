@@ -41,9 +41,9 @@ exports.create = (req, res) => {
             .save()
             .then((data) => {
               // update fund status
-              Fund.findOne({where: {fundId: req.body.fundId}}).then((fund)=>{
+              Fund.findOne({ where: { fundId: req.body.fundId } }).then((fund) => {
                 fund.status = req.body.status;
-                fund.save().then(()=>{
+                fund.save().then(() => {
                   return res.status(200).json({
                     status: "success",
                     data
