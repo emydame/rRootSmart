@@ -13,16 +13,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       projectCatId: {
-        type: DataTypes.INTEGER,
-        references: {         
-          model: 'projectcategories',
-          key: 'id'
-        }
+        type: DataTypes.STRING
       },
-      
+      organizationId: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
       projectName: {
         type: DataTypes.STRING
       },
+      description: {
         type: DataTypes.STRING
       },
       createdBy: {
@@ -47,9 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false
     }
-
   );
-
 
   Project.associate = function(models) {
     Project.belongsTo(models.projectCategory, {foreignKey: 'id', as: 'category'})

@@ -1,5 +1,6 @@
 const db = require("../config/db.config");
 const Project = db.project;
+const projectCategory = db.projectCategory;
 
 exports.create = (req, res) => {
   let today = new Date();
@@ -68,6 +69,26 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
+
+// Get all projects with category name
+exports.findAllwithCategory = (req, res) => {
+  Project.findAll({include: ['category']})
+    .then((projects) => {
+      return res.status(200).json({
+        status: "success",
+        data: projects
+      });
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        status: "error",
+        message: err.message || "Something wrong while retrieving Projects."
+      });
+    });
+};
+
+
 
 // Get all active projects
 exports.active = (req, res) => { 
