@@ -102,12 +102,12 @@ exports.findOne = (req, res) => {
         let result = data.dataValues;
         result.eligibility = "";
         
-        Eligibility.findOne({ where: { projectId } }).then((criteria)=>{
+        Eligibility.findOne({ where: { projectId } }).then((criteria) => {
           if (criteria) {
             result.eligibility = criteria.dataValues.eligibilityCreteria;
           }
-          
-          ProjectCategory.findOne({where: { projectCatId: result.projectCatId } }).then((category)=>{
+
+          ProjectCategory.findOne({where: { projectCatId: result.projectCatId } }).then((category) => {
             result.categoryName = "";
             
             if (category) {
@@ -118,8 +118,7 @@ exports.findOne = (req, res) => {
               status: "success",
               data: result
             });
-          })
-         
+          });
         });
       }
     })
