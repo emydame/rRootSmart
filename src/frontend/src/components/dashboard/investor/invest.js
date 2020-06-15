@@ -119,7 +119,9 @@ class Invest extends React.Component {
           this.setState({ error: `Error creating Initiating Investment`, success: `` });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        this.setState({ error: error.message, success: `` });
+      });
   }
 
   render() {
