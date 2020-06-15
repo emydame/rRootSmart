@@ -66,7 +66,7 @@ exports.findAll = (req, res) => {
         message: err.message || "Something wrong while retrieving Projects."
       });
     });
-};
+};        
 
 
 // Get all active projects
