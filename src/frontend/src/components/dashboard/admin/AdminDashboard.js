@@ -37,7 +37,7 @@ import CreateProject from "../general/Create";
 import CreateEligibility from "./projects/CreateEligibility";
 import CreateMilestone from "./milestone/Create";
 import ViewMilestone from "./milestone/View";
-import UpdateMilestone from "./milestone/Update";
+import InvestmentCategory from "./category/InvestmentCategory";
 import DeleteMilestone from "./milestone/Delete";
 import {connect} from "react-redux";
 // import ViewProject from "./projects/View";
@@ -114,7 +114,10 @@ class AdminDashboard extends React.Component {
             </Menu.Item>
             <SubMenu key="sub1" icon={<SwitcherOutlined />} title="Category">
               <Menu.Item key="1" icon={<SwitcherOutlined />}>
-                <Link to="/admin/create-category">Create Category</Link>
+                <Link to="/admin/create-category">Project Category</Link>
+              </Menu.Item>
+              <Menu.Item key="12" icon={<SwitcherOutlined />}>
+                <Link to="/admin/category/InvestmentCategory">Investment Category</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<SwitcherOutlined />}>
                 <Link to="/admin/view-category">View Category</Link>
@@ -210,7 +213,7 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/projects/CreateEligibility" component={CreateEligibility} />
                 <Route path="/admin/view-milestone" component={ViewMilestone} />
                 <Route path="/admin/create-milestone" component={CreateMilestone} />
-                
+                <Route path="/admin/category/investmentCategory" component={InvestmentCategory} />
                 <Route path="/admin/delete-milestone/:milestoneId" component={DeleteMilestone} />
               </Switch>
             </Router>
