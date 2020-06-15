@@ -53,9 +53,5 @@ module.exports = (sequelize, DataTypes) => {
     Project.belongsTo(models.projectCategory, {foreignKey: 'id', as: 'category'})
   };
 
-  
-  ProjectCategory.associate = function(models) {
-    ProjectCategory.hasMany(models.project, {as: 'project'}, {foreignKey: 'id'})
-  }
   return Project;
 };
