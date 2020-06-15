@@ -85,7 +85,7 @@ class View extends React.Component {
           <thead>
             <tr>
               <th>Project Name</th>
-              <th>Category</th>
+               {/*<th>Category</th> */}
               <th>Project Description</th>
               {/* <th>Created By</th> */}
               <th>Date Started</th>

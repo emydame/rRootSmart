@@ -27,9 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  ProjectCategory.associate = function(models) {
+ /* ProjectCategory.associate = function(models) {
     ProjectCategory.hasMany(models.project, {as: 'project'}, {foreignKey: 'id'})
-  }
+  }*/
 
   return ProjectCategory;
 };
