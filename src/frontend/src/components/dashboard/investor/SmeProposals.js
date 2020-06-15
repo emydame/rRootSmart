@@ -46,22 +46,25 @@ class SmeProposals extends React.Component {
               <th scope="col">#</th>
               <th scope="col">Project Name</th>
               <th scope="col">SME</th>
-              <th scope="col">Requested Fund</th>
-              <th scope="col">Date</th>
+              <th scope="col">Project Funding</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
               <th scope="col">Status</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
           {data.map((item, index, arr) => {
-              const date = new Date(`${item.dateCreated}`).toLocaleDateString();
+              const startDate = new Date(`${item.dateStart}`).toLocaleDateString();
+              const endDate = new Date(`${item.dateEnd}`).toLocaleDateString();
               return (
                 <tr key={index}>
                   <td>{index+1}</td>
                   <td>{item.projectName}</td>
                   <td>{item.companyName}</td>
                   <td>{item.fund}</td>
-                  <td>{date} </td>
+                  <td>{startDate} </td>
+                  <td>{endDate} </td>
                   <td>{item.status}</td>
                   <td>
                     <Link to={`/investor/ProjectDetails/${item.projectId}`}>more details <svg class="bi bi-box-arrow-up-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
