@@ -203,7 +203,7 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/delete-category/:categoryId" component={DeleteCategory} />
                 <Route path="/admin/update-category/:categoryId" component={UpdateCategory} />
                 <Route path="/admin/create-project" component={CreateProject} />
-                <Route path="/admin/view-projects" component={ViewProject} />
+                <Route path="/admin/view-projects" render={(props) => <ViewProject {...props} userCat="admin" />} />
                 <Route path="/admin/view-project/:projectId" component={ViewProject} />
                 <Route path="/admin/ProfileDetails" component={ProfileDetails} />
                 <Route path="/admin/EditProfile" component={EditProfile} />
