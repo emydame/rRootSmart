@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  UserOrganization.associate = function(models) {
+/*  UserOrganization.associate = function(models) {
     UserOrganization.hasMany(models.projectProposal, {as: 'proposal'})
-  }
+  }*/
   return UserOrganization;
 };

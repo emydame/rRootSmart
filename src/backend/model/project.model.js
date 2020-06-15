@@ -29,10 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       dateStart: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
       },
       dateEnd: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
       },
       fund: {
         type: DataTypes.STRING
@@ -49,9 +49,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Project.associate = function(models) {
+ /* Project.associate = function(models) {
     Project.belongsTo(models.projectCategory, {foreignKey: 'id', as: 'category'})
-  };
+  };*/
 
   return Project;
 };
