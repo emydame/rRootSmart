@@ -88,7 +88,13 @@ exports.create = async (req, res) => {
 
 // Get all funds
 exports.findAll = (req, res) => {
-  Fund.findAll()
+  db.sequelize.query(
+    `select p.projectName, f.amount,f.status,f.dateInitiated,o.companyName
+    from eazsme_db.funds f
+   left join eazsme_db.projects p on p.projectId=f.projectId
+   left join eazsme_db.organizations o on o.organizationId=f.organizationId
+   order by p.projectName desc;
+    `, { raw: true })
     .then((result) => {
       return res.status(200).json({
         status: "success",

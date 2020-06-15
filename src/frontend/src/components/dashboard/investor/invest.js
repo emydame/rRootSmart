@@ -22,7 +22,8 @@ class Invest extends React.Component {
       success: ``,
       error: ``,
       description: ``,
-      projectName: ``
+      projectName: ``,
+      organizationId:``
     };
 
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -36,6 +37,11 @@ class Invest extends React.Component {
   componentDidMount() {
     this.getCategory();
     this.getActiveProjects();
+    const userObj = JSON.parse(localStorage.getItem(`userObj`));
+    if (userObj) {
+      this.setState(() => ({ userObj }));
+     
+    }
   }
 
 
@@ -101,7 +107,7 @@ class Invest extends React.Component {
     const formFields = serialize(form, { hash: true });
     
     formFields.status = `investment initiated`;
-    formFields.organizationId = this.props.user.organizationId;
+    formFields.organizationId = this.state.userObj.organizationId;
     //formFields.projectName=this.state.projectName;
 
     axios

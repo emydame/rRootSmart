@@ -40,7 +40,7 @@ import ViewMilestone from "./milestone/View";
 import InvestmentCategory from "./category/InvestmentCategory";
 import DeleteMilestone from "./milestone/Delete";
 import {connect} from "react-redux";
-// import ViewProject from "./projects/View";
+
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -155,8 +155,7 @@ class AdminDashboard extends React.Component {
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="12" icon={<LogoutOutlined />}>
-              {" "}
-              Log Out
+            <Link to="/">Log out</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -192,7 +191,9 @@ class AdminDashboard extends React.Component {
           <Content style={{ margin: "0 16px" }}>
             <div className="content-title"></div>
             <Router history={this.props.history}>
+           
               <Switch>
+              
                 <Route path="/admin/investorsandfunding" component={InvestorsAndFunding} />
                 <Route path="/admin/smeandprojects" component={SmeAndProjects} />
                 <Route path="/admin/create-user" component={Create} />
