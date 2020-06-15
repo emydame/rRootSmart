@@ -1,6 +1,7 @@
 const db = require("../config/db.config");
 const Project = db.project;
 const Eligibility = db.eligibility;
+const ProjectCategory = db.projectCategory;
 
 exports.create = (req, res) => {
   let today = new Date();
@@ -99,15 +100,26 @@ exports.findOne = (req, res) => {
         });
       } else {
         let result = data.dataValues;
+        result.eligibility = "";
         
         Eligibility.findOne({ where: { projectId } }).then((criteria)=>{
           if (criteria) {
             result.eligibility = criteria.dataValues.eligibilityCreteria;
           }
-          return res.status(200).json({
-            status: "success",
-            data: result
-          });
+          
+          ProjectCategory.findOne({where: { projectCatId: result.projectCatId } }).then((category)=>{
+            result.categoryName = "";
+            
+            if (category) {
+              result.categoryName = category.dataValues.categoryName;
+            }
+            
+            return res.status(200).json({
+              status: "success",
+              data: result
+            });
+          })
+         
         });
       }
     })

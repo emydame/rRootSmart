@@ -67,31 +67,15 @@ class ProjectDetails extends React.Component {
               </div>
               <div class="row justify-content-start stripped">
                 <div class="col-4">
-                  Application Date:
+                  Date Created:
                 </div>
                 <div class="col-4">
                   {dateCreated}
                 </div>
               </div>
-              <div class="row justify-content-around">
-                <div class="col-4">
-                  Name of SME
-                </div>
-                <div class="col-4">
-                  {this.state.project.companyName}
-                </div>
-              </div>
-              <div class="row justify-content-between stripped">
-                <div class="col-4">
-                  SME ID.: 
-                </div>
-                <div class="col-4">
-                  {this.state.project.organizationId}
-                </div>
-              </div>
               <div class="row justify-content-start stripped">
                 <div class="col-4">
-                  Amount Applied for: 
+                  Amount Deposited: 
                 </div>
                 <div class="col-4">
                   N{this.state.project.fund}
@@ -99,51 +83,33 @@ class ProjectDetails extends React.Component {
               </div>
             </div><br></br>
         <div class="container">
-                <div class="row justify-content-start stripped">
-                  <div class="col-4">
-                    SME Address:
-                  </div>
-                  <div class="col-4">
-                    {this.state.project.address}
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <div class="col-4">
-                    Milestone:
-                  </div>
-                  <div class="col-4">
-                  {this.state.project.status}
-                  </div>
-                </div>
-                <div class="row justify-content-end stripped">
-                  <div class="col-4">
-                    How many previous completed project?
-                  </div>
-                  <div class="col-4">
-                    N/A
-                  </div>
-                </div>
-                <div class="row justify-content-around">
-                  <div class="col-4">
-                    Number of Staff:
-                  </div>
-                  <div class="col-4">
-                    8 persons
-                  </div>
-                </div>
-                <div class="row justify-content-between stripped">
-                  <div class="col-3">
-                    Project Description: 
-                  </div>
-                  <div class="col-9">
-                    {this.state.project.description}
-                  </div>
-                </div>
-                <div className="download">
-                  <Button  type="primary">Download Proposal <DownloadOutlined /></Button> 
-                </div>
-              </div>
+          <div class="row justify-content-between stripped">
+            <div class="col-3">
+              Project Description: 
+            </div>
+            <div class="col-9">
+              {this.state.project.description}
+            </div>
+          </div>
+          <div class="row justify-content-between stripped">
+            <div class="col-3">
+              Project Category: 
+            </div>
+            <div class="col-9">
+              {this.state.project.categoryName}
+            </div>
+          </div>
+          <div class="row justify-content-between stripped">
+            <div class="col-4">
+              Eligibility Criteria:
+            </div>
+            <div class="col-8">
+              {this.state.project.eligibility}
+            </div>
+          </div>
+          
         </div>
+      </div>
       </>
     );
   }
