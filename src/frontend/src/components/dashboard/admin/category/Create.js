@@ -82,9 +82,8 @@ class Create extends React.Component {
                   init={{
                     height: 200,
                     menubar: false,
-                    forced_root_block : ` `,
-                    force_br_newlines : true,
-                    plugins: [
+                    forced_root_block: ` `,
+                      plugins: [
                       `advlist autolink lists link image`,
                       `charmap print preview anchor help`,
                       `searchreplace visualblocks code`,
