@@ -180,6 +180,24 @@ exports.findAll = (req, res) => {
     });
 };
 
+
+//Get all users in an Organization
+exports.findOnebyOrganization = (req, res) => {
+  User.findAll({ where: { organizationId: req.body.organizationId}} )
+    .then((users) => {
+      return res.status(200).json({
+        status: "success",
+        data: users
+      });
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        status: "error",
+        message: err.message
+      });
+    });
+};
+
 // find single user by id
 exports.findOne = (req, res) => {
   User.findOne({ where: { userId: req.body.userId } })
