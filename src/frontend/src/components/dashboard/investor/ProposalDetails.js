@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 
-class ProjectDetails extends React.Component {
+class ProposalDetails extends React.Component {
   constructor(props) {
     super(props);
     
@@ -153,4 +153,4 @@ class ProjectDetails extends React.Component {
     );
   }
 }
-export default ProjectDetails;
+export default ProposalDetails;
