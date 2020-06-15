@@ -108,8 +108,8 @@ class AdminDashboard extends React.Component {
                 alt="logo"
               />
             </Link></div>
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<ProfileOutlined />}>
+          <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
+            <Menu.Item key="0" icon={<ProfileOutlined />}>
               <Link to="/admin/ProfileDetails">Profile Details</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<SwitcherOutlined />} title="Category">
@@ -151,7 +151,7 @@ class AdminDashboard extends React.Component {
                 <Link to="/admin/investorsandfunding">Investors Funding</Link>
               </Menu.Item>
             </SubMenu>
-            <Menu.Item key="3" icon={<LogoutOutlined />}>
+            <Menu.Item key="12" icon={<LogoutOutlined />}>
               {" "}
               Log Out
             </Menu.Item>

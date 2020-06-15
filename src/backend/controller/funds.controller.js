@@ -11,6 +11,7 @@ const Fund = db.fund;
 // Invest funds
 exports.create = async (req, res) => {
   let id = Math.floor(Math.random() * 10000) + 1;
+  let fund="Not Funded";
 
   const projectId =  req.body.projectId;
   
@@ -21,6 +22,7 @@ exports.create = async (req, res) => {
     fundCatId: req.body.fundCatId,
     amount: req.body.amount,
     status: req.body.status,
+    fund:fund,
     dateInitiated: req.body.dateInitiated
   };
   
@@ -51,6 +53,7 @@ exports.create = async (req, res) => {
             Project.findOne({ where : { projectId } }).then((project) => {
               if (project){
                 project.status = "funding initiated";
+                project.fund="funded";
                 project.save();
                 message = "fund created and project status updated";
               }

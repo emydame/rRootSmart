@@ -41,7 +41,7 @@ class Invest extends React.Component {
 
   getActiveProjects() {
     axios
-      .get(`https://eazsme-backend.herokuapp.com/projects/all`)
+      .get(`http://localhost:4000/projects/all`)
       .then((data) => {
       
         const projects = data.data.data;    
@@ -67,7 +67,7 @@ class Invest extends React.Component {
   
   getCategory() {
     axios
-      .get(`https://eazsme-backend.herokuapp.com/funds/category/all`)
+      .get(`http://localhost:4000/funds/category/all`)
       .then((data) => {
         const categories = data.data.data;
   console.log(categories);
@@ -105,7 +105,7 @@ class Invest extends React.Component {
     //formFields.projectName=this.state.projectName;
 
     axios
-      .post(`https://eazsme-backend.herokuapp.com/invest`, formFields)
+      .post(`http://localhost:4000/invest`, formFields)
       .then((data) => {
         if (data.data.status === `success`) {
           this.setState({ 

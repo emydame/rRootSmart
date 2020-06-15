@@ -46,7 +46,10 @@ class Create extends React.Component {
           this.setState({ error: `Error creating category` });
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        
+        this.setState({ error: `Error creating category` });
+      console.log(error);});
   }
 
   render() {
@@ -79,6 +82,8 @@ class Create extends React.Component {
                   init={{
                     height: 200,
                     menubar: false,
+                    forced_root_block : ``,
+                    force_br_newlines : true,
                     plugins: [
                       `advlist autolink lists link image`,
                       `charmap print preview anchor help`,
