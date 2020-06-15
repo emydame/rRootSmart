@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./components/dashboard/Dashboard.css";
 import "antd/dist/antd.css";
 import "./styles/index.css";
+import "./components/dashboard/Dashboard.css";
 import App from "./components/App";
 import { Provider } from "react-redux";
 import history from "./history";
