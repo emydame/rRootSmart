@@ -90,10 +90,10 @@ export default class InvestorsAndFunding extends Component {
             for(let i=0; i<count-1; i++){
               return (
                 <tr>
-                  <td key={index[i]}>{item[i].companyName}</td>
-                  <td key={index[i]}>{item[i].projectName}</td>
-                  <td key={index[i]}>{item[i].amount}</td>
-                  <td key={index[i]}>{item[i].dateInitiated}</td>
+                  <td key={index}>{item[i].companyName}</td>
+                  <td key={index}>{item[i].projectName}</td>
+                  <td key={index}>{item[i].amount}</td>
+                  <td key={index}>{item[i].dateInitiated}</td>
                   <td key={count++}>
                       <Link to={`/view-project/${item.projectId}`}>View Details</Link>
                     </td>   
