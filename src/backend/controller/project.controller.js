@@ -1,5 +1,6 @@
 const db = require("../config/db.config");
 const Project = db.project;
+const Eligibility = db.eligibility;
 
 exports.create = (req, res) => {
   let today = new Date();
@@ -88,7 +89,8 @@ exports.active = (req, res) => {
 
 // Get single Project using  parameter
 exports.findOne = (req, res) => {
-  Project.findOne({ where: { projectId: req.body.projectId || req.params.id } })
+  const projectId =  req.body.projectId || req.params.id;
+  Project.findOne({ where: { projectId } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({
@@ -96,9 +98,16 @@ exports.findOne = (req, res) => {
           message: " Project not found"
         });
       } else {
-        return res.status(200).json({
-          status: "success",
-          data
+        let result = data.dataValues;
+        
+        Eligibility.findOne({ where: { projectId } }).then((criteria)=>{
+          if (criteria) {
+            result.eligibility = criteria.dataValues.eligibilityCreteria;
+          }
+          return res.status(200).json({
+            status: "success",
+            data: result
+          });
         });
       }
     })
