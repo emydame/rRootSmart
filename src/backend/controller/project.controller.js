@@ -73,7 +73,7 @@ exports.findAll = (req, res) => {
 
 // Get all projects with category name
 exports.findAllwithCategory = (req, res) => {
-  Project.findAll({include: ['category']})
+  Project.findAll({include: ["category"]})
     .then((projects) => {
       return res.status(200).json({
         status: "success",

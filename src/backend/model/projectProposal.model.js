@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {         
-         model: 'organizations',
-         key: 'organizationId'
+         model: "organizations",
+         key: "organizationId"
        }
       },
       userId: {
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Proposal.associate = function(models) {
-    Proposal.belongsTo(models.organization, {foreignKey: 'organizationId', as: 'company'})
+    Proposal.belongsTo(models.organization, {foreignKey: "organizationId", as: "company"});
   };
 
   return Proposal;

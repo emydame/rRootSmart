@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
@@ -36,6 +37,8 @@ export default class InvestorsAndFunding extends Component {
       .then(({ data }) => {
               const  status  = data.status;
         const projects = data.data;
+       
+        console.log("p"+data);
         if (status === "success") {
           this.setState({ data: projects });          
         }
@@ -62,6 +65,7 @@ export default class InvestorsAndFunding extends Component {
 
   render() {
     const data = this.state.data;
+    
     return (
       <Card.Body>
      
@@ -71,7 +75,8 @@ export default class InvestorsAndFunding extends Component {
         <table class="table table-striped">
                 <thead>
             <tr>
-             <th>Project Name</th>
+            <th>Organization</th>
+             <th>Project Name</th>              
               <th>Amount</th>
               <th>Fund Receipt Date</th>
               <th>View</th>
@@ -79,13 +84,16 @@ export default class InvestorsAndFunding extends Component {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index, arr) => {
+            {        
+            data.map((item, index, arr) => {
             let count = arr.length;
+            for(let i=0; i<count-1; i++){
               return (
                 <tr>
-                  <td key={index}>{item.projectName}</td>
-                  <td key={index}>{item.amount}</td>
-                  <td key={index}>{item.dateInitiated}</td>
+                  <td key={index}>{item[parseInt(i)].companyName}</td>
+                  <td key={index}>{item[parseInt(i)].projectName}</td>
+                  <td key={index}>{item[parseInt(i)].amount}</td>
+                  <td key={index}>{item[parseInt(i)].dateInitiated}</td>
                   <td key={count++}>
                       <Link to={`/view-project/${item.projectId}`}>View Details</Link>
                     </td>   
@@ -94,7 +102,10 @@ export default class InvestorsAndFunding extends Component {
                     </td>           
                 </tr>
               );
-            })}
+            }
+            })
+            
+            }
           </tbody>
 
         </table>
