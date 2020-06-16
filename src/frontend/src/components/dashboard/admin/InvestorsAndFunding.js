@@ -34,11 +34,11 @@ export default class InvestorsAndFunding extends Component {
   fetchData() {
     axios
       .get("http://localhost:4000/funds/all")
-      .then(({ res }) => {
-              const  status  = res.status;
-        const projects = res.data;
+      .then(({ data }) => {
+              const  status  = data.status;
+        const projects = data.data;
        
-        console.log("p"+projects);
+        console.log("p"+data);
         if (status === "success") {
           this.setState({ data: projects });          
         }
@@ -90,10 +90,10 @@ export default class InvestorsAndFunding extends Component {
             for(let i=0; i<count-1; i++){
               return (
                 <tr>
-                  <td key={index}>{item[i].companyName}</td>
-                  <td key={index}>{item[i].projectName}</td>
-                  <td key={index}>{item[i].amount}</td>
-                  <td key={index}>{item[i].dateInitiated}</td>
+                  <td key={index}>{item[parseInt(i)].companyName}</td>
+                  <td key={index}>{item[parseInt(i)].projectName}</td>
+                  <td key={index}>{item[parseInt(i)].amount}</td>
+                  <td key={index}>{item[parseInt(i)].dateInitiated}</td>
                   <td key={count++}>
                       <Link to={`/view-project/${item.projectId}`}>View Details</Link>
                     </td>   
