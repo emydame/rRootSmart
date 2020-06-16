@@ -90,7 +90,7 @@ class InvestorDashboard extends React.Component {
     this.fetchData();
   }
   async fetchData() {
-    const url = "https://eazsme-backend.herokuapp.com/project/investorAll";
+    const url = "http://localhost:4000/project/investorAll";
     
     const data = await axios.get(url);
 
@@ -162,7 +162,7 @@ class InvestorDashboard extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <nav class="navbar">
+          <nav class="navbar inv-header">
           <div className="cat-title bgIn">INVESTOR HOME</div>
             {/* <Link className="dashboard-img" to="#">
               <img
@@ -216,7 +216,7 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/view-projects" component={ViewProject} />
                   <Route path="/investor/view-project/:projectId" component={ViewProject} />
                   <Route path="/investor/ProjectDetails/:id" render={(props) => <ProjectDetails {...props} projectproposals={this.state.projectproposals } />} />
-                  <Route path="/investor/FundDetails/:id" component={FundDetails} />
+                  <Route path="/investor/FundDetails/:id" render={(props) => <FundDetails {...props} user={this.state.user } />} />
                   <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />
                 </Switch>
               </Router>

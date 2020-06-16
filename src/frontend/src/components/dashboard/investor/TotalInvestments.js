@@ -21,7 +21,7 @@ class TotalInvestments extends React.Component {
   }
   async fetchData() {
    // const url = `https://eazsme-backend.herokuapp.com/funds/${this.props.user.organizationId}`;
-   const url = `http://localhost:4000/funds/${this.props.user.organizationId}`;
+   const url = `http://localhost:4000/funds/organizations/${this.props.user.organizationId}`;
     
     const data = await axios.get(url);
     const investments = data.data.data;
@@ -46,6 +46,7 @@ class TotalInvestments extends React.Component {
           <thead>
             <tr>
               <th scope="col">S/N</th>
+              <th scope="col">Project Name</th>
               <th scope="col">Status</th>
               <th scope="col">Date Initiated</th>
               <th scope="col">Amount(#)</th>
@@ -57,7 +58,7 @@ class TotalInvestments extends React.Component {
               return (
                 <tr key={index}>
                   <td>{index+1}</td>
-                  
+                  <td>{item.projectName}</td>
                   <td>{item.status}</td>
                   <td>{item.dateInitiated}</td>
                   <td>{item.amount}</td>
