@@ -1,5 +1,7 @@
 const db = require("../config/db.config");
 const Project = db.project;
+const Eligibility = db.eligibility;
+const ProjectCategory = db.projectCategory;
 const projectCategory = db.projectCategory;
 
 exports.create = (req, res) => {
@@ -109,7 +111,8 @@ exports.active = (req, res) => {
 
 // Get single Project using  parameter
 exports.findOne = (req, res) => {
-  Project.findOne({ where: { projectId: req.body.projectId || req.params.id } })
+  const projectId =  req.body.projectId || req.params.id;
+  Project.findOne({ where: { projectId } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({
@@ -117,9 +120,26 @@ exports.findOne = (req, res) => {
           message: " Project not found"
         });
       } else {
-        return res.status(200).json({
-          status: "success",
-          data
+        let result = data.dataValues;
+        result.eligibility = "";
+        
+        Eligibility.findOne({ where: { projectId } }).then((criteria) => {
+          if (criteria) {
+            result.eligibility = criteria.dataValues.eligibilityCreteria;
+          }
+
+          ProjectCategory.findOne({where: { projectCatId: result.projectCatId } }).then((category) => {
+            result.categoryName = "";
+            
+            if (category) {
+              result.categoryName = category.dataValues.categoryName;
+            }
+            
+            return res.status(200).json({
+              status: "success",
+              data: result
+            });
+          });
         });
       }
     })

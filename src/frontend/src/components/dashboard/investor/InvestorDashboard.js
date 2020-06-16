@@ -27,6 +27,7 @@ import Create from "../general/CreateUser";
 import Remove from "../general/Remove";
 import Update from "../general/Update";
 import ProfileDetails from "./user/ProfileDetails";
+import ProposalDetails from "./ProposalDetails";
 import ProjectDetails from "./ProjectDetails";
 import FundDetails from "./FundDetails";
 import EditProfile from "./user/EditProfile";
@@ -204,9 +205,9 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/ProfileDetails" component={ProfileDetails} />
                   <Route path="/investor/EditProfile" component={EditProfile} />
                   <Route path="/investor/create-project" component={CreateProject} />
-                  <Route path="/investor/view-projects" component={ViewProject} />
-                  <Route path="/investor/view-project/:projectId" component={ViewProject} />
-                  <Route path="/investor/ProjectDetails/:id" render={(props) => <ProjectDetails {...props} projectproposals={this.state.projectproposals } />} />
+                  <Route path="/investor/view-projects" render={(props) => <ViewProject {...props} userCat="investor" />} />
+                  <Route path="/investor/view-project/:projectId" render={(props) => <ProjectDetails {...props} projects={this.state.projects } />} />
+                  <Route path="/investor/proposal-details/:id" render={(props) => <ProposalDetails {...props} projectproposals={this.state.projectproposals } />} />
                   <Route path="/investor/FundDetails/:id" render={(props) => <FundDetails {...props} user={this.state.user } />} />
                   <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />
                 </Switch>

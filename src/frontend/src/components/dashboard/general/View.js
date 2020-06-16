@@ -106,7 +106,7 @@ class View extends React.Component {
                   <td>{item.dateStart}</td>
                   <td>{item.dateEnd}</td>
                   <td>
-                    <Link to={`/view-project/${item.projectId}`}>View Details</Link>
+                    <Link to={`/${this.props.userCat}/view-project/${item.projectId}`}>View Details</Link>
                   </td>
                 </tr>
               );

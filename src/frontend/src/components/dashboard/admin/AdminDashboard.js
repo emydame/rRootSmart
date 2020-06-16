@@ -18,6 +18,8 @@ import {
   WalletOutlined
 } from "@ant-design/icons";
 import ProfileDetails from "./user/ProfileDetails";
+import ProjectDetails from "./ProjectDetails";
+
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
 import Create from "../general/CreateUser";
@@ -182,8 +184,8 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/delete-category/:categoryId" component={DeleteCategory} />
                 <Route path="/admin/update-category/:categoryId" component={UpdateCategory} />
                 <Route path="/admin/create-project" component={CreateProject} />
-                <Route path="/admin/view-projects" component={ViewProject} />
-                <Route path="/admin/view-project/:projectId" component={ViewProject} />
+                <Route path="/admin/view-projects" render={(props) => <ViewProject {...props} userCat="admin" />} />
+                <Route path="/admin/view-project/:projectId" render={(props) => <ProjectDetails {...props}/>}/>
                 <Route path="/admin/ProfileDetails" component={ProfileDetails} />
                 <Route path="/admin/EditProfile" component={EditProfile} />
                 <Route path="/admin/projects/CreateEligibility" component={CreateEligibility} />
