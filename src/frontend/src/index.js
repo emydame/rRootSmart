@@ -8,7 +8,6 @@ import { Provider } from "react-redux";
 import history from "./history";
 import { Switch, Route, Router } from "react-router-dom";
 import store from "./redux/configurations/store";
-//import Dashboards from "./components/dashboard/Dashboard";
 import RecoverPassword from "./components/RecoverPassword";
 import Logout from "./components/Logout";
 import SmeDashboard from "./components/dashboard/sme/SmeDashboard";
@@ -26,7 +25,6 @@ ReactDOM.render(
         <Switch>
           <Route component={App} exact path="/" />
           <Route component={RecoverPassword} path="/recover-password" />
-          {/*<Route component={Dashboards} />*/}
           <Route component={SmeDashboard} path="/sme" />
           <Route component={RegulatorDashboard} path="/regulator" />
           <Route component={AdminDashboard} path="/admin" />
