@@ -47,6 +47,7 @@ class Create extends React.Component {
           const { categories } = this.state;
           const data = categories;
 //console.log(data);
+
           // based on type of data is array
           for (let i = 0; i < data.length; i++) {
             const option = document.createElement(`option`);
@@ -68,8 +69,9 @@ class Create extends React.Component {
     e.preventDefault();
     const form = document.querySelector(`form[name="create-project"]`);
     const formFields = serialize(form, { hash: true });
+    
     await axios
-      .post(`https://eazsme-backend.herokuapp.com/projects`, formFields)
+      .post(`http://localhost:4000/projects`, formFields)
       .then(({data}) => {
         const {status} = data;
         if (status === `success`) {

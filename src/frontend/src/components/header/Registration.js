@@ -132,11 +132,11 @@ class Registration extends React.Component {
           </Modal.Header>
           <Modal.Body bsPrefix="modal-body">
             {success ? (
-              <div className="text-bold text-success">
+              <div className="text-bold text-success text-center">
                 <h5>{success}</h5>
               </div>
             ) : (
-              <div className="text-bold text-danger">
+              <div className="text-bold text-danger text-center">
                 <h5>{error}</h5>
               </div>
             )}

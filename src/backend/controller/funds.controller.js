@@ -11,6 +11,7 @@ const Fund = db.fund;
 // Invest funds
 exports.create = async (req, res) => {
   let id = Math.floor(Math.random() * 10000) + 1;
+  let fundfield="Not Funded";
 
   const projectId =  req.body.projectId;
   
@@ -21,6 +22,7 @@ exports.create = async (req, res) => {
     fundCatId: req.body.fundCatId,
     amount: req.body.amount,
     status: req.body.status,
+    fund:fundfield,
     dateInitiated: req.body.dateInitiated
   };
   
@@ -51,6 +53,7 @@ exports.create = async (req, res) => {
             Project.findOne({ where : { projectId } }).then((project) => {
               if (project){
                 project.status = "funding initiated";
+                project.fund="funded";
                 project.save();
                 message = "fund created and project status updated";
               }
@@ -85,7 +88,13 @@ exports.create = async (req, res) => {
 
 // Get all funds
 exports.findAll = (req, res) => {
-  Fund.findAll()
+  db.sequelize.query(
+    `select p.projectName, f.amount,f.status,f.dateInitiated,o.companyName
+    from eazsme_db.funds f
+   left join eazsme_db.projects p on p.projectId=f.projectId
+   left join eazsme_db.organizations o on o.organizationId=f.organizationId
+   order by p.projectName desc;
+    `, { raw: true })
     .then((result) => {
       return res.status(200).json({
         status: "success",

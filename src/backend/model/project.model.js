@@ -41,5 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false
     }
   );
+
+ /* Project.associate = function(models) {
+    Project.belongsTo(models.projectCategory, {foreignKey: 'id', as: 'category'})
+  };*/
+
   return Project;
 };
