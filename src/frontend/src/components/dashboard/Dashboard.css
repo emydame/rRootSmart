@@ -66,7 +66,7 @@ iframe {
 }
 
 .sme-sider {
-  background: #49c0b6;
+  background: #fbb034;
 }
 
 .reg-sider {
@@ -74,7 +74,7 @@ iframe {
 }
 
 .ant-menu.sme-menu {
-  background-color: #49c0b6;
+  background-color: #fbb034;
 }
 
 .ant-menu.reg-menu {
@@ -97,7 +97,7 @@ nav.admin-header {
 }
 
 nav.sme-header {
-  background: #49c0b6;
+  background: #fbb034;
   padding: 8px 40px;
 }
 
