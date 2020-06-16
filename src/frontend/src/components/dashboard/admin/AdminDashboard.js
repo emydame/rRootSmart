@@ -6,16 +6,12 @@ import React from "react";
 import { Switch, Router, Route, Link } from "react-router-dom";
 import { Layout, Menu, Badge, Dropdown, Avatar } from "antd";
 import {
-  UserDeleteOutlined,
   UserAddOutlined,
   ProfileOutlined,
-  UsergroupAddOutlined,
-  SettingOutlined,
   UserOutlined,
   LogoutOutlined,
   AppstoreOutlined,
   DollarCircleOutlined,
-  FileDoneOutlined,
   BellFilled,
   SwitcherOutlined,
   ProjectOutlined,
@@ -25,7 +21,6 @@ import ProfileDetails from "./user/ProfileDetails";
 import InvestorsAndFunding from "./InvestorsAndFunding";
 import SmeAndProjects from "./SmeAndProjects";
 import Create from "../general/CreateUser";
-import Remove from "../general/Remove";
 import Update from "../general/Update";
 import EditProfile from "./user/EditProfile";
 import CreatCategory from "./category/Create";
@@ -44,36 +39,9 @@ import {connect} from "react-redux";
 
 const menu = (
   <Menu id="dropdown-menu">
-    <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Profile
-      </a>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<WalletOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Fund Application
-      </a>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Manage Users
-      </a>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Review Reports
-      </a>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Settings
-      </a>
-    </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
       {" "}
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Logout
-      </a>
+      <Link to="/logout">Logout</Link>
     </Menu.Item>
   </Menu>
 );
@@ -97,19 +65,26 @@ class AdminDashboard extends React.Component {
 
   render() {
     // use localStorage.getItem("user") to get the user object
+    const user = localStorage.getItem("userObj");
+    const history = this.props.history;
+    if (!user || user === null) {
+      history.push("/");
+    }
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider className="admin-sider" collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-        <div className="logo"><Link className="dashboard-img" to="#">
+          <div className="logo">
+            <Link className="dashboard-img" to="#">
               <img
                 src={
                   "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
                 }
                 alt="logo"
               />
-            </Link></div>
-          <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline">
-            <Menu.Item key="0" icon={<ProfileOutlined />}>
+            </Link>
+          </div>
+          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+            <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/admin/ProfileDetails">Profile Details</Link>
             </Menu.Item>
             <SubMenu key="sub1" icon={<SwitcherOutlined />} title="Category">
@@ -162,7 +137,7 @@ class AdminDashboard extends React.Component {
         <Layout className="site-layout">
           {/* <Header className="site-layout-background header"> */}
           <nav class="navbar admin-header">
-          <div className="cat-title bgAd">ADMIN HOME</div>
+            <div className="cat-title bgAd">ADMIN HOME</div>
             {/* <Link className="dashboard-img" to="#">
               <img
                 src={
@@ -198,10 +173,10 @@ class AdminDashboard extends React.Component {
                 <Route path="/admin/smeandprojects" component={SmeAndProjects} />
                 <Route path="/admin/create-user" component={Create} />
                 <Route path="/admin/update-user" component={Update} />
-              {/**  <Route path="/admin/deactivate-user" component={Remove} />
-                * <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
-                * 
-               */}
+                {/**  <Route path="/admin/deactivate-user" component={Remove} />
+                 * <Route path="/admin/update-milestone/:milestoneId" component={UpdateMilestone} />
+                 *
+                 */}
                 <Route path="/admin/create-category" component={CreatCategory} />
                 <Route path="/admin/view-category" component={ViewCategory} />
                 <Route path="/admin/delete-category/:categoryId" component={DeleteCategory} />
