@@ -39,27 +39,9 @@ import axios from "axios";
 
 const menu = (
   <Menu id="dropdown-menu">
-    <Menu.Item className="menu-icon" icon={<UserOutlined />}>
-      <Link to="/investor/AllUsers">Profile</Link>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<UsergroupAddOutlined />}>
-      <Link to="/investor/AllUsers">Manage Users</Link>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<FileDoneOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Review Reports
-      </a>
-    </Menu.Item>
-    <Menu.Item className="menu-icon" icon={<SettingOutlined />}>
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Settings
-      </a>
-    </Menu.Item>
     <Menu.Item className="menu-icon" icon={<LogoutOutlined />}>
       {" "}
-      <a target="_blank" rel="noopener noreferrer" href="#">
-        Logout
-      </a>
+      <Link to="/logout">Logout</Link>
     </Menu.Item>
   </Menu>
 );
@@ -69,7 +51,7 @@ const { SubMenu } = Menu;
 class InvestorDashboard extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       collapsed: false,
       user: {
@@ -92,12 +74,12 @@ class InvestorDashboard extends React.Component {
   }
   async fetchData() {
     const url = "http://localhost:4000/project/investorAll";
-    
+
     const data = await axios.get(url);
 
     const projectproposals = data.data.data;
 
-    this.setState({projectproposals});
+    this.setState({ projectproposals });
   }
   onCollapse = (collapsed) => {
     console.log(collapsed);
@@ -106,17 +88,24 @@ class InvestorDashboard extends React.Component {
 
   render() {
     // use localStorage.getItem("user") to get the user object
+    const user = localStorage.getItem("userObj");
+    const history = this.props.history;
+    if (!user || user === null) {
+      history.push("/");
+    }
     return (
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-          <div className="logo"><Link className="dashboard-img" to="#">
+          <div className="logo">
+            <Link className="dashboard-img" to="#">
               <img
                 src={
                   "https://res.cloudinary.com/lordefid/image/upload/c_scale,h_50/v1590937828/Group_160_2x_wad30b.png"
                 }
                 alt="logo"
               />
-            </Link></div>
+            </Link>
+          </div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<ProfileOutlined />}>
               <Link to="/investor/ProfileDetails">Profile Details</Link>
@@ -131,7 +120,6 @@ class InvestorDashboard extends React.Component {
               <Menu.Item key="4" icon={<UserOutlined />}>
                 <Link to="/investor/update-user">Update</Link>
               </Menu.Item>
-            
             </SubMenu>
             <Menu.Item key="6" icon={<PieChartOutlined />}>
               <Link to="/investor/view-projects">View Projects</Link>
@@ -155,16 +143,11 @@ class InvestorDashboard extends React.Component {
                 <Link to="/investor/SmeProposals">All Proposals</Link>
               </Menu.Item>
             </SubMenu>
-
-            <Menu.Item key="3" icon={<LogoutOutlined />}>
-              {" "}
-              Log Out
-            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <nav class="navbar inv-header">
-          <div className="cat-title bgIn">INVESTOR HOME</div>
+            <div className="cat-title bgIn">INVESTOR HOME</div>
             {/* <Link className="dashboard-img" to="#">
               <img
                 src={
@@ -174,7 +157,6 @@ class InvestorDashboard extends React.Component {
               />
             </Link> */}
             <div>
-              
               <Badge className="badge-item" count={5}>
                 <a href="#" className="example" />
               </Badge>
@@ -203,10 +185,19 @@ class InvestorDashboard extends React.Component {
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
               <Router history={this.props.history}>
                 <Switch>
-                  <Route path="/investor/SmeProposals" render={(props) => <SmeProposals {...props} projectproposals={this.state.projectproposals } />}/>
+                  <Route
+                    path="/investor/SmeProposals"
+                    render={(props) => <SmeProposals {...props} projectproposals={this.state.projectproposals} />}
+                  />
 
-                  <Route path="/investor/InvestmentHistory" render={(props) => <InvestmentHistory {...props} user={this.state.user } />} />
-                  <Route path="/investor/TotalInvestments" render={(props) => <TotalInvestments {...props} user={this.state.user } />} />
+                  <Route
+                    path="/investor/InvestmentHistory"
+                    render={(props) => <InvestmentHistory {...props} user={this.state.user} />}
+                  />
+                  <Route
+                    path="/investor/TotalInvestments"
+                    render={(props) => <TotalInvestments {...props} user={this.state.user} />}
+                  />
                   <Route path="/investor/AllUsers" component={AllUsers} />
                   <Route path="/investor/create-user" component={Create} />
                   <Route path="/investor/update-user" component={Update} />
@@ -233,7 +224,6 @@ const mapStateToProps = (state) => ({
   companyName: state.investor.companyName,
   category: state.investor.category,
   userId: state.investor.userId
-  
 });
 console.log(mapStateToProps);
 export default connect(mapStateToProps)(InvestorDashboard);

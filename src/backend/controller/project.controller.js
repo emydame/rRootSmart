@@ -2,6 +2,7 @@ const db = require("../config/db.config");
 const Project = db.project;
 const Eligibility = db.eligibility;
 const ProjectCategory = db.projectCategory;
+const projectCategory = db.projectCategory;
 
 exports.create = (req, res) => {
   let today = new Date();
@@ -9,16 +10,15 @@ exports.create = (req, res) => {
 
   let projects = {
     projectId: id,
-    projectCatId: req.body.projectCatId,
+    categoryName: req.body.categoryName,
     projectName: req.body.projectName,
     description: req.body.description,
     createdBy: req.body.createdBy,
     dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
-    fund: req.body.fund,
-    organizationId: req.body.organizationId,
-    status: "not started",
-    dateCreated: today
+    fundStatus: "Not funded",
+    dateCreated : today
+  
   };
   if (!req.body) {
     return res.status(400).json({
@@ -56,7 +56,7 @@ exports.create = (req, res) => {
 
 // Get all projects
 exports.findAll = (req, res) => {
-  Project.findAll()
+  Project.findAll()  
     .then((result) => {
       return res.status(200).json({
         status: "success",
@@ -69,7 +69,28 @@ exports.findAll = (req, res) => {
         message: err.message || "Something wrong while retrieving Projects."
       });
     });
+};        
+
+
+
+// Get all projects with category name
+exports.findAllwithCategory = (req, res) => {
+  Project.findAll({include: ["category"]})
+    .then((projects) => {
+      return res.status(200).json({
+        status: "success",
+        data: projects
+      });
+    })
+    .catch((err) => {
+      return res.status(500).json({
+        status: "error",
+        message: err.message || "Something wrong while retrieving Projects."
+      });
+    });
 };
+
+
 
 // Get all active projects
 exports.active = (req, res) => { 
@@ -151,3 +172,5 @@ exports.findAllSMEProject = (req, res) => {
       });
     });
 };
+
+

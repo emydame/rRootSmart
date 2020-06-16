@@ -83,9 +83,8 @@ class Nav extends React.Component {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
     const formFields = serialize(form, { hash: true });
-    console.log(formFields);
     axios
-      .post("https://eazsme-backend.herokuapp.com/register", formFields)
+      .post("http://localhost:4000/register", formFields)
       .then(({ data }) => {
         const { status } = data;
         if (status === "success") {
@@ -158,7 +157,7 @@ class Nav extends React.Component {
     const form = document.querySelector(`form[name="login"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
-      .post("https://eazsme-backend.herokuapp.com/login", formFields)
+      .post("http://localhost:4000/login", formFields)
       .then(({ data }) => {
         const { status, result } = data;
         const sme = this.props.sme;

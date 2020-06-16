@@ -35,7 +35,8 @@ class View extends React.Component {
 
   fetchData() {
     axios
-      .get(`https://eazsme-backend.herokuapp.com/projects/all`)
+    //.get(`https://eazsme-backend.herokuapp.com/projects/all`)
+      .get(`http://localhost:4000/projects/all`)
       .then(({ data }) => {
         const status = data.status;
         const projects = data.data;
@@ -45,7 +46,7 @@ class View extends React.Component {
             return items.fund === `Funded`;
           });
           this.setState({ data: newResults });
-          console.log(newResults);
+          //console.log(newResults);
         }
       })
       .catch((error) => console.log(error));
