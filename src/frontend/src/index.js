@@ -7,6 +7,7 @@ import history from "./history";
 import { Switch, Route, Router } from "react-router-dom";
 import store from "./redux/configurations/store";
 import Dashboards from "./components/dashboard/Dashboard";
+import RecoverPassword from "./components/RecoverPassword";
 
 /*const history = createHistory();*/
 const stores = store();
@@ -17,7 +18,8 @@ ReactDOM.render(
       <Router history={history}>
         <Switch>
           <Route component={App} exact path="/" />
-          <Route component={Dashboards}/>
+          <Route component={RecoverPassword} path="/recover-password" />
+          <Route component={Dashboards} />
         </Switch>
       </Router>{" "}
     </Provider>

@@ -360,3 +360,10 @@ h3 {
 .sach li {
   display: inline;
 }
+
+/*** Recover Password*/
+.recover-password {
+  margin: 20px auto;
+  width: 50%;
+  
+}
