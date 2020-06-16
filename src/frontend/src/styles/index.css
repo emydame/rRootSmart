@@ -206,7 +206,7 @@ div > input:invalid:required {
 
 @media (max-width: 960px) {
   .d-block {
-    height:50vh;
+    height: 50vh;
   }
 }
 
@@ -361,9 +361,8 @@ h3 {
   display: inline;
 }
 
-/*** Recover Password*/
+/** Recover Password **/
 .recover-password {
   margin: 20px auto;
   width: 50%;
-  
 }

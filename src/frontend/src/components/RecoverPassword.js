@@ -1,3 +1,6 @@
+/* eslint-disable quotes */
+/*eslint quotes: ["error", "backtick"]*/
+/*eslint-env es6*/
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -28,7 +31,7 @@ class RecoverPassword extends React.Component {
     await axios
       .post("http://localhost:4000/recover-password", serializeForm)
       .then(({ data }) => {
-        const { status } = data;
+        const status  = data.status;
         if (status === "success") {
           this.setState({ success: "Chech Your email for password recovery steps" });
         } else {
