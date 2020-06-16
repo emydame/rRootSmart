@@ -107,7 +107,7 @@ class UpdateMilestone extends React.Component {
                 <Col>
                   <Form.Group controlId="status">
                     <Form.Label className="font-weight-bold">
-                      Last Name<sup className="text-danger">*</sup>
+                      Status<sup className="text-danger">*</sup>
                     </Form.Label>
                     <Form.Control type="text" placeholder="Enter Milestone Status" required name="status" />
                   </Form.Group>

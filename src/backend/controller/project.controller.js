@@ -8,16 +8,15 @@ exports.create = (req, res) => {
 
   let projects = {
     projectId: id,
-    projectCatId: req.body.projectCatId,
+    categoryName: req.body.categoryName,
     projectName: req.body.projectName,
     description: req.body.description,
     createdBy: req.body.createdBy,
     dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
-    fund: req.body.fund,
-    organizationId: req.body.organizationId,
-    status: "not started",
-    dateCreated: today
+    fundStatus: "Not funded",
+    dateCreated : today
+  
   };
   if (!req.body) {
     return res.status(400).json({
@@ -55,7 +54,7 @@ exports.create = (req, res) => {
 
 // Get all projects
 exports.findAll = (req, res) => {
-  Project.findAll()
+  Project.findAll()  
     .then((result) => {
       return res.status(200).json({
         status: "success",
@@ -68,7 +67,8 @@ exports.findAll = (req, res) => {
         message: err.message || "Something wrong while retrieving Projects."
       });
     });
-};
+};        
+
 
 
 // Get all projects with category name
@@ -152,3 +152,5 @@ exports.findAllSMEProject = (req, res) => {
       });
     });
 };
+
+
