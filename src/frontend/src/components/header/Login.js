@@ -105,8 +105,8 @@ class Login extends React.Component {
             <Row>              
               <Col md="auto" className="ml-4 font-weight-bold">
                 Not a member?&nbsp;
-                <Link to="../header/Registration">Sign Up</Link>                
-                &nbsp;&nbsp; Forget &nbsp;
+                <Link to="/">Sign Up</Link>                
+                &nbsp;&nbsp; Forget&nbsp;
                 <Link to="/recover-password">Password?</Link>
               </Col>
             </Row>
