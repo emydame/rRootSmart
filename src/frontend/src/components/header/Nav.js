@@ -158,7 +158,7 @@ class Nav extends React.Component {
     const form = document.querySelector(`form[name="login"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     await axios
-      .post("https://eazsme-backend.herokuapp.com/login", formFields)
+      .post("http://localhost:4000/login", formFields)
       .then(({ data }) => {
         const { status, result } = data;
         const sme = this.props.sme;
