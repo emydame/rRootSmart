@@ -26,7 +26,7 @@ const corsOptionsDelegate = (req, callback) => {
 app.use(cors(corsOptionsDelegate));
 
 //sync db
-db.sequelize.sync({ force: false }).then(() => {});
+db.sequelize.sync({ alter: true }).then(() => {});
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);
@@ -46,6 +46,7 @@ require("./routes/role.route")(app);
 require("./routes/milestone.route")(app);
 require("./routes/eligibility.route")(app);
 require("./routes/repayment.route")(app);
+require("./routes/payment.route")(app);
 
 app.use(express.static(path.join(__dirname, "uploads"))); 
 
