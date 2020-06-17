@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      projectCatId:{
+        type: DataTypes.STRING
+      },
       categoryName: {
         type: DataTypes.STRING
       },

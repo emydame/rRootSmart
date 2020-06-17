@@ -106,7 +106,7 @@ class Create extends React.Component {
             </Form.Group>*/}
 
               {/** Make a request for all the project category and populate select  store value in redux state*/}
-              <Form.Group controlId="projectCatId">
+              <Form.Group controlId="categoryName">
                 <Form.Label>Category Type:</Form.Label>
                 <Form.Control as="select" ref={this.categorySelect} name="categoryName"></Form.Control>
               </Form.Group>
@@ -124,6 +124,8 @@ class Create extends React.Component {
                   init={{
                     height: 200,
                     menubar: false,
+                    forced_Root_Block:``,
+                    force_Br_Newlines:true,
                     plugins: [
                       `advlist autolink lists link image`,
                       `charmap print preview anchor help`,
