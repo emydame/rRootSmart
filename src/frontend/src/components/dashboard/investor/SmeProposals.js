@@ -17,7 +17,7 @@ class SmeProposals extends React.Component {
     };
   }
   componentDidMount() {
-    this.fetchData()
+    this.fetchData();
   }
   async fetchData() {
     const url = "http://localhost:4000/project/investorAll";
