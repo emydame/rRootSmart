@@ -79,14 +79,15 @@ export default class InvestorsAndFunding extends Component {
              <th>Project Name</th>              
               <th>Amount</th>
               <th>Fund Receipt Date</th>
-              <th>View</th>
-              <th>Approve</th>
+            {/*}  <th>View</th>
+              <th>Approve</th>*/}
             </tr>
           </thead>
           <tbody>
             {        
             data.map((item, index, arr) => {
             let count = arr.length;
+            console.log(data);
             for(let i=0; i<count-1; i++){
               return (
                 <tr>
@@ -94,12 +95,10 @@ export default class InvestorsAndFunding extends Component {
                   <td key={index}>{item[parseInt(i)].projectName}</td>
                   <td key={index}>{item[parseInt(i)].amount}</td>
                   <td key={index}>{item[parseInt(i)].dateInitiated}</td>
-                  <td key={count++}>
-                      <Link to={`/view-project/${item.projectId}`}>View Details</Link>
-                    </td>   
-                    <td key={count++}>
-                      <Link onClick={this.approveFunds} to="">Approve</Link>
-                    </td>           
+                  
+                   {/*} <td key={count++}>
+                      <Link onClick={this.approveFunds} to={`${item[parseInt(i)].projectId}`}>Approve</Link>
+              </td>   */}        
                 </tr>
               );
             }

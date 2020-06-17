@@ -214,6 +214,7 @@ class AdminDashboard extends React.Component {
 const mapStateToProps = (state) => ({
   companyName: state.admin.companyName,
   category: state.admin.category,
-  userId: state.admin.userId
+  userId: state.admin.userId,
+  organizationId:state.admin.organizationId
 });
 export default connect(mapStateToProps)(AdminDashboard);

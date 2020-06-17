@@ -45,7 +45,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
         // Create new instance of  user
         const user = new User({
           userId: userID,
-          organizationId: orgId,
+          organizationId: req.body.organizationId,
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           otherName: req.body.otherName,

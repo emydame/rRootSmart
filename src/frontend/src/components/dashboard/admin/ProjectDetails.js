@@ -29,16 +29,21 @@ class ProjectDetails extends React.Component {
         description: "",
         status: ""
       }
+
+     
     };
+     
   }
   async componentDidMount() {
-    const url = `http://localhost:4000/project/${this.props.match.params.projectId}`;
+    const id=this.props.match.params.projectId;
+    const url = `http://localhost:4000/project/${id}`;
+   
+    const data = await axios.get(url);    
+    const projects = data.data.data;
+   
     
-    const data = await axios.get(url);
-
-    const project = data.data.data;
-
-    this.setState({ project });
+        this.setState({ project: projects });   
+        console.log(this.state.project);
   }
  
     render() {

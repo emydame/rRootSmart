@@ -6,33 +6,45 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
+let url="";
 
 class TotalInvestments extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      investments: []
+      investments: [],
+      organization: " "
     };
     this.fetchData = this.fetchData.bind(this);
   }
   componentDidMount() {
+    const userObj = JSON.parse(localStorage.getItem("userObj"));
+    console.log(userObj);
+    console.log(userObj.organizationId);
+    if (userObj) {
+      this.setState({ organization: userObj.organizationId }); 
+      url = `http://localhost:4000/funds/organizations/${userObj.organizationId}`;
+      console.log(userObj.organizationId);  
+    }
     this.fetchData();
   }
   async fetchData() {
-   // const url = `https://eazsme-backend.herokuapp.com/funds/${this.props.user.organizationId}`;
-   const url = `http://localhost:4000/funds/organizations/${this.props.user.organizationId}`;
-    
+     
     const data = await axios.get(url);
-    const investments = data.data.data;
-
-    this.setState({investments});
+    const investmentdata = data.data.data;
+    this.setState({ investments: investmentdata });
+   
   }
   sumInvestments(arr){
+    console.log(arr);
+    if(arr)
+    {
     return arr.reduce((acc, investment) => {
       const value = parseInt(investment.amount, 10) || 0;
       return acc + value;
     },0);
+  }
   }
   render() {
     const data = this.state.investments;
@@ -46,7 +58,6 @@ class TotalInvestments extends React.Component {
           <thead>
             <tr>
               <th scope="col">S/N</th>
-              <th scope="col">Project Name</th>
               <th scope="col">Status</th>
               <th scope="col">Date Initiated</th>
               <th scope="col">Amount(#)</th>
@@ -58,7 +69,7 @@ class TotalInvestments extends React.Component {
               return (
                 <tr key={index}>
                   <td>{index+1}</td>
-                  <td>{item.projectName}</td>
+                  
                   <td>{item.status}</td>
                   <td>{item.dateInitiated}</td>
                   <td>{item.amount}</td>

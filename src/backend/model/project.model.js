@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      projectCatId:{
+        type: DataTypes.STRING
+      },
       categoryName: {
         type: DataTypes.STRING
       },
@@ -30,7 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       dateEnd: {
         type: DataTypes.STRING
       },
-      fundStatus: {
+      fund: {
+        type: DataTypes.STRING
+      },
+      Status: {
         type: DataTypes.STRING
       },
       dateCreated: {

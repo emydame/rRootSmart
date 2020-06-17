@@ -137,6 +137,9 @@ class SmeDashboard extends React.Component {
                 <Link to="/sme/Funds/proposal">Existing Applications</Link>
               </Menu.Item>
             </SubMenu>
+            <Menu.Item key="12" icon={<LogoutOutlined />}>
+            <Link to="/">Log out</Link>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -169,7 +172,7 @@ class SmeDashboard extends React.Component {
               <Switch>
                 {/* <Route path="/sme/projects" component={Project} /> */}
                 <Route path="/sme/Projects/FundedProjects" component={FundedProjects} />
-                <Route path="/sme/Funds/NewApplication" component={NewApplication} />
+                <Route path="/sme/Funds/NewApplication" render={(props) => <NewApplication {...props} projects={this.state.projects } />} />
                 <Route path="/sme/Funds/UpdateMilestone" component={UpdateMilestone} />
                 <Route path="/sme/Funds/ViewMilestones" component={ViewMilestones} />
                 <Route path="/sme/Projects/Milestones" component={CreateMilestones} />
@@ -181,6 +184,7 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/EditProfile" component={EditProfile} />
                 <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />
                 <Route path="/sme/Projects/Milestones" component={Milestones} />
+               
               </Switch>
             </Router>
           </Content>
@@ -193,7 +197,8 @@ class SmeDashboard extends React.Component {
 const mapStateToProps = (state) => ({
   companyName: state.sme.companyName,
   category: state.sme.category,
-  userId: state.sme.userId
+  userId: state.sme.userId,
+  organizationId:state.sme.organizationId
 });
 
 export default connect(mapStateToProps)(SmeDashboard);

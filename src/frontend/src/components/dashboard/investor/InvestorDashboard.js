@@ -143,6 +143,9 @@ class InvestorDashboard extends React.Component {
                 <Link to="/investor/SmeProposals">All Proposals</Link>
               </Menu.Item>
             </SubMenu>
+            <Menu.Item key="12" icon={<LogoutOutlined />}>
+            <Link to="/">Log out</Link>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -209,7 +212,8 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/view-project/:projectId" render={(props) => <ProjectDetails {...props} projects={this.state.projects } />} />
                   <Route path="/investor/proposal-details/:id" render={(props) => <ProposalDetails {...props} projectproposals={this.state.projectproposals } />} />
                   <Route path="/investor/FundDetails/:id" render={(props) => <FundDetails {...props} user={this.state.user } />} />
-                  <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />
+                 {/* <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />*/}
+                  <Route path="/investor/invest" component={Invest} />
                 </Switch>
               </Router>
             </div>
@@ -223,7 +227,8 @@ class InvestorDashboard extends React.Component {
 const mapStateToProps = (state) => ({
   companyName: state.investor.companyName,
   category: state.investor.category,
-  userId: state.investor.userId
+  userId: state.investor.userId,
+  organizationId:state.investor.organizationId,
 });
 console.log(mapStateToProps);
 export default connect(mapStateToProps)(InvestorDashboard);
