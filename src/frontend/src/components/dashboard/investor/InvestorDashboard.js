@@ -212,7 +212,8 @@ class InvestorDashboard extends React.Component {
                   <Route path="/investor/view-project/:projectId" render={(props) => <ProjectDetails {...props} projects={this.state.projects } />} />
                   <Route path="/investor/proposal-details/:id" render={(props) => <ProposalDetails {...props} projectproposals={this.state.projectproposals } />} />
                   <Route path="/investor/FundDetails/:id" render={(props) => <FundDetails {...props} user={this.state.user } />} />
-                  <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />
+                 {/* <Route path="/investor/invest" render={(props) => <Invest {...props} user={this.state.user} />} />*/}
+                  <Route path="/investor/invest" component={Invest} />
                 </Switch>
               </Router>
             </div>

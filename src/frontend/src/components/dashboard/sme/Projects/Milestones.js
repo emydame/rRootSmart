@@ -15,12 +15,14 @@ import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
 const dateFormat = "YYYY/MM/DD";
+let url="";
 
 class CreateMilestone extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       projects: [],
+      userD: [],
       description: "",
       name: "",
       startDate: null,
@@ -33,36 +35,54 @@ class CreateMilestone extends React.Component {
     this.getActiveProjects = this.getActiveProjects.bind(this);
     this.projectSelect=React.createRef();
   }
-  getActiveProjects() {
-    axios
-      .get("http://localhost:4000/projects/all")
+
+
+  componentDidMount() {
+
+    const userObj = JSON.parse(localStorage.getItem(`userObj`));
+    console.log("p"+userObj);
+    if (userObj) {
+      this.setState(() => ({ userObj }));
+      const organizationId=userObj.organizationId;
+      const form = document.querySelector(`form[name="create-mileston"]`);
+const formFields = serialize(form, { hash: true }); 
+formFields.organizationId=organizationId;
+      url = (`http://localhost:4000/fund/application/id`,formFields);
+    }
+   
+    this.getActiveProjects();
+  }
+
+  async getActiveProjects() {
+    await axios
+      .get(url)
       .then((data) => {
-      
-        const projects = data.data.data;    
+
+        const projects = data.data.data;
+  
         this.setState({projects}, () => {
           const select = this.projectSelect.current;
 
-          const { projects } = this.state;
-          const data = projects;
+          const { categories } = this.state;
+          const data = categories;
 
           // based on type of data is array
           for (let i = 0; i < data.length; i++) {
-            const option = document.createElement("ption");
+            const option = document.createElement(`option`);
             option.innerText = data[parseInt(i,10)].projectName;
             option.name = data[parseInt(i,10)].projectName;
             option.value = data[parseInt(i,10)].projectId;
             select.appendChild(option);
           }
         });
+
       })
       .catch((error) => console.log(error));
   }
+  
 
   
-  componentDidMount() {
-   
-    this.getActiveProjects();
-  }
+  
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };

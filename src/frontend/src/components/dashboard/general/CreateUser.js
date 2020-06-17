@@ -20,7 +20,7 @@ class Create extends React.Component {
     super(props);
 
     this.state = {
-      category: "investor",
+      category: "",
       userId: "",
       organizationId: "",
       success: "",
