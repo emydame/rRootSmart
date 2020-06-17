@@ -124,8 +124,8 @@ class Create extends React.Component {
                   init={{
                     height: 200,
                     menubar: false,
-                    forced_Root_Block:``,
-                    force_Br_Newlines:true,
+                    forcedRootBlock: ``,
+                    forceBrNewlines: true,
                     plugins: [
                       `advlist autolink lists link image`,
                       `charmap print preview anchor help`,

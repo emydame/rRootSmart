@@ -2,6 +2,13 @@
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
+/*eslint quotes: ["error", "backtick"]*/
+/*eslint-env es6*/
+/* eslint no-console: "error" */
+
+
+
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -14,8 +21,8 @@ import Image from "react-bootstrap/Image";
 import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
-const dateFormat = "YYYY/MM/DD";
-let url="";
+const dateFormat = `YYYY/MM/DD`;
+let url=``;
 
 class CreateMilestone extends React.Component {
   constructor(props) {
@@ -23,12 +30,12 @@ class CreateMilestone extends React.Component {
     this.state = {
       projects: [],
       userD: [],
-      description: "",
-      name: "",
+      description: ``,
+      name: ``,
       startDate: null,
-      endDate: "",
-      success: "",
-      error: ""
+      endDate: ``,
+      success: ``,
+      error: ``
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -40,7 +47,7 @@ class CreateMilestone extends React.Component {
   componentDidMount() {
 
     const userObj = JSON.parse(localStorage.getItem(`userObj`));
-    console.log("p"+userObj);
+    console.log(`p`+userObj);
     if (userObj) {
       this.setState(() => ({ userObj }));
       const organizationId=userObj.organizationId;
@@ -98,16 +105,16 @@ formFields.organizationId=organizationId;
     };
     // Make api call with form
     axios
-      .post("http://localhost:4000/milestones", fd)
+      .post(`http://localhost:4000/milestones`, fd)
       .then((data) => {
         console.log(data);
-        if (data.status === "success") {
+        if (data.status === `success`) {
           this.setState({
-            success: "User Successfully created!",
-            projectName: ""
+            success: `User Successfully created!`,
+            projectName: ``
           });
         } else {
-          this.setState({ error: "Error creating User" });
+          this.setState({ error: `Error creating User` });
         }
       })
       .catch((error) => console.log(error));
@@ -177,15 +184,15 @@ formFields.organizationId=organizationId;
                   height: 200,
                   menubar: false,
                   plugins: [
-                    "advlist autolink lists link image",
-                    "charmap print preview anchor help",
-                    "searchreplace visualblocks code",
-                    "insertdatetime media table paste wordcount"
+                    `advlist autolink lists link image`,
+                    `charmap print preview anchor help`,
+                    `searchreplace visualblocks code`,
+                    `insertdatetime media table paste wordcount`
                   ],
                   toolbar:
-                    "undo redo | formatselect | bold italic | \
+                    `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
-                    bullist numlist outdent indent | help"
+                    bullist numlist outdent indent | help`
                 }}
                 onChange={this.handleChange}
               />

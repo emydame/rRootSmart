@@ -19,7 +19,7 @@ class TotalInvestments extends React.Component {
     this.fetchData = this.fetchData.bind(this);
   }
   componentDidMount() {
-    const userObj = JSON.parse(localStorage.getItem(`userObj`));
+    const userObj = JSON.parse(localStorage.getItem("userObj"));
     console.log(userObj);
     console.log(userObj.organizationId);
     if (userObj) {

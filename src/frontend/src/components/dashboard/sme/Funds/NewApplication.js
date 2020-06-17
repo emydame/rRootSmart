@@ -2,34 +2,35 @@
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
+/*eslint quotes: ["error", "backtick"]*/
+/*eslint-env es6*/
+/* eslint no-console: "error" */
+
+
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { DatePicker } from "antd";
-import moment from "moment";
-import Image from "react-bootstrap/Image";
 import { Editor } from "@tinymce/tinymce-react";
 import serialize from "form-serialize";
 import axios from "axios";
 
-//let projectName = "";
-const dateFormat = "YYYY/MM/DD";
 class CreateApplication extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      organizationId: "",
-      projectId: "",
-      description: "",
-      projectName: "",
-      dateStart: "",
-      dateEnd: "",
+      organizationId: ``,
+      projectId: ``,
+      description: ``,
+      projectName: ``,
+      dateStart: ``,
+      dateEnd: ``,
       proposals: null,
-      success: "",
-      error: ""
+      success: ``,
+      error: ``
       
     };
     this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -41,7 +42,7 @@ class CreateApplication extends React.Component {
   componentDidMount(){
     this.setState({ projectId: this.props.location.query });
    
-      const userObj = JSON.parse(localStorage.getItem("userObj"));
+      const userObj = JSON.parse(localStorage.getItem(`userObj`));
    if (userObj) {
      this.setState(() => ({ userObj }));
      
@@ -80,18 +81,18 @@ formFields.description=this.state.description;
 
 console.log(formFields);
     axios
-      .post("http://localhost:4000/fund/apply", formFields)
+      .post(`http://localhost:4000/fund/apply`, formFields)
       .then((res) => {
         let response = res.data;
         console.log(response.status);
         // then print response status
-        if (response.status === "success") {
+        if (response.status === `success`) {
           this.setState({ 
-            success: "Application Created!", 
-            error:"",
+            success: `Application Created!`, 
+            error:``,
            });
         } else {
-          this.setState({ error: "Error creating Application" });
+          this.setState({ error: `Error creating Application` });
         }
       })
       .catch((error) => console.log(error));
@@ -174,14 +175,14 @@ console.log(formFields);
                   height: 200,
                   menubar: false,
                   plugins: [
-                    "charmap print preview anchor help",
-                    "searchreplace visualblocks code",
-                    "insertdatetime media table paste wordcount"
+                    `charmap print preview anchor help`,
+                    `searchreplace visualblocks code`,
+                    `insertdatetime media table paste wordcount`
                   ],
                   toolbar:
-                    "undo redo | formatselect | bold italic | \
+                    `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
-                    bullist numlist outdent indent | help"
+                    bullist numlist outdent indent | help`
                 }}
               />
               <br></br>
