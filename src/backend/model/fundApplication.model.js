@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       organizationId: {
         type: DataTypes.STRING
       },
-      fundId: {
+    projectId: {
         type: DataTypes.STRING
       },
 

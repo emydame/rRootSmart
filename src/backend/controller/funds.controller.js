@@ -11,7 +11,7 @@ const Fund = db.fund;
 // Invest funds
 exports.create = async (req, res) => {
   let id = Math.floor(Math.random() * 10000) + 1;
-  let fundfield="Not Funded";
+  let fundfield="Funded";
 
   const projectId =  req.body.projectId;
   
