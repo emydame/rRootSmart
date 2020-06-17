@@ -17,18 +17,22 @@ class SmeProposals extends React.Component {
     };
   }
   componentDidMount() {
-    let projectproposals = this.props.projectproposals;
-    
-    if (projectproposals.length < 1){
-      projectproposals = JSON.parse(localStorage.getItem("proposals"));
-     }
-    
+    this.fetchData()
+  }
+  async fetchData() {
+    const url = "http://localhost:4000/project/investorAll";
+
+    const data = await axios.get(url);
+
+    const projectproposals = data.data.data;
+
     localStorage.setItem("proposals", JSON.stringify(projectproposals));
-    this.setState({projectproposals});
+    this.setState({ projectproposals });
+
   }
   render() {
     const data = this.state.projectproposals;
-    
+
     return (
       <>
       <div className="sachBody">
