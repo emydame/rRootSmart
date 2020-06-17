@@ -32,7 +32,7 @@ class ProjectDetails extends React.Component {
 
      
     };
-     this.fetchData = this.fetchData.bind(this);
+     
   }
   async componentDidMount() {
     const id=this.props.match.params.projectId;

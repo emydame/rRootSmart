@@ -33,7 +33,7 @@ class ProjectDetails extends React.Component {
   }
   async componentDidMount() {
     const url = `http://localhost:4000/project/${this.props.match.params.projectId}`;
-    
+    console.log(this.props.match.params.projectId);
     const data = await axios.get(url);
 
     const project = data.data.data;
