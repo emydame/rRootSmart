@@ -73,7 +73,7 @@ exports.findAll = (req, res) => {
 /* Find funds by userId
  *
  * This will filter all funds applied by user with application status
- */
+ **/
 exports.findOne = (req, res) => {
   FundApplication.findAll({ where: { userId: req.body.organizationId } })
     .then((data) => {
