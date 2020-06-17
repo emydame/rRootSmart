@@ -39,10 +39,10 @@ class ProjectDetails extends React.Component {
     const url = `http://localhost:4000/project/${id}`;
    
     const data = await axios.get(url);    
-    const project = data.data.data;
-    console.log(project);
+    const projects = data.data.data;
+   
     
-        this.setState({ project: project });   
+        this.setState({ project: projects });   
         console.log(this.state.project);
   }
  

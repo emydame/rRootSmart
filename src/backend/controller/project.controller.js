@@ -111,8 +111,8 @@ exports.active = (req, res) => {
 
 // Get single Project using  parameter
 exports.findOne = (req, res) => {
-  const projectId =  req.body.projectId || req.params.id;
-  Project.findOne({ where: { projectId: projectId  } })
+  const projectIds =  req.body.projectId || req.params.id;
+  Project.findOne({ where: { projectId: projectIds  } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({

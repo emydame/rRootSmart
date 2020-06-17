@@ -32,8 +32,8 @@ class TotalInvestments extends React.Component {
   async fetchData() {
      
     const data = await axios.get(url);
-    const investments = data.data.data;
-    this.setState({ investments: investments });
+    const investmentdata = data.data.data;
+    this.setState({ investments: investmentdata });
    
   }
   sumInvestments(arr){
