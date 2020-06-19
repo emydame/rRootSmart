@@ -18,7 +18,7 @@ class ProposalDetails extends React.Component {
     super(props);
     
     this.state = {
-      project: {
+      proposal: {
         dateCreated: "",
         projectName: "",
         projectId: "",
@@ -38,17 +38,19 @@ class ProposalDetails extends React.Component {
      projectproposals = JSON.parse(localStorage.getItem("proposals"));
     }
     
-    const projects = projectproposals.filter(
-      (project) => project.projectId === this.props.match.params.id
+    const proposals = projectproposals.filter(
+      (proposal) => proposal.applicationId === this.props.match.params.id
     );
 
     localStorage.setItem("proposals", JSON.stringify(projectproposals));
-    this.setState({project: projects[0]});
+    this.setState({proposal: proposals[0]});
   }
  
     render() {
-
-    const dateCreated = new Date(`${this.state.project.dateCreated}`).toLocaleDateString();
+    const startDate = new Date(`${this.state.proposal.dateStart}`).toLocaleDateString();
+    const endDate = new Date(`${this.state.proposal.dateEnd}`).toLocaleDateString();
+    const milestoneStart = new Date(`${this.state.proposal.milestoneStart}`).toLocaleDateString();
+    const milestoneEnd = new Date(`${this.state.proposal.milestoneEnd}`).toLocaleDateString();
     return (
       <>
       <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
@@ -59,7 +61,7 @@ class ProposalDetails extends React.Component {
                   Project Name: 
                 </div>
                 <div class="col-4">
-                {this.state.project.projectName}
+                {this.state.proposal.projectName}
                 </div>
               </div>
               <div class="row justify-content-start stripped">
@@ -67,57 +69,84 @@ class ProposalDetails extends React.Component {
                   Project ID: 
                 </div>
                 <div class="col-4">
-                  {this.state.project.projectId}
+                  {this.state.proposal.projectId}
+                </div>
+              </div>
+              <div class="row justify-content-start stripped">
+                  <div class="col-4">
+                    Project Description: 
+                  </div>
+                  <div class="col-8">
+                    {this.state.proposal.description}
+                  </div>
+                </div>
+              <div class="row justify-content-start stripped">
+                <div class="col-4">
+                  Start Date:
+                </div>
+                <div class="col-4">
+                  {startDate}
                 </div>
               </div>
               <div class="row justify-content-start stripped">
                 <div class="col-4">
-                  Application Date:
+                  End Date:
                 </div>
                 <div class="col-4">
-                  {dateCreated}
+                  {endDate}
                 </div>
               </div>
-              <div class="row justify-content-around">
+        </div>
+        <br/>
+        <div class="container">
+              <div class="row justify-content-start stripped">
                 <div class="col-4">
                   Name of SME
                 </div>
-                <div class="col-4">
-                  {this.state.project.companyName}
+                <div class="col-8">
+                  {this.state.proposal.companyName}
                 </div>
               </div>
-              <div class="row justify-content-between stripped">
+              <div class="row justify-content-start stripped">
                 <div class="col-4">
-                  SME ID.: 
+                  Organization Address
                 </div>
-                <div class="col-4">
-                  {this.state.project.organizationId}
+                <div class="col-8">
+                  {this.state.proposal.address}
                 </div>
               </div>
               <div class="row justify-content-start stripped">
                 <div class="col-4">
                   Amount Applied for: 
                 </div>
-                <div class="col-4">
-                  N{this.state.project.fund}
+                <div class="col-8">
+                  N{this.state.proposal.fund}
                 </div>
               </div>
             </div><br></br>
         <div class="container">
                 <div class="row justify-content-start stripped">
                   <div class="col-4">
-                    SME Address:
+                    Milestone: 
                   </div>
                   <div class="col-4">
-                    {this.state.project.address}
+                  {this.state.proposal.milestoneName}
                   </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-start stripped">
                   <div class="col-4">
-                    Milestone:
+                    Start: 
                   </div>
                   <div class="col-4">
-                  {this.state.project.status}
+                  {milestoneStart}
+                  </div>
+                </div>
+                <div class="row justify-content-start stripped">
+                  <div class="col-4">
+                    End: 
+                  </div>
+                  <div class="col-4">
+                  {milestoneEnd}
                   </div>
                 </div>
                 <div class="row justify-content-end stripped">
@@ -136,16 +165,8 @@ class ProposalDetails extends React.Component {
                     8 persons
                   </div>
                 </div>
-                <div class="row justify-content-between stripped">
-                  <div class="col-3">
-                    Project Description: 
-                  </div>
-                  <div class="col-9">
-                    {this.state.project.description}
-                  </div>
-                </div>
                 <div className="download">
-                  <Button  type="primary">Download Proposal <DownloadOutlined /></Button> 
+                  <Button  type="primary" href={this.state.proposal.filepath}>Download Proposal <DownloadOutlined /></Button> 
                 </div>
               </div>
         </div>
