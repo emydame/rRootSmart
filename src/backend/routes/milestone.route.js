@@ -8,7 +8,7 @@ module.exports = (app) => {
   app.get("/milestones/all", milestone.findAll);
 
   // Retrieve milestone by name
-  app.get("/milestones/name", milestone.findOne);
+  app.get("/milestones/:name", milestone.findOne);
 
   // Create milestones
   app.put("/milestones/id", milestone.updateMilestone);

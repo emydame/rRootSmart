@@ -20,12 +20,11 @@ class TotalInvestments extends React.Component {
   }
   componentDidMount() {
     const userObj = JSON.parse(localStorage.getItem("userObj"));
-    console.log(userObj);
-    console.log(userObj.organizationId);
+    
     if (userObj) {
       this.setState({ organization: userObj.organizationId }); 
       url = `http://localhost:4000/funds/organizations/${userObj.organizationId}`;
-      console.log(userObj.organizationId);  
+        
     }
     this.fetchData();
   }

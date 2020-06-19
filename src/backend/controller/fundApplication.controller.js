@@ -9,6 +9,7 @@ exports.create = (req, res) => {
     applicationId: appId,
     organizationId: req.body.organizationId,
     fundId: req.body.fundId,
+    projectId: req.body.projectId,
     projectName: req.body.projectName,
     dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
@@ -75,8 +76,8 @@ exports.findAll = (req, res) => {
  * This will filter all funds applied by organization with application status
  **/
 exports.findOne = (req, res) => {
- 
-  FundApplication.findAll({ where: { organizationId: req.params.organizationId } })
+  //FundApplication.findAll({ where: { organizationId: req.body.email } })
+  FundApplication.findAll({ where: { organizationId: req.params.id } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({

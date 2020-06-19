@@ -13,12 +13,15 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import UpdateMilestone from "./UpdateMilestone";
 
+
+let url="";
 class ViewMilestones extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       projects: [],
+      milestones: [],
       description: "",
       data: [],
       success: "",
@@ -31,9 +34,20 @@ class ViewMilestones extends React.Component {
     this.handleMilestoneUpdate = this.handleMilestoneUpdate.bind(this);
     this.getActiveProjects = this.getActiveProjects.bind(this);
     this.projectSelect=React.createRef();
+   
   }
 
   componentDidMount() {
+    const userObj = JSON.parse(localStorage.getItem(`userObj`));
+    
+    if (userObj) {
+      this.setState(() => ({ userObj }));
+      const id=userObj.organizationId;
+      
+
+url = `http://localhost:4000/fund/application/${id}`;
+    }
+
     this.fetchData();
     this.getActiveProjects();
   }
@@ -45,14 +59,35 @@ class ViewMilestones extends React.Component {
   closeMilestoneModal() {
     this.setState({ showUpdate: false });
   }
+GetMilestones= (e) => {
+  this.setState({selectValue: e.target.value}, ()=> {console.log(this.state.selectValue)});
+  
+  //load milestones based on the selected project name
+  console.log(e.target.value);
+  if(e.target.value ===null){
 
+  }else{
+  
+const name=e.target.value;
+  axios
+      .get(`http://localhost:4000/milestones/${name}`)
+      .then((data) => {
+         const result  = data.data.data;
+        console.log("result"+result);
+        if (data.data.status === "success") {
+          this.setState({ milestones: result });
+        }
+      })
+      .catch((error) => console.log(error));
+    }  
+}
 
   getActiveProjects() {
     axios
-      .get("http://localhost:4000/projects/all")
+      .get(url)
       .then((data) => {
       
-        const projects = data.data.data;    
+        const projects = data.data;    
         this.setState({projects}, () => {
           const select = this.projectSelect.current;
 
@@ -79,7 +114,7 @@ class ViewMilestones extends React.Component {
         const status = data.status;
         const result = data.data;
         if (status === "success") {
-          this.setState({ data: result });
+          this.setState({ milestones: result });
         }
       })
       .catch((error) => console.log(error));
@@ -91,7 +126,7 @@ class ViewMilestones extends React.Component {
     const formFields = serialize(form, { hash: true });
 
     axios
-      .post("https://eazsme-backend.herokuapp.com/milestones/id", formFields)
+      .post("http://localhost:4000/milestones/id", formFields)
       .then(({ data }) => {
         if (data.status === "success") {
           this.setState({ success: "Milestone successfully updated!" });
@@ -108,7 +143,8 @@ class ViewMilestones extends React.Component {
   render() {
     const  success = this.state.success;
     const  error = this.state.success;
-    const data = this.state.data;
+    const data = this.state.milestones;
+    console.log(this.state.milestones);
     return (
       <Card.Body>
        
@@ -129,12 +165,12 @@ class ViewMilestones extends React.Component {
             <form name="viewMilestone" id="viewMilestone">
             <Form.Group controlId="projectId">
                 <Form.Label>Select Project:</Form.Label>
-                <Form.Control as="select" ref={this.projectSelect} name="projectId" 
-                 onChange={(e) => this.setState({projectName: e.target.value})}>>
+                <Form.Control as="select" ref={this.projectSelect} name="projectId" onChange={this.GetMilestones}
+                >
                                     </Form.Control>
 
               </Form.Group>
-
+              
               <br></br>
               <Table striped bordered hover size="sm">
                 <thead>

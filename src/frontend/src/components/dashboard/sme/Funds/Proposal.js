@@ -33,12 +33,12 @@ class View extends React.Component {
     
     if (userObj) {
       this.setState(() => ({ userObj }));
-      const organizationId=userObj.organizationId;
+      const id=userObj.organizationId;
       const form = document.querySelector(`form[name="create-milestone"]`);
-const formFields = serialize(organizationId, { hash: true }); 
+const formFields = serialize(form, { hash: true }); 
 //formFields.organizationId=organizationId;
 
-URL = `http://localhost:4000/fund/application/id/${organizationId}`;
+URL = `http://localhost:4000/fund/application/${id}`;
 
     }
    
@@ -48,7 +48,7 @@ URL = `http://localhost:4000/fund/application/id/${organizationId}`;
   async fetchData() {
     const data = await axios.get(URL);
     console.log(data);
-    const projects = data.data.data;
+    const projects = data.data;
     console.log(projects);
     this.setState({ projects, filteredProjects: projects });
   }

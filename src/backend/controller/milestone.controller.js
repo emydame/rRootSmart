@@ -69,7 +69,7 @@ exports.findAll = (req, res) => {
 
 // Get milestone by milestone name
 exports.findOne = (req, res) => {
-  Milestone.findAll({ where: { name: req.body.name } })
+  Milestone.findAll({ where: { applicationId: req.params.name } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({
