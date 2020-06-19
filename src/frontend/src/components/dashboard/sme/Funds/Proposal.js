@@ -1,6 +1,8 @@
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
+/*eslint quotes: ["error", "backtick"]*/
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
@@ -19,7 +21,7 @@ class View extends React.Component {
     this.state = {
       projects: [],
       filteredProjects: [],
-      searchTerm: ""
+      searchTerm: ``
       
     };
 
@@ -60,7 +62,7 @@ URL = `http://localhost:4000/fund/application/${id}`;
 
     this.setState((prevState) => {
       let filteredProjects = prevState.projects;
-      if (query.trim() !== "") {
+      if (query.trim() !== ``) {
         filteredProjects = prevState.projects.filter((element) => {
           return (
             element.projectName.toLowerCase().includes(query.toLowerCase()) ||
@@ -75,7 +77,7 @@ URL = `http://localhost:4000/fund/application/${id}`;
   }
   onChange(e) {
     const value = e.target.value;
-    if (value.trim() === "") {
+    if (value.trim() === ``) {
       this.setState({ filteredProjects: this.state.projects, searchTerm: value });
     } else {
       this.setState({ searchTerm: value });
@@ -94,12 +96,12 @@ URL = `http://localhost:4000/fund/application/${id}`;
           <ul className="sach sme">
             <li>
               <Button
-                style={{ float: "right", borderRadius: "5%", background: "orange" }}
+                style={{ float: `right`, borderRadius: `5%`, background: `orange` }}
                 variant="default"
                 type="submit"
                 onClick={this.searchProjects}
               >
-                {" "}
+                {` `}
                 Search
               </Button>
             </li>
@@ -107,7 +109,7 @@ URL = `http://localhost:4000/fund/application/${id}`;
               <Form.Group controlId="searchId">
                 <Form.Control
                   className="searchBar"
-                  style={{ width: "250px", float: "right", marginRight: "10px", marginBottom: "15px" }}
+                  style={{ width: `250px`, float: `right`, marginRight: `10px`, marginBottom: `15px` }}
                   type="text"
                   placeholder="Enter project name to search"
                   name="search"

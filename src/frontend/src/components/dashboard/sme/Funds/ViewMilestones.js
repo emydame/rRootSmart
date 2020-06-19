@@ -2,6 +2,8 @@
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
+/*eslint quotes: ["error", "backtick"]*/
+
 import React from "react";
 import { Link, BrowserRouter as Router, withRouter } from "react-router-dom";
 import serialize from "form-serialize";
@@ -14,7 +16,7 @@ import Row from "react-bootstrap/Row";
 import UpdateMilestone from "./UpdateMilestone";
 
 
-let url="";
+let url=``;
 class ViewMilestones extends React.Component {
   constructor(props) {
     super(props);
@@ -22,10 +24,10 @@ class ViewMilestones extends React.Component {
     this.state = {
       projects: [],
       milestones: [],
-      description: "",
+      description: ``,
       data: [],
-      success: "",
-      error: "",
+      success: ``,
+      error: ``,
       showUpdate: false
     };
 
@@ -60,26 +62,21 @@ url = `http://localhost:4000/fund/application/${id}`;
     this.setState({ showUpdate: false });
   }
 GetMilestones= (e) => {
-  this.setState({selectValue: e.target.value}, ()=> {console.log(this.state.selectValue)});
-  
-  //load milestones based on the selected project name
-  console.log(e.target.value);
-  if(e.target.value ===null){
-
-  }else{
+    //load milestones based on the selected project name
+ 
   
 const name=e.target.value;
   axios
       .get(`http://localhost:4000/milestones/${name}`)
       .then((data) => {
          const result  = data.data.data;
-        console.log("result"+result);
-        if (data.data.status === "success") {
+        console.log(`result`+result);
+        if (data.data.status === `success`) {
           this.setState({ milestones: result });
         }
       })
       .catch((error) => console.log(error));
-    }  
+     
 }
 
   getActiveProjects() {
@@ -96,7 +93,7 @@ const name=e.target.value;
 
           // based on type of data is array
           for (let i = 0; i < data.length; i++) {
-            const option = document.createElement("option");
+            const option = document.createElement(`option`);
             option.innerText = data[parseInt(i,10)].projectName;
             option.name = data[parseInt(i,10)].projectName;
             option.value = data[parseInt(i,10)].projectId;
@@ -109,11 +106,11 @@ const name=e.target.value;
 
   async fetchData() {
     await axios
-      .get("http://localhost:4000/milestones/all")
+      .get(`http://localhost:4000/milestones/all`)
       .then(({ data }) => {
         const status = data.status;
         const result = data.data;
-        if (status === "success") {
+        if (status === `success`) {
           this.setState({ milestones: result });
         }
       })
@@ -122,21 +119,21 @@ const name=e.target.value;
 
   handleMilestoneUpdate(event) {
     event.preventDefault();
-    const form = document.querySelector("form[name=updateMilestone]");
+    const form = document.querySelector(`form[name=updateMilestone]`);
     const formFields = serialize(form, { hash: true });
 
     axios
-      .post("http://localhost:4000/milestones/id", formFields)
+      .post(`http://localhost:4000/milestones/id`, formFields)
       .then(({ data }) => {
-        if (data.status === "success") {
-          this.setState({ success: "Milestone successfully updated!" });
+        if (data.status === `success`) {
+          this.setState({ success: `Milestone successfully updated!` });
         } else {
-          this.setState({ error: "Error Updating Milestone" });
+          this.setState({ error: `Error Updating Milestone` });
         }
       })
       .catch((error) => {
         /*console.log(error)*/
-        this.setState({ error: "Error Updating Milestone" });
+        this.setState({ error: `Error Updating Milestone` });
       });
   }
 
@@ -196,8 +193,8 @@ const name=e.target.value;
                         <td>{item.Status}</td>
                         <td>
                           <Link onClick={this.showMilestoneModal} to="">
-                            {" "}
-                            Update{" "}
+                            {` `}
+                            Update{` `}
                           </Link>
                         </td>
                       </tr>
