@@ -47,13 +47,14 @@ class CreateMilestone extends React.Component {
   componentDidMount() {
 
     const userObj = JSON.parse(localStorage.getItem(`userObj`));
-    console.log(`p`+userObj);
+    
     if (userObj) {
       this.setState(() => ({ userObj }));
       const organizationId=userObj.organizationId;
-      const form = document.querySelector(`form[name="create-mileston"]`);
+      const form = document.querySelector(`form[name="create-milestone"]`);
 const formFields = serialize(form, { hash: true }); 
 formFields.organizationId=organizationId;
+
       url = (`http://localhost:4000/fund/application/id`,formFields);
     }
    
@@ -61,17 +62,18 @@ formFields.organizationId=organizationId;
   }
 
   async getActiveProjects() {
+    console.log(`u`+url);
     await axios
       .get(url)
       .then((data) => {
-
+        console.log(`p`+data);
         const projects = data.data.data;
-  
+       
         this.setState({projects}, () => {
           const select = this.projectSelect.current;
 
-          const { categories } = this.state;
-          const data = categories;
+          const { projects } = this.state;
+          const data = projects;
 
           // based on type of data is array
           for (let i = 0; i < data.length; i++) {
@@ -141,7 +143,7 @@ formFields.organizationId=organizationId;
                 <h5>{error}</h5>
               </div>
             )}
-            <form name="create-mileston" id="createMilestones">
+            <form name="create-milestone" id="createMilestones">
             <Form.Group controlId="projectId">
                 <Form.Label>Select Project:</Form.Label>
                 <Form.Control as="select" ref={this.projectSelect} name="projectId" 

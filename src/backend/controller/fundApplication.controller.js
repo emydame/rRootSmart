@@ -76,7 +76,7 @@ exports.findAll = (req, res) => {
  **/
 exports.findOne = (req, res) => {
  
-  FundApplication.findAll({ where: { organizationId: req.body.organizationId } })
+  FundApplication.findAll({ where: { organizationId: req.params.organizationId } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({

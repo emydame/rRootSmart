@@ -8,7 +8,10 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-  
+import serialize from "form-serialize";
+
+
+  let URL= ``;
 class View extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +20,7 @@ class View extends React.Component {
       projects: [],
       filteredProjects: [],
       searchTerm: ""
+      
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -25,8 +29,30 @@ class View extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    const userObj = JSON.parse(localStorage.getItem(`userObj`));
+    
+    if (userObj) {
+      this.setState(() => ({ userObj }));
+      const organizationId=userObj.organizationId;
+      const form = document.querySelector(`form[name="create-milestone"]`);
+const formFields = serialize(organizationId, { hash: true }); 
+//formFields.organizationId=organizationId;
+
+URL = `http://localhost:4000/fund/application/id/${organizationId}`;
+
+    }
+   
+       this.fetchData();
   }
+
+  async fetchData() {
+    const data = await axios.get(URL);
+    console.log(data);
+    const projects = data.data.data;
+    console.log(projects);
+    this.setState({ projects, filteredProjects: projects });
+  }
+
   searchProjects(e) {
     e.preventDefault();
 
@@ -55,11 +81,9 @@ class View extends React.Component {
       this.setState({ searchTerm: value });
     }
   }
-  async fetchData() {
-    const data = await axios.get("https://eazsme-backend.herokuapp.com/fund/application/:id");
-    const projects = data.data.data;
-    this.setState({ projects, filteredProjects: projects });
-  }
+
+
+
 
   render() {
     const data = this.state.filteredProjects;
