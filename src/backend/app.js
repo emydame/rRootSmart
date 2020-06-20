@@ -26,7 +26,7 @@ const corsOptionsDelegate = (req, callback) => {
 app.use(cors(corsOptionsDelegate));
 
 //sync db
-db.sequelize.sync({ alter: true }).then(() => {});
+db.sequelize.sync({ alter: false }).then(() => {});
 
 require("./routes/user.route")(app);
 require("./routes/userCat.route")(app);

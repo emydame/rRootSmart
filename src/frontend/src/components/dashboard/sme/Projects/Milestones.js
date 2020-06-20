@@ -35,10 +35,12 @@ class CreateMilestone extends React.Component {
       startDate: null,
       endDate: ``,
       success: ``,
-      error: ``
+      error: ``,
+      projectId: ``
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleEditorChange = this.handleEditorChange.bind(this);
     this.getActiveProjects = this.getActiveProjects.bind(this);
     this.projectSelect=React.createRef();
   }
@@ -47,31 +49,31 @@ class CreateMilestone extends React.Component {
   componentDidMount() {
 
     const userObj = JSON.parse(localStorage.getItem(`userObj`));
-    console.log(`p`+userObj);
+    
     if (userObj) {
       this.setState(() => ({ userObj }));
-      const organizationId=userObj.organizationId;
-      const form = document.querySelector(`form[name="create-mileston"]`);
-const formFields = serialize(form, { hash: true }); 
-formFields.organizationId=organizationId;
-      url = (`http://localhost:4000/fund/application/id`,formFields);
+      const id=userObj.organizationId;
+      
+
+url = `http://localhost:4000/fund/application/${id}`;
     }
    
     this.getActiveProjects();
   }
 
   async getActiveProjects() {
+    
     await axios
       .get(url)
       .then((data) => {
-
-        const projects = data.data.data;
-  
+        
+        const projects = data.data;
+       
         this.setState({projects}, () => {
           const select = this.projectSelect.current;
 
-          const { categories } = this.state;
-          const data = categories;
+          const { projects } = this.state;
+          const data = projects;
 
           // based on type of data is array
           for (let i = 0; i < data.length; i++) {
@@ -87,7 +89,9 @@ formFields.organizationId=organizationId;
       .catch((error) => console.log(error));
   }
   
-
+  handleEditorChange(e) {
+    this.setState({ description: e.target.getContent() });
+  }
   
   
   handleChange = (e) => {
@@ -97,24 +101,23 @@ formFields.organizationId=organizationId;
   handleClick = (e) => {
     e.preventDefault();
 
-    const fd = {
-      name: this.state.name,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
-      description: this.state.description
-    };
+       const form = document.querySelector(`form[name="create-milestone"]`);
+    const formFields = serialize(form, { hash: true }); // Make api call with form
+    formFields.description=this.state.description;
+    formFields.applicationId=this.state.projectId;
+    console.log(formFields);
     // Make api call with form
     axios
-      .post(`http://localhost:4000/milestones`, fd)
+      .post(`http://localhost:4000/milestones`, formFields)
       .then((data) => {
-        console.log(data);
-        if (data.status === `success`) {
+      
+        if (data.data.status === `success`) {
           this.setState({
-            success: `User Successfully created!`,
+            success: `Milestone Successfully created!`,
             projectName: ``
           });
         } else {
-          this.setState({ error: `Error creating User` });
+          this.setState({ error: `Error creating Milestone` });
         }
       })
       .catch((error) => console.log(error));
@@ -141,15 +144,26 @@ formFields.organizationId=organizationId;
                 <h5>{error}</h5>
               </div>
             )}
-            <form name="create-mileston" id="createMilestones">
+            <form name="create-milestone" id="createMilestones">
             <Form.Group controlId="projectId">
                 <Form.Label>Select Project:</Form.Label>
                 <Form.Control as="select" ref={this.projectSelect} name="projectId" 
-                 onChange={(e) => this.setState({projectName: e.target.value})}>>
+                 onChange={(e) => this.setState({projectId: e.target.value})}>>
                     </Form.Control>
 
               </Form.Group>
               <div class="form-row">
+
+              <div class="form-group col-md-8">
+                  <label for="name">Name of Milestone</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                                      
+                  />
+                </div>
                 <div class="form-group col-md-6" controlId="startDate">
                   <label for="startDate">Start Date</label>
                   <input
@@ -175,27 +189,32 @@ formFields.organizationId=organizationId;
                   />
                 </div>
               </div>
-              <Form.Label>Description</Form.Label>
-              <Editor
-                controlId="description"
-                apiKey="oym93hgea69gv4o5cjoxfc1baobo49f82d4ah9j66v3n955r"
-                name="description"
-                init={{
-                  height: 200,
-                  menubar: false,
-                  plugins: [
-                    `advlist autolink lists link image`,
-                    `charmap print preview anchor help`,
-                    `searchreplace visualblocks code`,
-                    `insertdatetime media table paste wordcount`
-                  ],
-                  toolbar:
-                    `undo redo | formatselect | bold italic | \
+             
+              <Form.Group controlId="description">
+                <Form.Label>Description</Form.Label>
+                <Editor
+                  apiKey="oym93hgea69gv4o5cjoxfc1baobo49f82d4ah9j66v3n955r"
+                  initialValue={this.state.description}
+                  init={{
+                    height: 200,
+                    menubar: false,
+                    FORCED_ROOT_BLOCK: ``,
+                    FORCE_BR_NEWLINES: true,
+                      plugins: [
+                      `advlist autolink lists link image`,
+                      `charmap print preview anchor help`,
+                      `searchreplace visualblocks code`,
+                      `insertdatetime media table paste wordcount`
+                    ],
+                    toolbar: `undo redo | formatselect | bold italic | \
                     alignleft aligncenter alignright | \
                     bullist numlist outdent indent | help`
-                }}
-                onChange={this.handleChange}
-              />
+                  }}
+                  onChange={this.handleEditorChange}
+                  name="description"
+                />
+              </Form.Group>
+
               <br></br>
               <Button className="user-btn" variant="primary" type="submit" onClick={this.handleClick}>
                 Create Milestone

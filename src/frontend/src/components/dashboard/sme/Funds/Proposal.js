@@ -1,6 +1,8 @@
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
+/*eslint quotes: ["error", "backtick"]*/
+
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
@@ -8,7 +10,10 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-  
+import serialize from "form-serialize";
+
+
+  let URL= ``;
 class View extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +21,8 @@ class View extends React.Component {
     this.state = {
       projects: [],
       filteredProjects: [],
-      searchTerm: ""
+      searchTerm: ``
+      
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -25,8 +31,30 @@ class View extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    const userObj = JSON.parse(localStorage.getItem(`userObj`));
+    
+    if (userObj) {
+      this.setState(() => ({ userObj }));
+      const id=userObj.organizationId;
+      const form = document.querySelector(`form[name="create-milestone"]`);
+const formFields = serialize(form, { hash: true }); 
+//formFields.organizationId=organizationId;
+
+URL = `http://localhost:4000/fund/application/${id}`;
+
+    }
+   
+       this.fetchData();
   }
+
+  async fetchData() {
+    const data = await axios.get(URL);
+    console.log(data);
+    const projects = data.data;
+    console.log(projects);
+    this.setState({ projects, filteredProjects: projects });
+  }
+
   searchProjects(e) {
     e.preventDefault();
 
@@ -34,7 +62,7 @@ class View extends React.Component {
 
     this.setState((prevState) => {
       let filteredProjects = prevState.projects;
-      if (query.trim() !== "") {
+      if (query.trim() !== ``) {
         filteredProjects = prevState.projects.filter((element) => {
           return (
             element.projectName.toLowerCase().includes(query.toLowerCase()) ||
@@ -49,17 +77,15 @@ class View extends React.Component {
   }
   onChange(e) {
     const value = e.target.value;
-    if (value.trim() === "") {
+    if (value.trim() === ``) {
       this.setState({ filteredProjects: this.state.projects, searchTerm: value });
     } else {
       this.setState({ searchTerm: value });
     }
   }
-  async fetchData() {
-    const data = await axios.get("https://eazsme-backend.herokuapp.com/fund/application/:id");
-    const projects = data.data.data;
-    this.setState({ projects, filteredProjects: projects });
-  }
+
+
+
 
   render() {
     const data = this.state.filteredProjects;
@@ -70,12 +96,12 @@ class View extends React.Component {
           <ul className="sach sme">
             <li>
               <Button
-                style={{ float: "right", borderRadius: "5%", background: "orange" }}
+                style={{ float: `right`, borderRadius: `5%`, background: `orange` }}
                 variant="default"
                 type="submit"
                 onClick={this.searchProjects}
               >
-                {" "}
+                {` `}
                 Search
               </Button>
             </li>
@@ -83,7 +109,7 @@ class View extends React.Component {
               <Form.Group controlId="searchId">
                 <Form.Control
                   className="searchBar"
-                  style={{ width: "250px", float: "right", marginRight: "10px", marginBottom: "15px" }}
+                  style={{ width: `250px`, float: `right`, marginRight: `10px`, marginBottom: `15px` }}
                   type="text"
                   placeholder="Enter project name to search"
                   name="search"
