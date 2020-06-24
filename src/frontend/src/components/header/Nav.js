@@ -156,7 +156,7 @@ class Nav extends React.Component {
     const user = {};
     const userName = document.querySelector(`input[type="email"]`).value;
     const password = document.querySelector(`input[type="password"]`).value;
-    console.log(`username: ${userName}, password: ${password}`);
+
     if (userName === "admin" && password === "admin") {
       user.userName = userName;
       localStorage.setItem("adminObj", JSON.stringify(user));
