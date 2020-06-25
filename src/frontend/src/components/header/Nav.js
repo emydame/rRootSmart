@@ -79,8 +79,6 @@ class Nav extends React.Component {
     }
   }
 
-
-
   submitRegistration(event) {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
@@ -91,8 +89,8 @@ class Nav extends React.Component {
         const { status } = data;
         if (status === "success") {
           this.setState({ signupSuccess: "User successfully signed up!" });
-
-          
+          form.reset();
+          window.alert("User successfully signed up!");
         } else {
           this.setState({ signupError: "Error signing up user" });
         }

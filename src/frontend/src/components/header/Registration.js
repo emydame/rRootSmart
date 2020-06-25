@@ -12,10 +12,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import "../../styles/modal.css";
 
-const validEmailRegex = RegExp(
-  /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-  
-);
+const validEmailRegex = RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
 
 class Registration extends React.Component {
   constructor(props) {
@@ -178,7 +175,7 @@ class Registration extends React.Component {
                     <Form.Label className="font-weight-bold">
                       Phone Number <sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Enter phone number" required name="phoneNumber1" />
+                    <Form.Control type="number" placeholder="Enter phone number" required name="phoneNumber1" />
 
                     {/* <Form.Label className="font-weight-bold">
                       Position Held<sup className="text-danger">*</sup>
@@ -314,7 +311,7 @@ class Registration extends React.Component {
                     <Form.Label className="font-weight-bold">
                       BVN Number<sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Bank verification number" name="bvn" required />
+                    <Form.Control type="number" placeholder="Bank verification number" name="bvn" required />
                   </Form.Group>
                 </Col>
               </Row>
@@ -363,7 +360,7 @@ class Registration extends React.Component {
                     <Form.Label className="font-weight-bold">
                       Company Phone<sup className="text-danger">*</sup>
                     </Form.Label>
-                    <Form.Control type="text" placeholder="Enter Phone Number" name="companyPhone" required />
+                    <Form.Control type="number" placeholder="Enter Phone Number" name="companyPhone" required />
                   </Form.Group>
                 </Col>
               </Row>
