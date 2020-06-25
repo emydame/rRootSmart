@@ -38,7 +38,7 @@ class Create extends React.Component {
     formFields.description=this.state.description;
     console.log(formFields);
     await axios
-      .post(`http://localhost:4000/funds/category`, formFields)
+      .post(`https://eazsme-backend.herokuapp.com/funds/category`, formFields)
       .then(({ data }) => {
         const { status } = data;
         if (status === `success`) {

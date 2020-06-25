@@ -47,7 +47,7 @@ class ViewMilestones extends React.Component {
       const id=userObj.organizationId;
       
 
-url = `http://localhost:4000/fund/application/${id}`;
+url = `https://eazsme-backend.herokuapp.com/fund/application/${id}`;
     }
 
     this.fetchData();
@@ -67,7 +67,7 @@ GetMilestones= (e) => {
   
 const name=e.target.value;
   axios
-      .get(`http://localhost:4000/milestones/${name}`)
+      .get(`https://eazsme-backend.herokuapp.com/milestones/${name}`)
       .then((data) => {
          const result  = data.data.data;
         console.log(`result`+result);
@@ -106,7 +106,7 @@ const name=e.target.value;
 
   async fetchData() {
     await axios
-      .get(`http://localhost:4000/milestones/all`)
+      .get(`https://eazsme-backend.herokuapp.com/milestones/all`)
       .then(({ data }) => {
         const status = data.status;
         const result = data.data;
@@ -123,7 +123,7 @@ const name=e.target.value;
     const formFields = serialize(form, { hash: true });
 
     axios
-      .post(`http://localhost:4000/milestones/id`, formFields)
+      .post(`https://eazsme-backend.herokuapp.com/milestones/id`, formFields)
       .then(({ data }) => {
         if (data.status === `success`) {
           this.setState({ success: `Milestone successfully updated!` });

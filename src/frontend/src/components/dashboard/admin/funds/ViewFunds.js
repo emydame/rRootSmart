@@ -35,7 +35,7 @@ class ViewFunds extends React.Component {
 
   async getCategory() {
     await axios
-      .get(`https://localhost:4000/projects/category/`)
+      .get(`https://eazsme-backend.herokuapp.com/projects/category/`)
       .then(({ data }) => {
         const {status} = data;
         const cats = data.data;
