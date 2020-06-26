@@ -31,7 +31,7 @@ class FundDetails extends React.Component {
     this.fetchData();
   }
   async fetchData() {
-    const url = `http://localhost:4000/funds/${this.props.match.params.id}`;
+    const url = `https://eazsme-backend.herokuapp.com/funds/${this.props.match.params.id}`;
     
     const data = await axios.get(url);
 
@@ -50,7 +50,7 @@ class FundDetails extends React.Component {
     formFields.fundId = this.state.fund.fundId;
 
     axios
-      .post("http://localhost:4000/payments", formFields)
+      .post("https://eazsme-backend.herokuapp.com/payments", formFields)
       .then((data) => {
         if (data.data.status === "success") {
           this.setState({ 

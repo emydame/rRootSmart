@@ -36,7 +36,7 @@ class ProjectDetails extends React.Component {
   }
   async componentDidMount() {
     const id=this.props.match.params.projectId;
-    const url = `http://localhost:4000/project/${id}`;
+    const url = `https://eazsme-backend.herokuapp.com/project/${id}`;
    
     const data = await axios.get(url);    
     const projects = data.data.data;

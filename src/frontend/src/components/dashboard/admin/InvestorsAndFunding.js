@@ -33,7 +33,7 @@ export default class InvestorsAndFunding extends Component {
 
   fetchData() {
     axios
-      .get("http://localhost:4000/funds/all")
+      .get("https://eazsme-backend.herokuapp.com/funds/all")
       .then(({ data }) => {
               const  status  = data.status;
         const projects = data.data;
@@ -47,7 +47,7 @@ export default class InvestorsAndFunding extends Component {
   }
   approveFunds() {
     axios
-      .put("http://localhost:4000/funds/update")
+      .put("https://eazsme-backend.herokuapp.com/funds/update")
       .then(({ data }) => {
               const  status  = data.status;
         

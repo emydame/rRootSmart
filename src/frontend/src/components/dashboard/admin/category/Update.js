@@ -53,7 +53,7 @@ class Update extends React.Component {
     const formFields = serialize(form, { hash: true });
     const { catID } = this.state;
     await axios
-      .patch("http://localhost:4000/projects/category/" + catID, formFields)
+      .patch("https://eazsme-backend.herokuapp.com/projects/category/" + catID, formFields)
       .then((data) => {
         if (data.status === "success") {
           this.setState({ success: "Update was successful!" });

@@ -29,7 +29,7 @@ class RecoverPassword extends React.Component {
     const serializeForm = formSerialize(form, { hash: true });
     // Make a post request
     await axios
-      .post("http://localhost:4000/recover-password", serializeForm)
+      .post("https://eazsme-backend.herokuapp.com/recover-password", serializeForm)
       .then(({ data }) => {
         const status  = data.status;
         if (status === "success") {
