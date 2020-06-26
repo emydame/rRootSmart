@@ -6,18 +6,19 @@
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const nodeMailer = require("nodemailer");
 const Handlebars = require("handlebars");
 const read = require("read-file");
 const path = require("path");
 
-const secret = "serete";
 const db = require("../config/db.config");
+const mailer = require ("../helpers/mailer");
 
+const secret = "secret";
 const User = db.user;
 const Userpass = db.userLogin;
 const Organization = db.userOrganization;
-const mailer = require ("../helpers/mailer");
+const AcctActivation = db.useractivation;
+
 
 
 exports.create = (req, res) => {
@@ -172,7 +173,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
     const host = req.get('host');
     const protocol =  req.protocol;
     
-    const verifyUrl = `${protocol}://${host}/api/v1/user/verify?token=${token}&email=${req.body.email}`;
+    const verifyUrl = `${protocol}://${host}/user/verify?token=${token}&email=${req.body.email}`;
 
     const options = {};
     
@@ -387,4 +388,51 @@ let userID = Math.floor(Math.random() * 100000) + 1;
         message : err.message
       });
     });
+};
+
+exports.activate = (req, res) => {
+  // get user token
+  const { token, email } = req.query;
+
+  // verify token
+  let userInToken;
+  try {
+    userInToken = jwt.verify(token, "secret");
+  } catch (error) {
+    return res.status(400).json({ status: 'error', message: error.message || 'could not verify your token' });
+  }
+
+  // fetch database user
+  const userInDatabase = User.findOne({ where: { email: userInToken.email } });
+  if (!userInDatabase) return res.status(400).json({ status: 'error', message: 'user does not exist' });
+  
+  // activate user
+  AcctActivation.findOne({ where: { email: userInToken.email } }).then((data)=>{
+    if (!data) {
+      const activation = new AcctActivation({
+        activationId: Math.floor(Math.random() * 100000) + 1,
+        userId: userInToken.userId,
+        email: userInToken.email,
+        activationStatus:  "activated",
+        activationDate: new Date()
+      });
+
+      activation.save({ ...activation }).then(()=>{
+        return res.status(200).json({ 
+          status: "success", 
+          message: "congratulations, you have been verified"
+        });
+      }).catch((err)=>{
+        return res.status(400).json({
+          status: "error",
+          message: err.message || "error occurred while trying to activate user"
+        });
+      });
+    }else{
+      return res.status(400).json({
+        status: "error",
+        message: "user already activated"
+      });
+    }
+  });
 };

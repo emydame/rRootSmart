@@ -39,6 +39,7 @@ db.payment = require("../model/payment.model")(sequelize, Sequelize);
 db.milestone = require("../model/milestone.model")(sequelize, Sequelize);
 db.eligibility = require("../model/eligibility.model")(sequelize, Sequelize);
 db.repayment = require("../model/repayment.model")(sequelize, Sequelize);  
+db.useractivation =  require("../model/acctActivation.model")(sequelize, Sequelize);
 
 //db.project.belongsTo(db.projectCategory)
 

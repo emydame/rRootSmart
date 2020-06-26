@@ -5,6 +5,9 @@ module.exports = (app) => {
   // Create a new User
   app.post("/register", users.create);
 
+  // Activate user
+  app.get("/user/verify", users.activate);
+
   // Retrieve all Users
   app.get("/users", users.findAll);
 
