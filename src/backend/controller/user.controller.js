@@ -179,7 +179,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
     const options = {};
     
     options.email = req.body.email;
-    options.subject = "Verify your Email"
+    options.subject = "Confirm your Registration now";
     options.html = template({ verifyUrl, firstName });
 
     mailer(options);
