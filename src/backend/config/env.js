@@ -11,8 +11,8 @@ const env = {
     idle: 10000,
   },
   mail: {
-    user: 'eazsme@gmail.com',
-    pass: 'eazsmebdgs'
+    user: "eazsme@gmail.com",
+    pass: "eazsmebdgs"
   }
 };
 

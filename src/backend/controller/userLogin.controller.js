@@ -35,7 +35,7 @@ exports.findOne = (req, res) => {
           if(!activation) {
             return res.status(400).json({
               status: "error",
-              status: "user is not activated"
+              message: "user is not activated"
             });
           }
 
@@ -76,7 +76,10 @@ exports.findOne = (req, res) => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            return res.status(400).json({
+              status: "error",
+              message: err.message || "password does not match"
+            });
           });
         });
     })

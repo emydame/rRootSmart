@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const { mail } = require("../config/env");
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
          user: mail.user,
          pass: mail.pass
@@ -20,9 +20,9 @@ const mailer = (options) => {
     if (error) {
       console.log(error);
     } else {
-      console.log(`Email sent:  + ${info.response}`);
+      console.info(`Email sent:  + ${info.response}`);
     }
   });
-}
+};
 
 module.exports = mailer;

@@ -400,15 +400,17 @@ exports.activate = (req, res) => {
   try {
     userInToken = jwt.verify(token, "secret");
   } catch (error) {
-    return res.status(400).json({ status: 'error', message: error.message || 'could not verify your token' });
+    return res.status(400).json({ status: "error", message: error.message || "could not verify your token" });
   }
 
   // fetch database user
   const userInDatabase = User.findOne({ where: { email: userInToken.email } });
-  if (!userInDatabase) return res.status(400).json({ status: 'error', message: 'user does not exist' });
+  if (!userInDatabase) {
+    return res.status(400).json({ status: "error", message: "user does not exist" });
+  }
   
   // activate user
-  AcctActivation.findOne({ where: { email: userInToken.email } }).then((data)=>{
+  AcctActivation.findOne({ where: { email: userInToken.email } }).then((data) => {
     if (!data) {
       const activation = new AcctActivation({
         activationId: Math.floor(Math.random() * 100000) + 1,
