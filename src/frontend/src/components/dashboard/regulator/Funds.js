@@ -12,7 +12,8 @@ export default class Funds extends Component {
     super(props);
 
     this.state = {
-      funds: []
+      funds: [],
+      error: ""
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -23,47 +24,63 @@ export default class Funds extends Component {
   }
 
   async fetchData() {
-    const data = await axios.get("https://eazsme-backend.herokuapp.com/organization/:id");
-    const funds = data.data.data;  
-    this.setState({funds});
+    await axios
+      .get("https://eazsme-backend.herokuapp.com/funds/all")
+      .then(({ data }) => {
+        const status = data.status;
+        const result = data.data;
+        if (status === "success") {
+          this.setState({ funds: result });
+        } else {
+          this.setState({ error: "Error fetching data" });
+        }
+      })
+      .catch((error) => console.log(error));
   }
-    render() {
-      const data = this.state.funds;
-      return (
-        <Card.Body>
-          <div className="invest-fund">
-            <h5 style={{textAlign:"center"}}>All Funds Application</h5>
-          </div>
-          <div className="update" style={{textAlign:"center"}}>
-            <h5> *** Funds Application View *** </h5>         
-          </div>
-          <table class="table table-striped">
+  render() {
+    const data = this.state.funds;
+    const error = this.state.error;
+    let count = 0;
+    return (
+      <Card.Body>
+        <div className="invest-fund">
+          <h5 style={{ textAlign: "center" }}>All Funds Application</h5>
+        </div>
+        <div className="update" style={{ textAlign: "center" }}>
+          <h5> *** Funds Application View *** </h5>
+        </div>
+        <table class="table table-striped">
           <thead>
             <tr>
-              <th>Company Name</th>
-              <th>Category</th>
+              <th>Fund ID</th>
+              <th>Organization ID</th>
+              <th>Project ID</th>
+              <th>Fund Category ID</th>
               <th>Amount</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Fund</th>
+              <th>Date Initiated</th>
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index, arr) => {
+            {data.map((item) => {
               return (
-                <tr key={index}>
-                  <td>{item.organizationId}</td>
-                  <td>{item.fundCatId}</td>
-                  <td>{item.amount}</td>
-                  <td>{item.status}</td>
-                  <td>
-                    <Link to={`/view-project/${item.organizationId}`}>View Details</Link>
-                  </td>
+                <tr >
+                  <td key={count}>{item.fundId}</td>
+                  <td key={count++}>{item.organizationId}</td>
+                  <td key={count++}>{item.projectId}</td>
+                  <td key={count++}>{item.fundCatId}</td>
+                  <td key={count++}>{item.amount}</td>
+                  <td key={count++}>{item.status}</td>
+                  <td key={count++}>{item.fund}</td>
+                  <td key={count++}>{item.status}</td>
+                  <td key={count++}>{item.dateInitiated}</td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-        </Card.Body>
-      );
-    }
+      </Card.Body>
+    );
   }
+}

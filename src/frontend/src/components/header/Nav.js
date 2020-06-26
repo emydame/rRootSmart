@@ -83,6 +83,14 @@ class Nav extends React.Component {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
     const formFields = serialize(form, { hash: true });
+    const formElements = document.querySelector(`form[name="registration"]`).elements;
+    const data = {};
+    for(let i = 0; i < formElements.length; i++){
+      const item = formElements.getItem(parseInt(i));
+      data[item.name] = item.value;
+    }
+
+    // dispatch the data to redux store
     axios
       .post("http://localhost:4000/register", formFields)
       .then(({ data }) => {
