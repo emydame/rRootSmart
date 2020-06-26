@@ -26,7 +26,7 @@ class ViewDetails extends React.Component {
   async fetchData() {
     const projectId = this.props.match.projectId;
     await axios
-      .get("https://localhost:4000/projects/" + projectId)
+      .get("https://eazsme-backend.herokuapp.com/projects/" + projectId)
       .then(({ data }) => {
         const status  = data.status;
         const projects = data.data;

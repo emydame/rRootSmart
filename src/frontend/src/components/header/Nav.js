@@ -92,11 +92,13 @@ class Nav extends React.Component {
 
     // dispatch the data to redux store
     axios
-      .post("http://localhost:4000/register", formFields)
+      .post("https://eazsme-backend.herokuapp.com/register", formFields)
       .then(({ data }) => {
         const { status } = data;
         if (status === "success") {
           this.setState({ signupSuccess: "User successfully signed up!" });
+          form.reset();
+          window.alert("User successfully signed up!");
         } else {
           this.setState({ signupError: "Error signing up user" });
         }
@@ -170,66 +172,67 @@ class Nav extends React.Component {
       localStorage.setItem("adminObj", JSON.stringify(user));
       localStorage.setItem("userObj", JSON.stringify(user));
       this.props.history.push("/admin");
-    }
+    } else {
+      const form = document.querySelector(`form[name="login"]`);
+      const formFields = serialize(form, { hash: true }); // Make api call with form
+      await axios
+        .post("https://eazsme-backend.herokuapp.com/login", formFields)
+        .then(({ data }) => {
+          const { status, result } = data;
+          const sme = this.props.sme;
+          const investor = this.props.investor;
+          const regulator = this.props.regulator;
 
-    const form = document.querySelector(`form[name="login"]`);
-    const formFields = serialize(form, { hash: true }); // Make api call with form
-    await axios
-      .post("http://localhost:4000/login", formFields)
-      .then(({ data }) => {
-        const { status, result } = data;
-        const sme = this.props.sme;
-        const investor = this.props.investor;
-        const regulator = this.props.regulator;
+          if (status === "success") {
+            localStorage.clear();
+            switch (result.category) {
+              case "sme":
+                user.companyName = result.companyName;
+                user.userId = result.email;
+                user.category = result.category;
+                user.organizationId = result.organizationId;
 
-        if (status === "success") {
-          localStorage.clear();
-          switch (result.category) {
-            case "sme":
-              user.companyName = result.companyName;
-              user.userId = result.email;
-              user.category = result.category;
-              user.organizationId = result.organizationId;
+                sme(user);
+                localStorage.setItem("userObj", JSON.stringify(user));
+                localStorage.setItem("smeObj", JSON.stringify(user));
+                this.props.history.push("/sme");
+                break;
+              case "investor":
+                user.companyName = result.companyName;
+                user.userId = result.email;
+                user.category = result.category;
+                user.organizationId = result.organizationId;
 
-              sme(user);
-              localStorage.setItem("userObj", JSON.stringify(user));
-              localStorage.setItem("smeObj", JSON.stringify(user));
-              this.props.history.push("/sme");
-              break;
-            case "investor":
-              user.companyName = result.companyName;
-              user.userId = result.email;
-              user.category = result.category;
-              user.organizationId = result.organizationId;
+                investor(user);
+                localStorage.setItem("userObj", JSON.stringify(user));
+                localStorage.setItem("investorObj", JSON.stringify(user));
+                this.props.history.push("/investor");
+                break;
+              case "regulator":
+                user.companyName = result.companyName;
+                user.userId = result.email;
+                user.category = result.category;
+                user.organizationId = result.organizationId;
 
-              investor(user);
-              localStorage.setItem("userObj", JSON.stringify(user));
-              localStorage.setItem("investorObj", JSON.stringify(user));
-              this.props.history.push("/investor");
-              break;
-            case "regulator":
-              user.companyName = result.companyName;
-              user.userId = result.email;
-              user.category = result.category;
-              user.organizationId = result.organizationId;
-
-              regulator(user);
-              localStorage.setItem("userObj", JSON.stringify(user));
-              localStorage.setItem("regObj", JSON.stringify(user));
-              this.props.history.push("/regulator");
-              break;
-            default:
-              window.alert("You must be a ghost");
-              break;
+                regulator(user);
+                localStorage.setItem("userObj", JSON.stringify(user));
+                localStorage.setItem("regObj", JSON.stringify(user));
+                this.props.history.push("/regulator");
+                break;
+              default:
+                window.alert("You must be a ghost");
+                break;
+            }
+          } else {
+            /*display invalid credentials*/
+            this.setState({ loginError: "Invalid Credentials" });
           }
-        } else {
-          /*display invalid credentials*/
+        })
+        .catch((error) => {
           this.setState({ loginError: "Invalid Credentials" });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+          console.error(error);
+        });
+    }
   }
 
   showContactModal(event) {

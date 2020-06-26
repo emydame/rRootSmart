@@ -63,7 +63,7 @@ class SmeDashboard extends React.Component {
     const formFields = serialize(form, { hash: true });
 
     axios
-      .post("http://localhost:4000/milestones/id", formFields)
+      .post("https://eazsme-backend.herokuapp.com/milestones/id", formFields)
       .then(({ data }) => {
         if (data.status === "success") {
           this.setState({ success: "Milestone successfully updated!" });

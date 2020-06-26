@@ -38,7 +38,7 @@ class allUsers extends React.Component {
   //https://eazsme-backend.herokuapp.com/projects/category/
   async fetchData() {
     await axios
-      .get( `http://localhost:4000/users/category/${this.state.userObj.organizationId} `)
+      .get( `https://eazsme-backend.herokuapp.com/users/category/${this.state.userObj.organizationId} `)
       .then(({ data }) => {
         const status = data.status;
         const result  = data.data;

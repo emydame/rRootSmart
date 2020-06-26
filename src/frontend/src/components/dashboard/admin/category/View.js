@@ -11,7 +11,6 @@ import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-
 class View extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,7 @@ class View extends React.Component {
     };
 
     this.fetchData = this.fetchData.bind(this);
-   
+
     /*this.handlePagination = this.handlePagination.bind(this);*/
   }
 
@@ -29,17 +28,19 @@ class View extends React.Component {
     this.fetchData();
   }
 
-  searchCategory(e){
+  searchCategory(e) {
     e.preventDefault();
 
     const query = this.state.searchTerm;
 
     this.setState((prevState) => {
       let filteredCategories = prevState.projectcategories;
-      if (query.trim() !== ""){
+      if (query.trim() !== "") {
         filteredCategories = prevState.projectcategories.filter((element) => {
-          return element.categoryName.toLowerCase().includes(query.toLowerCase()) ||
-          element.categoryDescription.toLowerCase().includes(query.toLowerCase());
+          return (
+            element.categoryName.toLowerCase().includes(query.toLowerCase()) ||
+            element.categoryDescription.toLowerCase().includes(query.toLowerCase())
+          );
         });
       }
       return {
@@ -50,11 +51,11 @@ class View extends React.Component {
   //https://eazsme-backend.herokuapp.com/projects/category/
   async fetchData() {
     await axios
-      .get("http://localhost:4000/projects/category/")
+      .get("https://eazsme-backend.herokuapp.com/projects/category/")
       .then(({ data }) => {
         const status = data.status;
-        const result  = data.data;
-        console.log("result"+data);
+        const result = data.data;
+        console.log("result" + data);
         if (status === "success") {
           this.setState({ data: result });
         }
@@ -66,19 +67,35 @@ class View extends React.Component {
     const data = this.state.data;
     return (
       <Card.Body>
-    <div className="sachBody">
-        <ul className="sach">
-          <li><Button style={{float:"right",borderRadius:"5%",background:"orange"}}  variant="default" type="submit" > Search</Button></li>
-            <li><Form.Group controlId="searchId">
-            <Form.Control className="searchBar" style={{ width:"250px", float:"right",marginRight:"10px" }} type="text" placeholder="Enter name to search" name="search" />
-          </Form.Group></li>
+        <div className="sachBody">
+          <ul className="sach">
+            <li>
+              <Button
+                style={{ float: "right", borderRadius: "5%", background: "orange" }}
+                variant="default"
+                type="submit"
+              >
+                {" "}
+                Search
+              </Button>
+            </li>
+            <li>
+              <Form.Group controlId="searchId">
+                <Form.Control
+                  className="searchBar"
+                  style={{ width: "250px", float: "right", marginRight: "10px" }}
+                  type="text"
+                  placeholder="Enter name to search"
+                  name="search"
+                />
+              </Form.Group>
+            </li>
           </ul>
-        </div> 
+        </div>
 
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-            
               <th>Category Name</th>
               <th>Category Description</th>
               <th>Created By</th>
@@ -89,19 +106,19 @@ class View extends React.Component {
           <tbody>
             {data.map((item, index, arr) => {
               let count = arr.length;
-              console.log({index});
-                            return (
+              console.log({ index });
+              return (
                 <tr>
                   {/*<td key={index}>{item.projectCatId}</td>*/}
-                  <td >{item.categoryName}</td>
-                  <td >{item.categoryDescription}</td>
+                  <td>{item.categoryName}</td>
+                  <td>{item.categoryDescription}</td>
                   <td>{item.createdBy}</td>
                   <td>
                     <Link to={`/update/${item.projectCatId}`}>Update</Link>
                   </td>
                   <td key={count++}>
                     <Link to={`/delete/${item.projectCatId}`}>Delete</Link>|
-                   </td>
+                  </td>
                 </tr>
               );
             })}

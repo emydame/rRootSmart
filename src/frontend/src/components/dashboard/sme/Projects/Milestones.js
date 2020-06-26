@@ -6,9 +6,6 @@
 /*eslint-env es6*/
 /* eslint no-console: "error" */
 
-
-
-
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -55,7 +52,7 @@ class CreateMilestone extends React.Component {
       const id=userObj.organizationId;
       
 
-url = `http://localhost:4000/fund/application/${id}`;
+url = `https://eazsme-backend.herokuapp.com/fund/application/${id}`;
     }
    
     this.getActiveProjects();
@@ -108,7 +105,7 @@ url = `http://localhost:4000/fund/application/${id}`;
     console.log(formFields);
     // Make api call with form
     axios
-      .post(`http://localhost:4000/milestones`, formFields)
+      .post(`https://eazsme-backend.herokuapp.com/milestones`, formFields)
       .then((data) => {
       
         if (data.data.status === `success`) {

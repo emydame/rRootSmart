@@ -43,7 +43,7 @@ class UpdateMilestone extends React.Component {
     e.preventDefault();
     // Make api call with form
     axios
-      .post("http://localhost:4000/milestones/id")
+      .post("https://eazsme-backend.herokuapp.com/milestones/id")
       .then((data) => {
         if (data.status === "success") {
           this.setState({ success: "Milestoned Successfully Updated!" });

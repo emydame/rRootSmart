@@ -7,9 +7,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Link} from "react-router-dom";
-
-
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
@@ -17,7 +15,7 @@ class Login extends React.Component {
 
     this.state = {
       success: "",
-      error: "",
+      error: ""
     };
     this.closeLogin = this.closeLogin.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -54,19 +52,19 @@ class Login extends React.Component {
             <Row>
               <Col className="text-center pr-1">
                 <Modal.Title id="login" className="text-light">
-                  Login 
+                  Login
                 </Modal.Title>
               </Col>
             </Row>
           </Modal.Header>
           <Modal.Body bsPrefix="modal-body">
-          {success ? (
+            {success ? (
               <div className="text-bold text-success text-center">
                 <h5>{success}</h5>
               </div>
             ) : (
-              <div className="text-lighter text-success text-center">
-                <h5>{error}</h5>
+              <div className="text-center">
+                <h5 className="text-danger">{error}</h5>
               </div>
             )}
             <Form name="login">
@@ -96,21 +94,20 @@ class Login extends React.Component {
                   ref={this.rememberMe}
                 />
               </Form.Group>
-              <Button variant="success" type="submit" className="btn-block" onClick={this.submitLogin} >
+              <Button variant="success" type="submit" className="btn-block" onClick={this.submitLogin}>
                 Login
               </Button>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Row>              
+            <Row>
               <Col md="auto" className="ml-4 font-weight-bold">
                 Not a member?&nbsp;
-                <Link to="/">Sign Up</Link>                
+                <Link to="/">Sign Up</Link>
                 &nbsp;&nbsp; Forget&nbsp;
                 <Link to="/recover-password">Password?</Link>
               </Col>
             </Row>
-            
           </Modal.Footer>
         </Modal>
       </>
