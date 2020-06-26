@@ -164,13 +164,13 @@ let userID = Math.floor(Math.random() * 100000) + 1;
     };
 
     //generate token
-    const token = jwt.sign(data, 'secret', { expiresIn: '1h' });
+    const token = jwt.sign(data, "secret", { expiresIn: "4h" });
 
     // send email
     const source = read.sync(path.join(__dirname, "/../templates/verifyUrl.hbs"), "utf8");
     const template = Handlebars.compile(source);
     
-    const host = req.get('host');
+    const host = req.get("host");
     const protocol =  req.protocol;
     
     const verifyUrl = `${protocol}://${host}/user/verify?token=${token}&email=${req.body.email}`;
@@ -417,12 +417,12 @@ exports.activate = (req, res) => {
         activationDate: new Date()
       });
 
-      activation.save({ ...activation }).then(()=>{
+      activation.save().then(() => {
         return res.status(200).json({ 
           status: "success", 
           message: "congratulations, you have been verified"
         });
-      }).catch((err)=>{
+      }).catch((err) => {
         return res.status(400).json({
           status: "error",
           message: err.message || "error occurred while trying to activate user"
