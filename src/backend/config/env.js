@@ -1,7 +1,7 @@
 const env = {
   database: "eazsme_db",
   username: "root",
-  password: "Pass123%",
+  password: "",
   host: "localhost",
   dialect: "mysql",
   pool: {
@@ -10,6 +10,10 @@ const env = {
     acquire: 30000,
     idle: 10000,
   },
+  mail: {
+    user: 'eazsme@gmail.com',
+    pass: 'eazsmebdgs'
+  }
 };
 
 module.exports = env;

@@ -7,6 +7,9 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodeMailer = require("nodemailer");
+const Handlebars = require("handlebars");
+const read = require("read-file");
+const path = require("path");
 
 const secret = "serete";
 const db = require("../config/db.config");
@@ -14,6 +17,7 @@ const db = require("../config/db.config");
 const User = db.user;
 const Userpass = db.userLogin;
 const Organization = db.userOrganization;
+const mailer = require ("../helpers/mailer");
 
 
 exports.create = (req, res) => {
@@ -147,6 +151,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
       message: error
     });
   } else {
+
     const data = {
       category: req.body.userType,
       organizationId: orgId,
@@ -156,6 +161,27 @@ let userID = Math.floor(Math.random() * 100000) + 1;
       otherName: req.body.otherName,
       email: req.body.email
     };
+
+    //generate token
+    const token = jwt.sign(data, 'secret', { expiresIn: '1h' });
+
+    // send email
+    const source = read.sync(path.join(__dirname, "/../templates/verifyUrl.hbs"), "utf8");
+    const template = Handlebars.compile(source);
+    
+    const host = req.get('host');
+    const protocol =  req.protocol;
+    
+    const verifyUrl = `${protocol}://${host}/api/v1/user/verify?token=${token}&email=${req.body.email}`;
+
+    const options = {};
+    
+    options.email = req.body.email;
+    options.subject = "Verify your Email"
+    options.html = template({ verifyUrl });
+
+    mailer(options);
+
     return res.status(200).json({
       status: "success",
       data,
