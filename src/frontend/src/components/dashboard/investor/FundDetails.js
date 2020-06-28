@@ -50,7 +50,7 @@ class FundDetails extends React.Component {
     formFields.fundId = this.state.fund.fundId;
 
     axios
-      .post("https://eazsme-backend.herokuapp.com/payments", formFields)
+      .post("http://localhost:4000/payments", formFields)
       .then((data) => {
         if (data.data.status === "success") {
           this.setState({ 
