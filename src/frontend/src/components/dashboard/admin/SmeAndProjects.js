@@ -33,24 +33,29 @@ export default class SmeAndProjects extends Component {
     this.fetchData();
   }
   approveApplication(){
-    console.log(this.state.id);
+   
     axios
-    .put(`https://eazsme-backend.herokuapp.com/fund/update/${this.state.id}`)
+    .put(`http://localhost:4000/funds/application/update/${this.state.id}`)
     .then(({ data }) => {
-      console.log(data);
       const  status  = data.status;
     
       if (status === "success") {
         this.setState({ success: "Fund Application Approved"});
+        window.location.reload();
         
+      }else{
+        this.setState({ error: "Approval Failed"});
       }
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {console.log(error);
+      this.setState({ error: "Approval Failed"});
+    }
+      );
   }
 
   fetchData() {
     axios
-      .get("https://eazsme-backend.herokuapp.com/fund/applications/all")
+      .get("http://localhost:4000/fund/applications/all")
       .then(({ data }) => {
         console.log(data);
         const  status  = data.status;
@@ -66,8 +71,20 @@ export default class SmeAndProjects extends Component {
 
   render() {
     const data = this.state.data;
+    const success = this.state.success;
+    const error = this.state.error;
     return (
       <Card.Body>
+ {success ? (
+              <div className="text-bold text-success">
+                <h5>{success}</h5>
+              </div>
+            ) : (
+              <div className="text-bold text-success">
+                <h5>{error}</h5>
+              </div>
+            )}
+
       <div className="sme-project">
         <strong style={{textAlign:"center"}}>SMEs Projects</strong>
       </div>
@@ -83,12 +100,13 @@ export default class SmeAndProjects extends Component {
             <th>Description</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
             {data.map((item, index, arr) => {
-            let count = arr.length;
+         
               return (
                 <tr>
                   <td > {this.state.id=item.id}</td>
@@ -96,9 +114,10 @@ export default class SmeAndProjects extends Component {
                   <td key={index}>{item.description}</td>
                   <td key={index}>{item.dateStart}</td>
                   <td key={index}>{item.dateEnd}</td>
+                  <td key={index}>{item.status}</td>
                   <td key={index}>
                    
-                    <Link  onClick={this.approveApplication} to="">Approve</Link>
+                    <Link  onClick={this.approveApplication} to={this}>Approve</Link>
                   </td>
                 </tr>
                 
