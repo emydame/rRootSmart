@@ -78,17 +78,18 @@ class Nav extends React.Component {
       this.confPassword.current.classList.remove("d-none");
     }
   }
-
+ //http://localhost:4000/register
+  //https://eazsme-backend.herokuapp.com/register
   submitRegistration(event) {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
     const formFields = serialize(form, { hash: true });
     axios
-      .post("https://eazsme-backend.herokuapp.com/register", formFields)
+      .post(" http://localhost:4000/register", formFields)
       .then(({ data }) => {
         const { status } = data;
         if (status === "success") {
-          this.setState({ signupSuccess: "User successfully signed up!" });
+          this.setState({ signupSuccess: "User successfully signed up! Check your mail to activate your accountn" });
           form.reset();
           window.alert("User successfully signed up!");
         } else {
@@ -168,7 +169,7 @@ class Nav extends React.Component {
       const form = document.querySelector(`form[name="login"]`);
       const formFields = serialize(form, { hash: true }); // Make api call with form
       await axios
-        .post("https://eazsme-backend.herokuapp.com/login", formFields)
+        .post("http://localhost:4000/login", formFields)
         .then(({ data }) => {
           const { status, result } = data;
           const sme = this.props.sme;

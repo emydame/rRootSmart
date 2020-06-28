@@ -27,6 +27,17 @@ class Create extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+
+  componentDidMount(){
+   
+      const userObj = JSON.parse(localStorage.getItem(`userObj`));
+   if (userObj) {
+     this.setState(() => ({ userObj }));
+     
+   }
+ }
+
+
   handleEditorChange(e) {
     this.setState({ categoryDescription: e.target.getContent() });
   }
@@ -36,6 +47,7 @@ class Create extends React.Component {
     const form = document.querySelector(`form[name="create-category"]`);
     const formFields = serialize(form, { hash: true }); // Make api call with form
     formFields.categoryDescription=this.state.categoryDescription;
+    formFields.createdBy=this.state.userObj.userName;
     await axios
       .post(`https://eazsme-backend.herokuapp.com/projects/category`, formFields)
       .then(({ data }) => {
