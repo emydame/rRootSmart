@@ -2,14 +2,7 @@
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Upload, message, Button } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
-import reqwest from "reqwest";
-// import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+
 import axios from "axios";
 
 class ProjectDetails extends React.Component {
@@ -31,9 +24,13 @@ class ProjectDetails extends React.Component {
     };
   }
   async componentDidMount() {
+   // const id=this.props.match.params.projectId;
+    //this.setState({ projectId: this.props.location.queryid });
     const id=this.props.match.params.projectId;
-    const url = `https://eazsme-backend.herokuapp.com/project/${id}`;
+    console.log(id);
     console.log(this.props.match.params.projectId);
+    const url = `http://localhost:4000/project/${id}`;
+  
     const data = await axios.get(url);
 
     const project = data.data.data;

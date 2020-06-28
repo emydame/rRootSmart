@@ -89,7 +89,7 @@ class Nav extends React.Component {
       .then(({ data }) => {
         const { status } = data;
         if (status === "success") {
-          this.setState({ signupSuccess: "User successfully signed up! Check your mail to activate your accountn" });
+          this.setState({ signupSuccess: "User successfully signed up! Check your mail to activate your account" });
           form.reset();
           window.alert("User successfully signed up!");
         } else {

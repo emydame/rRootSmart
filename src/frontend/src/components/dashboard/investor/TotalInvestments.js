@@ -23,7 +23,7 @@ class TotalInvestments extends React.Component {
     
     if (userObj) {
       this.setState({ organization: userObj.organizationId }); 
-      url = `https://eazsme-backend.herokuapp.com/funds/organizations/${userObj.organizationId}`;
+      url = `http://localhost:4000/funds/organizations/${userObj.organizationId}`;
         
     }
     this.fetchData();
