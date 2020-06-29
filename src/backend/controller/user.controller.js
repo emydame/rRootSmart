@@ -28,6 +28,7 @@ exports.create = (req, res) => {
   let orgId = Math.floor(Math.random() * 10000) + 1;
  let loginID = Math.floor(Math.random() * 10000) + 1;
 let userID = Math.floor(Math.random() * 100000) + 1;
+let organizationId =0;
 
   //Check empty request
   if (!req.body) {
@@ -45,12 +46,49 @@ let userID = Math.floor(Math.random() * 100000) + 1;
       if (data) {
         // return result if data already exist
         error = "User already exist";
+       
         return;
       } else {
+
+//check if organization exist
+Organization.findOne({ where: { email: req.body.companyEmail } })
+.then((data) => {
+  if (data) {
+    // return result if data already exist
+    error = "User already exist";
+    return;
+  } else {
+    const organization = new Organization({
+      organizationId: orgId,
+      companyName: req.body.companyName,
+      category: req.body.userType,
+      RCNumber: req.body.rccNumber,
+      email: req.body.companyEmail,
+      BVN: req.body.bvn,
+      address: req.body.companyAddress,
+      dateIncorporated: req.body.dateIncorporated,
+      createdAt: today,
+      updatedAt: today
+    });
+
+    //Save organization
+    organization
+      .save()
+      .then((data) => {
+        saved = "Data saved successfully";
+        organizationId=orgId;
+      })
+      .catch((error) => {
+        status = true;
+      });
+  }
+})
+.catch((error) => error);
+
         // Create new instance of  user
         const user = new User({
           userId: userID,
-          organizationId: req.body.organizationId,
+          organizationId: orgId,
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           otherName: req.body.otherName,
@@ -73,38 +111,7 @@ let userID = Math.floor(Math.random() * 100000) + 1;
     })
     .catch((error) => error);
 
-  Organization.findOne({ where: { email: req.body.companyEmail } })
-    .then((data) => {
-      if (data) {
-        // return result if data already exist
-        error = "User already exist";
-        return;
-      } else {
-        const organization = new Organization({
-          organizationId: orgId,
-          companyName: req.body.companyName,
-          category: req.body.userType,
-          RCNumber: req.body.rccNumber,
-          email: req.body.companyEmail,
-          BVN: req.body.bvn,
-          address: req.body.companyAddress,
-          dateIncorporated: req.body.dateIncorporated,
-          createdAt: today,
-          updatedAt: today
-        });
-
-        //Save organization
-        organization
-          .save()
-          .then((data) => {
-            saved = "Data saved successfully";
-          })
-          .catch((error) => {
-            status = true;
-          });
-      }
-    })
-    .catch((error) => error);
+ 
 
   Userpass.findOne({ where: { email: req.body.email } })
     .then((data) => {
@@ -438,4 +445,27 @@ exports.activate = (req, res) => {
       });
     }
   });
+};
+
+
+// find single user by id
+exports.getdetails = (req, res) => {
+  db.sequelize.query(
+    `select u.firstName,u.lastName,u.otherName,u.email,u.phoneNumber,
+    o.companyName, o.RCNumber,o.email as coyEmail,o.dateIncorporated, o.BVN, o.address
+    FROM eazsme_db.users u
+    join eazsme_db.organizations o on o.organizationId = u.organizationId`
+     , { raw: true })
+     .then((result) => {  
+      return res.status(200).json({
+        status: "success",
+        message: "User details retrieved successfull",
+        data: result[0]
+      });
+    }).catch((error) => {
+      return res.status(400).json({
+        status: "error",
+        message: error.message || "An error occured while retrieving user proposals",
+      });
+    });
 };

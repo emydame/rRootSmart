@@ -65,6 +65,7 @@ class View extends React.Component {
 
   render() {
     const data = this.state.data;
+    
     return (
       <Card.Body>
         <div className="sachBody">

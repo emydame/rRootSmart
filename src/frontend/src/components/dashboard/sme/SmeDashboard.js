@@ -183,8 +183,7 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/EditProfile" component={EditProfile} />
                 <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />
                 <Route path="/sme/Projects/Milestones" component={Milestones} />
-                <Route path="/sme/Projects/ProjectDetails" render={(props) => <ProjectDetails {...props} projects={this.state.projects } />} />
-                <Route path="/sme/Projects/FundedProjects" render={(props) => <FundedProjects {...props} userCat="sme" />} />
+          <Route path="/sme/Projects/FundedProjects" render={(props) => <FundedProjects {...props} userCat="sme" />} />
                 <Route path="/sme/Projects/ProjectDetails/:projectId" render={(props) => <ProjectDetails {...props} projects={this.state.projects }/>}/>
                     </Switch>
             </Router>
