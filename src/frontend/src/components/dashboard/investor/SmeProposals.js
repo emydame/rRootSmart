@@ -23,7 +23,7 @@ class SmeProposals extends React.Component {
     const url = "https://eazsme-backend.herokuapp.com/project/investorAll";
 
     const data = await axios.get(url);
-console.log(data);
+
     const projectproposals = data.data.data;
 
     localStorage.setItem("proposals", JSON.stringify(projectproposals));

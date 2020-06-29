@@ -168,7 +168,7 @@ exports.updateStatus = (req, res) => {
 
 // update investment status
 exports.updateSt = (req, res) => {
-  Fund.findOne({ where: { fundId: req.body.id } })
+  FundApplication.findOne({ where: { fundId: req.body.id } })
     .then((fund) => {
       //get user details from req and save changes 
       fund.status = req.body.status;   
