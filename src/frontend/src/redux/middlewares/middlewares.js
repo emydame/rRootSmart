@@ -5,8 +5,7 @@ export const smeMiddleware = (store) => (next) => (action) => {
     return next(action);
   }
   // do something with sme
-  console.log(`action: ${action}`);
-  console.log(`store action: ${store.getState()}`);
+  
 };
 
 export const investorMiddleware = (store) => (next) => (action) => {};
