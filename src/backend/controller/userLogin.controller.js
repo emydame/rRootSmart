@@ -10,6 +10,7 @@ const db = require("../config/db.config");
 
 const UserLogin = db.userLogin;
 const Organization = db.userOrganization;
+const AccActivation = db.useractivation;
 
 exports.findOne = (req, res) => {
   // let request = {
@@ -28,37 +29,59 @@ exports.findOne = (req, res) => {
           result
         });
       }
-
-      bcrypt
-        .compare(req.body.password, data.password)
-        .then((val) => {
-          if (!val) {
-            const result = {
-              message: " Invalid username or password"
-            };
-            return res.status(404).json({
+      // verify if user is activated.
+      AccActivation.findOne({ where: { email: req.body.email } })
+        .then((activation) => {
+          if(!activation) {
+            return res.status(400).json({
               status: "error",
-              result
+              message: "user is not activated"
             });
-          } else {
-            if (data.email === req.body.email) {
-              const result = {
-                category: data.category,
-                email: data.email,
-                organization: data.Organization,
-                companyName: data.companyName,
-                organizationId: data.organizationId,
-                privilege:  data.privilege
+          }
 
+          if (activation.dataValues.activationStatus !== "activated" ){
+            return res.status(400).json({
+              status: "error",
+              message: "user is not activated"
+            });
+          }
+
+          bcrypt
+          .compare(req.body.password, data.dataValues.password)
+          .then((val) => {
+            if (!val) {
+              const result = {
+                message: " Invalid username or password"
               };
-              return res.status(200).json({
-                status: "success",
+              return res.status(404).json({
+                status: "error",
                 result
               });
+            } else {
+              if (data.dataValues.email === req.body.email) {
+                const result = {
+                  category: data.category,
+                  email: data.email,
+                  organization: data.Organization,
+                  companyName: data.companyName,
+                  organizationId: data.organizationId,
+                  privilege:  data.privilege
+  
+                };
+                return res.status(200).json({
+                  status: "success",
+                  result
+                });
+              }
             }
-          }
-        })
-        .catch((error) => error);
+          })
+          .catch((error) => {
+            return res.status(400).json({
+              status: "error",
+              message: error.message || "password does not match"
+            });
+          });
+        });
     })
     .catch((err) => {
       return res.status(500).json({
