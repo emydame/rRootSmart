@@ -39,7 +39,7 @@ class ProfileDetails extends React.Component {
 
 
   componentDidMount() {
-    const userObj = JSON.parse(localStorage.getItem(`userObj`));
+    const userObj = JSON.parse(localStorage.getItem("userObj"));
     if (userObj) {
       this.setState(() => ({ userObj }));
       

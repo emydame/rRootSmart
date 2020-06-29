@@ -21,4 +21,4 @@ module.exports = (app) => {
   app.get("/fund/application/:id", fundApplication.findOne);
 
   app.put("/funds/application/update/:id",fundApplication.updateStatus);
-}
+};
