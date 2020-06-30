@@ -9,11 +9,8 @@ import axios from "axios";
 import Proposal from "./Funds/Proposal";
 import {
   ProfileOutlined,
-  UsergroupAddOutlined,
-  SettingOutlined,
   UserOutlined,
   LogoutOutlined,
-  FileDoneOutlined,
   BellFilled,
   ZoomOutOutlined,
   FileAddOutlined,
@@ -22,7 +19,6 @@ import {
   PlusCircleOutlined
 } from "@ant-design/icons";
 import Create from "../general/CreateUser";
-import Remove from "../general/Remove";
 import Update from "../general/Update";
 import ProfileDetails from "../sme/user/ProfileDetails";
 import EditProfile from "./user/EditProfile";
@@ -34,7 +30,8 @@ import ViewMilestones from "../sme/Funds/ViewMilestones";
 import CreateMilestones from "./Projects/Milestones";
 import { connect } from "react-redux";
 import UpdateMilestone from "./Funds/UpdateMilestone";
-import { withRouter } from "react-router-dom";
+import ProjectDetails from "../sme/Projects/ProjectDetails";
+import ViewProject from "../general/View";
 
 const menu = (
   <Menu id="dropdown-menu">
@@ -170,12 +167,15 @@ class SmeDashboard extends React.Component {
           <Content style={{ margin: "0 16px" }}>
             <Router history={this.props.history}>
               <Switch>
-                {/* <Route path="/sme/projects" component={Project} /> */}
+                {/* <Route path="/sme/projects" component={Project} /> 
                 <Route path="/sme/Projects/FundedProjects" component={FundedProjects} />
                 <Route
                   path="/sme/Funds/NewApplication"
                   render={(props) => <NewApplication {...props} projects={this.state.projects} />}
                 />
+                */}
+               
+                <Route path="/sme/Funds/NewApplication" render={(props) => <NewApplication {...props} projects={this.state.projects } />} />
                 <Route path="/sme/Funds/UpdateMilestone" component={UpdateMilestone} />
                 <Route path="/sme/Funds/ViewMilestones" component={ViewMilestones} />
                 <Route path="/sme/Projects/Milestones" component={CreateMilestones} />
@@ -187,7 +187,9 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/EditProfile" component={EditProfile} />
                 <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />
                 <Route path="/sme/Projects/Milestones" component={Milestones} />
-              </Switch>
+          <Route path="/sme/Projects/FundedProjects" render={(props) => <FundedProjects {...props} userCat="sme" />} />
+                <Route path="/sme/Projects/ProjectDetails/:projectId" render={(props) => <ProjectDetails {...props} projects={this.state.projects }/>}/>
+                    </Switch>
             </Router>
           </Content>
         </Layout>

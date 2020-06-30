@@ -1,5 +1,8 @@
 const db = require("../config/db.config");
 const FundApplication = db.fundApplication;
+const FundDisbursment = db.fundDisbursment;
+const Sequelize = db.sequelize;
+
 
 // Post a application
 exports.create = (req, res) => {
@@ -14,7 +17,8 @@ exports.create = (req, res) => {
     dateStart: req.body.dateStart,
     dateEnd: req.body.dateEnd,
     description: req.body.description,
-    proposals: req.body.proposal
+    proposals: req.body.proposal,
+    status:"Initiated"
    // proposals: req.file.path
   };
   if (!req.body) {
@@ -56,7 +60,14 @@ exports.create = (req, res) => {
 
 // Get all fund applications
 exports.findAll = (req, res) => {
-  FundApplication.findAll()
+  const { Op } = require("sequelize");
+FundApplication.findAll({
+  where: {
+    status: {
+      [Op.eq]: "Initiated"
+    }
+  }
+})
     .then((result) => {
       return res.status(200).json({  
         status: "success",
@@ -95,21 +106,48 @@ exports.findOne = (req, res) => {
 };
 
 
-exports.updateOne = (req, res) => {
-  FundApplication.findAll({ where: { id: req.body.id } })
+exports.updateStatus = (req, res) => {
+  FundApplication.findOne({ where: { id: req.params.id } })
     .then((data) => {
       if (!data) {
         return res.status(400).json({
           message: " Fund Application not found"
         });
       } else {
-        data.update({ status: req.body.status},
-          { where: { id:req.body.id } }
+        const stat ="Approved";
+      let result= data.dataValues;
+        FundApplication.update({ status: stat },
+          { where: { id:req.params.id  } }
           ).then(() => {
-          res.status(200).json({
-          status: "success",
-          message: data
-          }) ;   
+            //insert record into disurssment
+        
+            const appId = Math.floor(Math.random() * 100000) + 1;
+            let Disbursenew = {  
+              id: appId,
+              disbursementId: appId,
+              organization: result.organizationId,
+              applicationId: result.applicationId,
+              projectId: result.projectId,
+              status: "Cash not Dispensed"
+              
+            };
+            const fundDisbursment = new FundDisbursment(Disbursenew);
+            fundDisbursment
+              .save()
+              .then((data2) => {
+                return res.status(200).json({
+                  status: "success",
+                  message: " Fund Application Approved",
+                  data: result
+                });
+              })
+              .catch((err) => {
+                return res.status(500).json({
+                  status: "error",
+                  message: err.message || "Something went wrong."
+                });
+              });
+  
         }).catch((err) => {
 
           return res.status(500).json({
@@ -128,3 +166,24 @@ exports.updateOne = (req, res) => {
     });
 };
 
+// update investment status
+exports.updateSt = (req, res) => {
+  FundApplication.findOne({ where: { fundId: req.body.id } })
+    .then((fund) => {
+      //get user details from req and save changes 
+      fund.status = req.body.status;   
+      fund.save().then(() => {
+        res.status(200).json({
+        status: "success",
+        message: "fund status have been update"
+        }) ;   
+      })
+    .catch((err) => {
+        return res.status(500).json({
+        status: "error",
+          message: err.message
+        });
+      }); 
+  
+});
+};

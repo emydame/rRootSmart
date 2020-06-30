@@ -1,21 +1,65 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-multi-str */
 /* eslint-disable no-console */
 /* eslint no-console: "error" */
 import React from "react";
-import { Upload, message, Button } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import reqwest from "reqwest";
-// import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
+import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 
 
-
+let Url="";
 class ProfileDetails extends React.Component {
-    render() {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: [],
+      
+      details: {
+        firstName: "",
+        lastName: "",
+        otherName: "",
+        email: "",
+        phoneNumber:"",
+        companyName: "",
+        RCNumber: "",
+        dateIncorporated: "",
+        coyEmail: "",
+        BVN: "",
+        Address:""
+      }
+    };
+
+    this.fetchData = this.fetchData.bind(this);
+  }
+
+
+
+  componentDidMount() {
+    const userObj = JSON.parse(localStorage.getItem("userObj"));
+    if (userObj) {
+      this.setState(() => ({ userObj }));
+      
+    }
+    this.fetchData();
+  }
+  async fetchData() {
+    const url = "https://eazsme-backend.herokuapp.com/userdetails";
+
+    const data = await axios.get(url);
+
+    const details = data.data.data;
+    
+    this.setState({ details });
+   
+   
+  }
   
+    render() {
+     
     return (
       <>
       <div class="jumbotron p-4 p-md-5 text-dark rounded shadow-sm">
@@ -32,35 +76,35 @@ class ProfileDetails extends React.Component {
             <div class="form-row" controlId="userFirstName">
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">First Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Adam " />
-                    </div>
+                      <div class="col-4">{this.state.details.firstName}</div>
+                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Last Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Oshimiole" />
+                      <div class="col-4">{this.state.details.lastName}</div>
                     </div>
                     <div class="form-group col-md-4 ">
                       <label for="inputEmail4">Other Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Jagajaga" />
+                      <div class="col-4">{this.state.details.otherName}</div>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Reg. Date: </label>
-                        <input type="text" data="" id="inputFirstName" value="1/06/2020" />
+                      <div class="col-4">{this.state.details.dateIncorporated}</div>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Phone No: </label>
-                        <input type="text" data="" id="inputFirstName" value="08045453553" />
+                      <div class="col-4">{this.state.details.phoneNumber}</div>
                     </div>
                     <div class="form-group col-md-4 ">
                       <label for="inputEmail4">Email:   </label>
-                        <input type="text" data="" id="inputFirstName" value="jadajaga@fgn.net" />
+                      <div class="col-4">{this.state.details.email}</div>
                     </div>
                   </div>
                   <Row>
                     <Col md="12">
                       <div class="text-right">
-                        <Button variant="success" type="submit" className="btn-block" onClick={this.EditProfile}>
+                     
                             <Link to="/investor/EditProfile"> Edit Profile</Link>
-                        </Button>
+                       
                       </div>
                     </Col>
                   </Row>
@@ -77,18 +121,10 @@ class ProfileDetails extends React.Component {
                 <div class="form-row" controlId="companyName">
                         <div class="form-group col-md-12">
                           <label for="inputAddress1">Address: </label>
-                            <input type="text" data="" id="inputAddress1" value="Allway Boulevard, Lagos Coast" />
+                          <div class="col-4">{this.state.details.Address}</div>
                         </div>
-                        
-                        <div class="form-group col-md-6">
-                          <label for="inputState1">State: </label>
-                            <input type="text" data="" id="inputState1" value="Lagos State" />
-                        </div>
-                        
-                        <div class="form-group col-md-6">
-                          <label for="inputLga">L.G.A: </label>
-                            <input type="text" data="" id="inputLga" value="dangotegroup.org" />
-                        </div>
+                       
+                      
                     </div>
                   </Col>
                   
@@ -133,37 +169,34 @@ class ProfileDetails extends React.Component {
             <div class="form-row" controlId="companyName">
                     <div class="form-group col-md-12">
                       <label for="inputEmail4">Company Name: </label>
-                        <input type="text" data="" id="inputFirstName" value="Dangote Group of Companies" />
+                      <div class="col-4">{this.state.details.companyName}</div>
                     </div>
                     
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Incorporation Date: </label>
-                        <input type="text" data="" id="inputFirstName" value="1/06/1930" />
+                      <div class="col-4">{this.state.details.dateIncorporated}</div>
                     </div>
                     
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Email Address:   </label>
-                        <input type="text" data="" id="inputCompanyEmail" value="dangotegroup.org" />
+                      <div class="col-4">{this.state.details.coyEmail}</div>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Company Phone: </label>
-                        <input type="text" data="" id="inputCompanyPhone" value="+1 233 35355" />
+                      <div class="col-4">{this.state.details.coyEmail}</div>
                     </div>
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">RCC No: </label>
-                        <input type="text" data="" id="inputFirstName" value="RCC2342543" />
+                      <div class="col-4">{this.state.details.RCNumber}</div>
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="inputEmail4">Company ID.: </label>
-                        <input type="text" data="" id="inputFirstName" value="Ad234535ED4" />
-                    </div>
+                   
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">Company BVN: </label>
-                        <input type="text" data="" id="inputFirstName" value="12345678921" />
+                      <div class="col-4">{this.state.details.BVN}</div>
                     </div>
                     <div class="form-group col-md-12">
                       <label for="inputEmail4">Company Address: </label>
-                        <input type="text" data="" id="inputFirstName" value="456 EazyWay, Lagos" />
+                      <div class="col-4">{this.state.details.address}</div>
                         <br></br>
                         <br></br>
                     </div>

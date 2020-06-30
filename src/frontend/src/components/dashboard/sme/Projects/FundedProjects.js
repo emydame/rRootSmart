@@ -36,7 +36,7 @@ class View extends React.Component {
   fetchData() {
     axios
     //.get(`https://eazsme-backend.herokuapp.com/projects/all`)
-      .get(`https://eazsme-backend.herokuapp.com/projects/all`)
+      .get(`http://localhost:4000/projects/all`)
       .then(({ data }) => {
         const status = data.status;
         const projects = data.data;
@@ -133,8 +133,10 @@ class View extends React.Component {
                     <td key={index}>{item.projectName}</td>
                     <td key={index}>{item.description}</td>
                     <td key={count++}>
-                      <Link to="">View Details</Link>
-                    </td>
+                        {/* <Link to={{ pathname: `/sme/Projects/ProjectDetails/`, queryid: item.projectId  }}> View Details </Link>*/}
+                         <Link to={`/${this.props.userCat}/Projects/ProjectDetails/${item.projectId}`}>View Details</Link>
+                         
+                   </td>
                     <td key={count++}>
                    {/*   <Link to={`/sme/Funds/NewApplication/${item.projectId}`}>Apply</Link>*/}
                       <Link to={{ pathname: `/sme/Funds/NewApplication/`, query: item.projectId  }}> Apply </Link>

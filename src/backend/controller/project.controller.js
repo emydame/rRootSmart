@@ -123,7 +123,7 @@ exports.findOne = (req, res) => {
         let result = data.dataValues;
         result.eligibility = "";
         
-        Eligibility.findOne({ where: { projectId } }).then((criteria) => {
+        Eligibility.findOne({ where: { projectId: projectIds  } }).then((criteria) => {
           if (criteria) {
             result.eligibility = criteria.dataValues.eligibilityCreteria;
           }
@@ -156,17 +156,17 @@ exports.findAllSMEProject = (req, res) => {
   db.sequelize.query(
     `SELECT 
     fa.applicationId, fa.fundId, 
-    p.status, p.dateStart, p.dateEnd, p.projectId , p.projectName, p.description,f.amount as fund, 
-    o.companyName, o.address,
+    fa.status, p.dateStart, p.dateEnd, p.projectId , fa.projectName as proposal, p.description,f.amount as fund, 
+    o.companyName, o.address, fa.dateStart,fa.dateEnd,p.projectName,
     m.name as milestoneName, m.description as milestoneDescription, m.startDate as milestoneStart,
     m.endDate as milestoneEnd,
     pp.filePath
-    FROM fundapplications fa 
-    LEFT JOIN organizations o ON fa.organizationId = o.organizationId 
-    LEFT JOIN projects p ON fa.projectName = p.projectName
-    LEFT JOIN projectproposals pp ON pp.applicationId = fa.applicationId
-    LEFT JOIN milestones m ON m.applicationId = fa.applicationId
-    LEFT JOIN funds f ON f.fundId = fa.fundId
+    FROM eazsme_db.fundapplications fa 
+    LEFT JOIN eazsme_db.organizations o ON fa.organizationId = o.organizationId 
+    LEFT JOIN eazsme_db.projects p ON fa.projectId = p.projectId
+    LEFT JOIN eazsme_db.projectproposals pp ON pp.applicationId = fa.applicationId
+    LEFT JOIN eazsme_db.milestones m ON m.applicationId = fa.applicationId
+    LEFT JOIN eazsme_db.funds f ON f.fundId = fa.fundId
     `, { raw: true })
     .then((result) => {  
       return res.status(200).json({

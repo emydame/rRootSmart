@@ -65,6 +65,7 @@ class View extends React.Component {
 
   render() {
     const data = this.state.data;
+    
     return (
       <Card.Body>
         <div className="sachBody">
@@ -100,7 +101,7 @@ class View extends React.Component {
               <th>Category Description</th>
               <th>Created By</th>
               <th>Update</th>
-              <th>Delete</th>
+             
             </tr>
           </thead>
           <tbody>
@@ -116,15 +117,15 @@ class View extends React.Component {
                   <td>
                     <Link to={`/update/${item.projectCatId}`}>Update</Link>
                   </td>
-                  <td key={count++}>
+                 {/* <td key={count++}>
                     <Link to={`/delete/${item.projectCatId}`}>Delete</Link>|
-                  </td>
+                  </td>*/}
                 </tr>
               );
             })}
           </tbody>
         </Table>
-        <Pagination>
+      {/*  <Pagination>
           <Pagination.First />
           <Pagination.Prev />
           <Pagination.Item>{1}</Pagination.Item>
@@ -140,7 +141,7 @@ class View extends React.Component {
           <Pagination.Item>{20}</Pagination.Item>
           <Pagination.Next />
           <Pagination.Last />
-        </Pagination>
+        </Pagination>*/}
       </Card.Body>
     );
   }

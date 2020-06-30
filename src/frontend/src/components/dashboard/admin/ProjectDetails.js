@@ -96,14 +96,7 @@ class ProjectDetails extends React.Component {
               {this.state.project.description}
             </div>
           </div>
-          <div class="row justify-content-between stripped">
-            <div class="col-3">
-              Project Category: 
-            </div>
-            <div class="col-9">
-              {this.state.project.categoryName}
-            </div>
-          </div>
+      
           <div class="row justify-content-between stripped">
             <div class="col-4">
               Eligibility Criteria:

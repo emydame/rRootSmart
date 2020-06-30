@@ -40,7 +40,7 @@ class View extends React.Component {
 const formFields = serialize(form, { hash: true }); 
 //formFields.organizationId=organizationId;
 
-URL = `https://eazsme-backend.herokuapp.com/fund/application/${id}`;
+URL = `http://localhost:4000/fund/application/${id}`;
 
     }
    
@@ -128,7 +128,7 @@ URL = `https://eazsme-backend.herokuapp.com/fund/application/${id}`;
                 <th>Amount Received</th>
                 <th>Date</th>
                 <th>Status</th>
-                <th>View</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -140,9 +140,9 @@ URL = `https://eazsme-backend.herokuapp.com/fund/application/${id}`;
                     <td>{item.createdBy}</td>
                     <td>{item.dateStart}</td>
                     <td>{item.dateEnd}</td>
-                    <td>
+                   {/* <td>
                       <Link to={`/view-project/${item.projectId}`}>View Details</Link>
-                    </td>
+                    </td>*/}
                   </tr>
                 );
               })}

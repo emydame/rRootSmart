@@ -78,7 +78,8 @@ class Nav extends React.Component {
       this.confPassword.current.classList.remove("d-none");
     }
   }
-
+ //http://localhost:4000/register
+  //https://eazsme-backend.herokuapp.com/register
   submitRegistration(event) {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
@@ -123,7 +124,7 @@ class Nav extends React.Component {
       .then(({ data }) => {
         const { status } = data;
         if (status === "success") {
-          this.setState({ signupSuccess: "User successfully signed up!" });
+          this.setState({ signupSuccess: "User successfully signed up! Check your mail to activate your account" });
           form.reset();
           window.alert("User successfully signed up!");
         } else {
