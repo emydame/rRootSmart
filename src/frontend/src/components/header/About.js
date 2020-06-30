@@ -91,7 +91,7 @@ class About extends React.Component {
               <Row>
                 <Col className="dev-frame">
                   <figure>
-                    <img src={"./Emilia.png"} alt="" />
+                    <img src={"./Emilia.png"} alt="img" />
                     <figcaption>Emilia Anochirionye; Technical Team Lead</figcaption>
                     <a href="#" target="_blank">
                       View Portfolio
@@ -114,7 +114,7 @@ class About extends React.Component {
                 </Col>
                 <Col className="dev-frame">
                   <figure>
-                    <img src={"./vic.png"} alt="" />
+                    <img src={"./vic.png"} alt="img" />
                     <figcaption>Victor Yohanna; Backend Developer</figcaption>
                     <a href="#" target="_blank">
                       View Portfolio
@@ -123,7 +123,7 @@ class About extends React.Component {
                 </Col>
                 <Col className="dev-frame">
                   <figure>
-                    <img src={"./Emilia.png"} alt="" />
+                    <img src={"./Emilia.png"} alt="img" />
                     <figcaption>Emilia Anochirionye; Technical Team Lead</figcaption>
                     <a href="#" target="_blank">
                       View Portfolio
@@ -132,7 +132,7 @@ class About extends React.Component {
                 </Col>
                 <Col className="dev-frame">                   
                 <figure>
-                  <img style={{width:"200px", height:"200px"}} src={"./Abdul.jpg"} alt=""/>
+                  <img style={{width:"200px", height:"200px"}} src={"./Abdul.jpg"} alt="img"/>
                 <figcaption>Abdulhafiz Ibrahim;
                   Frontend Web Developer
                 </figcaption>
@@ -142,14 +142,22 @@ class About extends React.Component {
                 </Col> 
                 <Col className="dev-frame">                   
                 <figure>
-                  <img src={"./Emilia.png"} alt=""/>
+                  <img src={"./Emilia.png"} alt="img"/>
                 <figcaption>Emilia Anochirionye;
                    Technical Team Lead
                 </figcaption>
                 <a href="#" target="_blank">View Portfolio</a>
               </figure>                      
                 </Col> 
-              
+                <Col className="dev-frame">                   
+                <figure>
+                  <img src={"./moses.jpeg"} alt="img"/>
+                <figcaption>Moses Nwaeze;
+                   Frontend Developer
+                </figcaption>
+                <a href="#" target="_blank">View Portfolio</a>
+              </figure>                      
+                </Col>
               </Row>
             </div>
           </Modal.Body>
