@@ -83,6 +83,41 @@ class Nav extends React.Component {
     event.preventDefault();
     const form = document.querySelector(`form[name="registration"]`);
     const formFields = serialize(form, { hash: true });
+    const formElements = document.querySelector(`form[name="registration"]`).elements;
+    const userData = {};
+
+    for (let i = 0; i < formElements.length; i++) {
+      const item = formElements.item(parseInt(i));
+      userData[item.name] = item.value;
+    }
+
+    // dispatch the data to redux store
+
+    const { sme, investor, regulator, admin } = this.props;
+    const data = {};
+    data.userData = userData;
+    switch (userData.userType) {
+      case "sme":
+        localStorage.setItem("userData", data);
+        sme(data);
+        break;
+      case "investor":
+        localStorage.setItem("userData", data);
+        investor(data);
+        break;
+      case "regulator":
+        localStorage.setItem("userData", data);
+        regulator(data);
+        break;
+      case "admin":
+        localStorage.setItem("userData", data);
+        admin(data);
+        break;
+      default:
+        window.alert("Unknown user");
+        break;
+    }
+
     axios
       .post("https://eazsme-backend.herokuapp.com/register", formFields)
       .then(({ data }) => {
@@ -301,7 +336,7 @@ class Nav extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators(
+    ...bindActionCreators(
     {
       sme: (data) => smeAction(data),
       investor: (data) => investorAction(data),

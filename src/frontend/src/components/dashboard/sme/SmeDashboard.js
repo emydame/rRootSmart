@@ -78,13 +78,13 @@ class SmeDashboard extends React.Component {
   }
 
   onCollapse = (collapsed) => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 
   render() {
     // use localStorage.getItem("user") to get the user object
     const user = localStorage.getItem("userObj");
+    const userData = localStorage.getItem("userData");
     const history = this.props.history;
     if (!user || user === null) {
       history.push("/");
@@ -138,7 +138,7 @@ class SmeDashboard extends React.Component {
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="12" icon={<LogoutOutlined />}>
-            <Link to="/">Log out</Link>
+              <Link to="/">Log out</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -172,7 +172,10 @@ class SmeDashboard extends React.Component {
               <Switch>
                 {/* <Route path="/sme/projects" component={Project} /> */}
                 <Route path="/sme/Projects/FundedProjects" component={FundedProjects} />
-                <Route path="/sme/Funds/NewApplication" render={(props) => <NewApplication {...props} projects={this.state.projects } />} />
+                <Route
+                  path="/sme/Funds/NewApplication"
+                  render={(props) => <NewApplication {...props} projects={this.state.projects} />}
+                />
                 <Route path="/sme/Funds/UpdateMilestone" component={UpdateMilestone} />
                 <Route path="/sme/Funds/ViewMilestones" component={ViewMilestones} />
                 <Route path="/sme/Projects/Milestones" component={CreateMilestones} />
@@ -184,7 +187,6 @@ class SmeDashboard extends React.Component {
                 <Route path="/sme/EditProfile" component={EditProfile} />
                 <Route path="/sme/Projects/InvestmentProject" component={InvestmentProject} />
                 <Route path="/sme/Projects/Milestones" component={Milestones} />
-               
               </Switch>
             </Router>
           </Content>
@@ -194,11 +196,12 @@ class SmeDashboard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  companyName: state.sme.companyName,
-  category: state.sme.category,
-  userId: state.sme.userId,
-  organizationId:state.sme.organizationId
+const mapStateToProps = ({ sme }) => ({
+  companyName: sme.companyName,
+  category: sme.category,
+  userId: sme.userId,
+  organizationId: sme.organizationId,
+  userData: sme.userData
 });
 
 export default connect(mapStateToProps)(SmeDashboard);

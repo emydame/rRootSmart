@@ -8,7 +8,8 @@ export const smesReducer = (state = states.smes, action) => {
         ...state,
         companyName: action.payload.companyName,
         category: action.payload.category,
-        userId: action.payload.userId
+        userId: action.payload.userId,
+        userData: action.payload.userData
       });
     }
     default: {
@@ -24,7 +25,8 @@ export const investorsReducer = (state = states.investors, action) => {
         ...state,
         companyName: action.payload.companyName,
         category: action.payload.category,
-        userId: action.payload.userId
+        userId: action.payload.userId,
+        userData: action.payload.userData
       });
     }
     default: {
@@ -40,7 +42,8 @@ export const regulatorsReducer = (state = states.regulators, action) => {
         ...state,
         companyName: action.payload.companyName,
         category: action.payload.category,
-        userId: action.payload.userId
+        userId: action.payload.userId,
+        userData: action.payload.userData
       });
     }
     default: {
@@ -56,7 +59,8 @@ export const projectsReducer = (state = states.regulators, action) => {
         ...state,
         companyName: action.payload.companyName,
         category: action.payload.category,
-        userId: action.payload.userId
+        userId: action.payload.userId,
+        userData: action.payload.userData
       });
     }
     default: {
@@ -72,7 +76,8 @@ export const adminReducer = (state = states.regulators, action) => {
         ...state,
         companyName: action.payload.companyName,
         category: action.payload.category,
-        userId: action.payload.userId
+        userId: action.payload.userId,
+        userData: action.payload.userData
       });
     }
     default: {
