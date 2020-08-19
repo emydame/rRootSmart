@@ -23,8 +23,8 @@
     "start": "concurrently --kill-others-on-fail \"yarn frontend\"  \"yarn backend\""
   },
   "author": {
-    "name": "Build For SDG",
-    "email": "buildforsdg@andela.com"
+    "name": "",
+    "email": "rboot@gmail.com"
   },
   "homepage": "https://github.com/BuildForSDG/js-starter#readme",
   "repository": {
